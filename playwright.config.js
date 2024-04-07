@@ -9,7 +9,7 @@ module.exports = defineConfig({
   reporter: 'html',
   
   use: {
-    headless: false,
+    headless: process.env.CI ? true : false,
     viewport: { width: 1920, height: 1080 },
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://magento.softwaretestingboard.com',
