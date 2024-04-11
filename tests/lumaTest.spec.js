@@ -7,13 +7,13 @@ test.describe('luma test', () => {
     await page.goto('/');
   })
 
-  test('verify page title', async ({ page }) => {
+  test('verify Home page title', async ({ page }) => {
 
     await expect(page).toHaveTitle('Home Page');
   })
 
-  test('verify user can navigate to home page clicking on logo', async ({ page }) => {
-    await page.getByRole('listitem').filter({ hasText: "What's New" }).click();
+  test('verify user can navigate to home page clicking on logo from "What\'s New" page', async ({ page }) => {
+    // await page.getByRole('listitem').filter({ hasText: "What's New" }).click();
     await expect(page).toHaveURL(BASE_URL + '/what-is-new.html');
 
     await page.getByLabel('store logo').click();
