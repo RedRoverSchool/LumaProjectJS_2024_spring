@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe('luma test', () => {
+test.describe('header', () => {
   const BASE_URL = "https://magento.softwaretestingboard.com";
 
   test.beforeEach(async ({ page }) => {
