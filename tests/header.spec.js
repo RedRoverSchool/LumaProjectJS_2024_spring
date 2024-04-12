@@ -20,7 +20,7 @@ test.describe('header', () => {
     await expect(page).toHaveURL(BASE_URL);
   })
 
-  test('verify user can navigate to home page clicking on logo from "What\'s New" page', async ({ page }) => {
+  test('navigate to home page clicking on logo from "What\'s New" page', async ({ page }) => {
     await page.getByRole('listitem').filter({ hasText: "What's New" }).click();
     await expect(page).toHaveURL(BASE_URL + '/what-is-new.html');
 
