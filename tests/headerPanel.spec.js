@@ -1,8 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.describe('headerPanel', () => {
-    const BASE_URL = "https://magento.softwaretestingboard.com";
-
+    
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
     })
@@ -17,8 +16,11 @@ test.describe('headerPanel', () => {
         const headerPanel = page.locator('ul[class="header links"]:nth-child(1) li');
         await expect(headerPanel).toHaveCount(3);
 
+        for (let i = 0; i < headerPanel.length; i++) {
+            await expect(elements[i]).toBeVisible();
+        }
+
         const actualHeaderPanel = await headerPanel.allInnerTexts().then(elements => elements.map(el => el.trim()));
-        
         expect(actualHeaderPanel).toEqual(expectedHeaderPanel)
     })
 })
