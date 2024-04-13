@@ -23,5 +23,12 @@ test.describe('headerPanel', () => {
         const actualHeaderPanel = await headerPanel.allInnerTexts().then(elements => elements.map(el => el.trim()));
         expect(actualHeaderPanel).toEqual(expectedHeaderPanel)
     })
+
+    test('TC 01.5.1_01 verify the header is visible', async({ page }) => {
+        const baseURL = ("https://magento.softwaretestingboard.com/")
+        
+        await expect(page).toHaveURL(baseURL)
+        await expect(page.locator('.page-header')).toBeVisible() 
+    })
 })
 
