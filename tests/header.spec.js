@@ -28,7 +28,7 @@ test.describe('header', () => {
     await expect(page).toHaveURL(BASE_URL);
   })
 
-  test.only('Verify the Create an Account link is displayed on the main page in the header', async ({ page }) => {
+  test('Verify the Create an Account link is displayed on the main page in the header', async ({ page }) => {
     
     const createAccountPage = page.locator('h1.page-title');
     await expect(createAccountPage).toBeVisible();
