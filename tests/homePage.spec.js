@@ -6,7 +6,7 @@ test.describe('homePage', () => {
         await page.goto('/');
     })
     
-    test('TC03.1.1_01 verify Url on the home page', async({page}) => {
+    test('verify Url on the home page', async({page}) => {
         
         await page.locator('.logo').click();
 
