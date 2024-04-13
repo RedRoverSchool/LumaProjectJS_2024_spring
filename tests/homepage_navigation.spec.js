@@ -12,4 +12,5 @@ test.describe('Homepage | Navigation', () => {
 
     expect(await navitems.count()).toEqual(6);   
   });  
+  
 });
