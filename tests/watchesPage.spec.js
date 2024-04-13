@@ -12,4 +12,14 @@ test.describe('watchesPage', () => {
         await expect(page).toHaveURL('/gear/watches.html');
         await page.waitForSelector('h1:has-text("Watches")');
     })
+
+    test('verify only watches displayed on watches page', async ({ page }) => {
+        await page.getByRole('menuitem', { name: 'Gear' }).hover();
+        await page.getByText('Watches').click();
+        await page.waitForSelector('.products .product-items li');
+        const allTextItems = await page.locator('.products .product-items .product-item-link').allTextContents();
+        for (const item of allTextItems) {
+            expect(item).toContain('Watch');
+        }
+    })
 })
