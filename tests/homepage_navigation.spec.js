@@ -11,6 +11,5 @@ test.describe('Homepage | Navigation', () => {
     const navitems = navigation.getByRole('listitem');
 
     expect(await navitems.count()).toEqual(6);   
-  });
-  
+  });  
 });
