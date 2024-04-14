@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe('Homepage | Navigation', () => {
 
-  const allLinks = ["What's New", "Women", "Men", "Gear", "Training", "Sale"];
+  const allMenuLinks = ["What's New", "Women", "Men", "Gear", "Training", "Sale"];
   
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
@@ -15,7 +15,7 @@ test.describe('Homepage | Navigation', () => {
     expect(await navitems.count()).toEqual(6);   
   });  
 
-  allLinks.forEach(link => {
+  allMenuLinks.forEach(link => {
     test(`TC 03.1.1_03 Verify redirect to ${link} page`, async ({ page }) => { 
       const navLink = page.getByText(link, { exact: true });    
       await navLink.click(); 
