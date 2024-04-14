@@ -11,14 +11,27 @@ test.describe('Product Card/Add to Wish List', () => {
         await emailInput.fill(userEmailValue);
         await userPassword.fill(userPasswordValue);
         await page.getByRole('button', { name: 'Sign In'}).click();
+        await page.getByText('Women').click();
+        await page.getByRole('link', { name: 'Jackets' }).click();
+        await  page.getByRole('link', { name: 'Inez Full Zip Jacket' }).first().click();
+       //await page.locator('div.swatch-option.text').withText('L').click();
+       await page.locator('#option-label-size-143-item-169').click();
+        await page.locator('div.swatch-option.color[option-label="Orange"]').click();
+        await page.getByRole('button', { name: 'Add to Cart'}).click();
+       // await page.locator('.minicart-wrapper').click();
+       // await page.getByText('View and Edit Cart').click();
 
 
 
       // await page.getByText('')
 
     });
-    test("dropdown1", async ({ page }) => {
-     
+    test("Validate link Move to Wish List located on the Shopping Cart page", async ({ page }) => {
+      await page.locator('.minicart-wrapper').click();
+      await page.locator('.action.showcart').click();
+
+     await expect(page.locator('.action.towishlist.action-towishlist > span')).toBeVisible();
+     // await expect()
       })
 });
 
