@@ -37,7 +37,7 @@ test.describe('watchesPage', () => {
         expect(totalNumberItems).toContain(totalSaleItems.toString());
     })
 
-    test('TC 19.1.7_03 Verify only watches on sale displayed on page', async({page})=>{
+    test('Verify only watches on sale displayed on page', async({page})=>{
         await page.getByRole('menuitem', { name: 'Gear' }).hover()
         await page.getByRole('menuitem',{name:'Watches'}).click()
         await page.getByRole('tab',{name:'Sale'}).click()
