@@ -30,5 +30,11 @@ test.describe('headerPanel', () => {
         await expect(page).toHaveURL(baseURL)
         await expect(page.locator('.page-header')).toBeVisible() 
     })
+
+    test('TC01.5.1_03 Verify that header panel contains Logo of the Luma shop on the left', async({ page }) => {
+        const logo = page.locator('.logo >img');
+        
+        await expect(logo).toBeVisible();
+    })
 })
 
