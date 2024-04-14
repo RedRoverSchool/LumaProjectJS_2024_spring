@@ -5,6 +5,8 @@ test.describe("footer", () => {
     "https://softwaretestingboard.com/magento-store-notes/?utm_source=magento_store&utm_medium=banner&utm_campaign=notes_promo&utm_id=notes_promotion";
   const POLICY_URL =
     "https://magento.softwaretestingboard.com/privacy-policy-cookie-restriction-mode";
+  const SEARCH_TERMS_URL = 'https://magento.softwaretestingboard.com/search/term/popular/'  
+
 
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
@@ -24,4 +26,13 @@ test.describe("footer", () => {
 
     await expect(page).toHaveURL(POLICY_URL);
   });
+
+  test("user is redirected to popular search queries page", async ({ page }) => {
+    await page.evaluate(() => {
+          window.scrollTo(0, document.body.scrollHeight);  });
+    await page.getByRole("link", { name: "Search Terms" }).click();
+
+    await expect(page).toHaveURL(SEARCH_TERMS_URL);
+  });
+  
 });
