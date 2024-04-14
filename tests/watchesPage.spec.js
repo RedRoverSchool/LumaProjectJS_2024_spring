@@ -42,14 +42,8 @@ test.describe('watchesPage', () => {
         await page.getByRole('menuitem',{name:'Watches'}).click()
         await page.getByRole('tab',{name:'Sale'}).click()
         await page.getByRole('link',{name:" Yes "}).click()
-        const saleItems = await page.locator('#maincontent').getByRole('paragraph').getByText('2').innerText()
-        console.log(typeof saleItems)
-        const saleWatches = await (await page.locator('.product-items').getByRole('listitem').count()).toString()
-        console.log(typeof saleWatches)
-        expect (saleItems).toEqual(saleWatches)
-
+        const saleItemsNumber = await page.locator('#maincontent').getByRole('paragraph').getByText('2').innerText()
+        const saleWatches = (await page.locator('.product-items').getByRole('listitem').count()).toString()
+        expect (saleItemsNumber).toEqual(saleWatches)
     })
-
-
-
 })
