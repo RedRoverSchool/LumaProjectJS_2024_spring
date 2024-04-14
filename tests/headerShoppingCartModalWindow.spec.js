@@ -19,4 +19,13 @@ test.describe('header shopping cart modal window', () => {
         await expect(miniCart).toBeVisible();
         await expect(page).toHaveURL('/');
     })
+
+    test('verify display empty shopping cart message', async ({page}) => {
+        const emptyCardMessageText = 'You have no items in your shopping cart.';
+
+        await page.getByRole('link', {name: ' My Cart'}).click();
+        const emptyCardMessage = await page.locator('.block-minicart .subtitle.empty')
+
+        await expect(emptyCardMessage).toHaveText(emptyCardMessageText);
+    })
 })
