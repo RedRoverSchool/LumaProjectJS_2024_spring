@@ -13,7 +13,7 @@ test.describe('Menu/Gear/Promo Block', () => {
     await page.getByRole('link', { name: 'Loosen Up' }).click();
 
     await expect(page).toHaveURL(/.*fitness-equipment.html/);
-    await expect(page.getByTestId('page-title-heading')).toHaveText('Fitness Equipment');
+    await expect(page.locator('.base')).toHaveText('Fitness Equipment');
   })
 
 })  
