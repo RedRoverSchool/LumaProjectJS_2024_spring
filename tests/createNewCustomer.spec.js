@@ -6,7 +6,7 @@ test.describe('Create New Customer page', () => {
         await page.goto('/');
     });
 
-    test.only('Verify Create New Customer Account page presents an empty forms for Personal Information and Sign-in Information', async ({ page }) => {
+    test('Verify Create New Customer Account page presents an empty forms for Personal Information and Sign-in Information', async ({ page }) => {
         await page.getByRole('link', {name: 'Create an Account'}).click();
 
         await expect(page.locator('#firstname')).toBeEmpty();
