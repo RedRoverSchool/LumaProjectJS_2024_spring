@@ -36,4 +36,20 @@ test.describe('watchesPage', () => {
         const totalNumberItems = await totalItems.textContent();
         expect(totalNumberItems).toContain(totalSaleItems.toString());
     })
+
+    test('TC 19.1.7_03 Verify only watches on sale displayed on page', async({page})=>{
+        await page.getByRole('menuitem', { name: 'Gear' }).hover()
+        await page.getByRole('menuitem',{name:'Watches'}).click()
+        await page.getByRole('tab',{name:'Sale'}).click()
+        await page.getByRole('link',{name:" Yes "}).click()
+        const saleItems = await page.locator('#maincontent').getByRole('paragraph').getByText('2').innerText()
+        console.log(typeof saleItems)
+        const saleWatches = await (await page.locator('.product-items').getByRole('listitem').count()).toString()
+        console.log(typeof saleWatches)
+        expect (saleItems).toEqual(saleWatches)
+
+    })
+
+
+
 })
