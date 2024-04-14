@@ -22,4 +22,18 @@ test.describe('watchesPage', () => {
             expect(item).toContain('Watch');
         }
     })
+
+    test('verify only sale watches displayed on watches page', async ({ page }) => {
+        await page.getByRole('menuitem', { name: 'Gear' }).hover();
+        await page.getByText('Watches').click();
+        await page.waitForLoadState()
+        await page.locator('.filter-options .filter-options-title', { hasText: 'Sale' }).click();
+        const countSaleItems = await page.locator('.filter-options .active li .count').textContent();
+        const totalSaleItems = parseInt(countSaleItems)
+        await page.locator('.filter-options .active li a', { hasText: 'Yes' }).click();
+        await expect(page).toHaveURL('/gear/watches.html?sale=1');
+        const totalItems = await page.locator('.toolbar-products .toolbar-amount .toolbar-number').first()
+        const totalNumberItems = await totalItems.textContent();
+        expect(totalNumberItems).toContain(totalSaleItems.toString());
+    })
 })
