@@ -24,4 +24,9 @@ test.describe("footer", () => {
 
     await expect(page).toHaveURL(POLICY_URL);
   });
+
+  test('verify visibility of footer', async({page}) => {
+    await expect(page.locator('.page-wrapper footer')).toBeVisible();
+  });
+
 });
