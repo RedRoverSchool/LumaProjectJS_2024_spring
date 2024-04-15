@@ -37,25 +37,40 @@ test.describe('watchesPage', () => {
         expect(totalNumberItems).toContain(totalSaleItems.toString());
     })
 
-    test('Verify only watches on sale displayed on page', async({page})=>{
+    test('Verify only watches on sale displayed on page', async ({ page }) => {
         await page.getByRole('menuitem', { name: 'Gear' }).hover()
-        await page.getByRole('menuitem',{name:'Watches'}).click()
-        await page.getByRole('tab',{name:'Sale'}).click()
-        await page.getByRole('link',{name:" Yes "}).click()
+        await page.getByRole('menuitem', { name: 'Watches' }).click()
+        await page.getByRole('tab', { name: 'Sale' }).click()
+        await page.getByRole('link', { name: " Yes " }).click()
         const saleItemsNumber = await page.locator('#maincontent').getByRole('paragraph').getByText('2').innerText()
         const saleWatches = (await page.locator('.product-items').getByRole('listitem').count()).toString()
-        expect (saleItemsNumber).toEqual(saleWatches)
+        expect(saleItemsNumber).toEqual(saleWatches)
     })
 
     test('verify that material filter can be set/unset on watch', async ({ page }) => {
         await page.getByRole('menuitem', { name: 'Gear' }).hover();
         await page.getByText('Watches').click();
-        await page.getByRole('tab', {name: 'Material'}).click();
-        await page.getByText('Leather').click(); 
+        await page.getByRole('tab', { name: 'Material' }).click();
+        await page.getByText('Leather').click();
         const activeMaterialFilter = page.locator('.filter-value');
-        expect(activeMaterialFilter).toHaveText('Leather'); 
-        const clearAllFiltersButton = page.locator('.action.clear.filter-clear'); 
-        await(clearAllFiltersButton).click(); 
-        expect(activeMaterialFilter).not.toBeVisible(); 
+        expect(activeMaterialFilter).toHaveText('Leather');
+        const clearAllFiltersButton = page.locator('.action.clear.filter-clear');
+        await (clearAllFiltersButton).click();
+        expect(activeMaterialFilter).not.toBeVisible();
+    })
+
+    test('verify user able to reset the selected filter on sale watches page', async ({ page }) => {
+        const saleWatchesURL = ("https://magento.softwaretestingboard.com/gear/watches.html?sale=1")
+        await page.goto(saleWatchesURL);
+        const totalSalesItems = await page.locator('.toolbar-products .toolbar-amount .toolbar-number').first().textContent()
+        const totalSalesNumberItems = parseInt(totalSalesItems)
+        const activeFilter = page.locator('.filter-value');
+        expect(activeFilter).toHaveText('Yes');
+        await page.locator('.filter-content .clear', { hasText: 'Clear All' }).click()
+        await expect(page).toHaveURL('/gear/watches.html');
+        const totalItems = await page.locator('.toolbar-products .toolbar-amount .toolbar-number').first().textContent()
+        const totalNumberItems = parseInt(totalItems)
+        expect(totalSalesNumberItems).not.toEqual(totalNumberItems)
+        expect(activeFilter).not.toBeVisible();
     })
 })
