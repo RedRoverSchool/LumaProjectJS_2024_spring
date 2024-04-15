@@ -33,4 +33,12 @@ test.describe('header', () => {
     const createAccountPage = page.locator('h1.page-title');
     await expect(createAccountPage).toBeVisible();
   });
+
+  test('Verify after clicking the “Create an account" link the Create New Customer Account page opens', async ({ page }) => {
+    await page.getByRole('link', {name: 'Create an Account'}).click();
+        
+    const createAccountPage = page.locator('h1.page-title');
+    await expect(createAccountPage).toBeVisible();
+    await expect(page).toHaveURL(BASE_URL + '/customer/account/create/');
+  });
 })
