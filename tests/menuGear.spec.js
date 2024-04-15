@@ -2,6 +2,11 @@ import { test, expect } from "@playwright/test";
 
 test.describe('menuGear', () => {
     const BASE_URL = "https://magento.softwaretestingboard.com";
+    const gearMenuItems = {
+        "Bags": '/gear/bags.html',
+        "Fitness Equipment": '/gear/fitness-equipment.html',
+        "Watches": '/gear/watches.html'
+    }
 
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
@@ -21,19 +26,20 @@ test.describe('menuGear', () => {
         expect(expectedSubMenuItems).toEqual(actualSubMenuItems);
     });
 
-    test('User could navigate from the Gear drop-down menu to Bags page', async ({ page }) => {
-        const bagsItem = page.getByRole('menuitem', { name: 'Bags' });
-        const bagsPageUrl = '/gear/bags.html';
+    for (const gearMenuItem in gearMenuItems) {
+        test(`User could navigate from the Gear drop-down menu to ${gearMenuItem} page`, async ({ page }) => {
+            const menuItem = page.getByRole('menuitem', { name: gearMenuItem });
+            const menuPageUrl = gearMenuItems[gearMenuItem];
 
-        await page.getByRole('menuitem', { name: 'Gear' }).hover();
+            await page.getByRole('menuitem', { name: 'Gear' }).hover();
 
-        await expect(bagsItem).toBeVisible();
+            await expect(menuItem).toBeVisible();
 
-        bagsItem.click();
+            menuItem.click();
 
-        await expect(page).toHaveURL(BASE_URL + bagsPageUrl);
-        await expect(page).toHaveTitle('Bags - Gear');
-        await expect(page.getByRole('heading', { name: 'Bags' })).toBeVisible();
-    });
-
+            await expect(page).toHaveURL(BASE_URL + menuPageUrl);
+            await expect(page).toHaveTitle(`${gearMenuItem} - Gear`);
+            await expect(page.getByRole('heading', { name: gearMenuItem })).toBeVisible();
+        });
+    }
 });
