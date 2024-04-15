@@ -37,4 +37,12 @@ test.describe("footer", () => {
     }
   });
 
+  test('link contact us is visible and clickable', async ({page}) => {
+    await page.goto(POLICY_URL);
+    const contactUs = page.getByRole('link', {name: 'Contact Us'});
+    
+    await expect(contactUs).toBeVisible();
+    await contactUs.click();
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/contact/');
+  })
 });
