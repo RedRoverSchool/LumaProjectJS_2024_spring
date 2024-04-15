@@ -32,4 +32,5 @@ test.describe('Menu/Gear/Promo Block', () => {
     await expect(page.locator('.base')).toHaveText('Bags');
   })
 
+  
 })  
