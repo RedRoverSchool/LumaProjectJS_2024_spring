@@ -53,4 +53,15 @@ test.describe('header', () => {
     await expect(loginMainHeaderLocator).toHaveText(sighInHeader)    
     
 })
+
+  test('TC 01.4.1_01 <Header/Shopping Cart Icon> Verify a counter with the number of items in the cart is displayed after adding new product', async({ page }) => {
+    await page.getByRole('option', {name: 'XS'}).first().click();
+    await page.getByRole('option', {name: 'Blue'}).first().click();
+    await page.getByTitle('Add to Cart').first().click();
+    const itemsNumber = page.locator('.counter-number');
+    await itemsNumber.waitFor();
+
+    await expect(itemsNumber).toHaveText('1');
+  })
+  
 })
