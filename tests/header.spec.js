@@ -41,4 +41,33 @@ test.describe('header', () => {
     await expect(createAccountPage).toBeVisible();
     await expect(page).toHaveURL(BASE_URL + '/customer/account/create/');
   });
+
+  test('TC 01.1.2_01 | Verify that clicking on Sing in redirects to the login page', async ({page}) => {
+    const signInLocator = page.locator('.page-header').getByRole('link', { name: 'Sign In' });
+    const LOGIN_PAGE_URL = 'https://magento.softwaretestingboard.com/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/';
+    const loginMainHeaderLocator = page.getByRole('heading', {name: 'Customer Login'});
+    const sighInHeader = 'Customer Login';
+    await signInLocator.click();
+
+    await expect(page).toHaveURL(LOGIN_PAGE_URL);   
+    await expect(loginMainHeaderLocator).toHaveText(sighInHeader)    
+    
+})
+
+  test('TC 01.4.1_01 <Header/Shopping Cart Icon> Verify a counter with the number of items in the cart is displayed after adding new product', async({ page }) => {
+    await page.getByRole('option', {name: 'XS'}).first().click();
+    await page.getByRole('option', {name: 'Blue'}).first().click();
+    await page.getByTitle('Add to Cart').first().click();
+    const itemsNumber = page.locator('.counter-number');
+    await itemsNumber.waitFor();
+
+    await expect(itemsNumber).toHaveText('1');
+  })
+
+  test('TC 01.1.1_02 <Header/Header logo> Validate website has store logo', async ({page}) => {
+    const storeLogo = page.locator('.logo img');
+
+    await expect(storeLogo).toBeVisible();
+  })
+  
 })

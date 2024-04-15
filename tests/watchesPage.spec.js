@@ -36,4 +36,26 @@ test.describe('watchesPage', () => {
         const totalNumberItems = await totalItems.textContent();
         expect(totalNumberItems).toContain(totalSaleItems.toString());
     })
+
+    test('Verify only watches on sale displayed on page', async({page})=>{
+        await page.getByRole('menuitem', { name: 'Gear' }).hover()
+        await page.getByRole('menuitem',{name:'Watches'}).click()
+        await page.getByRole('tab',{name:'Sale'}).click()
+        await page.getByRole('link',{name:" Yes "}).click()
+        const saleItemsNumber = await page.locator('#maincontent').getByRole('paragraph').getByText('2').innerText()
+        const saleWatches = (await page.locator('.product-items').getByRole('listitem').count()).toString()
+        expect (saleItemsNumber).toEqual(saleWatches)
+    })
+
+    test('verify that material filter can be set/unset on watch', async ({ page }) => {
+        await page.getByRole('menuitem', { name: 'Gear' }).hover();
+        await page.getByText('Watches').click();
+        await page.getByRole('tab', {name: 'Material'}).click();
+        await page.getByText('Leather').click(); 
+        const activeMaterialFilter = page.locator('.filter-value');
+        expect(activeMaterialFilter).toHaveText('Leather'); 
+        const clearAllFiltersButton = page.locator('.action.clear.filter-clear'); 
+        await(clearAllFiltersButton).click(); 
+        expect(activeMaterialFilter).not.toBeVisible(); 
+    })
 })
