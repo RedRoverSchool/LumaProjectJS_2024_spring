@@ -22,7 +22,14 @@ test.describe('Menu/Gear/Promo Block', () => {
 
     await expect(page).toHaveURL(/.*fitness-equipment.html/);
     await expect(page.locator('.base')).toHaveText('Fitness Equipment');
-
-})
+  })
+  
+  test('TC 04.4.3_03 Verify redirect to the "Bags" category by clicking on "Shop bags" block', async ({ page }) => {
+    
+    await page.locator('.block-promo.gear-category-bags').click();
+    
+    await expect(page).toHaveURL(/.*bags.html/);
+    await expect(page.locator('.base')).toHaveText('Bags');
+  })
 
 })  
