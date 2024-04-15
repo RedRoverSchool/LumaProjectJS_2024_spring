@@ -5,6 +5,7 @@ test.describe("footer", () => {
     "https://softwaretestingboard.com/magento-store-notes/?utm_source=magento_store&utm_medium=banner&utm_campaign=notes_promo&utm_id=notes_promotion";
   const POLICY_URL =
     "https://magento.softwaretestingboard.com/privacy-policy-cookie-restriction-mode";
+  const footerLinks = ['Notes', 'Search Terms', 'Privacy and Cookie Policy', 'Advanced Search', 'Orders and Returns'];
 
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
@@ -29,4 +30,27 @@ test.describe("footer", () => {
     await expect(page.locator('.page-wrapper footer')).toBeVisible();
   });
 
+  test('Verify visibility of five links in footer', async({page}) => {
+    for (const linkText of footerLinks) {
+      const linkLocator = page.locator(`.page-wrapper footer li:has-text("${linkText}")`);
+      await expect(linkLocator).toBeVisible();
+    }
+  });
+
+  test('link contact us is visible and clickable', async ({page}) => {
+    await page.goto(POLICY_URL);
+    const contactUs = page.getByRole('link', {name: 'Contact Us'});
+    
+    await expect(contactUs).toBeVisible();
+    await contactUs.click();
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/contact/');
+  })
+
+  test('Checking the link Privacy Policy', async({page}) => {
+  //  await page.goto("/")
+  await expect(page.getByRole('link', {name: 'Privacy and Cookie Policy'})).toBeVisible();
+  await page.getByRole('link', {name: 'Privacy and Cookie Policy'}).click();
+  await expect(page).toHaveURL('https://magento.softwaretestingboard.com/privacy-policy-cookie-restriction-mode');
+  })
+  
 });
