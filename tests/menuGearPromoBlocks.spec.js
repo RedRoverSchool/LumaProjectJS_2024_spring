@@ -40,4 +40,17 @@ test.describe('Menu/Gear/Promo Block', () => {
     await expect(page.locator('.base')).toHaveText('Fitness Equipment');
   })
 
+  
+  
+  
+  
+  
+  
+  
+  
+  test('TC 04.4.3_06 Verify that 6 promo banners are displayed on "Gear" page', async ({ page }) => {
+    
+    await expect(page.locator('div.blocks-promo img')).toHaveCount(6);
+  })
+
 })  
