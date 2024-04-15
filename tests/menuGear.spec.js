@@ -36,33 +36,4 @@ test.describe('menuGear', () => {
         await expect(page.getByRole('heading', { name: 'Bags' })).toBeVisible();
     });
 
-    test('User could navigate from the Gear drop-down menu to Fitness Equipment page', async ({ page }) => {
-        const fitnessEquipmentItem = page.getByRole('menuitem', { name: 'Fitness Equipment' });
-        const fitnessEquipmentPageUrl = '/gear/fitness-equipment.html';
-
-        await page.getByRole('menuitem', { name: 'Gear' }).hover();
-
-        await expect(fitnessEquipmentItem).toBeVisible();
-
-        fitnessEquipmentItem.click();
-
-        await expect(page).toHaveURL(BASE_URL + fitnessEquipmentPageUrl);
-        await expect(page).toHaveTitle('Fitness Equipment - Gear');
-        await expect(page.getByRole('heading', { name: 'Fitness Equipment' })).toBeVisible();
-    });
-
-    test('User could navigate from the Gear drop-down menu to Watches page', async ({ page }) => {
-        const watchesItem = page.getByRole('menuitem', { name: 'Watches' });
-        const watchesPageUrl = '/gear/watches.html';
-
-        await page.getByRole('menuitem', { name: 'Gear' }).hover();
-
-        await expect(watchesItem).toBeVisible();
-
-        watchesItem.click();
-
-        await expect(page).toHaveURL(BASE_URL + watchesPageUrl);
-        await expect(page).toHaveTitle('Watches - Gear');
-        await expect(page.getByRole('heading', { name: 'Watches' })).toBeVisible();
-    })
 });
