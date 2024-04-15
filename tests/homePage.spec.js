@@ -12,4 +12,10 @@ test.describe('homePage', () => {
 
         await expect(page).toHaveURL("https://magento.softwaretestingboard.com");
     })
+
+    test('goto Yoga Collection page', async({page}) => {
+        await page.locator('.block-promo.home-main').click();
+
+        await expect(page).toHaveURL("https://magento.softwaretestingboard.com/collections/yoga-new.html");
+    })
 })
