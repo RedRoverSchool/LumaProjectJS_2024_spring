@@ -37,7 +37,7 @@ test.describe("footer", () => {
     }
   });
 
-  test.only('link contact us is visible and clickable', async ({page}) => {
+  test('link contact us is visible and clickable', async ({page}) => {
     await page.goto(POLICY_URL);
     const contactUs = page.getByRole('link', {name: 'Contact Us'});
     
