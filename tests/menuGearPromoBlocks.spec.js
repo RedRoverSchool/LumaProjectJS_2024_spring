@@ -8,7 +8,7 @@ test.describe('Menu/Gear/Promo Block', () => {
     await gearNavButton.click();
   })
 
-  test('TC 04.4.3_01 Verify redirect to the "Fitness Equipment" page by clicking on "Loosen Up" block', async ({ page }) => {
+  test('TC 04.4.3_01 Verify redirect to the "Fitness Equipment" category by clicking on "Loosen Up" banner', async ({ page }) => {
 
     await page.getByRole('link', { name: 'Loosen Up' }).click();
 
@@ -16,7 +16,7 @@ test.describe('Menu/Gear/Promo Block', () => {
     await expect(page.locator('.base')).toHaveText('Fitness Equipment');
   })
 
-  test('TC 04.4.3_02 Verify redirect to the "Fitness Equipment" page by clicking on “$4 Luma water bottle. Promo code H2O” block', async ({ page }) => {
+  test('TC 04.4.3_02 Verify redirect to the "Fitness Equipment" category by clicking on “$4 Luma water bottle” banner', async ({ page }) => {
 
     await page.locator('.block-promo.gear-equipment').click();
 
@@ -24,12 +24,20 @@ test.describe('Menu/Gear/Promo Block', () => {
     await expect(page.locator('.base')).toHaveText('Fitness Equipment');
   })
   
-  test('TC 04.4.3_03 Verify redirect to the "Bags" category by clicking on "Shop bags" block', async ({ page }) => {
+  test('TC 04.4.3_03 Verify redirect to the "Bags" category by clicking on "Shop bags" banner', async ({ page }) => {
     
     await page.locator('.block-promo.gear-category-bags').click();
     
     await expect(page).toHaveURL(/.*bags.html/);
     await expect(page.locator('.base')).toHaveText('Bags');
+  })
+
+  test('TC 04.4.3_04 Verify redirect to the "Fitness Equipment" category by clicking on "Shop Equipment" banner', async ({ page }) => {
+    
+    await page.locator('.block-promo.gear-category-equipment').click();
+    
+    await expect(page).toHaveURL(/.*fitness-equipment.html/);
+    await expect(page.locator('.base')).toHaveText('Fitness Equipment');
   })
 
 })  
