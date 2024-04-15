@@ -46,4 +46,16 @@ test.describe('watchesPage', () => {
         const saleWatches = (await page.locator('.product-items').getByRole('listitem').count()).toString()
         expect (saleItemsNumber).toEqual(saleWatches)
     })
+
+    test('verify that material filter can be set/unset on watch', async ({ page }) => {
+        await page.getByRole('menuitem', { name: 'Gear' }).hover();
+        await page.getByText('Watches').click();
+        await page.getByRole('tab', {name: 'Material'}).click();
+        await page.getByText('Leather').click(); 
+        const activeMaterialFilter = page.locator('.filter-value');
+        expect(activeMaterialFilter).toHaveText('Leather'); 
+        const clearAllFiltersButton = page.locator('.action.clear.filter-clear'); 
+        await(clearAllFiltersButton).click(); 
+        expect(activeMaterialFilter).not.toBeVisible(); 
+    })
 })
