@@ -26,5 +26,5 @@ test.describe('Product Card/Add to Wish List', () => {
       await page.locator('.action.viewcart').click();
       
       await expect(page.getByText('Move to Wishlist')).toBeVisible();
-      })
+      });
 });
