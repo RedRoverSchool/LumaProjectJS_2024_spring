@@ -4,8 +4,8 @@ test.describe("menuWomen", () => {
  
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
-  })
-
+  }) 
+  
   test("dropdown for Women has 2 elements Tops and Bottoms", async ({ page }) => {
     await page.getByText('Women').hover();
 
@@ -28,6 +28,12 @@ test.describe("menuWomen", () => {
     
     await expect(page.locator('#ui-id-14')).toBeVisible();
     await expect(page.locator('#ui-id-14')).toHaveText('Bras & Tanks');  
+  })
+
+  test("user is redirected to Women page", async ({ page }) => {
+    await page.getByText('Women').click();
+    
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women.html');
   })
 
 })  
