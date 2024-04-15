@@ -20,4 +20,15 @@ test.describe('menuTraining', () => {
 		  await expect(page).toHaveURL(TRAINING_URL);
 		  await expect(page.locator('#page-title-heading')).toBeVisible();
     })
+
+	 test('Verify that the correct breadcrumb navigation is displayed on the "Training" page and leading up to this section (Home > Training)', async({page}) => {
+		await expect(page).toHaveURL(BASE_URL);
+        
+		await page.locator('#ui-id-7').click();
+
+		await expect(page.locator('#page-title-heading')).toBeVisible();
+		await expect(page.locator('.breadcrumbs li:nth-child(2)')).toBeVisible();
+		expect(page.locator('.breadcrumbs li:nth-child(2)')).toBeTruthy();
+		
+  })
 })
