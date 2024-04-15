@@ -41,4 +41,16 @@ test.describe('header', () => {
     await expect(createAccountPage).toBeVisible();
     await expect(page).toHaveURL(BASE_URL + '/customer/account/create/');
   });
+
+  test('TC 01.1.2_01 | Verify that clicking on Sing in redirects to the login page', async ({page}) => {
+    const signInLocator = page.locator('.page-header').getByRole('link', { name: 'Sign In' });
+    const LOGIN_PAGE_URL = 'https://magento.softwaretestingboard.com/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/';
+    const loginMainHeaderLocator = page.getByRole('heading', {name: 'Customer Login'});
+    const sighInHeader = 'Customer Login';
+    await signInLocator.click();
+
+    await expect(page).toHaveURL(LOGIN_PAGE_URL);   
+    await expect(loginMainHeaderLocator).toHaveText(sighInHeader)    
+    
+})
 })
