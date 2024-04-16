@@ -48,8 +48,6 @@ test.describe('menuGear', () => {
         await page.getByRole('menuitem', { name: 'Gear' }).click();
 
         const gearPageUrl = '/gear.html';
-        const itemsCategories = page.locator('ol.items li');
-        const itemsLinks = page.locator('.categories-menu ul li a');
 
         await expect(page).toHaveURL(BASE_URL + gearPageUrl);
         await expect(page).toHaveTitle('Gear');
