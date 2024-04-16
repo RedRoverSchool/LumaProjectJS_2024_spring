@@ -7,10 +7,9 @@ test.describe('menTops', () => {
   test("Check that the cards have an image, description, available sizes, colors and price.", async ({ page }) => {
     await page.locator('#ui-id-5').hover();
     await page.locator('#ui-id-17').click();
-    const numberOfCards = await page.locator('ol[class = "products list items product-items"]').count()
+    const numberOfCards = await page.locator('li[class = "item product product-item"]').count()
   
-    
-    for (let index = 0; index <= numberOfCards; index++) {
+    for (let index = 0; index < numberOfCards; index++) {
     await expect(page.locator('img.product-image-photo').nth(index)).toBeVisible();
     await expect(page.locator('a.product-item-link').nth(index)).toBeVisible()
     await expect(page.locator('span[data-price-type="finalPrice"]').nth(index)).toHaveText(/\$\d+\.00$/)
