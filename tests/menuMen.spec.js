@@ -18,10 +18,14 @@ test.describe('menuMen', () => {
     await page.getByRole('button', { name: 'Sign In' }).click();
     await page.getByRole('menuitem', { name: 'Men' }).last().click();
 
+    await page.locator('.products-grid li').first().click();
+    await page.getByRole('link', {name:'Add to Compare'}).click();   
+    await page.getByRole("menuitem", { name: "Men" }).last().click();
+
     await expect(page.locator("#block-compare-heading")).toHaveText('Compare Products');
 
     const countItemsBlockCompare = page.locator('#compare-items li');
 
-    await expect(countItemsBlockCompare).toHaveCount(3);
+    await expect(countItemsBlockCompare).toHaveCount(1);
    });
 });
