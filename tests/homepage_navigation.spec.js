@@ -36,4 +36,8 @@ test.describe('Homepage | Navigation', () => {
     await expect (page.getByRole('menuitem', {name: "What's New"})).toBeVisible();
   })
   
+  test('US 04.2.1_04 <Menu/Women> Title Women is visible', async ({page}) => {
+    await expect(page.getByRole('menuitem', {name: ' Women'})).toBeVisible();
+})
+
 });
