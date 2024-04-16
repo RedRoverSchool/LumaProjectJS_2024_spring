@@ -44,7 +44,7 @@ test.describe('menuGear', () => {
         });
     }
 
-    test('User could navigate from the Gear menu to the Gear page and see apropriate content', async ({ page }) => {
+    test('User could navigate from the Gear menu to the Gear page', async ({ page }) => {
         await page.getByRole('menuitem', { name: 'Gear' }).click();
 
         const gearPageUrl = '/gear.html';
