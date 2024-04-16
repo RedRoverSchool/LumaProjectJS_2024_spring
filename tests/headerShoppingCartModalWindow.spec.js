@@ -28,4 +28,45 @@ test.describe('header shopping cart modal window', () => {
 
         await expect(emptyCardMessage).toHaveText(emptyCardMessageText);
     })
+
+    test('TC 01.3.1_04| Verify quantity and total cost in the shopping cart', async ({page}) => {
+        const shoppingItem1 = {
+            name: "Radiant Tee",
+            price: 22.00,
+            size: "S", 
+            color: "Blue",
+            quantity: 1
+        }
+
+        const shoppingItem2 = {
+            name: "Radiant Tee",
+            price: 22.00,
+            size: "M", 
+            color: "Blue",
+            quantity: 1
+        }
+
+        const radiantTeeLocator = page.getByTitle('Radiant Tee');
+        const radiantTeeSizeSLocator = page.getByText('S', {exact: true});
+        const radiantTeeSizeMLocator = page.getByText('M', {exact: true});
+        const radiantTeeColorBlueLocator = page.locator('[option-label = "Blue"]');
+        const addToCartBtn = page.getByRole('button', {name: "Add to Cart"});
+        const shoppingCartLink = page.getByRole('link', {name: "My Cart"});
+        const totalQuantityLocator = page.locator('.count:first-child');
+        const quantityItems = shoppingItem1.quantity + shoppingItem2.quantity;
+        const totalCostLocator = page.locator('.subtotal .price');
+        const totalCost = (shoppingItem1.price + shoppingItem2.price).toFixed(2);
+
+
+        await radiantTeeLocator.click();
+        await radiantTeeSizeSLocator.click();
+        await radiantTeeColorBlueLocator.click();
+        await addToCartBtn.click();
+        await radiantTeeSizeMLocator.click();
+        await addToCartBtn.click();
+        await shoppingCartLink.click();
+        
+        await expect(totalQuantityLocator).toHaveText(`${quantityItems}`);
+        await expect(totalCostLocator).toHaveText("$" + totalCost);
+    })
 })
