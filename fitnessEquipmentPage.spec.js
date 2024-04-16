@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe('verify fitness equipment', () => {
     test('verify navigation path to the fitness equipment', async ({ page }) => {
-        await page.goto('https://magento.softwaretestingboard.com/');
+        await page.goto('/');
         
         if (await page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible()) {
             await page.getByRole('button', { name: 'Consent' }).click();
