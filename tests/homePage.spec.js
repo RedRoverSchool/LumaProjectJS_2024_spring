@@ -159,16 +159,33 @@ test.describe('homePage', () => {
 
     test('1st card: clicking sizes in order', async ({ page }) => {
         const sizeLabels = ['XS', 'S', 'M', 'L', 'XL'];
-        const expectedOutline = 'rgb(153, 153, 153) solid 0.758893px';
+        const expectedSizeOutline = 'rgb(153, 153, 153) solid 0.758893px';
         const expectedColor = 'rgb(0, 0, 0)';
     
         for (const label of sizeLabels) {
             const locator = `.swatch-opt-1556>.swatch-attribute.size>div>div[option-label="${label}"]`;
     
             await page.locator(locator).click();
-            await expect(page.locator(locator)).toHaveCSS('outline', expectedOutline);
+            await expect(page.locator(locator)).toHaveCSS('outline', expectedSizeOutline);
             await expect(page.locator(locator)).toHaveCSS('color', expectedColor);
         }
     })
+
+    test('1st card: image changes according to the selected color', async ({ page }) => {
+        const colorLables = ['Blue', 'Orange', 'Purple'];
+        const expectedColorOutline = 'rgb(195, 64, 0) solid 1.51779px';
+
+        for (const color of colorLables) {
+            const locatorForColors = `.swatch-opt-1556>.swatch-attribute.color>div>div[option-label="${color}"]`;
+
+            await page.locator(locatorForColors).click();
+            await expect(page.locator(locatorForColors)).toHaveCSS('outline', expectedColorOutline);
+            
+            const colorCode = color.toLowerCase();
+            const imageUrl = `https://magento.softwaretestingboard.com/pub/media/catalog/product/cache/7c4c1ed835fbbf2269f24539582c6d44/w/s/ws12-${colorCode}_main_1.jpg`;
     
+            await expect(page.locator(`.product-items > li:first-child a img[src="${imageUrl}"]`)).toBeVisible();
+
+        }
+    })
 })
