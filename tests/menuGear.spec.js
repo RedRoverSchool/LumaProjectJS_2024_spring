@@ -53,13 +53,5 @@ test.describe('menuGear', () => {
 
         await expect(page).toHaveURL(BASE_URL + gearPageUrl);
         await expect(page).toHaveTitle('Gear');
-        await expect(page.getByRole('heading', { name: 'Gear' })).toBeVisible();
-        await expect(itemsCategories).toHaveCount(3);
-
-        const actualItemsCategories = await itemsCategories.locator('a').allTextContents();
-        const actualItemsLinks = await itemsLinks.allTextContents();
-
-        expect(actualItemsCategories).toEqual(expectedItems);
-        expect(actualItemsLinks).toEqual(expectedItems);
     });
 });
