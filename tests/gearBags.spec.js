@@ -8,6 +8,7 @@ test.describe("gearBags", () => {
     page.locator("#ui-id-6").hover();
     await page.locator("#ui-id-25").click();
     await expect(page).toHaveTitle("Bags - Gear");
-    expect(page.getByText("Material")).toBeVisible();
+    const materialOption = page.locator("text=Material");
+    await expect(materialOption).toBeVisible();
   });
 });
