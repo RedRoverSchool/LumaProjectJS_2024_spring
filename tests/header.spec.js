@@ -70,6 +70,14 @@ test.describe('header', () => {
     await expect(storeLogo).toBeVisible();
   })
 
+  test('TC 01.4.1_02 <Header/Shopping Cart Icon> Verify only shopping cart icon is displayed if no items in the shopping cart', async ({page}) => {
+    const shoppingCartIcon = page.locator('.showcart');
+    const counter = page.locator('.counter-number');
+
+    await expect(shoppingCartIcon).toBeVisible();
+    await expect(counter).not.toBeVisible();
+  })
+  
   test('TC 01.1.2_03 The user can enter login details and authenticate', async ({ page }) => {
     const signInLocator = page.locator('.page-header').getByRole('link', { name: 'Sign In' })
     await signInLocator.click()
