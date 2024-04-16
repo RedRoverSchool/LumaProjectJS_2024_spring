@@ -5,6 +5,12 @@ test.describe("create account", () => {
 
     test.beforeEach(async ({ page }) => {
       await page.goto("/");
+
+      // const randomNumber = Math.floor(Math.random() * 1000);
+      // const firstName = `user_${randomNumber}`;
+      // const lastName = `test_${randomNumber}`;
+      // const email = `user_${randomNumber}@example.com`;
+
     })
 
     test('should be all fields are required', async ({ page }) => {
@@ -39,9 +45,29 @@ test.describe("create account", () => {
     await page.fill('input[type="password"][name="password"]', 'test');
 
     const passwordLengthMessage = await page.locator('#password-error');
-    
+
     expect(passwordLengthMessage).toBeTruthy();
      await page.getByText('Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.').isVisible();
+
+    })
+
+    test('should be possible to create a new account', async ({ page }) => {
+
+      await page.goto(createAccount_url);
+
+      const randomNumber = Math.floor(Math.random() * 1000);
+      const firstName = `user_${randomNumber}`;
+      const lastName = `test_${randomNumber}`;
+      const email = `user_${randomNumber}@example.com`;
+
+      await page.getByRole('textbox', {name: 'First Name*'}).fill(firstName);
+      await page.getByRole('textbox', {name: 'Last Name*'}).fill(lastName);
+      await page.getByRole('textbox', {name: 'Email*'}).fill(email);
+      await page.getByRole('textbox', { name: 'Password*', exact: true }).fill('Password!');
+      await page.getByRole('textbox', {name: 'Confirm Password*'}).fill('Password!');
+      await page.getByRole('button', {name: 'Create an Account'}).click();
+
+      await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/');
 
     })
 })
