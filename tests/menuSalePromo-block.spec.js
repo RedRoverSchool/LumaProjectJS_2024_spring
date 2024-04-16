@@ -19,21 +19,21 @@ test.describe("menuSalePromo-block", () => {
     expect(promoBlocks).toHaveCount(6);
   });
 
-  test.only('Check that Hoodies and Sweatshirts link opens the corresponding page', async ({page}) =>{
+  test('Check that Hoodies and Sweatshirts link opens the corresponding page', async ({page}) =>{
     await page.getByRole('link',{name:'Hoodies and Sweatshirts'}).last().click();
 
     await expect(page).toHaveURL(HoodiesAndSweatshirts_url);
     await expect(page.locator('#page-title-heading > span')).toHaveText('Hoodies & Sweatshirts');
 });
 
-  test.only('Check that Jackets link opens the corresponding page', async ({page}) =>{
+  test('Check that Jackets link opens the corresponding page', async ({page}) =>{
     await page.getByRole('link',{name:'Jackets'}).last().click();
 
     await expect(page).toHaveURL(Jackets_url);
     await expect(page.locator('#page-title-heading > span')).toHaveText('Jackets');
 });
 
-  test.only('Check that Tees link opens the corresponding page', async ({page}) =>{
+  test('Check that Tees link opens the corresponding page', async ({page}) =>{
     await page.getByRole('link',{name:'Tees'}).last().click();
 
     await expect(page).toHaveURL(Tees_url);
@@ -41,14 +41,14 @@ test.describe("menuSalePromo-block", () => {
 
 });
 
-  test.only('Check that Pants link opens the corresponding page', async ({page}) =>{
+  test('Check that Pants link opens the corresponding page', async ({page}) =>{
     await page.getByRole('link',{name:'Pants'}).last().click();
 
     await expect(page).toHaveURL(Pants_url);
     await expect(page.locator('#page-title-heading > span')).toHaveText('Pants');
   });
 
-  test.only('Check that Shorts link opens the corresponding page', async ({page}) =>{
+  test('Check that Shorts link opens the corresponding page', async ({page}) =>{
     await page.getByRole('link',{name:'Shorts'}).last().click();
   
     await expect(page).toHaveURL(Shorts_url);
