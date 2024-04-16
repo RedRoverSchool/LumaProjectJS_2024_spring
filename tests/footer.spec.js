@@ -45,4 +45,12 @@ test.describe("footer", () => {
     await contactUs.click();
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/contact/');
   })
+
+  test('Checking the link Privacy Policy', async({page}) => {
+  //  await page.goto("/")
+  await expect(page.getByRole('link', {name: 'Privacy and Cookie Policy'})).toBeVisible();
+  await page.getByRole('link', {name: 'Privacy and Cookie Policy'}).click();
+  await expect(page).toHaveURL('https://magento.softwaretestingboard.com/privacy-policy-cookie-restriction-mode');
+  })
+  
 });
