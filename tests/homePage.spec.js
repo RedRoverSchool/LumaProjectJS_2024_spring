@@ -21,7 +21,6 @@ test.describe('homePage', () => {
     })
 
     const firstCardURL = 'https://magento.softwaretestingboard.com/radiant-tee.html';
-    // const firstCardHeading = page.getByRole('heading', {name: 'Radiant Tee'});
 
     test('1st card: clicking card image redirects to respective product card', async ({ page }) => {
         await page.getByAltText('Radiant Tee').click();
@@ -144,5 +143,19 @@ test.describe('homePage', () => {
         await expect(page.locator('#product-review-container')).toBeVisible();
         await expect(page.getByRole('heading', {name: 'Push It Messenger Bag'})).toBeVisible();
     })
+
+test('1st card: clicking sizes in order', async ({ page }) => {
+    const sizeLabels = ['XS', 'S', 'M', 'L', 'XL'];
+    const expectedOutline = 'rgb(153, 153, 153) solid 0.758893px';
+    const expectedColor = 'rgb(0, 0, 0)';
+
+    for (const label of sizeLabels) {
+        const locator = `.swatch-opt-1556>.swatch-attribute.size>div>div[option-label="${label}"]`;
+
+        await page.locator(locator).click();
+        await expect(page.locator(locator)).toHaveCSS('outline', expectedOutline);
+        await expect(page.locator(locator)).toHaveCSS('color', expectedColor);
+    }
+});
 
 })
