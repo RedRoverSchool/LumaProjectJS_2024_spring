@@ -17,4 +17,11 @@ test.describe('menTops', () => {
     await expect(page.getByRole('listbox',{name:'Color'}).nth(index)).toBeVisible()
     } 
   })
+  test("Go to the page with men's tops", async ({ page }) => {
+    await page.locator('#ui-id-5').hover();
+    await page.locator('#ui-id-17').click();
+ 
+     await expect(page.locator('.base') ).toHaveText('Tops');
+     await expect(page).toHaveURL( 'https://magento.softwaretestingboard.com/men/tops-men.html');
+   })
 })
