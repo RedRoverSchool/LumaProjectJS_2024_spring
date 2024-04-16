@@ -63,5 +63,37 @@ test.describe('header', () => {
 
     await expect(itemsNumber).toHaveText('1');
   })
+
+  test('TC 01.1.1_02 <Header/Header logo> Validate website has store logo', async ({page}) => {
+    const storeLogo = page.locator('.logo img');
+
+    await expect(storeLogo).toBeVisible();
+  })
+
+  test('TC 01.4.1_02 <Header/Shopping Cart Icon> Verify only shopping cart icon is displayed if no items in the shopping cart', async ({page}) => {
+    const shoppingCartIcon = page.locator('.showcart');
+    const counter = page.locator('.counter-number');
+
+    await expect(shoppingCartIcon).toBeVisible();
+    await expect(counter).not.toBeVisible();
+  })
   
+  test('TC 01.1.2_03 The user can enter login details and authenticate', async ({ page }) => {
+    const signInLocator = page.locator('.page-header').getByRole('link', { name: 'Sign In' })
+    await signInLocator.click()
+
+    const LOGIN_PAGE_URL = 'https://magento.softwaretestingboard.com/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/';
+    await expect(page).toHaveURL(LOGIN_PAGE_URL);
+
+    let email = 'rimma.mukhoryapova@gmail.com'
+    let password = 'Qwerty123'
+
+    await page.getByLabel('Email').fill(email)
+    await page.getByLabel('Password').fill(password)
+    await page.getByRole('button', {name: 'Sign In'}).click()
+    
+    const welcomeText = page.locator('header .logged-in')
+    await expect(welcomeText).toBeVisible()
+  })
+   
 })
