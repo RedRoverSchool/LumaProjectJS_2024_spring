@@ -63,5 +63,11 @@ test.describe('header', () => {
 
     await expect(itemsNumber).toHaveText('1');
   })
+
+  test('TC 01.1.1_02 <Header/Header logo> Validate website has store logo', async ({page}) => {
+    const storeLogo = page.locator('.logo img');
+
+    await expect(storeLogo).toBeVisible();
+  })
   
 })
