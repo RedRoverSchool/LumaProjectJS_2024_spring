@@ -163,4 +163,11 @@ test('1st card: clicking sizes in order', async ({ page }) => {
 
         await expect(page).toHaveURL('https://magento.softwaretestingboard.com/collections/erin-recommends.html');
     })   
+
+    test('Redirect to "Whats New" page', async({page}) => {
+        await page.getByText("What\'s New").click();
+
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/what-is-new.html');
+        await expect(page).toHaveTitle("What's New");
+    })  
 })
