@@ -28,7 +28,7 @@ test.describe('header shopping cart modal window', () => {
 
         await expect(emptyCardMessage).toHaveText(emptyCardMessageText);
     })
-
+   
     test('Verify Counter Icon Update on Adding/Removing Items ', async ({ page }) => {
         const counterIcon = page.locator('.counter-number')
         await expect(counterIcon).toBeHidden()
@@ -96,4 +96,5 @@ test.describe('header shopping cart modal window', () => {
         await expect(totalQuantityLocator).toHaveText(`${quantityItems}`);
         await expect(totalCostLocator).toHaveText("$" + totalCost);
     })
+
 })
