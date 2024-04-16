@@ -31,4 +31,9 @@ test.describe('Homepage | Navigation', () => {
 
     expect(allLinksText).toEqual(allMenuLinks);
   });
+
+  test("US 04.1.1_02 <Menu/What's New> Visible title What's New", async ({page}) => {
+    await expect (page.getByRole('menuitem', {name: "What's New"})).toBeVisible();
+  })
+  
 });
