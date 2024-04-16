@@ -158,4 +158,9 @@ test('1st card: clicking sizes in order', async ({ page }) => {
     }
 });
 
+    test('Click on the "Erin recommends" block', async({page}) => {
+        await page.locator('.block-promo.home-erin').click();
+
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/collections/erin-recommends.html');
+    })   
 })
