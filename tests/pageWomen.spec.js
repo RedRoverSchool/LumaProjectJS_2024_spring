@@ -10,4 +10,10 @@ test.describe("Checking Promo blocks on page 'Women'", () => {
 
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/tops-women/tees-women.html');
   })
+
+  test("Navigate to Shop Pants page by clicking Promo link on 'Hot Pants/Hot deals", async ({ page }) => {
+    await page.getByRole('link', {name: 'Hot pants'}).click();
+
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women/pants-women.html');
+  })  
 });
