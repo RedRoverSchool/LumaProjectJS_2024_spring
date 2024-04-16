@@ -1,8 +1,3 @@
-//Steps
-// Go to Homepage
-// Click Sale button in the main menu
-// Expected Result:
-// User is redirected to the sale page
 import { test, expect} from "@playwright/test"; 
 test.describe('menuSale', () => {
     test.beforeEach(async ({ page }) => {
