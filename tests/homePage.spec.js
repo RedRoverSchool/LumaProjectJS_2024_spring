@@ -170,4 +170,5 @@ test.describe('homePage', () => {
             await expect(page.locator(locator)).toHaveCSS('color', expectedColor);
         }
     })
+    
 })
