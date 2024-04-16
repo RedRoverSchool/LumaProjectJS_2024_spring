@@ -95,5 +95,18 @@ test.describe('header', () => {
     const welcomeText = page.locator('header .logged-in')
     await expect(welcomeText).toBeVisible()
   })
+
+  test('TC 01.1.2_02 Link Sign In is located in the top right corner of every page of the website', async ({ page }) => {
+    const signInLocator = page.locator('.page-header').getByRole('link', { name: 'Sign In' });
+    await expect(signInLocator).toBeVisible();
+
+    const headerLinks = page.locator('.header.panel>.header.links');
+    await expect(headerLinks).toHaveCSS('float', 'right');
+
+    const whatsNewPage = page.locator('#ui-id-3');
+    await whatsNewPage.click();
+    await expect(signInLocator).toBeVisible();
+    await expect(headerLinks).toHaveCSS('float', 'right');
+  })
    
 })
