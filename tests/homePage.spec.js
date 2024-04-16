@@ -144,20 +144,6 @@ test.describe('homePage', () => {
         await expect(page.getByRole('heading', {name: 'Push It Messenger Bag'})).toBeVisible();
     })
 
-test('1st card: clicking sizes in order', async ({ page }) => {
-    const sizeLabels = ['XS', 'S', 'M', 'L', 'XL'];
-    const expectedOutline = 'rgb(153, 153, 153) solid 0.758893px';
-    const expectedColor = 'rgb(0, 0, 0)';
-
-    for (const label of sizeLabels) {
-        const locator = `.swatch-opt-1556>.swatch-attribute.size>div>div[option-label="${label}"]`;
-
-        await page.locator(locator).click();
-        await expect(page.locator(locator)).toHaveCSS('outline', expectedOutline);
-        await expect(page.locator(locator)).toHaveCSS('color', expectedColor);
-    }
-});
-
     test('Click on the "Erin recommends" block', async({page}) => {
         await page.locator('.block-promo.home-erin').click();
 
@@ -170,4 +156,18 @@ test('1st card: clicking sizes in order', async ({ page }) => {
         await expect(page).toHaveURL('https://magento.softwaretestingboard.com/what-is-new.html');
         await expect(page).toHaveTitle("What's New");
     })  
+
+    test('1st card: clicking sizes in order', async ({ page }) => {
+        const sizeLabels = ['XS', 'S', 'M', 'L', 'XL'];
+        const expectedOutline = 'rgb(153, 153, 153) solid 0.758893px';
+        const expectedColor = 'rgb(0, 0, 0)';
+    
+        for (const label of sizeLabels) {
+            const locator = `.swatch-opt-1556>.swatch-attribute.size>div>div[option-label="${label}"]`;
+    
+            await page.locator(locator).click();
+            await expect(page.locator(locator)).toHaveCSS('outline', expectedOutline);
+            await expect(page.locator(locator)).toHaveCSS('color', expectedColor);
+        }
+    })
 })
