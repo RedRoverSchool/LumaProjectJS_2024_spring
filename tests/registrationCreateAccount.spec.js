@@ -6,11 +6,6 @@ test.describe("create account", () => {
     test.beforeEach(async ({ page }) => {
       await page.goto("/");
 
-      // const randomNumber = Math.floor(Math.random() * 1000);
-      // const firstName = `user_${randomNumber}`;
-      // const lastName = `test_${randomNumber}`;
-      // const email = `user_${randomNumber}@example.com`;
-
     })
 
     test('should be all fields are required', async ({ page }) => {
