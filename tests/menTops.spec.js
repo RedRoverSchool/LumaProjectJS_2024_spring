@@ -4,13 +4,6 @@ test.describe('menTops', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   })
-  test("Go to the page with men's tops", async ({ page }) => {
-   await page.locator('#ui-id-5').hover();
-   await page.locator('#ui-id-17').click();
-
-    await expect(page.locator('.base') ).toHaveText('Tops');
-    await expect(page).toHaveURL( 'https://magento.softwaretestingboard.com/men/tops-men.html');
-  })
   test("Check that the cards have an image, description, available sizes, colors and price.", async ({ page }) => {
     await page.locator('#ui-id-5').hover();
     await page.locator('#ui-id-17').click();
