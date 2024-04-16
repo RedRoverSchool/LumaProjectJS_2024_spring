@@ -44,6 +44,7 @@ test.describe('Homepage | Navigation', () => {
   test('TC 04.2.1_06 <Menu/Women> Click title Women', async ({page}) => {
     await page.getByRole('menuitem', {name: ' Women'}).click()
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women.html')
+    
 })
 
 });
