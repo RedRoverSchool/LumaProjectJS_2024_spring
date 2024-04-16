@@ -40,4 +40,12 @@ test.describe('Menu/Gear/Promo Block', () => {
     await expect(page.locator('.base')).toHaveText('Fitness Equipment');
   })
 
+  test('TC 04.4.3_05 Verify redirect to the "Watches" category by clicking on "Shop watches" banner', async ({ page }) => {
+    
+    await page.locator('.block-promo.gear-category-watches').click();
+    
+    await expect(page).toHaveURL(/.*watches.html/);
+    await expect(page.locator('.base')).toHaveText('Watches');
+  })
+
 })  
