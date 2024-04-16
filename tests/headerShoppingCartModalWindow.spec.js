@@ -28,4 +28,34 @@ test.describe('header shopping cart modal window', () => {
 
         await expect(emptyCardMessage).toHaveText(emptyCardMessageText);
     })
+
+    test('Verify Counter Icon Update on Adding/Removing Items ', async ({ page }) => {
+        const counterIcon = page.locator('.counter-number')
+        await expect(counterIcon).toBeHidden()
+      
+        const firstProduct = page.locator('.product-item').first()
+        await expect(firstProduct).toContainText('Radiant Tee')
+        
+        const labelSizeS = page.getByRole('option', {name: 'S'}).first()
+        await expect(labelSizeS).toBeVisible()
+        await labelSizeS.click()
+
+        const labelColor = page.getByRole('option', {name: 'Blue'}).first()
+        await expect(labelColor).toBeVisible()
+        await labelColor.click()
+        await page.getByText('Add to Cart', {exact:true}).first().click()
+
+        await expect(counterIcon).toHaveText('1')
+
+        const shoppingCart = page.locator('.showcart')
+        await expect(shoppingCart).toBeVisible()
+        shoppingCart.click()
+        await page.getByTitle('Remove item').click()
+        await page.getByRole('button', {name: 'OK'}).click()
+        shoppingCart.click()
+
+        await expect(page.locator('strong.empty')).toHaveText('You have no items in your shopping cart.')
+        await expect(counterIcon).toBeHidden()
+    })
+
 })
