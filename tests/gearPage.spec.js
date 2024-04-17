@@ -19,4 +19,13 @@ test.describe('gearPage', () => {
         await expect(page.locator('ol.products.list.items.product-items')).toBeVisible();
     })
 
+    test('TC 07.1.1_02 <Gear/Bags> Verify redirection to the Bags Page via HoverOver Gear -> Bags', async ({page}) => {
+        await page.locator('#ui-id-6').hover();
+        await page.getByRole("menuitem", {name:"Bags"}).click();
+
+        await expect(page).toHaveURL("https://magento.softwaretestingboard.com/gear/bags.html");
+        await expect.soft(page).toHaveTitle("Bags - Gear");
+        await expect.soft(page.getByRole("heading",{name:"Bags"})).toBeVisible();
+    })
+
 })
