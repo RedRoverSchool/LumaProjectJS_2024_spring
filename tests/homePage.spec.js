@@ -199,8 +199,23 @@ test.describe('homePage', () => {
         await page.locator(locatorForColors3card).click();
 
         await expect(page.locator(locatorForColors3card)).toHaveCSS('outline-color', expectedColorOutline);
-
         await expect(page.getByAltText('Argus All-Weather Tank')).toBeVisible();
+
+    })
+
+    test('4th card: image changes according to the selected color', async ({ page }) => {
+        const colorLabels4card = ['Black', 'Gray', 'Green'];
+
+        for(const color4 of colorLabels4card) {
+            const locatorForColors4card = `.product-items>li:nth-child(4) .swatch-attribute.color [option-label="${color4}"]`;
+            await page.locator(locatorForColors4card).click();
+            await expect(page.locator(locatorForColors4card)).toHaveCSS('outline-color', expectedColorOutline);
+
+            const colorCode4 = color4.toLowerCase();
+            const imgUrl4card = `https://magento.softwaretestingboard.com/pub/media/catalog/product/cache/7c4c1ed835fbbf2269f24539582c6d44/m/h/mh07-${colorCode4}_main_1.jpg`;
+
+            await expect(page.locator(`img[src$="${imgUrl4card}"]`)).toBeVisible();
+        }
 
     })
 })
