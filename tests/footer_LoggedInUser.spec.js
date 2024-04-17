@@ -7,12 +7,7 @@ test.describe('footer for logged-in user', () => {
       test.setTimeout(120000);
       await page.goto("/");
   
-      const dialogContent = page.locator('.fc-dialog-content').first();
       const signInButtonOnHeader = page.locator('.links .authorization-link>a').first();
-  
-      if(dialogContent) {
-        await page.getByRole('button', {name: 'Consent'}).click();
-      }
   
       await signInButtonOnHeader.click();
       await expect(page.locator('h1')).toHaveText('Customer Login');
