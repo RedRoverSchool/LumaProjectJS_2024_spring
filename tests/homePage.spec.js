@@ -192,4 +192,15 @@ test.describe('homePage', () => {
             await expect(page.locator(`img[src$="${imgUrl2card}"]`)).toBeVisible();
         }
     })
+
+    test('3rd card: image changes according to the selected color', async ({ page }) => {
+        const locatorForColors3card = `.product-items>li:nth-child(3)>div>div>div>div:nth-child(2)>div>div`
+        
+        await page.locator(locatorForColors3card).click();
+
+        await expect(page.locator(locatorForColors3card)).toHaveCSS('outline-color', expectedColorOutline);
+
+        await expect(page.getByAltText('Argus All-Weather Tank')).toBeVisible();
+
+    })
 })
