@@ -52,7 +52,6 @@ test.describe('gearPage', () => {
 
     test('Category links display count of items', async({page}) => {
         await page.goto(GEAR_url);
-        //await page.getByRole('listitem', name: '') 
         await page.locator('.count').getByText([14, 11, 9]);
 
         await expect(page.locator('.count').getByText([14, 11, 9])).toBeTruthy();
