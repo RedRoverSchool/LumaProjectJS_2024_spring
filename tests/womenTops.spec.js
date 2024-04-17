@@ -46,4 +46,18 @@ test.describe("womenTops", () => {
 
     expect(allItemsContainExpectedText).toBeTruthy();
   });
+
+  test ('Verify that choosing a category returns correct result', async ({ page }) => {
+    await page.getByText('Women').hover();
+    await page.getByRole('menuitem', { name: 'Tops' }).click();
+    await page.getByText('Category').click();
+    await page.getByRole('link', { name: 'Jackets' }).click();
+
+    await expect(page.locator('span.filter-value')).toHaveText('Jackets');
+
+    const expectedItemNumber = await page.locator('span.toolbar-number').first().innerText();
+    const atualItemNumber = await page.locator('.product-items').getByRole('listitem').count();
+    
+    expect(atualItemNumber).toEqual(+expectedItemNumber)
+})
 });
