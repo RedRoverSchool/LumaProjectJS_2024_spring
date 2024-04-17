@@ -41,4 +41,13 @@ test.describe('gearPage', () => {
         await expect(page.getByTitle('Category')).toBeVisible;
         await expect(GearLinks).toBeVisible;
     })
+
+    test('Check that link BAGS redirects to BAGS page', async({page}) => {
+        const GEAR_url = 'https://magento.softwaretestingboard.com/gear.html';
+
+        await page.goto(GEAR_url);
+        await page.locator('#narrow-by-list2').getByRole('link', { name: 'Bags' }).click();
+        
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/gear/bags.html');
+    })
 })
