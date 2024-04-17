@@ -52,4 +52,19 @@ test.describe('menuGear', () => {
         await expect(page).toHaveURL(BASE_URL + gearPageUrl);
         await expect(page).toHaveTitle('Gear');
     });
+
+    test('User able to see fitness equipment, bags, and watches when navigating from the Gear menu to the Gear page', async ({ page }) => {
+        await page.getByRole('menuitem', { name: 'Gear' }).click();
+
+        const gearPageUrl = '/gear.html';
+        await expect(page).toHaveURL(BASE_URL + gearPageUrl);
+        await expect(page).toHaveTitle('Gear');        
+
+        const actualItemsCategories = await page.locator('ol.items li a').allTextContents();
+        const actualItemsLinks = await page.locator('.categories-menu ul li a').allTextContents();
+
+        expect(actualItemsCategories).toEqual(expectedItems);
+        expect(actualItemsLinks).toEqual(expectedItems);
+    });
+
 });
