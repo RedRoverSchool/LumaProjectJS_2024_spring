@@ -52,5 +52,4 @@ test.describe('page gear', () => {
       await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html');
 
     })
-
 })
