@@ -157,4 +157,22 @@ test.describe('homePage', () => {
         await expect(page).toHaveURL('https://magento.softwaretestingboard.com/what-is-new.html');
         await expect(page).toHaveTitle("What's New");
     })  
+
+    test('1st card: image changes according to the selected color', async ({ page }) => {
+        const colorLables = ['Blue', 'Orange', 'Purple'];
+        const expectedColorOutline = 'rgb(195, 64, 0)';
+    
+        for (const color of colorLables) {
+            const locatorForColors = `.swatch-opt-1556>.swatch-attribute.color>div>div[option-label="${color}"]`;
+    
+            await page.locator(locatorForColors).click();
+            await expect(page.locator(locatorForColors)).toHaveCSS('outline-color', expectedColorOutline);
+            
+            const colorCode = color.toLowerCase();
+            const imageUrl = `https://magento.softwaretestingboard.com/pub/media/catalog/product/cache/7c4c1ed835fbbf2269f24539582c6d44/w/s/ws12-${colorCode}_main_1.jpg`;
+    
+            await expect(page.locator(`.product-items > li:first-child a img[src="${imageUrl}"]`)).toBeVisible();
+    
+        }
+})
 })
