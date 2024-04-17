@@ -36,4 +36,15 @@ test.describe("menuWomen", () => {
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women.html');
   })
 
+  test("Women>Bottoms dropdown has items: Pants, Shorts", async ({ page }) => {
+    await page.getByText('Women').hover();
+    await page.locator('#ui-id-10').hover();
+
+    await expect(page.locator('#ui-id-15')).toBeVisible();
+    await expect(page.locator('#ui-id-15')).toHaveText('Pants');
+
+    await expect(page.locator('#ui-id-16')).toBeVisible();
+    await expect(page.locator('#ui-id-16')).toHaveText('Shorts');
+  })
+
 })  
