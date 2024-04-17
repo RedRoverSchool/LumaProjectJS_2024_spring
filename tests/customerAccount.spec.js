@@ -39,10 +39,10 @@ test.describe("customerAccount", () => {
   });
 
   test("Verify that clicking on the 'Welcome, username' inscription opens the menu", async ({ page }) => {
-    await page.getByRole("button", { name: "Change" }).click();
+    await page.locator("div[class='panel header'] span[role='button']").click();
 
     await expect(
-      page.getByRole('banner').getByText('My Account My Wish List Sign')
+      page.locator("div[aria-hidden='false'] ul[class='header links']")
     ).toBeVisible();
   });
 });
