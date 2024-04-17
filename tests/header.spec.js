@@ -107,6 +107,7 @@ test.describe('header', () => {
     await whatsNewPage.click();
     await expect(signInLocator).toBeVisible();
     await expect(headerLinks).toHaveCSS('float', 'right');
+    await expect(headerLinks).toHaveCSS('margin-top', '0px');
   })
    
 })
