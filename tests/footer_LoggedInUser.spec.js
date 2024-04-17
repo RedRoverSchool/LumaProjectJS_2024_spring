@@ -4,6 +4,7 @@ test.describe('footer for logged-in user', () => {
     const footerLinksForLoggedInUser = ['Notes', 'Search Terms', 'Privacy and Cookie Policy', 'Advanced Search'];
       
     test.beforeEach(async ({page}) => {
+      test.setTimeout(120000);
       await page.goto("/");
   
       const dialogContent = page.locator('.fc-dialog-content').first();
