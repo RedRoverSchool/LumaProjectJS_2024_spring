@@ -3,6 +3,7 @@ import { only } from "node:test";
 
 test.describe('gearPage', () => {
     const BAGS_URL = "https://magento.softwaretestingboard.com/gear/bags.html";
+    const GEAR_url = 'https://magento.softwaretestingboard.com/gear.html';
 
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
@@ -43,11 +44,17 @@ test.describe('gearPage', () => {
     })
 
     test('Check that link BAGS redirects to BAGS page', async({page}) => {
-        const GEAR_url = 'https://magento.softwaretestingboard.com/gear.html';
-
         await page.goto(GEAR_url);
         await page.locator('#narrow-by-list2').getByRole('link', { name: 'Bags' }).click();
         
         await expect(page).toHaveURL('https://magento.softwaretestingboard.com/gear/bags.html');
+    })
+
+    test('Category links display count of items', async({page}) => {
+        await page.goto(GEAR_url);
+        //await page.getByRole('listitem', name: '') 
+        await page.locator('.count').getByText([14, 11, 9]);
+
+        await expect(page.locator('.count').getByText([14, 11, 9])).toBeTruthy();
     })
 })
