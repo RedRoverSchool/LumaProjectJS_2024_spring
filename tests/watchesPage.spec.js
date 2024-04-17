@@ -73,4 +73,15 @@ test.describe('watchesPage', () => {
         expect(totalSalesNumberItems).not.toEqual(totalNumberItems)
         expect(activeFilter).not.toBeVisible();
     })
+    test('verify navigation path to the watches', async ({ page }) => {
+        await page.goto('/');
+        
+        if (await page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible()) {
+            await page.getByRole('button', { name: 'Consent' }).click();
+        };
+
+        await page.locator('#ui-id-6').hover();
+        await page.locator('#ui-id-27').click();
+        await expect(page.locator('ul.items')).toHaveText('Home Gear Watches');
+    })
 })

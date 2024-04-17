@@ -96,6 +96,13 @@ test.describe('header shopping cart modal window', () => {
         await expect(totalCostLocator).toHaveText("$" + totalCost);
     })
 
+    test('Verify after clicking "X" icon in the Modal window the Modal window is closed', async({ page }) => {
+        
+        await page.locator('.showcart').click();
+        await page.locator('#btn-minicart-close').click();
+
+        await expect(page.locator('ui-id-1')).not.toBeVisible();
+    })
     test('TC 01.3.1_06 |"Proceed to Checkout" button is visible, clickable and redirects to the Shipping Page', async ({ page }) => {
         const radiantTeeLocator = page.getByTitle('Radiant Tee');
         const radiantTeeSizeSLocator = page.getByText('S', { exact: true });        

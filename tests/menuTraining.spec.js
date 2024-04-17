@@ -31,4 +31,21 @@ test.describe('menuTraining', () => {
 		expect(page.locator('.breadcrumbs li:nth-child(2)')).toBeTruthy();
 		
   })
+   test('Verify that the promo block is displayed on the “Training” page', async({page}) => {
+		        
+		await page.getByRole('menuitem', { name: 'Training' }).click();
+
+		await expect(page.locator('.blocks-promo')).toBeVisible();
+		expect(page.locator('.blocks-promo')).toBeTruthy();
+  })
+   test('Verify that the "Shop By Category" section is displayed on the “Training” page', async({page}) => {
+		        
+		await page.getByRole('menuitem', { name: 'Training' }).click();
+
+		const locatorSection = page.getByText('Shop By Shopping Options');
+
+		await expect(locatorSection).toBeVisible();
+		expect(locatorSection).toBeTruthy();
+  })
+
 })

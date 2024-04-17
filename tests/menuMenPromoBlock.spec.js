@@ -13,4 +13,9 @@ test.describe('Menu/Men/Promo Block', () => {
         await expect(page).toHaveURL(BASE_URL + '/tops-men/tees-men.html');
         await expect(page.getByRole('heading', { name: 'Tees' })).toBeVisible();
     })
+
+    test('TC 04.3.3_02 Counting promo blocks on the "Men" page', async ({ page }) => {
+        
+        await expect(page.locator('.block-promo')).toHaveCount(6);
+    })
 })
