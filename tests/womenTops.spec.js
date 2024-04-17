@@ -15,4 +15,22 @@ test.describe("womenTops", () => {
     await expect(page).toHaveURL(WOMEN_TOPS_URL);
     await expect(page).toHaveTitle("Tops - Women");
   });
+
+  test ('Verify that choosing a category returns correct result', async ({ page }) => {
+    await page.getByText('Women').hover();
+    await page.getByRole('menuitem', { name: 'Tops' }).click();
+    await page.getByText('Category').click();
+    await page.getByRole('link', { name: 'Jackets' }).click();
+
+    await expect(page.locator('span.filter-value')).toHaveText('Jackets');
+
+    const expectedItemNumber = await page.locator('span.toolbar-number').first().innerText();
+    console.log(expectedItemNumber);
+    console.log(typeof expectedItemNumber);
+    const atualItemNumber = await page.locator('.product-items').getByRole('listitem').count();
+    console.log(atualItemNumber);
+    console.log(typeof atualItemNumber);
+
+    expect(atualItemNumber).toEqual(+expectedItemNumber)
+})
 });
