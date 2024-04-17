@@ -41,4 +41,16 @@ test.describe('page gear', () => {
       await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/tops-women/tees-women.html');
 
     })
+
+    test('should be a transition to the page "jackets"', async ({ page}) => {
+
+      await page.goto(whatNewUrl);
+
+      const jacketsPage = page.locator('li.item > a[href="https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html"]');
+
+      await jacketsPage.click();
+      await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html');
+
+    })
+
 })
