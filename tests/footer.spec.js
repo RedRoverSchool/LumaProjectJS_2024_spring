@@ -52,5 +52,18 @@ test.describe("footer", () => {
   await page.getByRole('link', {name: 'Privacy and Cookie Policy'}).click();
   await expect(page).toHaveURL('https://magento.softwaretestingboard.com/privacy-policy-cookie-restriction-mode');
   })
+
+  test('Verify that the color of the links is blue', async ({ page }) => {
+    await page.getByRole('link', { name: 'Search Terms' }).click();
+
+    const searchTermsLocators = await page
+      .locator('ul.search-terms .item a')
+      .all();
+
+    for (const link of searchTermsLocators) {
+      // rgb(0, 107, 180) == HEX #006bb4
+      await expect(link).toHaveCSS('color', 'rgb(0, 107, 180)');
+    }
+  });
   
 });
