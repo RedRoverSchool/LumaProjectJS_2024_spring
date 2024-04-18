@@ -5,7 +5,7 @@ test.describe('Women/Bottoms/Shopping options/Price', () => {
         await page.goto("/women/bottoms-women.html");
     })
 
-    test.only('Checking that dropdown menu contains five options price filter', async ({ page }) => {
+    test('Checking that dropdown menu contains five options price filter', async ({ page }) => {
         await page.locator('.filter-options-title').nth(4).click();
 
         await expect(page.locator('.filter-options-item allow active')).toBeVisible;
