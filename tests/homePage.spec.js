@@ -203,4 +203,16 @@ test.describe('homePage', () => {
         await expect(page.getByAltText('Argus All-Weather Tank')).toBeVisible();
 
     })
+
+    test('Verify user can make search entered the valid text in the search field', async({page}) => {
+        const validText = 'jacket';
+        const redirectedPage = 'https://magento.softwaretestingboard.com/catalogsearch/result/?q=jacket';
+
+        await page.locator('#search').fill(validText);
+        await page.locator('.actions > button').click();
+
+        await expect(page).toHaveURL(redirectedPage);
+        await expect(page).toHaveTitle(`Search results for: '${validText}'`);
+        
+    })
 })
