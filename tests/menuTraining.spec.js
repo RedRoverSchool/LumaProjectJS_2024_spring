@@ -48,4 +48,15 @@ test.describe('menuTraining', () => {
 		expect(locatorSection).toBeTruthy();
   })
 
+  	test('Verify that clicking on the "Video Download" link redirects to the correct "Video Download" page', async({page}) => {
+		await page.goto(TRAINING_URL);        
+		
+		await page.getByRole('link', { name: 'Video Download' }).click();
+		const VIDEODOWNLOAD_URL = "https://magento.softwaretestingboard.com/training/training-video.html";
+
+		await expect(page).toHaveURL(VIDEODOWNLOAD_URL);
+		await expect(page.getByLabel('Video Download').getByText('Video Download')).toBeVisible();
+		expect(page.getByLabel('Video Download').getByText('Video Download')).toBeTruthy();
+ })
+ 
 })

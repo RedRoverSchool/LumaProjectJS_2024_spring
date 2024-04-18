@@ -45,4 +45,16 @@ test.describe("customerAccount", () => {
       page.locator("div[aria-hidden='false'] ul[class='header links']")
     ).toBeVisible();
   });
+
+  test("Verify that clicking on the 'My Account' section name in the menu redirects to the 'My Account' page", async ({ page }) => {
+    await page.locator("div[class='panel header'] span[role='button']").click();
+    await page.getByRole("link", {name: "My Account"}).click();
+
+    await expect(page).toHaveURL(BASE_URL + '/customer/account/');
+
+    const myAccountPageHeader = page.getByRole("heading", {name: "My Account"})
+    await expect(myAccountPageHeader).toBeVisible();
+    await expect(myAccountPageHeader).toHaveText("My Account")
+  
+  });
 });
