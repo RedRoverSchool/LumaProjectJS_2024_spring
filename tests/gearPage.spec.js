@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { only } from "node:test";
 
 test.describe('gearPage', () => {
     const BAGS_URL = "https://magento.softwaretestingboard.com/gear/bags.html";
+    const GEAR_url = 'https://magento.softwaretestingboard.com/gear.html';
 
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
@@ -28,4 +30,30 @@ test.describe('gearPage', () => {
         await expect.soft(page.getByRole("heading",{name:"Bags"})).toBeVisible();
     })
 
+    test('Check that filter Shop by category has 3 links', async({page}) => {
+        const GEAR_url = 'https://magento.softwaretestingboard.com/gear.html';
+        const GearLinks = page.getByText('Bags & Fitness Equipment & Watches');
+
+        await page.goto(GEAR_url); 
+        await page.getByText('Shop By');
+        await page.getByTitle('Category');
+
+        await expect(page.getByText('Shop By')).toBeVisible;
+        await expect(page.getByTitle('Category')).toBeVisible;
+        await expect(GearLinks).toBeVisible;
+    })
+
+    test('Check that link BAGS redirects to BAGS page', async({page}) => {
+        await page.goto(GEAR_url);
+        await page.locator('#narrow-by-list2').getByRole('link', { name: 'Bags' }).click();
+        
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/gear/bags.html');
+    })
+
+    test('Category links display count of items', async({page}) => {
+        await page.goto(GEAR_url);
+        await page.locator('.count').getByText([14, 11, 9]);
+
+        await expect(page.locator('.count').getByText([14, 11, 9])).toBeTruthy();
+    })
 })
