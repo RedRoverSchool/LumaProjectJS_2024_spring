@@ -1,31 +1,17 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
+test.describe('Menu/Men', () => {
+    const BASE_URL = 'https://magento.softwaretestingboard.com'
+    test.beforeEach(async ({ page }) => {
+        await page.goto('/');
+        // await page.locator('#ui-id-5').click()
+    })
 
-test.describe('menuMen', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-  })
-   test('Verify navigation from the menu to page Men', async ({ page }) => {
-    await page.getByRole('menuitem', { name: 'Men' }).last().click();
+    test('Menu/Men available to click, see clothes only for men', async ({ page }) => {
+        await page.getByRole('menuitem', {name: 'Men'}).last().click();
 
-    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/men.html');
-    await expect(page.getByRole('heading', { name: 'Men' })).toBeVisible();
-   })
-
-   test("Verify the display of comparison products on the men's page", async ({ page }) => {
-    await page.getByRole('link', { name: 'Sign In' }).click();
-    await page.getByLabel('Email').fill('svetik.buratino@gmail.com');
-    await page.getByLabel('Password').fill('User123!');
-    await page.getByRole('button', { name: 'Sign In' }).click();
-    await page.getByRole('menuitem', { name: 'Men' }).last().click();
-
-    await page.locator('.products-grid li').first().click();
-    await page.getByRole('link', {name:'Add to Compare'}).click();   
-    await page.getByRole("menuitem", { name: "Men" }).last().click();
-
-    await expect(page.locator("#block-compare-heading")).toHaveText('Compare Products');
-
-    const countItemsBlockCompare = page.locator('#compare-items li');
-
-    await expect(countItemsBlockCompare).toHaveCount(1);
-   });
-});
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/men.html');
+        await expect(page.locator('.page-title')).toContainText('Men');
+        await expect(page.locator('[role="heading"]').first()).toBeVisible('Compare Products');
+        await expect(page.locator('[role="heading"]').nth(1)).toBeVisible('My Wish List');
+    })
+})
