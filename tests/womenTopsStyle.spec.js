@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe.only("womenTopsStyle", () => {
+test.describe("womenTopsStyle", () => {
 
     test.beforeEach(async ({ page }) => {
         await page.goto("/");
