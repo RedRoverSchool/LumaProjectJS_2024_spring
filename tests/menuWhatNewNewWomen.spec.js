@@ -57,9 +57,9 @@ test.describe('page gear', () => {
 
       await page.goto(whatNewUrl);
 
-      const jacketsPage = page.locator('li.item > a[href="https://magento.softwaretestingboard.com/women/tops-women/tanks-women.html"]');
+      const brasTanksPage = page.locator('li.item > a[href="https://magento.softwaretestingboard.com/women/tops-women/tanks-women.html"]');
 
-      await jacketsPage.click();
+      await brasTanksPage.click();
       await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/tops-women/tanks-women.html');
 
     })
