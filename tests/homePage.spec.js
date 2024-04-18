@@ -157,4 +157,62 @@ test.describe('homePage', () => {
         await expect(page).toHaveURL('https://magento.softwaretestingboard.com/what-is-new.html');
         await expect(page).toHaveTitle("What's New");
     })  
+
+
+    const expectedColorOutline = 'rgb(195, 64, 0)';
+    test('1st card: image changes according to the selected color', async ({ page }) => {
+        const colorLables = ['Blue', 'Orange', 'Purple'];
+    
+        for (const color of colorLables) {
+            const locatorForColors = `.swatch-opt-1556>.swatch-attribute.color>div>div[option-label="${color}"]`;
+    
+            await page.locator(locatorForColors).click();
+            await expect(page.locator(locatorForColors)).toHaveCSS('outline-color', expectedColorOutline);
+            
+            const colorCode = color.toLowerCase();
+            const imageUrl = `https://magento.softwaretestingboard.com/pub/media/catalog/product/cache/7c4c1ed835fbbf2269f24539582c6d44/w/s/ws12-${colorCode}_main_1.jpg`;
+    
+            await expect(page.locator(`.product-items > li:first-child a img[src="${imageUrl}"]`)).toBeVisible();
+    
+        }
+    })
+
+    test('2st card: image changes according to the selected color', async ({ page }) => {
+        const colorLables2card = ['Purple', 'White', 'Yellow'];
+
+        for(const color2 of colorLables2card) {
+            const locatorForColors2card = `.swatch-opt-1812>.swatch-attribute.color>div>div[option-label="${color2}"]`;
+
+            await page.locator(locatorForColors2card).click();
+            await expect(page.locator(locatorForColors2card)).toHaveCSS('outline-color', expectedColorOutline);
+
+            const colorCode2 = color2.toLowerCase();
+            const imgUrl2card = `https://magento.softwaretestingboard.com/pub/media/catalog/product/cache/7c4c1ed835fbbf2269f24539582c6d44/w/t/wt09-${colorCode2}_main_1.jpg`;
+
+            await expect(page.locator(`img[src$="${imgUrl2card}"]`)).toBeVisible();
+        }
+    })
+
+    test('3rd card: image changes according to the selected color', async ({ page }) => {
+        const locatorForColors3card = `.product-items>li:nth-child(3)>div>div>div>div:nth-child(2)>div>div`
+        
+        await page.locator(locatorForColors3card).click();
+
+        await expect(page.locator(locatorForColors3card)).toHaveCSS('outline-color', expectedColorOutline);
+
+        await expect(page.getByAltText('Argus All-Weather Tank')).toBeVisible();
+
+    })
+
+    test('Verify user can make search entered the valid text in the search field', async({page}) => {
+        const validText = 'jacket';
+        const redirectedPage = 'https://magento.softwaretestingboard.com/catalogsearch/result/?q=jacket';
+
+        await page.locator('#search').fill(validText);
+        await page.locator('.actions > button').click();
+
+        await expect(page).toHaveURL(redirectedPage);
+        await expect(page).toHaveTitle(`Search results for: '${validText}'`);
+        
+    })
 })
