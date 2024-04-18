@@ -24,4 +24,12 @@ test.describe('menTops', () => {
      await expect(page.locator('.base') ).toHaveText('Tops');
      await expect(page).toHaveURL( 'https://magento.softwaretestingboard.com/men/tops-men.html');
    })
+   test('Check that category drop-down displays the products', async ({page}) => {
+    await page.goto('https://magento.softwaretestingboard.com/men/tops-men.html');
+    await page.getByRole('tab', {name:'Category' }).click();
+    await page.locator('.filter-options-content').first().hover();
+    await page.getByText(['Jackets', 'Hoodies & Sweatshirts', 'Tees', 'Tanks']).all();
+    
+    expect(page.getByText(['Jackets', 'Hoodies & Sweatshirts', 'Tees', 'Tanks'])).toBeTruthy();
+   })
 })
