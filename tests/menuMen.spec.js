@@ -1,9 +1,7 @@
 import { test, expect } from "@playwright/test";
 test.describe('Menu/Men', () => {
-    const BASE_URL = 'https://magento.softwaretestingboard.com'
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
-        // await page.locator('#ui-id-5').click()
     })
 
     test('Menu/Men available to click, see clothes only for men', async ({ page }) => {
