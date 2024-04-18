@@ -75,4 +75,15 @@ test.describe('page gear', () => {
 
     })
 
+    test('should be a going to the page "Shorts"', async ({ page}) => {
+
+      await page.goto(whatNewUrl);
+
+      const shortsPage = page.locator('li.item > a[href="https://magento.softwaretestingboard.com/women/bottoms-women/shorts-women.html"]');
+
+      await shortsPage.click();
+      await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women/shorts-women.html');
+
+    })
+
 })
