@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 test.describe('Menu/Men', () => {
     const BASE_URL = 'https://magento.softwaretestingboard.com'
     test.beforeEach(async ({ page }) => {
+        test.setTimeout(120000);
         await page.goto('/');
         // await page.locator('#ui-id-5').click()
     })
@@ -35,4 +36,14 @@ test.describe('Menu/Men', () => {
   
         await expect(countItemsBlockWishList).toHaveCount(2);  
     });
-})
+
+    test('Menu/Men/Tops available to click, redirect to Tops for Men', async ({page}) => {
+        // test.setTimeout(120000);
+        await page.goto("/");
+        page.locator("#ui-id-5").hover();
+        await page.locator("#ui-id-17").click();
+      
+        // await expect(page).toHaveTitle("Tops - Men");
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/men/tops-men.html');
+      });
+});
