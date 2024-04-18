@@ -109,5 +109,21 @@ test.describe('header', () => {
     await expect(headerLinks).toHaveCSS('float', 'right');
     await expect(headerLinks).toHaveCSS('margin-top', '0px');
   })
-   
+
+  const navigationMenuNames = ["What's New", "Women", "Men", "Gear", "Training", "Sale"];
+ 
+  navigationMenuNames.forEach(item => { 
+  test(`TC 01.1.2_04 Link Sign In is located on every ${item} of the website1`, async ({ page }) => {
+    const signInLocator = page.locator('.page-header').getByRole('link', { name: 'Sign In' });
+    await expect(signInLocator).toBeVisible();
+
+    const pageName = page.getByText(item, {exact:true});
+    await pageName.click();
+
+    const pageNameTitle = await page.locator('h1.page-title').innerText();
+    expect(pageNameTitle).toEqual(item);
+    await expect(signInLocator).toBeVisible();
+  })
+  })
+
 })
