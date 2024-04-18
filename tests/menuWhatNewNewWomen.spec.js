@@ -41,4 +41,38 @@ test.describe('page gear', () => {
       await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/tops-women/tees-women.html');
 
     })
+
+    test('should be a transition to the page "jackets"', async ({ page}) => {
+
+      await page.goto(whatNewUrl);
+
+      const jacketsPage = page.locator('li.item > a[href="https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html"]');
+
+      await jacketsPage.click();
+      await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html');
+
+    })
+
+    test('should be a transition to the page " Bras & Tanks"', async ({ page}) => {
+
+      await page.goto(whatNewUrl);
+
+      const brasTanksPage = page.locator('li.item > a[href="https://magento.softwaretestingboard.com/women/tops-women/tanks-women.html"]');
+
+      await brasTanksPage.click();
+      await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/tops-women/tanks-women.html');
+
+    })
+
+    test('should be a going to the page "Pants"', async ({ page}) => {
+
+      await page.goto(whatNewUrl);
+
+      const pantsPage = page.locator('li.item > a[href="https://magento.softwaretestingboard.com/women/bottoms-women/pants-women.html"]');
+
+      await pantsPage.click();
+      await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women/pants-women.html');
+
+    })
+
 })
