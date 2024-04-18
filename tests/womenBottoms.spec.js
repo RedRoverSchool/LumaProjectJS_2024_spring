@@ -21,4 +21,19 @@ test.describe('Women bottoms page', () => {
     
         await expect(page.locator('.breadcrumbs')).toHaveText('Home Women Bottoms');
     })
+
+    test('TC 05.1.2_01 Redirection to the Women/Tops after clicking the “Tops” droplist', async ({ page }) => {
+        await page.getByText('Women').hover();
+        await page.locator('#ui-id-9').click();
+
+        await expect(page).toHaveURL(BASE_URL + '/women/tops-women.html');
+        await expect(page).toHaveTitle('Tops - Women');
+    })
+
+    test('TC 05.1.2_02 Breadscrumbs "Home > Women > Tops" is displayed on the page', async ({ page }) => {
+        await page.getByText('Women').hover();
+        await page.locator('#ui-id-9').click();
+    
+        await expect(page.locator('.breadcrumbs')).toHaveText('Home Women Tops');
+    })
 })
