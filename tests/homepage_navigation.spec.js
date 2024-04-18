@@ -47,4 +47,11 @@ test.describe('Homepage | Navigation', () => {
     
 })
 
+  test("TC 04.2.1_07 Verify user can hover over the title “Women” and see dropdown list with 2 subcategories", async ({ page }) => {
+    const womenCategories = ["Tops", "Bottoms"];
+    await page.getByText("Women", { exact: true }).hover();
+
+    await expect(page.locator(".nav-2 > ul > li > a")).toHaveText(womenCategories);
+  });
+
 });
