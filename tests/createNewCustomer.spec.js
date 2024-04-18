@@ -25,4 +25,12 @@ test.describe('Create New Customer page', () => {
 
         await expect(page.locator('#password-confirmation-error')).toHaveText('Please enter the same value again.');
     });
+    
+    test('Verify after clicking the "Create an Account" link redirects the user to the Create New Customer Account page', async ({page}) => {
+        await page.getByRole('link',{name: 'Create an Account'}).click();
+
+        await expect(page.locator('.base')).toHaveText('Create New Customer Account');
+
+
+    })
 });
