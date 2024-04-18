@@ -12,8 +12,7 @@ test.describe("Men Menu", () => {
       await expect(page.getByRole("heading", { name: "Men" })).toBeVisible();
   });
 
-  test("Verify the display of comparison products on the men's page", async ({ page, }) => {   
-    test.setTimeout(120000); 
+  test("Verify the display of comparison products on the men's page", async ({ page, }) => {    
       await page.getByRole("link", { name: "Sign In" }).click();
       await page.getByLabel("Email").fill("svetik.buratino@gmail.com");
       await page.getByLabel("Password").fill("User123!");
@@ -31,8 +30,7 @@ test.describe("Men Menu", () => {
       await expect(countItemsBlockCompare).toHaveCount(1);
   });
 
-  test("Verify the display of My Wish List on the men's page", async ({ page, }) => {    
-    test.setTimeout(120000); 
+  test("Verify the display of My Wish List on the men's page", async ({ page, }) => {      
       await page.getByRole("link", { name: "Sign In" }).click();
       await page.getByLabel("Email").fill("svetik.buratino@gmail.com");
       await page.getByLabel("Password").fill("User123!");
