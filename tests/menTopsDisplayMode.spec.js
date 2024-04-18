@@ -15,7 +15,9 @@ test("Checking that the grid is selected and has 12 positions by default", async
   test("Checking that the list is selected and has 10 positions by default", async ({ page }) => {
     await page.locator('#ui-id-5').hover();
     await page.locator('#ui-id-17').click();
-    await page.getByRole('link',{ name: 'View as  List' }).click();
+    const listLocator = page.locator('a[class="modes-mode mode-list"]').first();
+    await page.waitForTimeout(2000); // добавил небольшую задержку
+    await listLocator.click();
 
     await expect(page.locator('strong[title="List"]').first()).toHaveClass(/active/)
     await expect(page.locator('li[class = "item product product-item"]')).toHaveCount(10)
