@@ -5,7 +5,7 @@ test.describe('Forgot Password Page', () => {
         await page.goto('/');
     });
     
-    test.only('Verify the Forgot Your Password? link redirects to the Forgot Your Password page', async ({ page }) => {
+    test('Verify the Forgot Your Password? link redirects to the Forgot Your Password page', async ({ page }) => {
         await page.getByRole('link', {name: 'Sign In'}).click();
         await page.getByRole('link', {name: 'Forgot Your Password?'}).click();
 
