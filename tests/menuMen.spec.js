@@ -5,8 +5,7 @@ test.describe("Men Menu", () => {
       await page.goto("/")
   );
 
-  test("Verify navigation from the menu to page Men", async ({ page }) => {
-    test.setTimeout(120000);
+  test("Verify navigation from the menu to page Men", async ({ page }) => {    
       await page.getByRole("menuitem", { name: "Men" }).last().click();
 
       await expect(page).toHaveURL("https://magento.softwaretestingboard.com/men.html");
@@ -33,6 +32,7 @@ test.describe("Men Menu", () => {
   });
 
   test("Verify the display of My Wish List on the men's page", async ({ page, }) => {    
+    test.setTimeout(120000); 
       await page.getByRole("link", { name: "Sign In" }).click();
       await page.getByLabel("Email").fill("svetik.buratino@gmail.com");
       await page.getByLabel("Password").fill("User123!");
