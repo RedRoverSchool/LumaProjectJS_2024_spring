@@ -59,4 +59,23 @@ test.describe('menuTraining', () => {
 		expect(page.getByLabel('Video Download').getByText('Video Download')).toBeTruthy();
  })
  
+   test('Verify that the User can use the “Compare Products” feature to compare different training products and identify their features and benefits', async({page}) => {
+		const COMPARE_URL_REGEX = new RegExp("https://magento.softwaretestingboard.com/catalog/product_compare/index/uenc/.+");
+		const headerCompare = page.getByRole('heading', { name: 'Compare Products' }).locator('span');
+		await page.getByRole('menuitem', { name: 'Gear' }).hover();
+		await page.getByRole('menuitem', { name: 'Bags' }).click();
+		await page.getByRole('link', { name: 'Push It Messenger Bag' }).first().hover();
+		await page.locator('li').filter({ hasText: 'Push It Messenger Bag Rating' }).getByLabel('Add to Compare').click();
+		await page.getByRole('link', { name: 'Overnight Duffle' }).first().hover();
+		await page.locator('li').filter({ hasText: 'Overnight Duffle Rating: 60%' }).getByLabel('Add to Compare').click();
+		await page.goto(TRAINING_URL);
+
+		await page.getByRole('link', { name: 'Compare', exact: true }).click();
+		
+		const currentURL = page.url();
+		expect(currentURL).toMatch(COMPARE_URL_REGEX);
+		await expect(headerCompare).toBeVisible();
+		expect(headerCompare).toBeTruthy();
+ })
+
 })
