@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { only } from "node:test";
 
 test.describe('gearPage', () => {
     const BAGS_URL = "https://magento.softwaretestingboard.com/gear/bags.html";

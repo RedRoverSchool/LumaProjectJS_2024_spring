@@ -7,6 +7,8 @@ module.exports = defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
+  timeout: 60000,
+
   
   use: {
     headless: process.env.CI ? true : false,
@@ -14,6 +16,7 @@ module.exports = defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://magento.softwaretestingboard.com',
     trace: 'on-first-retry',
+    testIdAttribute: 'id',
   },
 
   /* Configure projects for major browsers */
