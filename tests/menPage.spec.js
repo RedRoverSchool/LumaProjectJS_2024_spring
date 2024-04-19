@@ -39,10 +39,11 @@ test.describe('shop by category block with sub-categories links: tops and bottom
         test(`${categoryItem} sub-category link led to the ${categoryItem}-Men page`, async ({ page }) => {
             const categoryItemPageUrl = categoryItems[categoryItem];
             const topsLink = page.getByRole('link', { name: categoryItem });
+            await expect(topsLink).isVisible();
             await topsLink.click();
 
-            expect(page).toHaveURL(BASE_URL + categoryItemPageUrl);
             expect(page).toHaveTitle(`${categoryItem} - Men`);
+            expect(page).toHaveURL(BASE_URL + categoryItemPageUrl);
         });
     };
 });
