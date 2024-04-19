@@ -125,9 +125,8 @@ test.describe('header', () => {
     await expect(signInLocator).toBeVisible();
   })
   })
-  
+
   test('TC 01.2.1_08 Drop-down list in the search', async ({ page }) => {
-    await page.goto('/');
 
     await page.getByPlaceholder('Search entire store here').click();
     await page.getByPlaceholder('Search entire store here').fill('bag');
