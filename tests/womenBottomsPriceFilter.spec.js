@@ -10,6 +10,4 @@ test.describe('Women/Bottoms/Shopping options/Price', () => {
 
         await expect(page.locator('.filter-options-item allow active')).toBeVisible();
     })
-
-   
 })
