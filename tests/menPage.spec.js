@@ -36,14 +36,14 @@ test.describe('menPage', () => {
     });
 
     for (const categoryItem in categoryItems) {
-        test.skip(`${categoryItem} sub-category link led to the ${categoryItem}-Men page`, async ({ page }) => {
+        test(`${categoryItem} sub-category link led to the ${categoryItem}-Men page`, async ({ page }) => {
             const categoryItemPageUrl = categoryItems[categoryItem];
             const topsLink = page.getByRole('link', { name: categoryItem });
-            await expect(topsLink).isVisible();
+            await expect(topsLink).toBeVisible();
             await topsLink.click();
 
-            expect(page).toHaveTitle(`${categoryItem} - Men`);
-            expect(page).toHaveURL(BASE_URL + categoryItemPageUrl);
+            await expect(page).toHaveTitle(`${categoryItem} - Men`);
+            await expect(page).toHaveURL(BASE_URL + categoryItemPageUrl);
         });
     };
 });
