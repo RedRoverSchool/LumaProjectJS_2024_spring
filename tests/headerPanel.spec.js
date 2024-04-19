@@ -36,5 +36,18 @@ test.describe('headerPanel', () => {
         
         await expect(logo).toBeVisible();
     })
+});
+
+test.describe('headerPanel verify searchInput', ()=>  {
+    test.beforeEach('before', async({page}) => {
+        await page.goto('/')
+
+    })
+
+    test('TC 01.2.1_03 Header/ Verify available Search Bar on HomePage', async({ page })=> {
+        await page.locator('#search').click()
+
+        await expect(page.locator('#search')).toBeVisible()
+    })
 })
 

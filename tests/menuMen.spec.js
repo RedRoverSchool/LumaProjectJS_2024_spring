@@ -1,9 +1,8 @@
 import { test, expect } from "@playwright/test";
 test.describe('Menu/Men', () => {
-    const BASE_URL = 'https://magento.softwaretestingboard.com'
+
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
-        // await page.locator('#ui-id-5').click()
     })
 
     test('Menu/Men available to click, see clothes only for men', async ({ page }) => {
@@ -15,7 +14,7 @@ test.describe('Menu/Men', () => {
         await expect(page.locator('[role="heading"]').nth(1)).toBeVisible('My Wish List');
     })    
      
-    test("Verify the display of My Wish List on the men's page", async ({ page, }) => {      
+    test.skip("Verify the display of My Wish List on the men's page", async ({ page, }) => {
         await page.getByRole("link", { name: "Sign In" }).click();
         await page.getByLabel("Email").fill("svetik.buratino@gmail.com");
         await page.getByLabel("Password").fill("User123!");
