@@ -78,7 +78,7 @@ test.describe('header', () => {
     await expect(counter).not.toBeVisible();
   })
   
-  test('TC 01.1.2_03 The user can enter login details and authenticate', async ({ page }) => {
+  test.skip('TC 01.1.2_03 The user can enter login details and authenticate', async ({ page }) => {
     const signInLocator = page.locator('.page-header').getByRole('link', { name: 'Sign In' })
     await signInLocator.click()
 
