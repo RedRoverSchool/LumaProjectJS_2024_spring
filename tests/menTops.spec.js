@@ -32,4 +32,16 @@ test.describe('menTops', () => {
     
     expect(page.getByText(['Jackets', 'Hoodies & Sweatshirts', 'Tees', 'Tanks'])).toBeTruthy();
    })
+
+   test('verify the sort option byPrice is available in drop-down menu', async ({ page }) => {
+    await page.goto('/' + 'men/tops-men.html');
+    
+    if (await page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible()) {
+        await page.getByRole('button', { name: 'Consent' }).click();
+    };
+
+    await page.getByLabel('Sort by').click();
+    await page.locator('#sorter').first().selectOption('Price');
+    await expect(page.getByRole('option', {name: 'Price'})).toHaveText('Price');
+  })
 })
