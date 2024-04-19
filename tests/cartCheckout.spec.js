@@ -17,6 +17,7 @@ test.describe('US Cart/Checkout', () => {
 
         await page.locator('#shipping-new-address-form div').filter({ hasText: 'First Name' }).click();
         await page.getByLabel('First Name').fill('nata');
+        await expect(page.locator('#shipping-new-address-form input[name="firstname"]')).toHaveValue('Nata');
     })
 
     test('TC 09.2_07 <Cart/Checkout> User able to type in Last Name', async ({page}) => {
