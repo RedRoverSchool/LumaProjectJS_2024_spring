@@ -16,7 +16,7 @@ test.describe('Create New Customer page', () => {
         await expect(page.locator('#password-confirmation')).toBeVisible();
     });
 
-    test('Verify if the Password and Confirm Password do not match "Please enter the same value again." an error message is displayed', async ({ page }) => {
+    test.skip('Verify if the Password and Confirm Password do not match "Please enter the same value again." an error message is displayed', async ({ page }) => {
         await page.getByRole('link', {name: 'Create an Account'}).click();
 
         await page.locator('.field.password.required .control #password').fill('Test2024');

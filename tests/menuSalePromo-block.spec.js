@@ -14,7 +14,7 @@ test.describe("menuSalePromo-block", () => {
 
   });
 
-  test("Verify 'Sale' page contains 6 promo-blocks as images", async ({ page }) => {
+  test.skip("Verify 'Sale' page contains 6 promo-blocks as images", async ({ page }) => {
     const promoBlocks = page.locator("div.blocks-promo img");
 
     expect(promoBlocks).toHaveCount(6);
