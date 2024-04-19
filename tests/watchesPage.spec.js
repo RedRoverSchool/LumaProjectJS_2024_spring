@@ -84,4 +84,24 @@ test.describe('watchesPage', () => {
         await page.locator('#ui-id-27').click();
         await expect(page.locator('ul.items')).toHaveText('Home Gear Watches');
     })
+    
+    test('Verify that Gear>Watches>Shopping Options has Gender filter dropdown', async ({ page }) => {
+        const expectedGenderOptions = ['Men', 'Women', 'Unisex']; 
+
+        const arr = [];
+       
+        await page.getByRole('menuitem', { name: 'Gear' }).hover();
+        await page.getByText('Watches').click();
+        await page.getByRole('tab', {name: 'GENDER'}).click();
+
+        const actualGender =  page.locator('.active li.item a');
+
+        for( let i=0; i< await actualGender.count(); i++) {
+           arr.push(await actualGender.nth(i).innerText());
+        }
+
+        const extractedGenders = arr.map(el =>el.split(' ')[0]);
+
+        expect(extractedGenders).toEqual(expectedGenderOptions);
+    })
 })

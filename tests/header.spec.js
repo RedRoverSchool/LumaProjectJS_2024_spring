@@ -126,4 +126,11 @@ test.describe('header', () => {
   })
   })
 
+  test('TC 01.2.1_08 Drop-down list in the search', async ({ page }) => {
+
+    await page.getByPlaceholder('Search entire store here').click();
+    await page.getByPlaceholder('Search entire store here').fill('bag');
+    await expect(page.locator('#search_autocomplete > ul > li')).toHaveCount(8);
+})
+
 })

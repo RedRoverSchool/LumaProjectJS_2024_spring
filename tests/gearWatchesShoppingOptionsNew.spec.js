@@ -19,4 +19,17 @@ test.describe('gearWatchesShoppingOptionsNew', () => {
 
         expect(itemsNew).toContain(itemsAll.toString());
     })
+
+    test ('reset filter "new"', async ({page}) => {
+        await page.locator('#ui-id-6').hover();
+        await page.locator('#ui-id-27').click();
+        await page.getByRole('tab', {name: 'New'}).click();
+        await page.getByRole('link', {name: 'Yes'}).click();
+
+        await expect(page).toHaveURL(/new/);
+        
+        await page.getByRole('link', { name: 'Clear All' }).click();
+
+        await expect(page).not.toHaveURL(/new/);
+    })
 });
