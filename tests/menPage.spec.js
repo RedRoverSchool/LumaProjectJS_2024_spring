@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 
-test.describe('shop by category block with sub-categories links: tops and bottoms', () => {
+test.describe('menPage', () => {
     const BASE_URL = "https://magento.softwaretestingboard.com/";
     const menPageUrl = 'men.html';
 
