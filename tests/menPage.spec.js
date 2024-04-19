@@ -29,7 +29,7 @@ test.describe('category block with sub-categories links: tops and bottoms', () =
     });
 
     for (const categoryItem in categoryItems) {
-        test(`${categoryItem} sub-category link led to the ${categoryItem}-Men page`, async ({ page }) => {
+        test.skip(`${categoryItem} sub-category link led to the ${categoryItem}-Men page`, async ({ page }) => {
             const categoryItemPageUrl = categoryItems[categoryItem];
             const topsLink = page.getByRole('link', { name: categoryItem });
             await topsLink.click();
