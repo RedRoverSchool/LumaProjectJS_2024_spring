@@ -77,5 +77,36 @@ test.describe('menuTraining', () => {
 		await expect(headerCompare).toBeVisible();
 		expect(headerCompare).toBeTruthy();
  })
+ 	test('Verify that the User can add training products to the wish list for tracking and accessing additional information about them in the training materials', async({page}) => {
+		const headerWishlist = page.locator('span').filter({ hasText: 'My Wish List' })
+		const WISHLIST_URL = "https://magento.softwaretestingboard.com/wishlist/";
 
+		//User is registered on the site
+		await page.getByRole('link', { name: 'Sign In' }).click();
+		await page.getByLabel('Email', { exact: true }).fill('sapa2017@gmail.com');
+		await page.getByLabel('Password').fill('Admin1234');
+		await page.getByRole('button', { name: 'Sign In' }).click();
+
+		//The user has selected any two products to “My Wish List” list (for example: Overnight Duffle and Push It Messenger Bag)
+		await page.getByRole('menuitem', { name: 'Gear' }).hover();
+		await page.getByRole('menuitem', { name: 'Bags' }).click();
+		await page.getByRole('link', { name: 'Push It Messenger Bag' }).first().hover();
+		await page.locator('li').filter({ hasText: 'Push It Messenger Bag Rating' }).getByLabel('Add to Wish List').click();
+		await page.getByRole('menuitem', { name: 'Gear' }).hover();
+		await page.getByRole('menuitem', { name: 'Bags' }).click();
+		await page.getByRole('link', { name: 'Overnight Duffle' }).first().hover();
+		await page.locator('li').filter({ hasText: 'Overnight Duffle Rating: 60%' }).getByLabel('Add to Wish List').click();
+
+		//User is located on the “Training” page
+		await page.goto(TRAINING_URL); 
+
+		//User click on the “Go to Wish List” link in the "My Wish List" section
+		await page.getByRole('link', { name: 'Go to Wish List' }).click();
+		
+		//We are verifying that: The URL of the current page matches the URL of the wishlist page, the header element of the wishlist page is visible on the screen the header element of the wishlist page exists and is not empty or false.
+		await expect(page).toHaveURL(WISHLIST_URL);
+		await expect(headerWishlist).toBeVisible();
+		expect(headerWishlist).toBeTruthy();
+ })
+ 
 })
