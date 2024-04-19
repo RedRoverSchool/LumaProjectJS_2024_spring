@@ -26,11 +26,12 @@ test.describe('US Cart/Checkout', () => {
         await page.getByRole('option', { name: 'Blue' }).first().click();
         await page.getByRole('button', {name: 'Add to Cart'}).first().click();
     
-        
         await page.locator(".showcart .counter-number").click();
         await page.getByRole('button', { name: 'Proceed to Checkout' }).click();
     
         await page.locator('#shipping-new-address-form div').filter({ hasText: 'Last Name' }).click();
         await page.getByLabel('Last Name').fill('Smith');
+
+        await expect(page.locator('#shipping-new-address-form input[name="lastname"]')).toHaveValue('Smith');
     })
 })
