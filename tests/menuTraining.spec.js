@@ -77,5 +77,31 @@ test.describe('menuTraining', () => {
 		await expect(headerCompare).toBeVisible();
 		expect(headerCompare).toBeTruthy();
  })
+ 	test('Verify that the User can add training products to the wish list for tracking and accessing additional information about them in the training materials', async({page}) => {
+		const headerWishlist = page.locator('span').filter({ hasText: 'My Wish List' })
+		const WISHLIST_URL = "https://magento.softwaretestingboard.com/wishlist/";
+
+		await page.getByRole('link', { name: 'Sign In' }).click();
+		await page.getByLabel('Email', { exact: true }).fill('sapa2017@gmail.com');
+		await page.getByLabel('Password').fill('Admin1234');
+		await page.getByRole('button', { name: 'Sign In' }).click();
+
+		await page.getByRole('menuitem', { name: 'Gear' }).hover();
+		await page.getByRole('menuitem', { name: 'Bags' }).click();
+		await page.getByRole('link', { name: 'Push It Messenger Bag' }).first().hover();
+		await page.locator('li').filter({ hasText: 'Push It Messenger Bag Rating' }).getByLabel('Add to Wish List').click();
+		await page.getByRole('menuitem', { name: 'Gear' }).hover();
+		await page.getByRole('menuitem', { name: 'Bags' }).click();
+		await page.getByRole('link', { name: 'Overnight Duffle' }).first().hover();
+		await page.locator('li').filter({ hasText: 'Overnight Duffle Rating: 60%' }).getByLabel('Add to Wish List').click();
+
+		await page.goto(TRAINING_URL); 
+
+		await page.getByRole('link', { name: 'Go to Wish List' }).click();
+		
+		await expect(page).toHaveURL(WISHLIST_URL);
+		await expect(headerWishlist).toBeVisible();
+		expect(headerWishlist).toBeTruthy();
+ })
 
 })
