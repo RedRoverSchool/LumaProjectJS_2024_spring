@@ -8,7 +8,7 @@ test.describe('menTops', () => {
       await page.getByRole('button', { name: 'Consent' }).click();
     };
   })
-  
+
   test("Check that the cards have an image, description, available sizes, colors and price.", async ({ page }) => {
     await page.locator('#ui-id-5').hover();
     await page.locator('#ui-id-17').click();
@@ -71,7 +71,7 @@ test.describe('menTops', () => {
     await page.locator('div.toolbar-sorter.sorter > a').first().hover();
     await page.locator('div.toolbar-sorter.sorter > a').first().click();
 
-    await expect(page.locator('a.action.sorter-action.sort-desc').first()).toBeVisible();
+    await expect(page.locator('a.action.sorter-action.sort-desc').first()).toBeVisible({timeout: 4000});
     
     await page.locator('.product-items .price').first().waitFor({state: 'visible'});
 
