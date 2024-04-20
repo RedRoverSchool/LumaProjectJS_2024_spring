@@ -5,7 +5,7 @@ test.describe('Women/Bottoms/Shopping options/Price', () => {
         await page.goto("/women/bottoms-women.html");
     })
 
-    test.only('Women/Bottoms/Shopping options/Price filter is displayed', async ({ page }) => {
+    test('Women/Bottoms/Shopping options/Price filter is displayed', async ({ page }) => {
         await page.locator('.filter-options-title').nth(3).click();
     
         await expect(page.locator('.filter-options-content').nth(3)).toBeVisible();
