@@ -22,7 +22,7 @@ test.describe('US Cart/Checkout', () => {
     })
 
     test('TC 09.2_07 <Cart/Checkout> User able to type in Last Name', async ({ page }) => {
-        
+
         await page.getByRole('option', { name: 'XS' }).first().click();
         await page.getByRole('option', { name: 'Blue' }).first().click();
         await page.getByRole('button', { name: 'Add to Cart' }).first().click();
@@ -34,5 +34,20 @@ test.describe('US Cart/Checkout', () => {
         await page.getByLabel('Last Name').fill('Smith');
 
         await expect(page.locator('#shipping-new-address-form input[name="lastname"]')).toHaveValue('Smith');
+    })
+
+    test('TC 09.2_08 <Cart/Checkout> Company input field is displayed', async ({ page }) => {
+
+        await page.getByLabel('Consent', { exact: true }).click();
+
+        await page.getByRole('option', { name: 'XS' }).first().click();
+        await page.getByRole('option', { name: 'Blue' }).first().click();
+        await page.getByTitle('Add to Cart').first().click();
+        await page.locator('.showcart .counter-number').click();
+        await page.getByRole('button', { name: 'Proceed to Checkout' }).click();
+
+        await page.locator('#shipping-new-address-form div').filter({ hasText: 'Company' }).click();
+
+        await expect(page.locator('#shipping-new-address-form input[name="company"]')).toBeVisible()
     })
 })
