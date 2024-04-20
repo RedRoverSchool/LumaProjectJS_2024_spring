@@ -47,5 +47,18 @@ test.describe('US Cart/Checkout', () => {
         await page.locator('#shipping-new-address-form div').filter({ hasText: 'Company' }).click();
 
         await expect(page.locator('#shipping-new-address-form input[name="company"]')).toBeVisible()
-    })
+    });
+
+    test('TC 09.2_01 <Cart/Checkout> Item in Shopping Cart is visible', async ({ page }) => {
+
+        await page.getByRole('option', { name: 'XS' }).first().click();
+        await page.getByRole('option', { name: 'Blue' }).first().click();
+        await page.getByTitle('Add to Cart').first().click();
+
+        await page.locator(".showcart .counter-number").click();
+        await page.getByRole('link', { name: 'View and Edit Cart' }).click();
+
+        await expect(page.locator('form.form-cart')).toBeVisible()
+
+    });
 })
