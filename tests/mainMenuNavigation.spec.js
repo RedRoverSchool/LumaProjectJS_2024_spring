@@ -36,18 +36,20 @@ test.describe('menu navigation', () => {
   }) => {
     let array = ["What's New", 'Women', 'Men', 'Gear', 'Training', 'Sale']
 
-    const menuOptions = await page.locator('.level-top.ui-corner-all')
+    const menuOptionsLocator = page.locator('.level-top.ui-corner-all')
+    const elements = await menuOptionsLocator.all()
 
-    for (let i = 0; i < menuOptions.length; i++) {
-      await expect(elements[i]).toBeVisible()
+    const innerTexts = await Promise.all(
+      elements.map(element => element.innerText())
+    )
 
+    expect(innerTexts).toHaveLength(6)
+
+    for (let i = 0; i < array.length; i++) {
       const expectedLink = array[i]
-      const actualLink = await menuOptions.innerText()
+      const actualLink = innerTexts[i]
 
-      console.log(actualLink)
-
-      await expect(menuOptions).toHaveCount(6)
-      await expect(actualLink).toEqual(expectedLink)
+      expect(actualLink.trim()).toEqual(expectedLink)
     }
   })
 })
