@@ -17,7 +17,7 @@ test.describe('US Cart/Checkout', () => {
         await page.getByRole('button', { name: 'Proceed to Checkout' }).click();
 
         await page.locator('#shipping-new-address-form div').filter({ hasText: 'First Name' }).click();
-        await page.getByLabel('First Name').fill('nata');
+        await page.getByLabel('First Name').fill('Nata');
         await expect(page.locator('#shipping-new-address-form input[name="firstname"]')).toHaveValue('Nata');
     })
 
