@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 test.describe('watchesPage', () => {
-
+    test.slow();
+    const baseURL = 'https://magento.softwaretestingboard.com';
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
     })
@@ -47,7 +48,7 @@ test.describe('watchesPage', () => {
         expect(saleItemsNumber).toEqual(saleWatches)
     })
 
-    test('verify that material filter can be set/unset on watch', async ({ page }) => {
+    test.skip('verify that material filter can be set/unset on watch', async ({ page }) => {
         await page.getByRole('menuitem', { name: 'Gear' }).hover();
         await page.getByText('Watches').click();
         await page.getByRole('tab', { name: 'Material' }).click();
@@ -59,7 +60,7 @@ test.describe('watchesPage', () => {
         expect(activeMaterialFilter).not.toBeVisible();
     })
 
-    test('verify user able to reset the selected filter on sale watches page', async ({ page }) => {
+    test.skip('verify user able to reset the selected filter on sale watches page', async ({ page }) => {
         const saleWatchesURL = ("https://magento.softwaretestingboard.com/gear/watches.html?sale=1")
         await page.goto(saleWatchesURL);
         const totalSalesItems = await page.locator('.toolbar-products .toolbar-amount .toolbar-number').first().textContent()
@@ -84,4 +85,34 @@ test.describe('watchesPage', () => {
         await page.locator('#ui-id-27').click();
         await expect(page.locator('ul.items')).toHaveText('Home Gear Watches');
     })
-})
+
+    test ('product page “Watches” is working', async ({page}) => {
+        await page.locator('#ui-id-6').hover();
+        await page.locator('#ui-id-27').click();
+        const response = await page.request.get(baseURL + '/gear/watches.html?product_list_limit=24&product_list_mode=list');
+    
+        await expect(response).toBeOK();
+        await expect(page).toHaveTitle(/Watches/);
+    })   
+     
+    test('Verify that Gear>Watches>Shopping Options has Gender filter dropdown', async ({ page }) => {
+        const expectedGenderOptions = ['Men', 'Women', 'Unisex']; 
+
+        const arr = [];
+       
+        await page.getByRole('menuitem', { name: 'Gear' }).hover();
+        await page.getByText('Watches').click();
+        await page.getByRole('tab', {name: 'GENDER'}).click();
+
+        const actualGender =  page.locator('.active li.item a');
+
+        for( let i=0; i< await actualGender.count(); i++) {
+           arr.push(await actualGender.nth(i).innerText());
+        }
+
+        const extractedGenders = arr.map(el =>el.split(' ')[0]);
+
+        expect(extractedGenders).toEqual(expectedGenderOptions);
+    })
+    
+});

@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 
-test.describe('category block with sub-categories links: tops and bottoms', () => {
+test.describe('menPage', () => {
     const BASE_URL = "https://magento.softwaretestingboard.com/";
     const menPageUrl = 'men.html';
 
@@ -18,6 +18,13 @@ test.describe('category block with sub-categories links: tops and bottoms', () =
         await expect(page).toHaveURL(BASE_URL + menPageUrl);
     });
 
+    test('Men page contains Shop by category block which is located on the left side of the page', async ({ page }) => {
+        const shopByCategoryBlock = page.locator('[class="sidebar sidebar-main"]');
+
+        await expect(shopByCategoryBlock).toBeVisible();
+        await expect(shopByCategoryBlock).toHaveCSS('float', 'left');
+    });
+
     test('Category block contains sub-categories: Tops and Bottoms which are links in blue text', async ({ page }) => {
         const category = page.locator('.options dt');
 
@@ -32,10 +39,11 @@ test.describe('category block with sub-categories links: tops and bottoms', () =
         test(`${categoryItem} sub-category link led to the ${categoryItem}-Men page`, async ({ page }) => {
             const categoryItemPageUrl = categoryItems[categoryItem];
             const topsLink = page.getByRole('link', { name: categoryItem });
+            await expect(topsLink).toBeVisible();
             await topsLink.click();
 
-            expect(page).toHaveURL(BASE_URL + categoryItemPageUrl);
-            expect(page).toHaveTitle(`${categoryItem} - Men`);
+            await expect(page).toHaveTitle(`${categoryItem} - Men`);
+            await expect(page).toHaveURL(BASE_URL + categoryItemPageUrl);
         });
     };
 });

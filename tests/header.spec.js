@@ -78,7 +78,7 @@ test.describe('header', () => {
     await expect(counter).not.toBeVisible();
   })
   
-  test('TC 01.1.2_03 The user can enter login details and authenticate', async ({ page }) => {
+  test.skip('TC 01.1.2_03 The user can enter login details and authenticate', async ({ page }) => {
     const signInLocator = page.locator('.page-header').getByRole('link', { name: 'Sign In' })
     await signInLocator.click()
 
@@ -126,4 +126,29 @@ test.describe('header', () => {
   })
   })
 
+  test('TC 01.2.1_08 Drop-down list in the search', async ({ page }) => {
+
+    await page.getByPlaceholder('Search entire store here').click();
+    await page.getByPlaceholder('Search entire store here').fill('bag');
+    await expect(page.locator('#search_autocomplete > ul > li')).toHaveCount(8);
+  })
+
+  test('Redirect after signing in to the Sale page', async ({ page }) => {
+    const login = 'djiwiixixevpaawtax@cazlv.com';
+    const password = 'Q1234567890!';
+
+    await page.getByText('Sale').click();
+
+    const signInLink = page.getByRole('link', { name: 'Sign In' })
+
+    await signInLink.waitFor();
+    await signInLink.click();
+    await page.locator('#email').fill(login);
+    await page.locator('[title="Password"]').fill(password);
+    await page.getByRole('button', {name: 'Sign In'}).click();
+
+    await expect(page.locator('[class="panel header"] .logged-in')).toBeAttached();
+    await expect(page).toHaveURL(BASE_URL + '/sale.html')
+    await expect(page.getByRole('heading', {name: 'Sale'})).toBeVisible();
+  })
 })

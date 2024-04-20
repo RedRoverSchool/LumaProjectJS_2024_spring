@@ -13,4 +13,11 @@ test.describe("womenTopsStyle", () => {
         await page.getByRole('menuitem', { name: 'Tops' }).click();
         await expect(page).toHaveURL("https://magento.softwaretestingboard.com/women/tops-women.html");   
     })
+
+    test('Verify visability of Shopping Option in the menu on the left side.', async ({ page }) => {
+        await page.getByText("Women").hover();
+        await page.getByRole('menuitem', { name: 'Tops' }).click();
+        await expect(page.getByRole('heading', { name: 'Shopping Options' })).toBeVisible();
+        expect(page.getByRole('heading', { name: 'Shopping Options' })).toBeTruthy();
+    })
 })
