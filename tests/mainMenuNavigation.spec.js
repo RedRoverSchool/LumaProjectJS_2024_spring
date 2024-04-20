@@ -23,8 +23,6 @@ test.describe('menu navigation', () => {
     await expect(navigation).toBeVisible(menuOptions)
   })
 
-  
-  
   test('verify Main menu is displayed on the top of the home page in the grey field', async ({
     page
   }) => {
@@ -32,7 +30,6 @@ test.describe('menu navigation', () => {
 
     await expect(menuBar).toHaveCSS('background-color', 'rgb(240, 240, 240)')
   })
-
 
   test('verify User can see 6 menu options on the main page with particular text', async ({
     page
