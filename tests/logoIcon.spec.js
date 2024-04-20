@@ -26,7 +26,7 @@ test.describe("Check logo icon navigation", () => {
     }
   });
 
-  test.only('Verify Logo picture is located from the left in all pages of site', async ({ page }) =>{
+  test('Verify Logo picture is located from the left in all pages of site', async ({ page }) =>{
 
     const logo = page.locator('.logo');
  
