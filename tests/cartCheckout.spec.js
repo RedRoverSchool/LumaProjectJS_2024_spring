@@ -59,6 +59,5 @@ test.describe('US Cart/Checkout', () => {
         await page.getByRole('link', { name: 'View and Edit Cart' }).click();
 
         await expect(page.locator('form.form-cart')).toBeVisible()
-
     });
 })
