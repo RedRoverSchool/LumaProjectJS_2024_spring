@@ -42,7 +42,9 @@ test.describe('menu navigation', () => {
       await expect(elements[i]).toBeVisible()
 
       const expectedLink = array[i]
-      const actualLink = await link.innerText()
+      const actualLink = await menuOptions.innerText()
+
+      console.log(actualLink)
 
       await expect(menuOptions).toHaveCount(6)
       await expect(actualLink).toEqual(expectedLink)
