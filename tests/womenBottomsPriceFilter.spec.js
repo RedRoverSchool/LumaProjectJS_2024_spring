@@ -5,9 +5,9 @@ test.describe('Women/Bottoms/Shopping options/Price', () => {
         await page.goto("/women/bottoms-women.html");
     })
 
-    test('Women/Bottoms/Shopping options/Price filter is displayed', async ({ page }) => {
-        await page.locator('.filter-options-title').nth(4).click();
-
-        await expect(page.locator('.filter-options-item allow active')).toBeVisible();
+    test.only('Women/Bottoms/Shopping options/Price filter is displayed', async ({ page }) => {
+        await page.locator('.filter-options-title').nth(3).click();
+    
+        await expect(page.locator('.filter-options-content').nth(3)).toBeVisible();
     })
 })
