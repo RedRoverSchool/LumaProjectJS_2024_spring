@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 test.describe('watchesPage', () => {
-
+    test.slow();
+    const baseURL = 'https://magento.softwaretestingboard.com';
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
     })
@@ -84,7 +85,16 @@ test.describe('watchesPage', () => {
         await page.locator('#ui-id-27').click();
         await expect(page.locator('ul.items')).toHaveText('Home Gear Watches');
     })
+
+    test ('product page “Watches” is working', async ({page}) => {
+        await page.locator('#ui-id-6').hover();
+        await page.locator('#ui-id-27').click();
+        const response = await page.request.get(baseURL + '/gear/watches.html?product_list_limit=24&product_list_mode=list');
     
+        await expect(response).toBeOK();
+        await expect(page).toHaveTitle(/Watches/);
+    })   
+     
     test('Verify that Gear>Watches>Shopping Options has Gender filter dropdown', async ({ page }) => {
         const expectedGenderOptions = ['Men', 'Women', 'Unisex']; 
 
@@ -104,4 +114,5 @@ test.describe('watchesPage', () => {
 
         expect(extractedGenders).toEqual(expectedGenderOptions);
     })
-})
+    
+});
