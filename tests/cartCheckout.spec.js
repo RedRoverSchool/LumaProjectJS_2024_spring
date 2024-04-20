@@ -2,8 +2,11 @@ import { test, expect } from "@playwright/test";
 
 test.describe('US Cart/Checkout', () => {
 
+    test.beforeEach(async ({ page }) => {
+        await page.goto('/');
+    });
+
     test('TC 09_2_06 <Cart/Checkout> User able to type in their First Name', async ({ page }) => {
-        await page.goto('https://magento.softwaretestingboard.com/');
 
         await page.getByRole('option', { name: 'XS' }).first().click();
         await page.getByRole('option', { name: 'Blue' }).first().click();
@@ -19,8 +22,7 @@ test.describe('US Cart/Checkout', () => {
     })
 
     test('TC 09.2_07 <Cart/Checkout> User able to type in Last Name', async ({ page }) => {
-        await page.goto('https://magento.softwaretestingboard.com/');
-
+        
         await page.getByRole('option', { name: 'XS' }).first().click();
         await page.getByRole('option', { name: 'Blue' }).first().click();
         await page.getByRole('button', { name: 'Add to Cart' }).first().click();
