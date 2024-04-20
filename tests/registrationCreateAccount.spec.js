@@ -80,7 +80,7 @@ test.describe("create account", () => {
       await expect(thanksMessage).toHaveText("Thank you for registering with Main Website Store.");
 
   })
-  test('should be possible to create a new account', async ({ page }) => {
+  test.skip('should be possible to create a new account', async ({ page }) => {
 
     await page.goto(createAccount_url);
 

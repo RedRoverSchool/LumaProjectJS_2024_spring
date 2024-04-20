@@ -60,4 +60,27 @@ test.describe("womenTops", () => {
     
     expect(atualItemNumber).toEqual(+expectedItemNumber)
 })
+
+  test ('TC 05.1.4_01 Women/Tops/Display mode can be changed, visible', async ({ page }) => {
+   await page.goto(WOMEN_TOPS_URL)
+   const displayModeGrid = page.getByTitle('Grid', {exact:true}).first()
+   await expect(displayModeGrid).toBeVisible()
+   await displayModeGrid.click()
+   
+   const displayModeList = page.getByTitle('List', { exact: true }).first()
+   await expect(displayModeList).toBeVisible()
+   await displayModeList.click()
+
+  })
+
+  test ('TC 05.1.4_02 Women/Tops/Display mode_verify List mode of displaying the products on the page', async ({ page }) => {
+    await page.goto(WOMEN_TOPS_URL)
+    const displayModeList = page.getByTitle('List', { exact: true }).first()
+    await displayModeList.click()
+    expect(page.url()).toContain('product_list_mode=list')
+ 
+    const listMode = page.locator('div.modes strong[title="List"]').first();
+    await expect(listMode).toHaveClass('modes-mode active mode-list')
+           
+   })
 });

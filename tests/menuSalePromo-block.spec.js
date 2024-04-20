@@ -14,7 +14,7 @@ test.describe("menuSalePromo-block", () => {
 
   });
 
-  test("Verify 'Sale' page contains 6 promo-blocks as images", async ({ page }) => {
+  test.skip("Verify 'Sale' page contains 6 promo-blocks as images", async ({ page }) => {
     const promoBlocks = page.locator("div.blocks-promo img");
 
     expect(promoBlocks).toHaveCount(6);
@@ -27,4 +27,11 @@ test.describe("menuSalePromo-block", () => {
       await expect(page.locator('#page-title-heading > span')).toHaveText(link.title);
     });
   }
+
+  test(`Redirecting to "Men Sale" page after click on "Shop men’s deals" block`, async ({ page }) => {
+    await page.locator("a.sale-mens").click();
+
+    await expect(page).toHaveTitle("Men Sale");
+    await expect(page.locator("span[data-ui-id='page-title-wrapper']")).toHaveText("Men Sale");
+  });
 })

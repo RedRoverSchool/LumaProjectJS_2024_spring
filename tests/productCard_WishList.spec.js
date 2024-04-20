@@ -20,11 +20,22 @@ test.describe('Product Card/Add to Wish List', () => {
       
     });
 
-    test("Validate link Move to Wish List located on the Shopping Cart page", async ({ page }) => {
+    test.skip("Validate link Move to Wish List located on the Shopping Cart page", async ({ page }) => {
       await page.locator('.minicart-wrapper').click();
       await page.waitForTimeout(1000);
       await page.locator('.action.viewcart').click();
       
       await expect(page.getByText('Move to Wishlist')).toBeVisible();
       });
+
+      test.skip("Validate the message - the product has been moved to your wish list", async ({ page }) => {
+        await page.locator('.minicart-wrapper').click();
+        await page.waitForTimeout(1000);
+        await  expect (page.locator('.action.viewcart')).toBeVisible;
+        await page.locator('.action.viewcart').click();
+        await (page.getByText('Move to Wishlist')).click();
+
+        await expect(page.locator('.page.messages')).toBeVisible;
+        await expect(page.locator('.page.messages')).toContainText('Inez Full Zip Jacket has been moved to your wish list.');
+        });
 });

@@ -213,7 +213,20 @@ test.describe('homePage', () => {
 
         await expect(page).toHaveURL(redirectedPage);
         await expect(page).toHaveTitle(`Search results for: '${validText}'`);
-        
+
+    })
+
+    test('Verify user doesn`t receive the results when make search with invalid text ', async({page}) => {
+        const inValidText = 'testdghsh';
+    
+        await page.locator('#search').fill(inValidText);
+        await page.locator('.actions > button').click();
+    
+        const warningMessage = page.locator('.message.notice').getByText(' Your search returned no results. ');
+        await expect(warningMessage).toHaveText(' Your search returned no results. ');
+    
+        const noResultsInfo = page.locator('#toolbar-amount').getByText(' Items ')
+        await expect(noResultsInfo).toBeHidden();
     })
 
     test('4th card: image changes according to the selected color', async ({ page }) => {

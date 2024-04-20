@@ -16,4 +16,9 @@ test.describe("Checking Promo blocks on page 'Women'", () => {
 
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women/pants-women.html');
   })  
-});
+
+  test('Each sub-category link in filter “Sort By Category” has a blue color', async ({ page }) => {
+    await expect(page.getByRole('link', {name: 'Tops'})).toHaveCSS('color', 'rgb(0, 107, 180)');
+    await expect(page.getByRole('link', {name: 'Bottoms'})).toHaveCSS('color', 'rgb(0, 107, 180)');
+  })
+})
