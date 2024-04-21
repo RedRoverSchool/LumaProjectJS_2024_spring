@@ -115,6 +115,17 @@ test.describe('watchesPage', () => {
         expect(extractedGenders).toEqual(expectedGenderOptions);
     })
 
+    
+
+
+
+
+
+
+
+
+
+
     test('Verify User sees the watches according to the selected activity types', async ({page}) =>{
         const selectorOfSubcategory = [
             '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(1) > a',
