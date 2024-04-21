@@ -16,4 +16,11 @@ test.describe("Checking Promo blocks on page 'Women'", () => {
 
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women/pants-women.html');
   })  
+
+  test.fail('click Promo link', async ({page}) => {//has to fail because there's a bug on the page
+    await page.getByText('Shop New Yoga').click();
+
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/collections/yoga-new.html')
+    await expect(page).locator('.page-title-heading').toHaveText('New Luma Yoga Collection') 
+  })
 });
