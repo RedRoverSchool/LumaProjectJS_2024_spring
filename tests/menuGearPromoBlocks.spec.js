@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe('Menu/Gear/Promo Block', () => {
+test.describe('menuGearPromoBlocks', () => {
  
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
@@ -8,7 +8,7 @@ test.describe('Menu/Gear/Promo Block', () => {
     await gearNavButton.click();
   })
 
-  test('TC 04.4.3_01 Verify redirect to the "Fitness Equipment" category by clicking on "Loosen Up" banner', async ({ page }) => {
+  test('Verify redirect to the "Fitness Equipment" category by clicking on "Loosen Up" banner', async ({ page }) => {
 
     await page.getByRole('link', { name: 'Loosen Up' }).click();
 
@@ -16,7 +16,7 @@ test.describe('Menu/Gear/Promo Block', () => {
     await expect(page.locator('.base')).toHaveText('Fitness Equipment');
   })
 
-  test('TC 04.4.3_02 Verify redirect to the "Fitness Equipment" category by clicking on “$4 Luma water bottle” banner', async ({ page }) => {
+  test('Verify redirect to the "Fitness Equipment" category by clicking on “$4 Luma water bottle” banner', async ({ page }) => {
 
     await page.locator('.block-promo.gear-equipment').click();
 
@@ -24,7 +24,7 @@ test.describe('Menu/Gear/Promo Block', () => {
     await expect(page.locator('.base')).toHaveText('Fitness Equipment');
   })
   
-  test('TC 04.4.3_03 Verify redirect to the "Bags" category by clicking on "Shop bags" banner', async ({ page }) => {
+  test('Verify redirect to the "Bags" category by clicking on "Shop bags" banner', async ({ page }) => {
     
     await page.locator('.block-promo.gear-category-bags').click();
     
@@ -32,7 +32,7 @@ test.describe('Menu/Gear/Promo Block', () => {
     await expect(page.locator('.base')).toHaveText('Bags');
   })
 
-  test('TC 04.4.3_04 Verify redirect to the "Fitness Equipment" category by clicking on "Shop Equipment" banner', async ({ page }) => {
+  test('Verify redirect to the "Fitness Equipment" category by clicking on "Shop Equipment" banner', async ({ page }) => {
     
     await page.locator('.block-promo.gear-category-equipment').click();
     
@@ -40,7 +40,7 @@ test.describe('Menu/Gear/Promo Block', () => {
     await expect(page.locator('.base')).toHaveText('Fitness Equipment');
   })
   
-    test('TC 04.4.3_05 Verify redirect to the "Watches" category by clicking on "Shop watches" banner', async ({ page }) => {
+    test('Verify redirect to the "Watches" category by clicking on "Shop watches" banner', async ({ page }) => {
     
     await page.locator('.block-promo.gear-category-watches').click();
     
@@ -49,7 +49,7 @@ test.describe('Menu/Gear/Promo Block', () => {
 
   })
   
-    test('TC 04.4.3_06 Verify that 6 promo banners are displayed on "Gear" page', async ({ page }) => {
+    test('Verify that 6 promo banners are displayed on "Gear" page', async ({ page }) => {
     
     await expect(page.locator('div.blocks-promo img')).toHaveCount(6);
 
