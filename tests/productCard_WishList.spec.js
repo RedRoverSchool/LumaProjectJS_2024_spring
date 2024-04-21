@@ -1,8 +1,7 @@
 import { test, expect } from "@playwright/test";
 
-const itemName = 'Inez Full Zip Jacket';
-
 test.describe('Product Card/Add to Wish List', () => {
+  const itemName = 'Inez Full Zip Jacket';
   const BASE_URL = "https://magento.softwaretestingboard.com";
   test.beforeEach(async ({ page }) => {
     await page.goto('/customer/account/login/');
@@ -19,7 +18,6 @@ test.describe('Product Card/Add to Wish List', () => {
     await page.locator('#option-label-size-143-item-169').click();
     await page.locator('div.swatch-option.color[option-label="Orange"]').click();
     await page.getByRole('button', { name: 'Add to Cart' }).click();
-
   });
 
   test("Validate link Move to Wish List located on the Shopping Cart page", async ({ page }) => {
