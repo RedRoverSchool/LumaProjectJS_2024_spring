@@ -114,5 +114,42 @@ test.describe('watchesPage', () => {
 
         expect(extractedGenders).toEqual(expectedGenderOptions);
     })
+
+    test('Verify User sees the watches according to the selected activity types', async ({page}) =>{
+        const selectorOfSubcategory = [
+            '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(1) > a',
+            '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(2) > a',
+            '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(3) > a',
+            '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(4) > a',
+            '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(5) > a'
+        ];
+        
+        const expectedSubcategoryTitles = [
+            'Outdoor',
+            'Recreation',
+            'Gym',
+            'Athletic',
+            'Sports'
+        ];
+
+        const subcategoryLinks = [
+            'https://magento.softwaretestingboard.com/gear/watches.html?activity=5',
+            'https://magento.softwaretestingboard.com/gear/watches.html?activity=9',
+            'https://magento.softwaretestingboard.com/gear/watches.html?activity=11',
+            'https://magento.softwaretestingboard.com/gear/watches.html?activity=16',
+            'https://magento.softwaretestingboard.com/gear/watches.html?activity=17'
+
+        ];
+
+        for (let i = 0; i < selectorOfSubcategory.length; i++) {
+            await page.goto('/gear/watches.html');
+            await page.locator('.filter-options-title').getByText('Activity').click();
+            await page.locator(selectorOfSubcategory[i]).click();
+            await expect(page.locator(`.filter-value:has-text('${expectedSubcategoryTitles[i]}')`)).toContainText(expectedSubcategoryTitles[i]);
+            await expect(page).toHaveURL(subcategoryLinks[i]);
+            }
+        })
+    })
+
     
-});
+
