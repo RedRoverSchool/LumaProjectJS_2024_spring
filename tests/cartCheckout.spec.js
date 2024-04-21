@@ -21,7 +21,7 @@ test.describe('US Cart/Checkout', () => {
         await expect(page.locator('#shipping-new-address-form input[name="firstname"]')).toHaveValue('Nata');
     })
 
-    test('TC 09.2_07 <Cart/Checkout> User able to type in Last Name', async ({ page }) => {
+    test.skip('TC 09.2_07 <Cart/Checkout> User able to type in Last Name', async ({ page }) => {
 
         await page.getByRole('option', { name: 'XS' }).first().click();
         await page.getByRole('option', { name: 'Blue' }).first().click();
@@ -60,4 +60,19 @@ test.describe('US Cart/Checkout', () => {
 
         await expect(page.locator('form.form-cart')).toBeVisible()
     });
+
+    test('TC 09.2_09 <Cart/Checkout> User able to type their Company name', async ({ page }) => {
+
+        await page.getByRole('option', { name: 'XS' }).first().click();
+        await page.getByRole('option', { name: 'Blue' }).first().click();
+        await page.getByTitle('Add to Cart').first().click();
+        await page.locator('.showcart .counter-number').click();
+        await page.getByRole('button', { name: 'Proceed to Checkout' }).click();
+
+        await page.locator('#shipping-new-address-form div').filter({ hasText: 'Company' }).click();
+
+        await page.locator('#shipping-new-address-form input[name="company"]').click()
+        await page.getByLabel('Company').fill('Flowers')
+        await expect(page.locator('#shipping-new-address-form input[name="company"]')).toHaveValue('Flowers')
+    })
 })

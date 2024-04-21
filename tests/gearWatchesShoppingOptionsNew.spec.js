@@ -9,11 +9,12 @@ test.describe('gearWatchesShoppingOptionsNew', () => {
         await page.locator('#ui-id-6').hover();
         await page.locator('#ui-id-27').click();
         await page.getByRole('tab', {name: 'New'}).click();
-            const itemsNew = await page.locator('a[href="https://magento.softwaretestingboard.com/gear/watches.html?new=1"]').innerText()
+            const itemsNew = await page.locator('a[href *= "/watches.html?new=1"]>span.count').allTextContents();
+            const nItem = parseInt(itemsNew[0].slice(-6));
         await page.getByRole('link', {name: 'Yes'}).click();
-            const itemsAll = await page.locator('li[class = "item product product-item"]').count();
+            const itemsAll = await page.locator('li[class="item product product-item"]', ({state: 'attached'})).count();
 
-        expect(itemsNew).toContain(itemsAll.toString());
+        expect(nItem).toBe(itemsAll);
     })
 
     test ('reset filter "new"', async ({page}) => {
