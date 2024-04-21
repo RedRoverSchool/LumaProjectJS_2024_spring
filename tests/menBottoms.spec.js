@@ -26,7 +26,7 @@ test.describe('menBottoms', () => {
 
       const cardSizeLocator = page.locator('li').filter({ hasText: 'Pierce Gym Short' }).getByLabel(`${size}`);
       await expect(page.locator('.filter-value')).toHaveText(`${size}`);
-      await expect(cardSizeLocator).toHaveCSS('outline', 'rgb(255, 85, 1) solid 1.6px');
+      await expect(cardSizeLocator).toHaveCSS('outline', 'rgb(255, 85, 1) solid 2px');
     })
   })
 })
