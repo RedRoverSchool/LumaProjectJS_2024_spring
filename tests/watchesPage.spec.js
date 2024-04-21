@@ -114,5 +114,17 @@ test.describe('watchesPage', () => {
 
         expect(extractedGenders).toEqual(expectedGenderOptions);
     })
+
+    test ('There is only a “Watches” on the open page', async ({page}) => {
+        await page.locator('#ui-id-6').hover();
+        await page.locator('#ui-id-27').click();
+        const response = await page.request.get(baseURL + '/gear/watches.html?product_list_limit=24&product_list_mode=list');
+    
+        await expect(page.getByRole('heading', {name: 'Watches'})).toBeVisible();
+        const allTextItems = await page.locator('.products .product-items .product-item-link').allTextContents();
+        for (const item of allTextItems) {
+            expect(item).toContain('Watch');
+        }
+    })
     
 });
