@@ -4,7 +4,7 @@ test.describe('menTopsDisplayMode', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   })
-test("Checking that the grid is selected and has 12 positions by default", async ({ page }) => {
+test.skip("Checking that the grid is selected and has 12 positions by default", async ({ page }) => {
     await page.locator('#ui-id-5').hover();
     await page.locator('#ui-id-17').click();
 

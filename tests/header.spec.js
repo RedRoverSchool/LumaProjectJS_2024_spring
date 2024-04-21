@@ -131,6 +131,24 @@ test.describe('header', () => {
     await page.getByPlaceholder('Search entire store here').click();
     await page.getByPlaceholder('Search entire store here').fill('bag');
     await expect(page.locator('#search_autocomplete > ul > li')).toHaveCount(8);
-})
+  })
 
+  test('Redirect after signing in to the Sale page', async ({ page }) => {
+    const login = 'djiwiixixevpaawtax@cazlv.com';
+    const password = 'Q1234567890!';
+
+    await page.getByText('Sale').click();
+
+    const signInLink = page.getByRole('link', { name: 'Sign In' })
+
+    await signInLink.waitFor();
+    await signInLink.click();
+    await page.locator('#email').fill(login);
+    await page.locator('[title="Password"]').fill(password);
+    await page.getByRole('button', {name: 'Sign In'}).click();
+
+    await expect(page.locator('[class="panel header"] .logged-in')).toBeAttached();
+    await expect(page).toHaveURL(BASE_URL + '/sale.html')
+    await expect(page.getByRole('heading', {name: 'Sale'})).toBeVisible();
+  })
 })
