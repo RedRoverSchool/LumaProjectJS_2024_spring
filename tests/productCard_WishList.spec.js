@@ -27,7 +27,6 @@ test.describe('Product Card/Add to Wish List', () => {
       await expect(page.getByText('Move to Wishlist')).toBeVisible();
       });
 
-      
       test.skip("Validate the message - the product has been moved to your wish list", async ({ page }) => {
         await page.locator('.minicart-wrapper').click();
         await page.waitForTimeout(1000);
