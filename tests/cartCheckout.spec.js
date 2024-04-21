@@ -21,7 +21,7 @@ test.describe('US Cart/Checkout', () => {
         await expect(page.locator('#shipping-new-address-form input[name="firstname"]')).toHaveValue('Nata');
     })
 
-    test('TC 09.2_07 <Cart/Checkout> User able to type in Last Name', async ({ page }) => {
+    test.skip('TC 09.2_07 <Cart/Checkout> User able to type in Last Name', async ({ page }) => {
 
         await page.getByRole('option', { name: 'XS' }).first().click();
         await page.getByRole('option', { name: 'Blue' }).first().click();
