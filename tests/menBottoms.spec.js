@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 
 test.describe('menBottoms', () => {
 
-  const menBottomsPage = 'https://magento.softwaretestingboard.com/men/bottoms-men.html';
   const menBottomsSizes = ['32', '33', '34', '36'];
 
   test.beforeEach(async ({ page }) => {
@@ -19,7 +18,8 @@ test.describe('menBottoms', () => {
 
   menBottomsSizes.forEach(size => {
     test(`Verify possibility to choose size ${size} from filter on side menu`, async ({ page }) => {
-      await page.goto(menBottomsPage);
+      await page.getByRole('menuitem', { name: ' Men' }).hover();
+      await page.locator('#ui-id-18').click();
 
       await page.getByText('SIZE').click();
       await page.locator(`.swatch-attribute-options .swatch-option.text[option-label='${size}']`).last().click();
