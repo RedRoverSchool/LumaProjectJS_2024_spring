@@ -96,4 +96,63 @@ test.describe('US Cart/Checkout', () => {
           page.locator("#shipping  .step-content #customer-email")
         ).toBeVisible();
       });
-})
+
+      test("Verify that User able to click on “Next” button after filling all required input fields", async ({
+        page,
+      }) => {
+        let HeroHoodieItem = page.getByTitle("Hero Hoodie");
+        let HeroHoodieSize = page.getByText("L", { exact: true });
+        let HeroHoodieColor = page.getByRole(
+          "option",
+          { name: "Green" },
+          { exact: true }
+        );
+        let btnAddToCart = page.getByRole("button", { name: "Add to Cart" });
+        let counterIcon = page.locator(".showcart .counter-number");
+        let shopCart = page.getByRole("link", { name: "My cart" });
+        let btnCheckout = page.getByRole("button", { name: "Proceed to Checkout" });
+        let ShippingAddressText = page.getByText("Shipping Address");
+        let emailField = page.locator("#shipping  .step-content #customer-email");
+        let FirstNameField = page.locator(".control [name='firstname']");
+        let LastNameField = page.locator(".control [name='lastname']");
+        let StreetAddressField = page.locator(".control [name='street[0]']");
+        let CityField = page.locator(".control [name='city']");
+        let StateProvinceField = page.locator(".control [name='region_id']");
+        let PostalCodeField = page.locator(".control [name='postcode']");
+        let CountryField = page.locator(".control [name='country_id']");
+        let PhoneNumberField = page.locator(".control [name='telephone']");
+        let ShippingMethodsRadioBtn = page.locator(
+          ".row [type='radio'][name='ko_unique_1']"
+        );
+        let btnNext = page.getByRole("button", { name: "Next" });
+        let PaymentMethodText = page.locator(".payment-group .step-title");
+    
+        await HeroHoodieItem.click();
+        await HeroHoodieSize.click();
+        await HeroHoodieColor.click();
+        await btnAddToCart.click();
+        await counterIcon.waitFor();
+        await shopCart.click();
+        await btnCheckout.click();
+        await ShippingAddressText.waitFor();
+        await emailField.fill("annaS@gmail.com");
+        await FirstNameField.fill("Anna");
+        await LastNameField.fill("Ivanova");
+        await StreetAddressField.fill("Vashington 20");
+        await CityField.fill("Chicago");
+        await StateProvinceField.selectOption("Illinois");
+        await PostalCodeField.fill("C123");
+        await CountryField.selectOption("United States");
+        await PhoneNumberField.fill("134569087");
+        await ShippingMethodsRadioBtn.click();
+        await btnNext.click();
+        await PaymentMethodText.waitFor();
+    
+        await expect(PaymentMethodText).toBeVisible(); //toHaveText('Payment Method')
+        await expect(page).toHaveURL(
+          "https://magento.softwaretestingboard.com/checkout/#payment"
+        );
+       
+      });
+    });
+    
