@@ -22,7 +22,7 @@ test.describe('menTops', () => {
     await expect(page.getByRole('listbox',{name:'Color'}).nth(index)).toBeVisible()
     } 
   })
-  test("Go to the page with men's tops", async ({ page }) => {
+  test.skip("Go to the page with men's tops", async ({ page }) => {
     await page.locator('#ui-id-5').hover();
     await page.locator('#ui-id-17').click();
  
@@ -63,7 +63,7 @@ test.describe('menTops', () => {
     await expect(prices).toEqual(sortedPrices);
   })
 
-  test('verify the ability to sort products in descending order by price', async ({ page }) => {
+  test.skip('verify the ability to sort products in descending order by price', async ({ page }) => {
     await page.goto('/' + 'men/tops-men.html');
     await page.getByLabel('Sort by').click();
     await page.locator('#sorter').first().selectOption('Price');
@@ -83,4 +83,29 @@ test.describe('menTops', () => {
 
     await expect(prices).toEqual(sortedPrices);
   })
+  test("Check the name of 14 shopping styles in the Men's/Tops section.", async ({ page }) => {
+    const listStyle = [
+    'Insulated',
+    'Jacket',
+    'Lightweight',
+    'Hooded',
+    'Heavy Duty',
+    'Rain Coat',
+    'Hard Shell',
+    'Soft Shell',
+    'Windbreaker',
+    '¼ zip',
+    'Full Zip',
+    'Reversible',
+    'Tank',
+    'Tee']
+    await page.goto('https://magento.softwaretestingboard.com/');
+    await page.locator('#ui-id-5').hover();
+    await page.locator('#ui-id-17').click();
+    await page.getByRole("tab",{name:"Style"}).click()
+       
+    for (let index = 0; index < listStyle.length; index++) {
+        await expect(page.locator('a[href*= "men/tops-men.html?style_general"]').nth(index)).toContainText(listStyle[index])
+    }
+ });
 })

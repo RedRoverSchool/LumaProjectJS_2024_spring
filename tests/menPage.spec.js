@@ -46,4 +46,18 @@ test.describe('menPage', () => {
             await expect(page).toHaveURL(BASE_URL + categoryItemPageUrl);
         });
     };
+
+    test('Tops and Bottoms sub-categories have a counter for items from the right side of the relevant link', async ({ page }) => {
+        await page.getByRole('link', { name: 'Tops' }).isVisible();
+        await page.getByRole('link', { name: 'Bottoms' }).isVisible();
+
+        const subCaregoryRow = page.locator('ol.items li');
+        await expect(subCaregoryRow).toHaveCount(2);
+
+        for (let itx = 0; itx < await subCaregoryRow.count(); itx++) {
+            let rowArrayValue = (await subCaregoryRow.nth(itx).textContent()).trim().split('\n');
+            expect(rowArrayValue[0].match(/Tops|Bottoms/)).toBeTruthy();
+            expect(typeof parseInt(rowArrayValue[1])).toEqual('number');
+        };
+    });
 });
