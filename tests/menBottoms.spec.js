@@ -38,7 +38,7 @@ test.describe('menBottoms', () => {
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/men/bottoms-men.html');
   })
 
-  test("Selection the men's bottom section", async ({ page }) => {
+  test("Verify the men's bottom section", async ({ page }) => {
     await page.locator('a[href*="/men.html"]').hover();
     await page.locator("a[href*='/bottoms-men.html']").click();
 
