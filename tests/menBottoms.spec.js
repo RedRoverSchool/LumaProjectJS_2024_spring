@@ -29,4 +29,12 @@ test.describe('menBottoms', () => {
       await expect(cardSizeLocator).toHaveCSS('outline', 'rgb(255, 85, 1) solid 2px');
     })
   })
+
+  test("Verify men's bottom tab", async ({ page }) => {
+    await page.locator ("#ui-id-5").hover();
+    await page.getByRole('menuitem', { name: 'Bottoms'}).click();
+
+    await expect (page.getByRole('heading', { name: 'Bottoms' })).toBeVisible();
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/men/bottoms-men.html');
+  })
 })
