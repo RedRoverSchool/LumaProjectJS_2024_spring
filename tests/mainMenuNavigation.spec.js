@@ -37,19 +37,10 @@ test.describe('menu navigation', () => {
     let array = ["What's New", 'Women', 'Men', 'Gear', 'Training', 'Sale']
 
     const menuOptionsLocator = page.locator('.level-top.ui-corner-all')
-    const elements = await menuOptionsLocator.all()
+    const menuOptionsLocatorTexts = await menuOptionsLocator.allInnerTexts()
+  
+    expect(menuOptionsLocatorTexts).toEqual(array);
+  
+   })
 
-    const innerTexts = await Promise.all(
-      elements.map(element => element.innerText())
-    )
-
-    expect(innerTexts).toHaveLength(6)
-
-    for (let i = 0; i < array.length; i++) {
-      const expectedLink = array[i]
-      const actualLink = innerTexts[i]
-
-      expect(actualLink.trim()).toEqual(expectedLink)
-    }
-  })
 })
