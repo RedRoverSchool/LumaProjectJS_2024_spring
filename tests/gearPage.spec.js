@@ -65,4 +65,11 @@ test.describe('gearPage', () => {
 
     })
 
+    test("Verify that user can navigate to Bags page from the Gear menu", async ({page}) => {
+        await page.getByRole('menuitem', {name: 'Gear'}).hover();
+        await page.locator("#ui-id-25").click();
+    
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/gear/bags.html');
+        await expect(page).toHaveTitle("Bags - Gear");
+      })
 })
