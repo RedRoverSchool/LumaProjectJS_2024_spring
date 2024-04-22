@@ -75,4 +75,25 @@ test.describe('US Cart/Checkout', () => {
         await page.getByLabel('Company').fill('Flowers')
         await expect(page.locator('#shipping-new-address-form input[name="company"]')).toHaveValue('Flowers')
     })
+
+    test(' Verify that "Email Address" input field is displayed', async ({
+        page,
+      }) => {
+        let Item = page.locator(".product-items").getByRole("listitem").nth(2);
+    
+        await Item.locator(".product-item-name a").innerText();
+        await Item.getByLabel("M").click();
+        await Item.getByLabel("Gray").click();
+        await Item.getByRole("button").click();
+        await page.locator(".showcart .counter-number").waitFor();
+        await page.locator(".showcart .counter-number").click();
+        await page.locator("#top-cart-btn-checkout").click();
+        await page.getByText("Shipping Address", { exact: true }).waitFor();
+        await expect(
+          page.locator("#customer-email-fieldset div label span").first()
+        ).toHaveText("Email Address");
+        await expect(
+          page.locator("#shipping  .step-content #customer-email")
+        ).toBeVisible();
+      });
 })
