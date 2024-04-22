@@ -114,5 +114,54 @@ test.describe('watchesPage', () => {
 
         expect(extractedGenders).toEqual(expectedGenderOptions);
     })
+
+    test ('There is only a “Watches” on the open page', async ({page}) => {
+        await page.locator('#ui-id-6').hover();
+        await page.locator('#ui-id-27').click();
+        const response = await page.request.get(baseURL + '/gear/watches.html?product_list_limit=24&product_list_mode=list');
     
-});
+        await expect(page.getByRole('heading', {name: 'Watches'})).toBeVisible();
+        const allTextItems = await page.locator('.products .product-items .product-item-link').allTextContents();
+        for (const item of allTextItems) {
+            expect(item).toContain('Watch');
+        }
+    })
+
+    test('Verify User sees the watches according to the selected activity types', async ({page}) =>{
+        const selectorOfSubcategory = [
+            '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(1) > a',
+            '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(2) > a',
+            '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(3) > a',
+            '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(4) > a',
+            '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(5) > a'
+        ];
+        
+        const expectedSubcategoryTitles = [
+            'Outdoor',
+            'Recreation',
+            'Gym',
+            'Athletic',
+            'Sports'
+        ];
+
+        const subcategoryLinks = [
+            'https://magento.softwaretestingboard.com/gear/watches.html?activity=5',
+            'https://magento.softwaretestingboard.com/gear/watches.html?activity=9',
+            'https://magento.softwaretestingboard.com/gear/watches.html?activity=11',
+            'https://magento.softwaretestingboard.com/gear/watches.html?activity=16',
+            'https://magento.softwaretestingboard.com/gear/watches.html?activity=17'
+
+        ];
+
+        for (let i = 0; i < selectorOfSubcategory.length; i++) {
+            await page.goto('/gear/watches.html');
+            await page.locator('.filter-options-title').getByText('Activity').click();
+            await page.locator(selectorOfSubcategory[i]).click();
+            await expect(page.locator(`.filter-value:has-text('${expectedSubcategoryTitles[i]}')`)).toContainText(expectedSubcategoryTitles[i]);
+            await expect(page).toHaveURL(subcategoryLinks[i]);
+            }
+        })
+    })
+
+    
+
