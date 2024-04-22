@@ -49,5 +49,21 @@ test.describe('headerPanel verify searchInput', ()=>  {
 
         await expect(page.locator('#search')).toBeVisible()
     })
+
 })
 
+test.describe('headerPanel / Verify shoping cart', ()=>  {
+    test.beforeEach('before', async({page}) => {
+        await page.goto('/')
+
+    })
+
+     test.only('TC 01.4.1_04 Header/Verify Shopping Cart Icon', async({ page })=> {
+        await page
+            .locator('a[href="https://magento.softwaretestingboard.com/checkout/cart/"]')
+            .click()
+        
+        await expect( page.locator('div[aria-describedby="ui-id-1"]')).toHaveCSS('display', 'block');
+        await expect(page.locator('a[href="https://magento.softwaretestingboard.com/checkout/cart/"]')).toBeVisible();
+    })
+})
