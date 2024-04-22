@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { test, expect } from '@playwright/test'
 test.describe('Menu/Men', () => {
 
@@ -54,6 +53,4 @@ test.describe('Menu/Men', () => {
       await expect(countItemsBlockCompare).toHaveCount(1);
   });
 })
-=======
 
->>>>>>> ca36418d3375bd25bf3f66c5ae24aac8793b081e
