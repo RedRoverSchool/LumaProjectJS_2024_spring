@@ -50,7 +50,7 @@ test.describe("gearBags", () => {
       expect(materialItemText).toEqual(name);
     })
   })
-  test.only("Verify user can choose a bag by material leather", async ({ page }) => {
+  test("Verify user can choose a bag by material leather", async ({ page }) => {
     await page.getByText('Gear', { exact: true }).nth(1).click();
     await expect(page).toHaveTitle("Gear");
     await expect(page).toHaveURL("https://magento.softwaretestingboard.com/gear.html");
