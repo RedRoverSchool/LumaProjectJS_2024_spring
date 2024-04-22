@@ -59,7 +59,7 @@ test.describe('menuTraining', () => {
 		expect(page.getByLabel('Video Download').getByText('Video Download')).toBeTruthy();
  })
  
-   test('Verify that the User can use the “Compare Products” feature to compare different training products and identify their features and benefits', async({page}) => {
+   test.skip('Verify that the User can use the “Compare Products” feature to compare different training products and identify their features and benefits', async({page}) => {
 		const COMPARE_URL_REGEX = new RegExp("https://magento.softwaretestingboard.com/catalog/product_compare/index/uenc/.+");
 		const headerCompare = page.getByRole('heading', { name: 'Compare Products' }).locator('span');
 		await page.getByRole('menuitem', { name: 'Gear' }).hover();

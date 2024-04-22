@@ -26,4 +26,13 @@ test.describe('menuSale', () => {
         expect(sideMenuSectionsTextArray).toEqual(sideMenuSections);
     })
 
+
+    test('Navigate the "Hoodies and Sweatshirts" page in the Man_s deals from the Sale menu item', async({page}) => {
+        
+        await page.getByText("Sale").click();
+        await page.locator("//ul[2]//li[1]//a[1]").click();
+        
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/men/tops-men/hoodies-and-sweatshirts-men.html');
+        await expect(page).toHaveTitle("Hoodies & Sweatshirts - Tops - Men");
+    }) 
 });
