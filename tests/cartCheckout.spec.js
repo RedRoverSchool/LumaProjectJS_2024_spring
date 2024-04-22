@@ -96,4 +96,33 @@ test.describe('US Cart/Checkout', () => {
           page.locator("#shipping  .step-content #customer-email")
         ).toBeVisible();
       });
+
+      test("Verify that a User able to type in their email", async ({ page }) => {
+        let HeroHoodieItem = page.getByTitle("Hero Hoodie");
+        let HeroHoodieSize = page.getByText("L", { exact: true });
+        let HeroHoodieColor = page.getByRole(
+          "option",
+          { name: "Green" },
+          { exact: true }
+        );
+        let btnAddToCart = page.getByRole("button", { name: "Add to Cart" });
+        let counterIcon = page.locator(".showcart .counter-number");
+        let shopCart = page.getByRole("link", { name: "My cart" });
+        let btnCheckout = page.getByRole("button", { name: "Proceed to Checkout" });
+        let ShippingAddressText = page.getByText("Shipping Address");
+        let emailField = page.locator("#shipping  .step-content #customer-email");
+    
+        await HeroHoodieItem.click();
+        await HeroHoodieSize.click();
+        await HeroHoodieColor.click();
+        await btnAddToCart.click();
+        await counterIcon.waitFor();
+        await shopCart.click();
+        await btnCheckout.click();
+        await ShippingAddressText.waitFor();
+        await emailField.fill("a1@gmail.com");
+    
+        await expect(emailField).toHaveValue("a1@gmail.com");
+      });
+    
 })
