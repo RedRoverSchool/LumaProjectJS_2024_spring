@@ -148,7 +148,7 @@ test.describe('US Cart/Checkout', () => {
         await btnNext.click();
         await PaymentMethodText.waitFor();
     
-        await expect(PaymentMethodText).toBeVisible(); //toHaveText('Payment Method')
+        await expect(PaymentMethodText).toBeVisible(); 
         await expect(page).toHaveURL(
           "https://magento.softwaretestingboard.com/checkout/#payment"
         );
