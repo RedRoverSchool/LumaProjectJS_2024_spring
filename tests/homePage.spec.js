@@ -244,7 +244,7 @@ test.describe('homePage', () => {
         }
     })
 
-    test.only('Verify that Shop Pants link redirects to the corresponding page', async({page}) => {
+    test('Verify that Shop Pants link redirects to the corresponding page', async({page}) => {
         
         await page.locator('.action.more.icon').first().click();
 
