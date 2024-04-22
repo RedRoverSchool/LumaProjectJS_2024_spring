@@ -39,11 +39,13 @@ test.describe('menBottoms', () => {
   })
 
   test("Verify the men's bottom section", async ({ page }) => {
+    const BASE_URL = "https://magento.softwaretestingboard.com";
+    
     await page.locator('a[href*="/men.html"]').hover();
     await page.locator("a[href*='/bottoms-men.html']").click();
 
     await expect(page.getByRole('menuitem', { name: ' Men' })).toHaveText('Men');
-    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/men/bottoms-men.html');
+    await expect(page).toHaveURL(BASE_URL + '/men/bottoms-men.html');
     await expect(page).toHaveTitle('Bottoms - Men');
     })
 })
