@@ -243,4 +243,11 @@ test.describe('homePage', () => {
             await expect(page.locator(`img[src$="${imgUrl4card}"]`)).toBeVisible();
         }
     })
+
+    test('Verify that Shop Pants link redirects to the corresponding page', async({page}) => {
+        
+        await page.locator('.action.more.icon').first().click();
+
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/promotions/pants-all.html');
+    })
 })
