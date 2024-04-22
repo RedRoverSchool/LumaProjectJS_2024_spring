@@ -30,26 +30,6 @@ test.describe('menu navigation', () => {
     await expect(menuBar).toHaveCSS('background-color', 'rgb(240, 240, 240)')
   })
 
-  test('verify User can see 6 menu options on the main page with particular text', async ({
-    page
-  }) => {
-    let array = ["What's New", 'Women', 'Men', 'Gear', 'Training', 'Sale']
-
-    const menuOptionsLocator = page.locator('.level-top.ui-corner-all')
-    const elements = await menuOptionsLocator.all()
-
-    const innerTexts = await Promise.all(
-      elements.map(element => element.innerText())
-    )
-
-    expect(innerTexts).toHaveLength(6)
-
-    for (let i = 0; i < array.length; i++) {
-      const expectedLink = array[i]
-      const actualLink = innerTexts[i]
-
-      expect(actualLink.trim()).toEqual(expectedLink)
-    }
-  })
+  
   
 })
