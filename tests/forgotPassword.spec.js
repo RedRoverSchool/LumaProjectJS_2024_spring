@@ -46,7 +46,7 @@ test.describe('Forgot Password Page', () => {
 
         const email = generateRandomEmail();
         await page.getByRole('link', {name: 'Sign In'}).click();
-        await page.getByRole('link', {name: 'Forgot Your Password?'}).click();
+        await page.getByRole('link', {name: 'Forgot Your Password?'}).click()
         await page.locator('#email_address').fill(email);
         await page.locator('.action.submit.primary').click();
 
