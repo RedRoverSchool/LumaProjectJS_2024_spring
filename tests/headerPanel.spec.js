@@ -58,7 +58,7 @@ test.describe('headerPanel / Verify shoping cart', ()=>  {
 
     })
 
-     test.only('TC 01.4.1_04 Header/Verify Shopping Cart Icon', async({ page })=> {
+     test('TC 01.4.1_04 Header/Verify Shopping Cart Icon', async({ page })=> {
         await page
             .locator('a[href="https://magento.softwaretestingboard.com/checkout/cart/"]')
             .click()
