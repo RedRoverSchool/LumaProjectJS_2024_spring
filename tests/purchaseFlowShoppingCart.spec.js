@@ -79,7 +79,6 @@ test.describe('page checkout/cart', () => {
   await page.getByRole('tab', { name: 'Estimate Shipping and Tax' }).click();
 
 
-  await page.waitForSelector('select[name="region_id"]');
   await page.locator('select[name="region_id"]').click()
    await page.waitForTimeout(3000);
    await page.locator('select[name="region_id"]').selectOption('Alabama');
