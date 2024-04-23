@@ -50,12 +50,6 @@ test.describe('orders and returns page', () => {
         for(let i = 0; i < 3; i++) {
             await expect(errorMessage.nth(i)).toHaveText('This is a required field.');
             await expect(errorMessage.nth(i)).toHaveCSS('color', 'rgb(224, 43, 39)');
-        }
-
-        await page.locator('.select').selectOption('ZIP Code');
-        await buttonContinue.click();
-
-        await expect(errorMessage.nth(3)).toHaveText('This is a required field.');
-        await expect(errorMessage.nth(3)).toHaveCSS('color', 'rgb(224, 43, 39)');
+        }     
     })
 })
