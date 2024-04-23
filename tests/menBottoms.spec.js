@@ -29,4 +29,23 @@ test.describe('menBottoms', () => {
       await expect(cardSizeLocator).toHaveCSS('outline', 'rgb(255, 85, 1) solid 2px');
     })
   })
+
+  test("Verify men's bottom tab", async ({ page }) => {
+    await page.locator ("#ui-id-5").hover();
+    await page.getByRole('menuitem', { name: 'Bottoms'}).click();
+
+    await expect (page.getByRole('heading', { name: 'Bottoms' })).toBeVisible();
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/men/bottoms-men.html');
+  })
+
+  test("Verify the men's bottom section", async ({ page }) => {
+    const BASE_URL = "https://magento.softwaretestingboard.com";
+    
+    await page.locator('a[href*="/men.html"]').hover();
+    await page.locator("a[href*='/bottoms-men.html']").click();
+
+    await expect(page.getByRole('menuitem', { name: ' Men' })).toHaveText('Men');
+    await expect(page).toHaveURL(BASE_URL + '/men/bottoms-men.html');
+    await expect(page).toHaveTitle('Bottoms - Men');
+    })
 })

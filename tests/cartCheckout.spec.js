@@ -75,4 +75,54 @@ test.describe('US Cart/Checkout', () => {
         await page.getByLabel('Company').fill('Flowers')
         await expect(page.locator('#shipping-new-address-form input[name="company"]')).toHaveValue('Flowers')
     })
+
+    test(' Verify that "Email Address" input field is displayed', async ({
+        page,
+      }) => {
+        let Item = page.locator(".product-items").getByRole("listitem").nth(2);
+    
+        await Item.locator(".product-item-name a").innerText();
+        await Item.getByLabel("M").click();
+        await Item.getByLabel("Gray").click();
+        await Item.getByRole("button").click();
+        await page.locator(".showcart .counter-number").waitFor();
+        await page.locator(".showcart .counter-number").click();
+        await page.locator("#top-cart-btn-checkout").click();
+        await page.getByText("Shipping Address", { exact: true }).waitFor();
+        await expect(
+          page.locator("#customer-email-fieldset div label span").first()
+        ).toHaveText("Email Address");
+        await expect(
+          page.locator("#shipping  .step-content #customer-email")
+        ).toBeVisible();
+      });
+
+      test("Verify that a User able to type in their email", async ({ page }) => {
+        let HeroHoodieItem = page.getByTitle("Hero Hoodie");
+        let HeroHoodieSize = page.getByText("L", { exact: true });
+        let HeroHoodieColor = page.getByRole(
+          "option",
+          { name: "Green" },
+          { exact: true }
+        );
+        let btnAddToCart = page.getByRole("button", { name: "Add to Cart" });
+        let counterIcon = page.locator(".showcart .counter-number");
+        let shopCart = page.getByRole("link", { name: "My cart" });
+        let btnCheckout = page.getByRole("button", { name: "Proceed to Checkout" });
+        let ShippingAddressText = page.getByText("Shipping Address");
+        let emailField = page.locator("#shipping  .step-content #customer-email");
+    
+        await HeroHoodieItem.click();
+        await HeroHoodieSize.click();
+        await HeroHoodieColor.click();
+        await btnAddToCart.click();
+        await counterIcon.waitFor();
+        await shopCart.click();
+        await btnCheckout.click();
+        await ShippingAddressText.waitFor();
+        await emailField.fill("a1@gmail.com");
+    
+        await expect(emailField).toHaveValue("a1@gmail.com");
+      });
+    
 })
