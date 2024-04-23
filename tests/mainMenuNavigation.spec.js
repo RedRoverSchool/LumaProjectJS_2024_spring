@@ -23,7 +23,13 @@ test('verify User can see 6 menu options on the main page with particular text',
   const menuOptionsLocatorTexts = await menuOptionsLocator.allInnerTexts()
 
   expect(menuOptionsLocatorTexts).toEqual(array);
-   })
+})
+test('verify Main menu is displayed on the top of the home page in the grey field', async ({  page }) => {
+  const menuBar = await page.locator('.navigation')
+
+  await expect(menuBar).toHaveCSS('background-color', 'rgb(240, 240, 240)')
+})
+
 
  })
 
