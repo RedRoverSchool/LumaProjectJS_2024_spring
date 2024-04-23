@@ -54,4 +54,15 @@ test.describe('Homepage | Navigation', () => {
     await expect(page.locator(".nav-2 > ul > li > a")).toHaveText(womenCategories);
   });
 
+  test('TC 05.2.2 Women/Bottoms/Breadcrumbs', async ({ page }) => {
+    await page.locator('.level0.nav-2').hover();
+    await page.locator('#ui-id-10').click();
+
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women.html');
+    await expect(page.getByRole('heading', {name: 'Bottoms'})).toBeVisible();
+    await expect(page.locator('.item.home')).toBeVisible();
+    await expect(page.locator('.item.category20')).toBeVisible();
+    await expect(page.locator('.item.category22')).toBeVisible();
+  })
+
 });
