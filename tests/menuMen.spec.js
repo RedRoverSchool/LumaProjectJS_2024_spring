@@ -52,4 +52,17 @@ test.describe('Menu/Men', () => {
     
       await expect(countItemsBlockCompare).toHaveCount(1);
   });
+
+  test('Menu/Men/Hot Sellers Verify each item in the list should include details from its product card', async({ page }) => {
+    await page.getByText('Men', {exact: true}).click();
+    const productCarts = await page.$$('.widget-product-grid .product-item');
+    
+    for(let card of productCarts) {
+        expect(await card.$('.product-image-photo')).not.toBeNull();
+        expect(await card.$('.product-item-name a')).not.toBeNull();
+        expect(await card.$('.price')).not.toBeNull();
+        expect(await card.$('.swatch-attribute.size .swatch-option')).not.toBeNull();
+        expect(await card.$('.swatch-attribute.color')).not.toBeNull();
+    };
+  });
 })
