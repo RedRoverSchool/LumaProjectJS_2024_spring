@@ -151,4 +151,22 @@ test.describe('header', () => {
     await expect(page).toHaveURL(BASE_URL + '/sale.html')
     await expect(page.getByRole('heading', {name: 'Sale'})).toBeVisible();
   })
+    test("Verify sign in link is displayed on every page header of the website in the right", async ({ page }) => {
+      const pageLinksArr = [
+        "https://magento.softwaretestingboard.com/what-is-new.html",
+        "https://magento.softwaretestingboard.com/women.html",
+        "https://magento.softwaretestingboard.com/men.html",
+        "https://magento.softwaretestingboard.com/gear.html",
+        "https://magento.softwaretestingboard.com/training.html",
+        "https://magento.softwaretestingboard.com/sale.html",
+        "https://magento.softwaretestingboard.com/customer/account/create/",
+      ];
+      for (let i = 0; i < pageLinksArr.length; i++) {
+        let link = pageLinksArr[i];
+        await page.goto(link);
+        const signInLink = page.locator(".authorization-link").first();
+        const signInBox = await signInLink?.boundingBox();
+      await expect(signInBox.x > signInBox.y).toBe(true);
+      }
+      });
 })
