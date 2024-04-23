@@ -34,4 +34,11 @@ test.describe("menuSalePromo-block", () => {
     await expect(page).toHaveTitle("Men Sale");
     await expect(page.locator("span[data-ui-id='page-title-wrapper']")).toHaveText("Men Sale");
   });
+
+  test("Redirecting to 'Gear' page", async({page}) => {
+    await page.locator('a.block-promo.sale-women').click();
+    
+    await expect(page).toHaveTitle('Gear');
+    await expect(page.locator('#page-title-heading')).toHaveText('Gear');
+  });
 })
