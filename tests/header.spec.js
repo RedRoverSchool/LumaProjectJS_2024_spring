@@ -197,4 +197,34 @@ test.describe('header', () => {
       "disabled"
     );
   });
+
+  test("Verify the search field is not case-sensitive", async ({ page }) => {
+    const searchItemUpperCase = "SHORT";
+    const searchItemLowerCase = searchItemUpperCase.toLowerCase();
+
+    await page
+      .getByPlaceholder("Search entire store here...")
+      .fill(searchItemUpperCase);
+    await page.waitForSelector("#search_autocomplete>ul>li>span:first-child");
+    const autocompleteListUpperCase = await page
+      .locator("#search_autocomplete>ul>li>span:first-child")
+      .allInnerTexts();
+
+    await page.getByPlaceholder("Search entire store here...").clear();
+
+    await page
+      .getByPlaceholder("Search entire store here...")
+      .fill(searchItemLowerCase);
+    await page.waitForSelector("#search_autocomplete>ul>li>span:first-child");
+    const autocompleteListLowerCase = await page
+      .locator("#search_autocomplete>ul>li>span:first-child")
+      .allInnerTexts();
+
+    await expect(autocompleteListUpperCase.sort()).toEqual(
+      autocompleteListLowerCase.sort()
+    );
+    await expect(autocompleteListLowerCase.length).toEqual(
+      autocompleteListUpperCase.length
+    );
+  });
 })
