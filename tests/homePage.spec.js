@@ -158,8 +158,6 @@ test.describe('homePage', () => {
         await expect(page).toHaveTitle("What's New");
     })  
 
-
-    const expectedColorOutline = 'rgb(195, 64, 0)';
     test('1st card: image changes according to the selected color', async ({ page }) => {
         const colorLables = ['Blue', 'Orange', 'Purple'];
     
@@ -167,7 +165,7 @@ test.describe('homePage', () => {
             const locatorForColors = `.swatch-opt-1556>.swatch-attribute.color>div>div[option-label="${color}"]`;
     
             await page.locator(locatorForColors).click();
-            await expect(page.locator(locatorForColors)).toHaveCSS('outline-color', expectedColorOutline);
+            await expect(page.locator(locatorForColors)).toHaveClass('swatch-option color selected')
             
             const colorCode = color.toLowerCase();
             const imageUrl = `https://magento.softwaretestingboard.com/pub/media/catalog/product/cache/7c4c1ed835fbbf2269f24539582c6d44/w/s/ws12-${colorCode}_main_1.jpg`;
@@ -184,7 +182,7 @@ test.describe('homePage', () => {
             const locatorForColors2card = `.swatch-opt-1812>.swatch-attribute.color>div>div[option-label="${color2}"]`;
 
             await page.locator(locatorForColors2card).click();
-            await expect(page.locator(locatorForColors2card)).toHaveCSS('outline-color', expectedColorOutline);
+            await expect(page.locator(locatorForColors2card)).toHaveClass('swatch-option color selected');
 
             const colorCode2 = color2.toLowerCase();
             const imgUrl2card = `https://magento.softwaretestingboard.com/pub/media/catalog/product/cache/7c4c1ed835fbbf2269f24539582c6d44/w/t/wt09-${colorCode2}_main_1.jpg`;
@@ -198,7 +196,7 @@ test.describe('homePage', () => {
         
         await page.locator(locatorForColors3card).click();
 
-        await expect(page.locator(locatorForColors3card)).toHaveCSS('outline-color', expectedColorOutline);
+        await expect(page.locator(locatorForColors3card)).toHaveClass('swatch-option color selected')
 
         await expect(page.getByAltText('Argus All-Weather Tank')).toBeVisible();
 
@@ -229,13 +227,13 @@ test.describe('homePage', () => {
         await expect(noResultsInfo).toBeHidden();
     })
 
-    test.skip('4th card: image changes according to the selected color', async ({ page }) => {
+    test('4th card: image changes according to the selected color', async ({ page }) => {
         const colorLabels4card = ['Black', 'Gray', 'Green'];
 
         for(const color4 of colorLabels4card) {
             const locatorForColors4card = `.product-items>li:nth-child(4) .swatch-attribute.color [option-label="${color4}"]`;
             await page.locator(locatorForColors4card).click();
-            await expect(page.locator(locatorForColors4card)).toHaveCSS('outline-color', expectedColorOutline);
+            await expect(page.locator(locatorForColors4card)).toHaveClass('swatch-option color selected')
 
             const colorCode4 = color4.toLowerCase();
             const imgUrl4card = `https://magento.softwaretestingboard.com/pub/media/catalog/product/cache/7c4c1ed835fbbf2269f24539582c6d44/m/h/mh07-${colorCode4}_main_1.jpg`;
