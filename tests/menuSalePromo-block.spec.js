@@ -14,10 +14,10 @@ test.describe("menuSalePromo-block", () => {
 
   });
 
-  test.skip("Verify 'Sale' page contains 6 promo-blocks as images", async ({ page }) => {
-    const promoBlocks = page.locator("div.blocks-promo img");
+  test("Verify 'Sale' page contains 6 promo-blocks in body part", async ({ page }) => {
+    const promoBlocks = page.locator("main a.block-promo");
 
-    expect(promoBlocks).toHaveCount(6);
+    await expect(promoBlocks).toHaveCount(6);
   });
 
   for (const link of links) {

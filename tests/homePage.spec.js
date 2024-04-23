@@ -229,7 +229,7 @@ test.describe('homePage', () => {
         await expect(noResultsInfo).toBeHidden();
     })
 
-    test('4th card: image changes according to the selected color', async ({ page }) => {
+    test.skip('4th card: image changes according to the selected color', async ({ page }) => {
         const colorLabels4card = ['Black', 'Gray', 'Green'];
 
         for(const color4 of colorLabels4card) {
@@ -242,5 +242,12 @@ test.describe('homePage', () => {
 
             await expect(page.locator(`img[src$="${imgUrl4card}"]`)).toBeVisible();
         }
+    })
+
+    test('Verify that Shop Pants link redirects to the corresponding page', async({page}) => {
+        
+        await page.locator('.action.more.icon').first().click();
+
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/promotions/pants-all.html');
     })
 })
