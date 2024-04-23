@@ -41,7 +41,6 @@ test.describe('headerPanel', () => {
 test.describe('headerPanel verify searchInput', ()=>  {
     test.beforeEach('before', async({page}) => {
         await page.goto('/')
-
     })
 
     test('TC 01.2.1_03 Header/ Verify available Search Bar on HomePage', async({ page })=> {
@@ -49,13 +48,11 @@ test.describe('headerPanel verify searchInput', ()=>  {
 
         await expect(page.locator('#search')).toBeVisible()
     })
-
 })
 
 test.describe('headerPanel / Verify shoping cart', ()=>  {
     test.beforeEach('before', async({page}) => {
         await page.goto('/')
-
     })
 
      test('TC 01.4.1_04 Header/Verify Shopping Cart Icon', async({ page })=> {
