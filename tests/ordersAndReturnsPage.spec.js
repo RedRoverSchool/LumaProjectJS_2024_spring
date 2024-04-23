@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test"
 
 test.describe('orders and returns page', () => {
-    test.beforeEach(async ({page}) => {
+    test.beforeEach(async ({page}) => {            
         await page.goto("/");
         await page.locator('.page-wrapper footer li:has-text("Orders and Returns")').click();
     })
@@ -21,5 +21,19 @@ test.describe('orders and returns page', () => {
 
         await page.getByText('Find Order By').selectOption('ZIP Code');
         await expect(page.getByRole('textbox', {name: 'Billing ZIP Code'})).toBeVisible();           
+    })
+
+    test('Check error message when entering incorrect data', async ({page}) => {
+        const errorText = page.locator('.error>div');
+        const buttonContinue = page.locator(".primary>button.primary");  
+
+        await page.locator('.control>input').nth(1).fill('0000000');
+        await page.locator('.control>input').nth(2).fill('Mike Omer');
+        await page.locator('.control>input').nth(3).fill('testinvalid@error.cc');
+        await buttonContinue.click();
+
+        await expect(errorText).toHaveText("You entered incorrect data. Please try again.");
+        await expect(errorText).toBeVisible();
+        await expect(errorText).toHaveCSS('color', 'rgb(224, 43, 39)');
     })
 })
