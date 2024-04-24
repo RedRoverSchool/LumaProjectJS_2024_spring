@@ -36,4 +36,20 @@ test.describe('orders and returns page', () => {
         await expect(errorText).toBeVisible();
         await expect(errorText).toHaveCSS('color', 'rgb(224, 43, 39)');
     })
+
+    test('Check error message for required fields', async ({page}) => {
+        const buttonContinue = page.locator(".primary>button.primary");  
+        const errorMessage = page.locator('.required>div>div'); 
+
+        await page.locator('.page-wrapper footer li:has-text("Orders and Returns")').click();
+
+        await buttonContinue.waitFor(); 
+        await expect(buttonContinue).toBeVisible(); 
+        await buttonContinue.click();
+       
+        for(let i = 0; i < 3; i++) {
+            await expect(errorMessage.nth(i)).toHaveText('This is a required field.');
+            await expect(errorMessage.nth(i)).toHaveCSS('color', 'rgb(224, 43, 39)');
+        }     
+    })
 })
