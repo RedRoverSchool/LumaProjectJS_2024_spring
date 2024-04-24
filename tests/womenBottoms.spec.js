@@ -32,8 +32,6 @@ test.describe('Women bottoms page', () => {
     });
 
     test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
-      
-        await page.goto('https://magento.softwaretestingboard.com/');
         await page.getByRole('menuitem', {name: 'Women'}).click();
 
         await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women.html')
