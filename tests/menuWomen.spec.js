@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { assert } from "console";
 
 test.describe("menuWomen", () => {
  
@@ -39,5 +40,9 @@ test.describe("menuWomen", () => {
     await expect(page.locator('#ui-id-16')).toBeVisible();
     await expect(page.locator('#ui-id-16')).toHaveText('Shorts');
   })
-
+test("Verify Menu/Women is the second tab in the Navigation Menu", async ({page}) => {
+  const menuLinks = page.getByRole('navigation').getByRole('listitem');
+  const allLinksText = await menuLinks.allInnerTexts();
+  expect(allLinksText[1]).toEqual("Women");
+})
 })  
