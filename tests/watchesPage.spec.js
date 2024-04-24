@@ -160,8 +160,37 @@ test.describe('watchesPage', () => {
             await expect(page.locator(`.filter-value:has-text('${expectedSubcategoryTitles[i]}')`)).toContainText(expectedSubcategoryTitles[i]);
             await expect(page).toHaveURL(subcategoryLinks[i]);
             }
-        })
     })
+    
+    test("Verify the Material dropdown list items on the Gear/Watches page", async ({
+      page,
+    }) => {
+      const listOfMaterialsExpected = [
+        "Leather",
+        "Metal",
+        "Plastic",
+        "Rubber",
+        "Stainless Steel",
+        "Silicone",
+      ];
+
+      await page.getByRole("menuitem", { name: "Gear" }).hover();
+      await page.getByRole("menuitem", { name: "Watches" }).click();
+
+      await page.getByRole("tab", { name: "Material" }).click();
+      await page.waitForSelector("div.filter-options>div:nth-child(4) ol li a");
+
+      const listOfMaterialsActual = await page
+        .locator("div.filter-options>div:nth-child(4) ol li a ")
+        .allInnerTexts();
+
+      for (let i = 0; i < listOfMaterialsActual.length; i++) {
+        expect(
+          listOfMaterialsActual[i].includes(listOfMaterialsExpected[i])
+        ).toBeTruthy();
+      }
+    });
+})
 
     
 
