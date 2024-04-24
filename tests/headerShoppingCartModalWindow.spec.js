@@ -145,4 +145,13 @@ test.describe('header shopping cart modal window', () => {
 
         await expect(page.locator('.amount.price-container .price')).toHaveText('$' + totalPrice);
     })
-})
+
+    test("Verify that the window displays the message 'You have no items in your shopping cart”. ", async ({
+        page,
+      }) => {
+        await page.locator("[data-block='minicart']").click();
+        await expect(page.locator("#ui-id-1")).toContainText(  
+          "You have no items in your shopping cart"
+        );
+      });
+});
