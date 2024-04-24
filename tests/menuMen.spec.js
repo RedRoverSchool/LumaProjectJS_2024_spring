@@ -61,7 +61,7 @@ test.describe('Menu/Men', () => {
         expect(await card.$('.product-image-photo')).not.toBeNull();
         expect(await card.$('.product-item-name a')).not.toBeNull();
         expect(await card.$('.price')).not.toBeNull();
-        expect(await card.$('.swatch-attribute.size')).not.toBeNull();
+        expect(await card.$('.product-item-info .swatch-attribute.size')).not.toBeNull();
         expect(await card.$('.swatch-attribute.color')).not.toBeNull();
     };
   });
