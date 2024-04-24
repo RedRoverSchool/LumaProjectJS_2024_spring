@@ -45,6 +45,6 @@ test.describe('registrationSignIn', () => {
     await page.locator('input[name="login[password]"]').fill('123asdQQ');
     await page.getByRole('button', {name:'Sign In'}).click();
 
-    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/')
+    await expect(page.locator('div[class="panel header"]')).toContainText('Welcome');
   })
 })  
