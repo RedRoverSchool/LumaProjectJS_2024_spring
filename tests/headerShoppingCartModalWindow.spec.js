@@ -145,4 +145,11 @@ test.describe('header shopping cart modal window', () => {
 
         await expect(page.locator('.amount.price-container .price')).toHaveText('$' + totalPrice);
     })
+
+    test('Verify the modal windows opens', async ({ page }) => {
+        await page.locator('.action.showcart').click();
+    
+        await expect(page.locator('.subtitle.empty')).toBeVisible();
+        await expect(page.locator('.subtitle.empty')).toHaveText('You have no items in your shopping cart.')
+    })
 })
