@@ -26,4 +26,13 @@ test.describe('Women/Bottoms/Style', () => {
     await expect(page.getByRole('menuitem', {name: 'Pants'})).toBeVisible();
     await expect(page.getByRole('menuitem', {name: 'Shorts'})).toBeVisible();
   });
+
+  test('Verify the transition to the "Women - Bottoms" page', async ({ page }) => {
+    const womenMenu = page.locator('a#ui-id-4');
+    await womenMenu.hover();
+    await page.getByRole('menuitem', {name: 'Bottoms'}).click();
+
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women.html');
+    expect(page.getByTitle('Bottoms - Women'));
+  });
 });
