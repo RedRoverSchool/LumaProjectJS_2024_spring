@@ -1,10 +1,12 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('menu women shop by category', () => {
+
   test.beforeEach(async ({ page }) => {
     await page.goto('/women.html')
   })
-    test.only('verify filter on page Women has title “Sort By Category', async ({ page }) => {
+  
+    test('verify filter on page Women has title “Sort By Category', async ({ page }) => {
       
       const titleShopBy = page.getByText('Shop By')
       const categoryTitle = page.getByText('Category')
