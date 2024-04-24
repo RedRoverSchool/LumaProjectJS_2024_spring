@@ -111,14 +111,6 @@ test.describe('menTops', () => {
     }
  });
 
-
-
-
-
-
-
-
- 
  test('Verify that user can apply the filter for each category within the Category dd list and reset the filter', async ({page}) =>{
   const categoriesList = [
     '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(1) > a',
@@ -140,13 +132,11 @@ test.describe('menTops', () => {
     'Tees',
     'Tanks'
   ]
-
-  await page.locator('#ui-id-5').hover();
-  await page.locator('#ui-id-17').click();
+    await page.locator('#ui-id-5').hover();
+    await page.locator('#ui-id-17').click();
 
   for (let i = 0; i < categoriesList.length; i++) {
-    await page.goto('men/tops-men.html');
-    await page.locator('.filter-options-title').getByText('Category').click();
+    await page.getByRole('tab', {name:'Category' }).click();
     await page.locator(categoriesList[i]).click();
     await expect(page.locator(`.filter-value:has-text('${expectedTitles[i]}')`)).toContainText(expectedTitles[i]);
     await expect(page).toHaveURL(subcategoryLinks[i]);
