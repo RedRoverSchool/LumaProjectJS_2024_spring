@@ -168,5 +168,39 @@ test.describe('header', () => {
         const signInBox = await signInLink?.boundingBox();
       await expect(signInBox.x > signInBox.y).toBe(true);
       }
+    });
+  
+  test("Verify  the automatic search results match the query in the search bar", async ({
+    page,
+  }) => {
+    const searchItem = "short";
+
+    await page.getByPlaceholder("Search entire store here...").fill(searchItem);
+    await page.waitForSelector("#search_autocomplete>ul>li>span:first-child");
+
+    const autocompleteList = await page
+      .locator("#search_autocomplete>ul>li>span:first-child")
+      .allInnerTexts();
+    
+    await expect(autocompleteList).toContain(searchItem);
+  });
+
+  test("Verify the search button (magnifier) becomes active after entering one or more letters", async ({
+    page,
+  }) => {
+    await expect(page.locator("button[title='Search']")).toHaveAttribute(
+      "disabled"
+    );
+
+    await page.getByPlaceholder("Search entire store here...").fill("a");
+    await expect(page.locator("button[title='Search']")).not.toHaveAttribute(
+      "disabled"
+    );
+  });
+
+      test('The message “You have no items in your shopping cart.“ is displayed.', async ({page}) => {
+        await page.locator('.showcart').click();
+        await expect(page.locator('.subtitle')).toBeVisible();
+        await expect(page.locator('.subtitle')).toHaveText('You have no items in your shopping cart.');        
       });
 })
