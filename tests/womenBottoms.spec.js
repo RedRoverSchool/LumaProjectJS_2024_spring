@@ -30,4 +30,22 @@ test.describe('Women bottoms page', () => {
         await page.getByTitle("List").first().click();
         expect(await page.locator("div[class*=products-list]")).toHaveClass(/products-list/);
     });
-})
+
+    test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
+      
+        await page.goto('https://magento.softwaretestingboard.com/');
+        await page.getByRole('menuitem', {name: 'Women'}).click();
+
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women.html')
+
+        await page.locator('.options a').last().click();
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women.html')
+
+        await page.getByText('Category').click();
+        await page.getByRole('link', {name: 'Pants'}).click();
+
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women.html?cat=27')
+        await expect(page.locator('#layered-filter-block .items').first()).toBeVisible();
+    });
+});
+
