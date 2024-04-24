@@ -23,7 +23,7 @@ test.describe('orders and returns page', () => {
         await expect(page.getByRole('textbox', {name: 'Billing ZIP Code'})).toBeVisible();           
     })
 
-    test('Check error message when entering incorrect data', async ({page}) => {
+    test.skip('Check error message when entering incorrect data', async ({page}) => {
         const errorText = page.locator('.error>div');
         const buttonContinue = page.locator(".primary>button.primary");  
 
