@@ -35,4 +35,15 @@ test.describe('menuSale', () => {
         await expect(page).toHaveURL('https://magento.softwaretestingboard.com/men/tops-men/hoodies-and-sweatshirts-men.html');
         await expect(page).toHaveTitle("Hoodies & Sweatshirts - Tops - Men");
     }) 
+
+    test("Check navigation and deal section to the Sale page", async ({ page }) => {
+        await page.locator('.ui-menu li.nav-6').click();
+    
+        const dealsLocator = page.locator('.categories-menu span');
+        const dealsTextArray = await dealsLocator.allInnerTexts();
+
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/sale.html');
+        await expect(page.locator('#page-title-heading')).toBeVisible();
+        expect(dealsTextArray).toEqual(sideMenuSections);
+    })
 });
