@@ -124,5 +124,66 @@ test.describe('US Cart/Checkout', () => {
     
         await expect(emailField).toHaveValue("a1@gmail.com");
       });
+
+
+      test("TC 09.2_05 Verify that User able to click on “Next” button after filling all required input fields", async ({
+        page,
+      }) => {
+        
+        const HeroHoodieItem = page.getByTitle("Hero Hoodie");
+        const HeroHoodieSize = page.getByText("L", { exact: true });
+        const HeroHoodieColor = page.getByRole(
+          "option",
+          { name: "Green" },
+          { exact: true }
+        );
+        const btnAddToCart = page.getByRole("button", { name: "Add to Cart" });
+        const counterIcon = page.locator(".showcart .counter-number");
+        const shopCart = page.getByRole("link", { name: "My cart" });
+        const btnCheckout = page.getByRole("button", {
+          name: "Proceed to Checkout",
+        });
+        const ShippingAddressText = page.getByText("Shipping Address");
+        const emailField = page.locator("#shipping  .step-content #customer-email");
+        const FirstNameField = page.locator(".control [name='firstname']");
+        const LastNameField = page.locator(".control [name='lastname']");
+        const StreetAddressField = page.locator(".control [name='street[0]']");
+        const CityField = page.locator(".control [name='city']");
+        const StateProvinceField = page.locator(".control [name='region_id']");
+        const PostalCodeField = page.locator(".control [name='postcode']");
+        const CountryField = page.locator(".control [name='country_id']");
+        const PhoneNumberField = page.locator(".control [name='telephone']");
+        const ShippingMethodsRadioBtn = page.locator(
+          ".row [type='radio'][name='ko_unique_1']"
+        );
+        const btnNext = page.getByRole("button", { name: "Next" });
+        const PaymentMethodText = page.locator(".payment-group .step-title");
     
-})
+        await HeroHoodieItem.click();
+        await HeroHoodieSize.click();
+        await HeroHoodieColor.click();
+        await btnAddToCart.click();
+        await counterIcon.waitFor();
+        await shopCart.click();
+        await btnCheckout.click();
+        await ShippingAddressText.waitFor();
+        await emailField.fill("annaS@gmail.com");
+        await FirstNameField.fill("Anna");
+        await LastNameField.fill("Ivanova");
+        await StreetAddressField.fill("Vashington 20");
+        await CityField.fill("Chicago");
+        await StateProvinceField.selectOption("Illinois");
+        await PostalCodeField.fill("C123");
+        await CountryField.selectOption("United States");
+        await PhoneNumberField.fill("134569087");
+        await ShippingMethodsRadioBtn.click();
+        await btnNext.click();
+        await PaymentMethodText.waitFor();
+    
+        await expect(PaymentMethodText).toBeVisible(); 
+        await expect(page).toHaveURL(
+          "https://magento.softwaretestingboard.com/checkout/#payment"
+        );
+       
+      });
+    })

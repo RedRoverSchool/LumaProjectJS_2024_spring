@@ -36,6 +36,7 @@ test.describe('Forgot Password Page', () => {
 
         await expect(page.getByRole('alert').first()).toHaveText(`If there is an account associated with ${email} you will receive an email with a link to reset your password.`);
     });
+
     test('After entering a valid email to the Email field and clicking the Reset My Password button the Customer Login page opens', async({ page }) => {
         function generateRandomEmail() {
             const mailbox = Math.random().toString(36).substring(2, 10);
