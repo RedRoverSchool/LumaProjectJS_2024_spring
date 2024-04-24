@@ -116,8 +116,11 @@ test.describe('page checkout/cart', () => {
     const countrySelector = 'Country';
     await page.locator(`label:has-text("${countrySelector}") + select`, 'United States');
     await expect(page.locator(`label:has-text("${countrySelector}") + select`, 'United States')).toBeTruthy();
-    
+
     await page.waitForTimeout(3000);
+    
+    await page.getByRole('tab', { name: 'Estimate Shipping and Tax' }).click();
+
     await page.locator('select[name="region_id"]').click()
     await page.waitForTimeout(3000);
     await page.locator('select[name="region_id"]').selectOption('Alabama');
