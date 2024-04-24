@@ -9,6 +9,9 @@ test.describe("footer", () => {
 
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
+    if (await page.getByRole('dialog', {name: 'This site asks for consent to use your data'}).isVisible()) {
+      await page.getByRole('button', { name: 'Consent' }).click();
+  };
   });
 
   test("user is redirected to Notes page", async ({ page }) => {
@@ -65,5 +68,11 @@ test.describe("footer", () => {
       await expect(link).toHaveCSS('color', 'rgb(0, 107, 180)');
     }
   });
-  
+
+  test('Link "Advanced Search" is clickable and redirectable', async ({page}) => {
+    await page.getByRole('link', {name: 'Advanced Search'}).click();
+
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/catalogsearch/advanced/');
+    await expect(page.getByRole('heading', {name: 'Advanced Search'})).toBeVisible();
+  }); 
 });

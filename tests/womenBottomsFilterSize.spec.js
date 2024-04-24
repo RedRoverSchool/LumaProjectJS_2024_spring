@@ -16,4 +16,16 @@ test.describe('womenBottomsFilterSize', () => {
     }
     expect(await sizesLocators.count()).toBe(5)
   })
+  test('Checking the filter operation when choosing a size', async ({page}) => {
+    await page.locator('#ui-id-4').hover()
+    await page.locator('#ui-id-10').click()
+    await page.getByRole('tab', { name: 'Size' }).click()
+    await page.locator('a>div[option-id="175"]').click()
+
+    await expect(page.locator('div[data-collapsible="true"]>ol')).toContainText('Size 32')
+    const numberOfCards32Zizes = page.locator('div[class="swatch-option text selected"]')
+    for (let index = 0; index < await numberOfCards32Zizes.count(); index++) {
+     await expect(numberOfCards32Zizes.nth(index)).toBeChecked()
+    }
+   })
 })
