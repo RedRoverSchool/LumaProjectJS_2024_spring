@@ -17,4 +17,10 @@ test.describe('User Stored Payments Methods', () => {
     test('Verify the Stored Payment Methods link is on the left side of the users account page', async ({ page }) => {
         await expect(page.locator('#block-collapsible-nav ul li:nth-child(8)')).toBeVisible();
     });
+
+    test('Verify if there is no payment methods entered then “You have no stored payment methods.” message is displayed', async ({ page }) => {
+        await page.locator('#block-collapsible-nav ul li:nth-child(8)').click();
+
+        await expect(page.locator('div.message.info.empty span')).toHaveText('You have no stored payment methods.');
+    });
 });
