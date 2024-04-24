@@ -233,4 +233,20 @@ test.describe('header', () => {
       autocompleteListUpperCase.length
     );
   });
+
+  test("Verify the search button (magnifier) is inactive after the search field is cleared", async ({
+    page,
+  }) => {
+    const wordToType = "abc";
+
+    await page.getByPlaceholder("Search entire store here...").fill(wordToType);
+    await expect(page.locator("button[title='Search']")).not.toHaveAttribute(
+      "disabled"
+    );
+
+    await page.getByPlaceholder("Search entire store here...").clear();
+    await expect(page.locator("button[title='Search']")).toHaveAttribute(
+      "disabled"
+    );
+  });
 })

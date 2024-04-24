@@ -65,4 +65,13 @@ test.describe('Homepage | Navigation', () => {
     await expect(page.locator('.item.category22')).toBeVisible();
   })
 
+  test('TC 04.1.1_03 The link "What is new?" is displayed and clickable.', async ({page}) =>{
+    const linkWhat = page.getByRole('menuitem',{name: "What's New"});
+    await expect(linkWhat).toBeVisible();
+    
+    await linkWhat.click();
+
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/what-is-new.html');
+    await expect(page).toHaveTitle("What's New");
+  })
 });
