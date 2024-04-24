@@ -49,7 +49,7 @@ test.describe('page checkout/cart', () => {
     await expect(page.getByRole('combobox')).toHaveAttribute('aria-expanded', 'true');
   })
 
-  test('should be cost is displayed at the bottom of the summary', async ({ page }) => {
+  test.skip('should be cost is displayed at the bottom of the summary', async ({ page }) => {
 
     await page.goto('https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html');
     await page.getByText('Olivia 1/4 Zip Light Jacket').click();

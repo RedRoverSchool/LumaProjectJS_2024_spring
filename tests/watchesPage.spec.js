@@ -190,6 +190,35 @@ test.describe('watchesPage', () => {
         ).toBeTruthy();
       }
     });
+
+    test("Verify that the filter is applied after selecting an option in the Material dropdown list on the Gear/Watches page", async ({
+        page,
+    }) => {
+        test.slow();
+        await page.getByRole("menuitem", { name: "Gear" }).hover();
+        await page.getByRole("menuitem", { name: "Watches" }).click();
+
+        await page.getByRole("tab", { name: "Material" }).click();
+        await page.waitForSelector("div.filter-options>div:nth-child(4) ol li a");
+
+        const listOfMaterialsActual = await page
+            .locator("div.filter-options>div:nth-child(4) ol li a ")
+            .allInnerTexts();
+
+        const listOfMaterialsSplitedActual = listOfMaterialsActual.map(
+            (item) => item.split(/\s\d+/)[0]
+        );
+       
+        for (const material of listOfMaterialsSplitedActual)
+        {
+            await page.getByRole("link", { name: material }).click();
+            await expect(page.getByText("Now Shopping by")).toBeVisible();
+            await expect(page.locator("span.filter-value")).toHaveText(material);
+
+            await page.locator(".action.clear.filter-clear").click();
+            await page.getByRole("tab", { name: "Material" }).click();
+        }
+    });
 })
 
     
