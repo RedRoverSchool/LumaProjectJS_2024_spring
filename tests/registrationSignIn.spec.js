@@ -39,12 +39,12 @@ test.describe('registrationSignIn', () => {
     await expect(userContactInfo).toContainText(userEmail);
   })
 
-  test('Verify user is able sign in succesfully', async({page}) => {
+  test('Verify the error message is displayed after entering invalid password', async({page}) => {
     await page.getByRole('link', {name: 'Sign In'}).click();
     await page.locator('#email').fill('123asdQQ@gmail.com');
-    await page.locator('input[name="login[password]"]').fill('123asdQQ');
+    await page.locator('input[name="login[password]"]').fill('123asdRRRRRRRR');
     await page.getByRole('button', {name:'Sign In'}).click();
 
-    await expect(page.locator('div[class="panel header"]')).toContainText('Welcome');
+    await expect(page.locator('div[class="page messages"]')).toHaveText('The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.');
   })
 })  
