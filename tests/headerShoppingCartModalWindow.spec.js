@@ -128,4 +128,21 @@ test.describe('header shopping cart modal window', () => {
         await expect(shippingAddressHeaderLocator).toHaveText('Shipping Address');     
     })
 
+    test('Verify the total cost of all items in the cart', async({ page }) => {
+        await page.getByRole('option', {name: 'XS'}).first().click();
+        await page.getByRole('option', {name: 'Blue'}).first().click();
+        await page.getByTitle('Add to Cart').first().click();
+        await page.locator('li').filter({ hasText: 'Argus All-Weather Tank As low' }).getByRole('option', {name: 'XS'}).click();
+        await page.locator('li').filter({ hasText: 'Argus All-Weather Tank As low' }).getByLabel('Gray').click();
+        await page.locator('li').filter({ hasText: 'Argus All-Weather Tank As low' }).getByTitle('Add to Cart').click();
+        const itemsNumber = page.locator('.counter-number');
+        await itemsNumber.waitFor();
+        await itemsNumber.click();
+        const totalPrice = (await page.locator('.minicart-price .price')
+            .allInnerTexts())
+            .map(el => +el.replace(/\$/g, ''))
+            .reduce((acc, cur) => acc + cur, 0).toFixed(2);
+
+        await expect(page.locator('.amount.price-container .price')).toHaveText('$' + totalPrice);
+    })
 })

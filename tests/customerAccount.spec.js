@@ -1,16 +1,17 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("customerAccount", () => {
+
+  function generateRandomEmail() {
+    const mailbox = Math.random().toString(36).substring(2, 10);
+    const domain = "example.com";
+    return `${mailbox}@${domain}`;
+  }
   const BASE_URL = "https://magento.softwaretestingboard.com";
 
   test.beforeEach(async ({ page }) => {
     const firstname = "Angelina-Maria";
     const lastname = "O'Neel";
-    function generateRandomEmail() {
-      const mailbox = Math.random().toString(36).substring(2, 10);
-      const domain = "example.com";
-      return `${mailbox}@${domain}`;
-    }
     const email = generateRandomEmail();
     const password = "RT45bb%%mm";
 
@@ -93,6 +94,40 @@ test.describe("customerAccount", () => {
 
     expect(nameInContactInformation).toEqual(newUser.firstName + " " + newUser.lastName);
     expect(nameInHeaderGreeting).toContain(`Welcome, ${newUser.firstName} ${newUser.lastName}!`);    
+  })
+
+  test('TC 11.6.1_02 | Change email and password and verify the User can sign in', async ({ page }) => {
+    const newUserData = {
+      newEmail: generateRandomEmail(),
+      oldPassword: "RT45bb%%mm", 
+      newPassword: "Bob_Tester"
+    }
+    const alertMessage = 'You saved the account information.';
+    const alertLocator = page.getByRole('alert').getByText('You saved the account information.');
+    const nameInContactInformationLocator = page.locator('[class="column main"] div:nth-child(5) [class="box-content"] p');
+
+    await page.locator('[class="panel header"] [role="button"]').click();
+    await page.getByRole('link', {name: 'My Account'}).click();   
+    await page.locator('[class="nav items"] li:nth-child(7)').click();
+    await page.getByRole('checkbox', {name: 'Change Email'}).check();
+    await page.getByRole('checkbox', {name: 'Change Password'}).check();
+    await page.getByRole('textbox', {name: 'Email'}).fill(newUserData.newEmail);
+    await page.getByRole('textbox', {name: 'Current Password'}).fill(newUserData.oldPassword);
+    await page.getByRole('textbox', {name: 'New Password'}  ).nth(0).fill(newUserData.newPassword);
+    await page.getByRole('textbox', {name: 'Confirm New Password'}).fill(newUserData.newPassword);
+    await page.getByRole('button', {name: 'Save'}).click();
+    await alertLocator.waitFor();
+
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/login/');
+    await expect(alertLocator).toHaveText(alertMessage);
+
+    await page.getByRole('textbox', {name: 'Email'}).fill(newUserData.newEmail);
+    await page.getByRole('textbox', {name: 'Password'}).fill(newUserData.newPassword);
+    await page.getByRole('button', {name: 'Sign in'}).click();
+    await nameInContactInformationLocator.waitFor();
+    const emailInContactInformation = (await nameInContactInformationLocator.innerText()).split('\n')[1];
+
+    expect(emailInContactInformation).toEqual(newUserData.newEmail);
   })
 
 });

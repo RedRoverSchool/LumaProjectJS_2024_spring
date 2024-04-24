@@ -73,4 +73,29 @@ test.describe("womenTops", () => {
 
   })
 
+  test ('TC 05.1.4_02 Women/Tops/Display mode_verify List mode of displaying the products on the page', async ({ page }) => {
+    await page.goto(WOMEN_TOPS_URL)
+    const displayModeList = page.getByTitle('List', { exact: true }).first()
+    await displayModeList.click()
+    expect(page.url()).toContain('product_list_mode=list')
+ 
+    const listMode = page.locator('div.modes strong[title="List"]').first();
+    await expect(listMode).toHaveClass('modes-mode active mode-list')
+           
+   })
+
+   test ('TC 05.1.4_03 Women/Tops/Display mode_verify Grid mode displays the number of items presented on the page', async ({ page }) => {
+    await page.goto(WOMEN_TOPS_URL)
+     
+    const gridMode = page.locator('div.modes strong[title="Grid"]').first();
+    await expect(gridMode).toHaveClass('modes-mode active mode-grid');
+
+    const gridModeList = page.locator('.products.list.items.product-items > li');
+    const gridModeListNumber = await page.locator('.toolbar-number:nth-child(2)').first().innerText();
+    const expectedGridNumberModeList = parseInt(gridModeListNumber, 10);
+    const actualCount = await gridModeList.count();
+    expect(actualCount).toBe(expectedGridNumberModeList);
+           
+   })
+   
 });

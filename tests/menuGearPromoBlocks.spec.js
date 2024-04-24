@@ -1,58 +1,56 @@
 import { test, expect } from "@playwright/test";
 
-test.describe('Menu/Gear/Promo Block', () => {
- 
-  test.beforeEach(async ({ page }) => {
-    await page.goto("/");
-    const gearNavButton = page.locator('#ui-id-6');
-    await gearNavButton.click();
-  })
+test.describe('menuGearPromoBlocks', () => {
 
-  test('TC 04.4.3_01 Verify redirect to the "Fitness Equipment" category by clicking on "Loosen Up" banner', async ({ page }) => {
+    test.beforeEach(async ({ page }) => {
+        await page.goto("/");
+        const gearNavButton = page.locator('#ui-id-6');
+        await gearNavButton.click();
+    });
 
-    await page.getByRole('link', { name: 'Loosen Up' }).click();
+    test('Verify redirect to the "Fitness Equipment" category by clicking on "Loosen Up" banner', async ({ page }) => {
 
-    await expect(page).toHaveURL(/.*fitness-equipment.html/);
-    await expect(page.locator('.base')).toHaveText('Fitness Equipment');
-  })
+        await page.getByRole('link', { name: 'Loosen Up' }).click();
 
-  test('TC 04.4.3_02 Verify redirect to the "Fitness Equipment" category by clicking on “$4 Luma water bottle” banner', async ({ page }) => {
+        await expect(page).toHaveURL(/.*fitness-equipment.html/);
+        await expect(page.locator('.base')).toHaveText('Fitness Equipment');
+    });
 
-    await page.locator('.block-promo.gear-equipment').click();
+    test('Verify redirect to the "Fitness Equipment" category by clicking on “$4 Luma water bottle” banner', async ({ page }) => {
 
-    await expect(page).toHaveURL(/.*fitness-equipment.html/);
-    await expect(page.locator('.base')).toHaveText('Fitness Equipment');
-  })
-  
-  test('TC 04.4.3_03 Verify redirect to the "Bags" category by clicking on "Shop bags" banner', async ({ page }) => {
-    
-    await page.locator('.block-promo.gear-category-bags').click();
-    
-    await expect(page).toHaveURL(/.*bags.html/);
-    await expect(page.locator('.base')).toHaveText('Bags');
-  })
+        await page.locator('.block-promo.gear-equipment').click();
 
-  test('TC 04.4.3_04 Verify redirect to the "Fitness Equipment" category by clicking on "Shop Equipment" banner', async ({ page }) => {
-    
-    await page.locator('.block-promo.gear-category-equipment').click();
-    
-    await expect(page).toHaveURL(/.*fitness-equipment.html/);
-    await expect(page.locator('.base')).toHaveText('Fitness Equipment');
-  })
-  
-    test('TC 04.4.3_05 Verify redirect to the "Watches" category by clicking on "Shop watches" banner', async ({ page }) => {
-    
-    await page.locator('.block-promo.gear-category-watches').click();
-    
-    await expect(page).toHaveURL(/.*watches.html/);
-    await expect(page.locator('.base')).toHaveText('Watches');
+        await expect(page).toHaveURL(/.*fitness-equipment.html/);
+        await expect(page.locator('.base')).toHaveText('Fitness Equipment');
+    });
 
-  })
-  
-    test('TC 04.4.3_06 Verify that 6 promo banners are displayed on "Gear" page', async ({ page }) => {
-    
-    await expect(page.locator('div.blocks-promo img')).toHaveCount(6);
+    test('Verify redirect to the "Bags" category by clicking on "Shop bags" banner', async ({ page }) => {
 
-  })
+        await page.locator('.block-promo.gear-category-bags').click();
 
-})  
+        await expect(page).toHaveURL(/.*bags.html/);
+        await expect(page.locator('.base')).toHaveText('Bags');
+    });
+
+    test('Verify redirect to the "Fitness Equipment" category by clicking on "Shop Equipment" banner', async ({ page }) => {
+
+        await page.locator('.block-promo.gear-category-equipment').click();
+
+        await expect(page).toHaveURL(/.*fitness-equipment.html/);
+        await expect(page.locator('.base')).toHaveText('Fitness Equipment');
+    });
+
+    test('Verify redirect to the "Watches" category by clicking on "Shop watches" banner', async ({ page }) => {
+
+        await page.locator('.block-promo.gear-category-watches').click();
+
+        await expect(page).toHaveURL(/.*watches.html/);
+        await expect(page.locator('.base')).toHaveText('Watches');
+    });
+
+    test('Verify that 6 promo banners are displayed on "Gear" page', async ({ page }) => {
+
+        await expect(page.locator('div.blocks-promo img')).toHaveCount(6);
+    });
+
+});

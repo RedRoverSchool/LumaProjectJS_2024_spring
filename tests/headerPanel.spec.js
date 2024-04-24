@@ -41,7 +41,6 @@ test.describe('headerPanel', () => {
 test.describe('headerPanel verify searchInput', ()=>  {
     test.beforeEach('before', async({page}) => {
         await page.goto('/')
-
     })
 
     test('TC 01.2.1_03 Header/ Verify available Search Bar on HomePage', async({ page })=> {
@@ -51,3 +50,17 @@ test.describe('headerPanel verify searchInput', ()=>  {
     })
 })
 
+test.describe('headerPanel / Verify shoping cart', ()=>  {
+    test.beforeEach('before', async({page}) => {
+        await page.goto('/')
+    })
+
+     test('TC 01.4.1_04 Header/Verify Shopping Cart Icon', async({ page })=> {
+        await page
+            .locator('a[href="https://magento.softwaretestingboard.com/checkout/cart/"]')
+            .click()
+        
+        await expect( page.locator('div[aria-describedby="ui-id-1"]')).toHaveCSS('display', 'block');
+        await expect(page.locator('a[href="https://magento.softwaretestingboard.com/checkout/cart/"]')).toBeVisible();
+    })
+})

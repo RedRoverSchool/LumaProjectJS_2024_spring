@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/test";
-import { only } from "node:test";
 
 test.describe('gearPage', () => {
     const BAGS_URL = "https://magento.softwaretestingboard.com/gear/bags.html";
     const GEAR_url = 'https://magento.softwaretestingboard.com/gear.html';
+    const WATCHES_URL = 'https://magento.softwaretestingboard.com/gear/watches.html';
 
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
@@ -56,4 +56,20 @@ test.describe('gearPage', () => {
 
         await expect(page.locator('.count').getByText([14, 11, 9])).toBeTruthy();
     })
+
+    test ('Verify that the link Watches redirects to the Watches page', async({page}) => {
+        await page.locator('#ui-id-6').click();
+        await page.locator('#narrow-by-list2').getByRole('link', { name: 'Watches' }).click();
+
+        await expect(page).toHaveURL(WATCHES_URL);
+
+    })
+
+    test("Verify that user can navigate to Bags page from the Gear menu", async ({page}) => {
+        await page.getByRole('menuitem', {name: 'Gear'}).hover();
+        await page.locator("#ui-id-25").click();
+    
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/gear/bags.html');
+        await expect(page).toHaveTitle("Bags - Gear");
+      })
 })
