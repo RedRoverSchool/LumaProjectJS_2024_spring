@@ -15,4 +15,15 @@ test.describe('Women/Bottoms/Style', () => {
     await expect(page.getByRole('menuitem', {name: 'Bottoms'})).toBeVisible();
   });
 
+  test('Verify the changes to the menuitem "Bottoms" style when hover', async ({ page }) => {
+    const womenMenu = page.locator('a#ui-id-4');
+    await womenMenu.hover();
+    const bottomsMenu = page.locator('a#ui-id-10');
+    await bottomsMenu.hover();
+
+    await expect(bottomsMenu).toHaveCSS('background', 'rgb(232, 232, 232) none repeat scroll 0% 0% / auto padding-box border-box');
+    await expect(bottomsMenu).toHaveCSS('color', 'rgb(51, 51, 51)');
+    await expect(page.getByRole('menuitem', {name: 'Pants'})).toBeVisible();
+    await expect(page.getByRole('menuitem', {name: 'Shorts'})).toBeVisible();
+  });
 });
