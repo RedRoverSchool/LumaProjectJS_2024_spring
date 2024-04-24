@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("womenTops", () => {
+test.describe("womenTopsShoppingOptions", () => {
   const JACKET_ITEMS = ["Jacket", "Shell"];
 
   test.beforeEach(async ({ page }) => {
