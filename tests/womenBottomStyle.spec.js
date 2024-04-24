@@ -2,11 +2,11 @@ import { test, expect } from "@playwright/test";
 
 test.describe('Women/Bottoms/Style', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/");
+    await page.goto('/');
   });
 
   test('Verify the changes to the menuitem "Women" style when hover', async ({ page }) => {
-    const wonenMenu = page.locator("a#ui-id-4");
+    const wonenMenu = page.locator('a#ui-id-4');
     await page.getByRole('menuitem', {name: 'Women'}).hover();
 
     await expect(wonenMenu).toHaveClass(/ui-state-focus/);
