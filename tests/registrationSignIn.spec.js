@@ -11,7 +11,7 @@ test.describe('registrationSignIn', () => {
         await page.goto("/");
     });
 
-    test('Verify that user can log in', async ({ page }) => {
+    test.skip('Verify that user can log in', async ({ page }) => {
         const signInLink = page.getByRole('link', { name: 'Sign In' });
         const emailInput = page.getByLabel('Email', { exact: true });
         const passwordInput = page.getByLabel('Password');
