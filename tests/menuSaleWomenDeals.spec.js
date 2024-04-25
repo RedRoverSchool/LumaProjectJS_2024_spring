@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import exp from "constants";
 
 test.describe('menuSaleWomenDeals', () => {
     test.beforeEach(async ({ page }) => {
@@ -12,6 +13,13 @@ test.describe('menuSaleWomenDeals', () => {
         await page.getByRole('link', {name:'Shorts'}).first().click();
        
         await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women/shorts-women.html');
+    });
+
+    test('redirect to Womans Jackets', async ({ page }) => {
+        await page.getByRole('link', {name: 'Jackets'}).first().click();
+
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html');
+        await expect(page.getByRole('heading', {name: 'Jackets'})).toBeVisible();
     });
 });
 
