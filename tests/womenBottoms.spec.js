@@ -67,4 +67,11 @@ test.describe('Women bottoms page', () => {
         await expect(page.locator('#toolbar-amount').first()).toHaveText('12 Items');
         await expect(page.locator('.item.product.product-item')).toHaveCount(12);
     })
+
+    test("Product display mode change in the catalog to Grid mode", async ({ page }) => {
+        await page.goto("/" + "women/bottoms-women.html?product_list_mode=list");
+        await page.getByTitle("Grid").first().click();
+        expect(await page.locator("div[class*=products-grid]")).not.toBeNull();
+    });
+
 })
