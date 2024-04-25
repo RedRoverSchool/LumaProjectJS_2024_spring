@@ -49,7 +49,7 @@ test.describe('page checkout/cart', () => {
     await expect(page.getByRole('combobox')).toHaveAttribute('aria-expanded', 'true');
   })
 
-  test.skip('should be cost is displayed at the bottom of the summary', async ({ page }) => {
+  test('should be cost is displayed at the bottom of the summary', async ({ page }) => {
 
     await page.goto('https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html');
     await page.getByText('Olivia 1/4 Zip Light Jacket').click();
@@ -66,17 +66,19 @@ test.describe('page checkout/cart', () => {
     await page.getByRole('link', { name: 'View and Edit Cart' }).click();
     await page.getByRole('combobox').click();
 
+    await page.waitForTimeout(3000)
+
     await page.getByRole('heading', { name: 'Estimate Shipping and Tax ' }).click();
     await page.waitForTimeout(3000);
     await expect(page.getByRole('heading', { name: 'Estimate Shipping and Tax ' })).toBeTruthy();
 
-    // await page.getByRole('tab', { name: 'Estimate Shipping and Tax' }).click();
+    await page.getByRole('tab', { name: 'Estimate Shipping and Tax' }).click();
 
     const countrySelector = 'Country';
     await page.locator(`label:has-text("${countrySelector}") + select`, 'United States');
     await expect(page.locator(`label:has-text("${countrySelector}") + select`, 'United States')).toBeTruthy();
 
-    // await page.getByRole('tab', { name: 'Estimate Shipping and Tax' }).click();
+    await page.getByRole('tab', { name: 'Estimate Shipping and Tax' }).click();
 
 
     await page.locator('select[name="region_id"]').click()
