@@ -15,5 +15,25 @@ test.describe('menu women shop by category', () => {
         await expect(titleShopBy).toHaveCSS('color', 'rgb(51, 51, 51)')
       await expect(categoryTitle).toBeVisible()
         await expect(categoryTitle).toHaveCSS('color', 'rgb(51, 51, 51)')
-  })
+    })
+  
+    test('Links with categories names are located on the page and clickable and blue', async ({ page }) => {
+    
+      const linkTops = await page.getByRole('link', { name: 'Tops' })
+      const linkBottoms = await page.getByRole('link', { name: 'Bottoms' })
+
+      await linkTops.click()
+      await expect(page).toHaveURL('/women/tops-women.html')
+      await expect(page.getByRole('heading', { name: 'Tops' })).toBeVisible()
+      //await expect(linkTops).toHaveCSS('color', 'rgb(0, 107, 180)')
+      
+
+      await page.locator('.logo>img').click()
+      await page.getByRole('link', { name: 'Women'}).click()
+
+      await linkBottoms.click()
+      await expect(page).toHaveURL('women/bottoms-women.html')
+      await expect(page.getByRole('heading', { name: 'Bottoms' })).toBeVisible();
+      })
 })
+
