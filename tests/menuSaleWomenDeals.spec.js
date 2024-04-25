@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-import exp from "constants";
 
 test.describe('menuSaleWomenDeals', () => {
     test.beforeEach(async ({ page }) => {
