@@ -40,3 +40,8 @@ test.describe("customerAccount", () => {
     });
     
 });
+
+// Test
+// Test
+// micked67@gmail.com
+// Password1
