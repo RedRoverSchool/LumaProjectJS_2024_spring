@@ -29,6 +29,7 @@ test.describe('menTops', () => {
      await expect(page.locator('.base') ).toHaveText('Tops');
      await expect(page).toHaveURL( 'https://magento.softwaretestingboard.com/men/tops-men.html');
    })
+
    test('Check that category drop-down displays the products', async ({page}) => {
     await page.goto('https://magento.softwaretestingboard.com/men/tops-men.html');
     await page.getByRole('tab', {name:'Category' }).click();
@@ -83,6 +84,7 @@ test.describe('menTops', () => {
 
     await expect(prices).toEqual(sortedPrices);
   })
+
   test("Check the name of 14 shopping styles in the Men's/Tops section.", async ({ page }) => {
     const listStyle = [
     'Insulated',
@@ -108,6 +110,42 @@ test.describe('menTops', () => {
         await expect(page.locator('a[href*= "men/tops-men.html?style_general"]').nth(index)).toContainText(listStyle[index])
     }
  });
+
+ test('Verify that user can apply the filter for each category within the Category dd list and reset the filter', async ({page}) =>{
+  const categoriesList = [
+    '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(1) > a',
+    '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(2) > a',
+    '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(3) > a',
+    '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(4) > a'
+  ]
+
+  const subcategoryLinks = [
+    'https://magento.softwaretestingboard.com/men/tops-men.html?cat=14',
+    'https://magento.softwaretestingboard.com/men/tops-men.html?cat=15',
+    'https://magento.softwaretestingboard.com/men/tops-men.html?cat=16',
+    'https://magento.softwaretestingboard.com/men/tops-men.html?cat=17'
+  ]
+
+  const expectedTitles = [
+    'Jackets',
+    'Hoodies & Sweatshirts',
+    'Tees',
+    'Tanks'
+  ]
+    await page.locator('#ui-id-5').hover();
+    await page.locator('#ui-id-17').click();
+
+  for (let i = 0; i < categoriesList.length; i++) {
+    await page.getByRole('tab', {name:'Category' }).click();
+    await page.locator(categoriesList[i]).click();
+    await expect(page.locator(`.filter-value:has-text('${expectedTitles[i]}')`)).toContainText(expectedTitles[i]);
+    await expect(page).toHaveURL(subcategoryLinks[i]);
+
+    await page.locator('.block-actions.filter-actions > a > span').getByText('Clear All').click();
+    await expect(page).toHaveURL('men/tops-men.html');
+    }
+ });
+
  test('displays the number of available products in the Insulated(5) category', async ({page}) => {
   await page.locator('#ui-id-5').hover()
   await page.locator('#ui-id-17').click()
@@ -115,4 +153,5 @@ test.describe('menTops', () => {
   
   await expect(page.locator('a[href*= "men/tops-men.html?style_general=116"]').filter({ hasText: 'Insulated 5 item' })).toBeVisible();
   })
+
 })

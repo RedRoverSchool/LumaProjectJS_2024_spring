@@ -190,6 +190,72 @@ test.describe('watchesPage', () => {
         ).toBeTruthy();
       }
     });
+
+    test("Verify that the filter is applied after selecting an option in the Material dropdown list on the Gear/Watches page", async ({
+        page,
+    }) => {
+        test.slow();
+        await page.getByRole("menuitem", { name: "Gear" }).hover();
+        await page.getByRole("menuitem", { name: "Watches" }).click();
+
+        await page.getByRole("tab", { name: "Material" }).click();
+        await page.waitForSelector("div.filter-options>div:nth-child(4) ol li a");
+
+        const listOfMaterialsActual = await page
+            .locator("div.filter-options>div:nth-child(4) ol li a ")
+            .allInnerTexts();
+
+        const listOfMaterialsSplitedActual = listOfMaterialsActual.map(
+            (item) => item.split(/\s\d+/)[0]
+        );
+       
+        for (const material of listOfMaterialsSplitedActual)
+        {
+            await page.getByRole("link", { name: material }).click();
+            await expect(page.getByText("Now Shopping by")).toBeVisible();
+            await expect(page.locator("span.filter-value")).toHaveText(material);
+
+            await page.locator(".action.clear.filter-clear").click();
+            await page.getByRole("tab", { name: "Material" }).click();
+        }
+    });
+
+    const listOfWatchMaterials = [
+      "Leather",
+      "Metal",
+      "Plastic",
+      "Rubber",
+      "Stainless Steel",
+      "Silicone",
+    ];
+
+    listOfWatchMaterials.forEach((material) => {
+      test(`Verify the related products are displayed after applying ${material} Material filter on the Gear/Watches page`, async ({
+        page,
+      }) => {
+        test.slow();
+        await page.getByRole("menuitem", { name: "Gear" }).hover();
+        await page.getByRole("menuitem", { name: "Watches" }).click();
+
+        await page.getByRole("tab", { name: "Material" }).click();
+        await page
+          .locator("div.filter-options-content ol li a")
+          .getByText(material)
+          .click();
+        const arrayOfProducts = await page
+          .locator("a.product-item-link[href]")
+          .allInnerTexts();
+
+        for (let product of arrayOfProducts) {
+          await page.getByText(product).click();
+          await page.getByRole("tab", { name: "More Information" }).click();
+          await expect(
+            page.getByLabel("More Information").locator("div")
+          ).toContainText(material);
+          await page.goBack();
+        }
+      });
+    });
 })
 
     

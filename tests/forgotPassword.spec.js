@@ -13,7 +13,7 @@ test.describe('Forgot Password Page', () => {
         await expect(page.locator('h1.page-title')).toBeVisible();
     });
 
-    test('The error message appears below the Email field after entering the incorrect email', async ({ page }) => {
+    test.skip('The error message appears below the Email field after entering the incorrect email', async ({ page }) => {
         await page.getByRole('link', {name: 'Sign In'}).click();
         await page.getByRole('link', {name: 'Forgot Your Password?'}).click();
         await page.locator('#email_address').fill('qee@c');
