@@ -3,6 +3,27 @@ import { test, expect } from "@playwright/test";
 test.describe('watchesPage', () => {
     test.slow();
     const baseURL = 'https://magento.softwaretestingboard.com';
+
+    const listOfShoppingOptionsExpected = [
+      "CATEGORY",
+      "PRICE",
+      "ACTIVITY",
+      "MATERIAL",
+      "GENDER",
+      "NEW",
+      "SALE",
+    ];
+
+    const listOfShoppingOptionsLocators = [
+      "div.filter-options>div:nth-child(1) ol li a",
+      "div.filter-options>div:nth-child(2) ol li a",
+      "div.filter-options>div:nth-child(3) ol li a",
+      "div.filter-options>div:nth-child(4) ol li a",
+      "div.filter-options>div:nth-child(5) ol li a",
+      "div.filter-options>div:nth-child(6) ol li a",
+      "div.filter-options>div:nth-child(7) ol li a",
+    ];
+
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
     })
@@ -255,6 +276,48 @@ test.describe('watchesPage', () => {
           await page.goBack();
         }
       });
+    });
+
+    listOfShoppingOptionsExpected.forEach((option, idx) => {
+        test(`Verify the 'Clear All' button after aзplying ${option} filters on the Gear/Watches page`, async ({
+            page,
+        }) => {
+            test.slow();
+            if (listOfShoppingOptionsExpected[idx] === "GENDER")
+            {
+                return;
+            } else
+            {
+                await page.getByRole("menuitem", { name: "Gear" }).hover();
+                await page.getByRole("menuitem", { name: "Watches" }).click();
+
+                await page.getByRole("tab", { name: option }).click();
+                await page.waitForSelector(listOfShoppingOptionsLocators[idx]);
+
+                const listOfSubmenuItemsActual = await page
+                    .locator(listOfShoppingOptionsLocators[idx])
+                    .allInnerTexts();
+
+                const listOfSubmenuItemsSplitedActual = listOfSubmenuItemsActual.map(
+                    (item) => item.split(/\s\d+/)[0]
+                );
+
+                for (let i = 0; i < listOfSubmenuItemsSplitedActual.length; i++)
+                {
+                    await page
+                        .getByRole("link", {
+                            name: listOfSubmenuItemsSplitedActual[i],
+                        })
+                        .click();
+
+                    await expect(page.getByText("Now Shopping by")).toBeVisible();
+                    await page.locator(".action.clear.filter-clear").click();
+                    await expect(page.getByText("Now Shopping by")).not.toBeVisible();
+
+                    await page.getByRole("tab", { name: option }).click();
+                }
+            }
+        });
     });
 })
 
