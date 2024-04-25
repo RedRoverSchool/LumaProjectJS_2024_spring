@@ -248,4 +248,11 @@ test.describe('homePage', () => {
 
         await expect(page).toHaveURL('https://magento.softwaretestingboard.com/promotions/pants-all.html');
     })
+
+    test('Verify that Shop Tees link redirects to the corresponding page', async({page}) => {
+        
+        await page.locator('.block-promo.home-t-shirts .action.more.icon').click();
+
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/promotions/tees-all.html');
+    })
 })

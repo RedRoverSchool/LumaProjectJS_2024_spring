@@ -186,4 +186,28 @@ test.describe('US Cart/Checkout', () => {
         );
        
       });
+
+      test("Verify that User able to click on “Next” button", async ({ page }) => {
+        await page.getByRole('option', { name: 'XS'}).first().click();
+        await page.getByRole('option', { name: 'Purple'}).first().click();
+        await page.getByTitle('Add to Cart').first().click();
+        await page.locator('.showcart .counter-number').click();
+        page.getByRole('button', { name: 'Proceed to Checkout'}).click();
+        await page.getByText("Shipping Address", { exact: true }).waitFor();
+        await page.locator('.checkout-shipping-address #customer-email').fill('john_smith@gmail.com');
+        await page.locator('.control input[name="firstname"]').fill('John');
+        await page.locator('.control input[name="lastname"]').fill('Smith');
+        await page.locator('.control input[name="company"]').fill('Flowers World');
+        await page.locator('.control input[name="street[0]"]').fill('9200 Flowers street');
+        await page.locator('.control input[name="city"]').fill('New York');
+        await page.locator('.control select[name="region_id"]').selectOption('New York');
+        await page.locator('.control input[name="postcode"]').fill('12345');
+        await page.locator('.control select[name="country_id"]').selectOption('United States');
+        await page.locator('.control input[name="telephone"]').fill('123456789');
+        await page.locator('.row input').first().check();
+        await page.locator('.button.action').click();
+    
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/checkout/#payment');
+        await expect(page.locator('.payment-methods .step-title')).toHaveText('Payment Method');
+    });
     })

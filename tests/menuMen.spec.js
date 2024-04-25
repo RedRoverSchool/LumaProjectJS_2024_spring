@@ -1,5 +1,17 @@
 import { test, expect } from "@playwright/test";
 test.describe('Menu/Men', () => {
+    const hotSellersName = [
+      "Argus All-Weather Tank",
+      "Hero Hoodie",
+      "Meteor Workout Short",
+      "Geo Insulated Jogging Pant",
+    ];
+    const hotSellersEndPointUrl = [
+      "argus-all-weather-tank.html",
+      "hero-hoodie.html",
+      "meteor-workout-short.html",
+      "geo-insulated-jogging-pant.html",
+    ];
 
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
@@ -51,5 +63,15 @@ test.describe('Menu/Men', () => {
       const countItemsBlockCompare = page.locator('#compare-items li');
     
       await expect(countItemsBlockCompare).toHaveCount(1);
+  });
+
+  hotSellersName.forEach((productsName, idx) => {
+    test(`Menu/Men/Hot Sellers Verify user can click on product's name and be redirected to the ${productsName} page`, async({ page }) => {    
+        await page.getByText('Men', {exact: true}).click();
+        await page.getByTitle(productsName).click();
+
+        await expect(page).toHaveURL(new RegExp(hotSellersEndPointUrl[idx]));
+        await expect(page.getByRole('heading', {name: productsName})).toHaveText(hotSellersName[idx]);
+      });
   });
 })

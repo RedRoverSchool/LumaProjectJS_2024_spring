@@ -26,4 +26,24 @@ test.describe('Women/Bottoms/Style', () => {
     await expect(page.getByRole('menuitem', {name: 'Pants'})).toBeVisible();
     await expect(page.getByRole('menuitem', {name: 'Shorts'})).toBeVisible();
   });
+
+  test('Verify the transition to the "Women - Bottoms" page', async ({ page }) => {
+    const womenMenu = page.locator('a#ui-id-4');
+    await womenMenu.hover();
+    await page.getByRole('menuitem', {name: 'Bottoms'}).click();
+    
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women.html');
+    expect(page.getByTitle('Bottoms - Women'));
+  });
+
+  test('Verify style changes of the "Women" menu after navigating to "Bottoms - Women" page.', async ({ page }) => {
+    const womenMenu = page.locator('a#ui-id-4');
+    await womenMenu.hover();
+    await page.getByRole('menuitem', { name: 'Bottoms' }).click();
+
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women.html');
+    await expect(womenMenu).toHaveCSS('border-color', 'rgb(255, 85, 1)');
+    await expect(womenMenu).toHaveCSS('border-style', 'solid');
+    await expect(womenMenu).toHaveCSS('color', 'rgb(51, 51, 51)');
+  });
 });
