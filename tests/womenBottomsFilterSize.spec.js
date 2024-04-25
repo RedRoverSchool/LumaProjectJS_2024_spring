@@ -22,10 +22,24 @@ test.describe('womenBottomsFilterSize', () => {
     await page.getByRole('tab', { name: 'Size' }).click()
     await page.locator('a>div[option-id="175"]').click()
 
-    await expect(page.locator('div[data-collapsible="true"]>ol')).toContainText('Size 32')
+    await expect(page.locator('div[class="block-content filter-content"]>div[data-collapsible="true"]'))
+    .toContainText('Now Shopping by Size 32')
     const numberOfCards32Zizes = page.locator('div[class="swatch-option text selected"]')
     for (let index = 0; index < await numberOfCards32Zizes.count(); index++) {
      await expect(numberOfCards32Zizes.nth(index)).toBeChecked()
     }
    })
+   test('After clicking the Clear All button and return to the full list of product prices', async ({page}) => {
+    await page.goto('https://magento.softwaretestingboard.com/')
+    await page.locator('#ui-id-4').hover()
+    await page.locator('#ui-id-10').click()
+    await page.getByRole('tab', { name: 'Size' }).click()
+    await page.locator('a>div[option-id="175"]').click()
+    const checkFilterSize = page.locator('div[class="block-content filter-content"]>div[data-collapsible="true"]')
+    await expect(checkFilterSize).toContainText('Now Shopping by Size 32')
+    await page.getByRole('link', { name: 'Clear All' }).click()
+
+    await expect(checkFilterSize).not.toBeVisible()
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/women/bottoms-women.html')
+  })
 })
