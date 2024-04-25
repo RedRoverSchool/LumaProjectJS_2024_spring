@@ -1,8 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 test.describe('User Registration', () => {
-    const FIRST_NAME = 'firstname1';
-    const LAST_NAME = "lastname1";
+    const FIRST_NAME = 'firstname2';
+    const LAST_NAME = "lastname2";
     const USER_EMAIL = 'useremail1@mail.com';
     const USER_PASSWORD = 'Pass^123';
 
