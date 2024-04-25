@@ -3,9 +3,18 @@ import { test, expect } from "@playwright/test";
 test.describe('page gear', () => {
 
   const whatNewUrl = 'https://magento.softwaretestingboard.com/what-is-new.html';
+  const newInWomensMenuItemList = {
+    "Hoodies & Sweatshirts": "/women/tops-women/hoodies-and-sweatshirts-women.html",
+    "Jackets": "/women/tops-women/jackets-women.html",
+    "Tees": "/women/tops-women/tees-women.html",
+    "Bras & Tanks": "/women/tops-women/tanks-women.html",
+    "Pants": "/women/bottoms-women/pants-women.html",
+    "Shorts": "/women/bottoms-women/shorts-women.html"
+  }
+  const BASE_URL = "https://magento.softwaretestingboard.com";
+
     test.beforeEach(async ({ page }) => {
       await page.goto('/');
-
     })
 
     test('should  be "new in women" section', async ({ page }) => {
@@ -86,4 +95,17 @@ test.describe('page gear', () => {
 
     })
 
+    for (let newInWomensMenuItem in newInWomensMenuItemList){
+      test(`verify ${newInWomensMenuItem} link redirects to the new page ${newInWomensMenuItem}`, async({ page }) => {
+        const menuItem = page.getByRole('link', { name: newInWomensMenuItem }).first();
+        const pageHeader = page.locator('h1 .base');
+        const pageURL = BASE_URL + newInWomensMenuItemList[newInWomensMenuItem];
+        
+        await page.goto(whatNewUrl);
+        await menuItem.click();
+
+        await expect(page).toHaveURL(pageURL);
+        await expect(pageHeader).toHaveText(newInWomensMenuItem);
+      })
+    }
 })
