@@ -81,7 +81,7 @@ test.describe("footer", () => {
     await expect(page.getByRole('heading', {name: 'Advanced Search'})).toBeVisible();
   }); 
 
-  test('Verify that "Search terms" link redirects on a corresponding page', async ({ page }) => {
+  test('Verify that "Search terms" link redirects to the "Popular Search Terms" page', async ({ page }) => {
     clickSearchTerms(page);
     await expect(page).toHaveURL(SEARCH_TERMS_URL);
 
