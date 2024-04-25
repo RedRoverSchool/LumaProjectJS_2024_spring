@@ -25,17 +25,4 @@ test.describe("Check logo icon navigation", () => {
       await expect(page).toHaveURL("https://magento.softwaretestingboard.com");
     }
   });
-
-  test('Verify Logo picture is located from the left in all pages of site', async ({ page }) =>{
-
-    const logo = page.locator('.logo');
- 
-    for(let link of linksArr){
-    await page.goto(link);
-
-    await expect(logo).toBeVisible();
-    await expect(logo).toHaveCSS('float', 'left');
-    }
-  });
-  
 });

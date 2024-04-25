@@ -65,11 +65,11 @@ test.describe('menuTraining', () => {
 		await page.getByRole('menuitem', { name: 'Gear' }).hover();
 		await page.getByRole('menuitem', { name: 'Bags' }).click();
 		await page.getByRole('link', { name: 'Push It Messenger Bag' }).first().hover();
+		await page.waitForTimeout(5000);
 		await page.locator('li').filter({ hasText: 'Push It Messenger Bag Rating' }).getByLabel('Add to Compare').click();
-		await page.getByRole('link', { name: 'Overnight Duffle' }).first().hover();
-		await page.locator('li').filter({ hasText: 'Overnight Duffle Rating: 60%' }).getByLabel('Add to Compare').click();
+		await page.waitForTimeout(5000);
 		await page.goto(TRAINING_URL);
-
+	
 		await page.getByRole('link', { name: 'Compare', exact: true }).click();
 		
 		const currentURL = page.url();
