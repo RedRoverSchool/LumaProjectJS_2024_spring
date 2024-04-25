@@ -72,6 +72,31 @@ test.describe('Women/Bottoms/Style', () => {
     const result = extractAndCompareItems(receivedResult, expectedItems);
 
     expect(result.extractedItems).toEqual(expectedItems);
+  });
 
+  test('Verify that each category displays the number of products', async ({ page }) => {
+    const womenMenu = page.locator("a#ui-id-4");
+    await womenMenu.hover();
+    await page.getByRole("menuitem", { name: "Bottoms" }).click();
+
+    await expect(page).toHaveURL("https://magento.softwaretestingboard.com/women/bottoms-women.html");
+
+    const styleDrop = page.getByRole("tab", { name: "Style" });
+    await styleDrop.click();
+
+    expect(styleDrop.locator("[aria-selected]")).toBeTruthy();
+    
+    const categoriesStyle = await page.$$('a[href*=\'style\']');
+
+    for (const category of categoriesStyle) {
+      const countItems = await category.$('span.count');
+
+      expect(countItems).toBeTruthy();
+      expect(await countItems.isVisible()).toBeTruthy();
+
+      const countText = await countItems.textContent();
+  
+      expect(countText).toMatch(/\d+/);
+    }
   });
 });
