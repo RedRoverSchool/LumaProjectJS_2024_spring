@@ -5,6 +5,7 @@ test.describe("footer", () => {
     "https://softwaretestingboard.com/magento-store-notes/?utm_source=magento_store&utm_medium=banner&utm_campaign=notes_promo&utm_id=notes_promotion";
   const POLICY_URL =
     "https://magento.softwaretestingboard.com/privacy-policy-cookie-restriction-mode";
+  const SEARCH_TERMS_URL = 'https://magento.softwaretestingboard.com/search/term/popular/';
   const footerLinks = ['Notes', 'Search Terms', 'Privacy and Cookie Policy', 'Advanced Search', 'Orders and Returns'];
 
   test.beforeEach(async ({ page }) => {
@@ -13,6 +14,10 @@ test.describe("footer", () => {
       await page.getByRole('button', { name: 'Consent' }).click();
   };
   });
+
+  async function clickSearchTerms(page) {
+    await page.getByText('Search Terms' ).click()
+}
 
   test("user is redirected to Notes page", async ({ page }) => {
     const pagePromise = page.waitForEvent("popup");
@@ -75,4 +80,18 @@ test.describe("footer", () => {
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/catalogsearch/advanced/');
     await expect(page.getByRole('heading', {name: 'Advanced Search'})).toBeVisible();
   }); 
+
+  test('Verify that "Search terms" link redirects on a corresponding page', async ({ page }) => {
+    clickSearchTerms(page);
+    await expect(page).toHaveURL(SEARCH_TERMS_URL);
+
+    const navigationMenuItems = page.getByRole('navigation').getByRole('listitem');
+
+    for (const item of await navigationMenuItems.all()) {
+        await item.click();
+        clickSearchTerms(page);
+        await expect(page).toHaveURL(SEARCH_TERMS_URL);
+        expect(page).toHaveTitle('Popular Search Terms');
+    }
+  })
 });
