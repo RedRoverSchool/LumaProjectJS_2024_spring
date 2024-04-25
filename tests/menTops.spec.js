@@ -29,6 +29,7 @@ test.describe('menTops', () => {
      await expect(page.locator('.base') ).toHaveText('Tops');
      await expect(page).toHaveURL( 'https://magento.softwaretestingboard.com/men/tops-men.html');
    })
+
    test('Check that category drop-down displays the products', async ({page}) => {
     await page.goto('https://magento.softwaretestingboard.com/men/tops-men.html');
     await page.getByRole('tab', {name:'Category' }).click();
@@ -83,6 +84,7 @@ test.describe('menTops', () => {
 
     await expect(prices).toEqual(sortedPrices);
   })
+
   test("Check the name of 14 shopping styles in the Men's/Tops section.", async ({ page }) => {
     const listStyle = [
     'Insulated',
@@ -130,18 +132,17 @@ test.describe('menTops', () => {
     'Tees',
     'Tanks'
   ]
-
-  const topMenPage = 'men/tops-men.html';
+    await page.locator('#ui-id-5').hover();
+    await page.locator('#ui-id-17').click();
 
   for (let i = 0; i < categoriesList.length; i++) {
-    await page.goto(topMenPage);
-    await page.locator('.filter-options-title').getByText('Category').click();
+    await page.getByRole('tab', {name:'Category' }).click();
     await page.locator(categoriesList[i]).click();
     await expect(page.locator(`.filter-value:has-text('${expectedTitles[i]}')`)).toContainText(expectedTitles[i]);
     await expect(page).toHaveURL(subcategoryLinks[i]);
 
     await page.locator('.block-actions.filter-actions > a > span').getByText('Clear All').click();
-    await expect(page).toHaveURL(topMenPage);
+    await expect(page).toHaveURL('men/tops-men.html');
     }
  });
 
@@ -152,4 +153,42 @@ test.describe('menTops', () => {
   
   await expect(page.locator('a[href*= "men/tops-men.html?style_general=116"]').filter({ hasText: 'Insulated 5 item' })).toBeVisible();
   })
+
+  test('Verify the count for each subCategory on Tops page is the same as count of items on each specific page', async ({page}) =>{
+
+    const countOfItemsForEachCategory = [
+      '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(1) > a > span',
+      '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(2) > a > span',
+      '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(3) > a > span',
+      '.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(4) > a > span'
+    ];
+    
+    await page.locator('#ui-id-5').hover();
+    await page.locator('#ui-id-17').click();
+
+    const countOnPageCanBe = 12;
+
+    for (let i = 0; i < countOfItemsForEachCategory.length; i++) {
+      await page.getByRole('tab', { name: 'Category' }).click();
+      const innerTextFromLocator = await page.locator(countOfItemsForEachCategory[i]).innerText();
+      const CountItemInTopPage = parseInt(innerTextFromLocator, 10);
+      await page.locator(countOfItemsForEachCategory[i]).click();
+
+      let totalItemCountPerPage = 0;
+
+      const countOfItemsInPage = await page.locator('li[class="item product product-item"]').count();
+      totalItemCountPerPage += countOfItemsInPage;
+
+   
+      if (CountItemInTopPage > countOnPageCanBe) {
+        await  page.getByRole('link', { name: 'Next' }).click() 
+        const countOfItemsInNextPage = await page.locator('li[class="item product product-item"]').count();
+        totalItemCountPerPage += countOfItemsInNextPage;
+    }
+
+      expect(totalItemCountPerPage).toEqual(CountItemInTopPage);
+      await page.locator('.block-actions.filter-actions > a > span').getByText('Clear All').click();
+    }
+});
+
 })

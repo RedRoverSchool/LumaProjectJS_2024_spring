@@ -219,6 +219,43 @@ test.describe('watchesPage', () => {
             await page.getByRole("tab", { name: "Material" }).click();
         }
     });
+
+    const listOfWatchMaterials = [
+      "Leather",
+      "Metal",
+      "Plastic",
+      "Rubber",
+      "Stainless Steel",
+      "Silicone",
+    ];
+
+    listOfWatchMaterials.forEach((material) => {
+      test(`Verify the related products are displayed after applying ${material} Material filter on the Gear/Watches page`, async ({
+        page,
+      }) => {
+        test.slow();
+        await page.getByRole("menuitem", { name: "Gear" }).hover();
+        await page.getByRole("menuitem", { name: "Watches" }).click();
+
+        await page.getByRole("tab", { name: "Material" }).click();
+        await page
+          .locator("div.filter-options-content ol li a")
+          .getByText(material)
+          .click();
+        const arrayOfProducts = await page
+          .locator("a.product-item-link[href]")
+          .allInnerTexts();
+
+        for (let product of arrayOfProducts) {
+          await page.getByText(product).click();
+          await page.getByRole("tab", { name: "More Information" }).click();
+          await expect(
+            page.getByLabel("More Information").locator("div")
+          ).toContainText(material);
+          await page.goBack();
+        }
+      });
+    });
 })
 
     

@@ -132,6 +132,33 @@ test.describe('page checkout/cart', () => {
 
   })
 
+    test ('shipping: Verify the rate is fixed for orders to countries other than the USA', async ({ page }) => {
 
+        await page.goto('/emma-leggings.html');
+        if (await page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible()) {
+            await page.getByRole('button', { name: 'Consent' }).click();
+        };
+        await page.locator('#option-label-size-143-item-171').click();
+        await page.locator('#option-label-color-93-item-57').click();
+        await page.getByRole('button', {name: 'Add to Cart'}).click();
+        await page.waitForTimeout(3000);
+        await page.locator('.counter-label').click();
+        await page.getByText('View and Edit Cart').click();
+        await page.waitForTimeout(3000);
 
+        await page.locator('#block-shipping').first().click();
+        const allCountryOptions = await page.locator('#shipping-zip-form select').first().innerText();
+        const arrayCountries =  allCountryOptions.split('\n');
+        const arrayCountriesFinal = arrayCountries.filter(function(country) {
+            return country !== 'United States';
+        })
+        function getRandomCountry(arrayCountriesFinal) {
+            return arrayCountriesFinal[Math.floor(Math.random() * arrayCountriesFinal.length)];
+        }
+        const randomCountry = getRandomCountry(arrayCountriesFinal);
+        await page.locator('#shipping-zip-form select').first().selectOption(randomCountry);
+        await page.waitForTimeout(3000);
+
+        await expect(page.getByLabel('Table Rate')).not.toBeVisible();
+    })
 })
