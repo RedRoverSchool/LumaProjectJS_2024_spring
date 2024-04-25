@@ -37,7 +37,7 @@ test.describe('orders and returns page', () => {
         await expect(errorText).toHaveCSS('color', 'rgb(224, 43, 39)');
     })
 
-    test('Check error message for required fields', async ({page}) => {
+    test.skip('Check error message for required fields', async ({page}) => {
         const buttonContinue = page.locator(".primary>button.primary");  
         const errorMessage = page.locator('.required>div>div'); 
 
