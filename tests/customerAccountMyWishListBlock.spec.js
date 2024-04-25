@@ -24,6 +24,7 @@ test.describe("customerAccountMyWishListBlock", () => {
         await page.getByRole("link", { name: "My Account"}).click();
         expect(page.getByTitle("My Account"));
         
+        
         await expect(page.getByRole("link", { name: "Go to Wish List"})).toBeVisible()
     });
 
