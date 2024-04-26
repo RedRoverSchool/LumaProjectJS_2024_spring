@@ -12,6 +12,7 @@ export const MEN_PAGE_HEADER = "Men";
 export const COMPARE_PRODUCTS_TEXT = "Compare Products";
 export const MY_WISH_LIST_TEXT = "My Wish List";
 export const SEARCH_QUERY = "short";
+export const SEARCH_QUERY_UPPERCASE = SEARCH_QUERY.toLocaleUpperCase();
 export const WOMEN_TOPS_HEADER = 'Tops'
 export const WOMEN_BOTTOMS_HEADER = 'Bottoms'
 
