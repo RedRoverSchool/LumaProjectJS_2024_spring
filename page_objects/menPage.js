@@ -10,12 +10,6 @@ class MenPage {
         getCompareProducts: () => this.page.locator('[role="heading"]').first(),
         getMyWishList: () => this.page.locator('[role="heading"]').nth(1)
     }
-
-    async clickWomenTeesLink() {
-        await this.locators.getWomenTeesLink().click();
-
-        return new TeesWomenPage(this.page);
-    }
 }
 
 export default MenPage;
