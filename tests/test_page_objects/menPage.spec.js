@@ -10,7 +10,7 @@ test('Menu/Men available to click, see clothes only for men', async ({ page }) =
     await homePage.open();
     await homePage.clickMenLink();
 
-    await expect(page).toHaveURL(BASE_URL + MEN_PAGE_POINT);
+    await expect(page).toHaveURL(BASE_URL + MEN_PAGE_END_POINT);
     await expect(menPage.locators.getMenPageHeader()).toContainText(MEN_PAGE_HEADER);
     await expect(menPage.locators.getCompareProducts()).toBeVisible(COMPARE_PRODUCTS_TEXT);
     await expect(menPage.locators.getMyWishList()).toBeVisible(MY_WISH_LIST_TEXT);

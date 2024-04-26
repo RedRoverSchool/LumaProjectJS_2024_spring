@@ -2,7 +2,7 @@
 export const BASE_URL = 'https://magento.softwaretestingboard.com';
 export const WHATS_NEW_PAGE_END_POINT = '/what-is-new.html';
 export const TEES_WOMEN_PAGE_END_POINT = '/women/tops-women/tees-women.html';
-export const MEN_PAGE_POINT = '/men.html';
+export const MEN_PAGE_END_POINT = '/men.html';
 
 
 //test data
