@@ -16,21 +16,28 @@ test.describe('womenPage.spec', () => {
 
     await expect(page).toHaveURL(BASE_URL + TEES_WOMEN_PAGE_END_POINT);
   });
-  test('Links with categories names are located on the page and clickable', async ({ page }) => {
+  test('Links with category names are located on the page, clickable, and blue', async ({ page }) => {
     const homePage = new HomePage(page);
     const womenPage = new WomenPage(page);
     const topsWomenPage = new TopsWomenPage(page)
     const bottomsWomenPage = new BottomsWomenPage(page)
-    
+    const getWomenTopsLink = new WomenPage(page);
+    const getWomenBottomsLink = new WomenPage
     
     await homePage.open();
     await homePage.clickWomenLink();
-    await womenPage.clickWomenTopsLink()
 
+    await expect(womenPage.locators.getWomenTopsLink()).toHaveCSS('color', 'rgb(0, 107, 180)')
+    
+    await womenPage.clickWomenTopsLink()
     await expect(page).toHaveURL(BASE_URL + TOPS_WOMEN_PAGE_END_POINT)
     await expect(topsWomenPage.locators.getWomenTopsPageHeader()).toHaveText(WOMEN_TOPS_HEADER);
+    
 
     await homePage.clickWomenLink();
+
+    await expect(womenPage.locators.getWomenBottomsLink()).toHaveCSS('color', 'rgb(0, 107, 180)')
+
     await womenPage.clickWomenBottomsLink()
 
     await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT)
