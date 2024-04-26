@@ -30,4 +30,41 @@ test.describe('Women bottoms page', () => {
         await page.getByTitle("List").first().click();
         expect(await page.locator("div[class*=products-list]")).toHaveClass(/products-list/);
     });
+
+    test('TC 05.2.1_03 The Shopping options filter has 13 droplist categories on the Women/Bottoms page.', async ({ page }) => {
+        await page.goto('/'+'women/bottoms-women.html');
+        
+        const shoppingOptionsFilter = page.locator('.filter-options>div');
+        const textShoppingOptionsFilter = await shoppingOptionsFilter.allInnerTexts();
+        const expectedFilter = [
+            'CATEGORY',
+            'STYLE',
+            'SIZE',
+            'PRICE',
+            'COLOR',
+            'MATERIAL',
+            'ECO COLLECTION',
+            'PERFORMANCE FABRIC',
+            'ERIN RECOMMENDS',
+            'NEW',
+            'SALE',
+            'PATTERN',
+            'CLIMATE'
+        ]
+        
+        await expect(shoppingOptionsFilter).toHaveCount(13); 
+        expect(textShoppingOptionsFilter).toEqual(expectedFilter); 
+    })
+
+    test('TC 05.2.1_04 Display mode of products is displayed on the Women/Bottoms page', async ({ page }) => {
+        await page.goto('/'+'women/bottoms-women.html');
+
+        await page.getByText('Category').click();
+        await page.getByRole('link', {name:'Shorts'}).click();
+
+        await expect(page.getByTitle('Grid').first()).toBeVisible();
+        await expect(page.getByTitle('List').first()).toBeVisible();
+        await expect(page.locator('#toolbar-amount').first()).toHaveText('12 Items');
+        await expect(page.locator('.item.product.product-item')).toHaveCount(12);
+    })
 })

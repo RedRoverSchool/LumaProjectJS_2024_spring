@@ -97,8 +97,36 @@ test.describe("create account", () => {
     await page.getByRole('button', {name: 'Create an Account'}).click();
 
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/');
+  })
 
+  test('TC 10.3.1_13 Registration/Create Account as a new user', async({page})=> {
+    await page.getByRole('link',{name:'Sign In'}).click()
+    const buttonRegistration = page.locator('div.primary>a[href="https://magento.softwaretestingboard.com/customer/account/create/"]')
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/')
+    await expect(page).toHaveTitle(/Customer Login/)
+    await expect(buttonRegistration).toHaveText('Create an Account')
 
-})
+    await buttonRegistration.click()
 
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/create/')
+    await expect(page).toHaveTitle(/Create New Customer Account/)
+
+    const randomNumber =Math.random().toString(36).substring(2, 10);
+    const firstName = `Jon_${randomNumber}`;
+    const lastName = `Wik_${randomNumber}`;
+    const email = `tt_${randomNumber}@example.com`;
+    const passw = `Jon_${randomNumber}`
+
+    await page.locator('#firstname').fill(firstName)
+    await page.locator('#lastname').fill(lastName)
+    await page.locator('#email_address').fill(email)
+    await page.locator('#password').fill(passw)
+    await page.locator('#password-confirmation').fill(passw)
+    await page.getByRole('button',{name:'Create an Account'}).click()
+
+    await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/')
+    await expect(page).toHaveTitle(/My Account/)
+    const successMassage = page.locator('div.message-success')
+    await expect(successMassage).toHaveText('Thank you for registering with Main Website Store.')
+  })
 })

@@ -146,6 +146,13 @@ test.describe('header shopping cart modal window', () => {
         await expect(page.locator('.amount.price-container .price')).toHaveText('$' + totalPrice);
     })
 
+    test('Verify the modal windows can close', async ({ page }) => {
+        await page.locator('.action.showcart').click();
+        await page.locator('.action.close').click();
+        
+        await expect(page.locator('.subtitle.empty')).not.toBeVisible();
+    })
+
     test('Verify the modal windows opens', async ({ page }) => {
         await page.locator('.action.showcart').click();
     
