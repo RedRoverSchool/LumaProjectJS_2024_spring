@@ -98,4 +98,12 @@ test.describe("womenTops", () => {
            
    })
    
+   test ('Verify clicking on “Tops” in the “Women” menu section', async({page})=>{
+    await page.getByText('Women').hover()
+    await page.getByRole('menuitem', { name: 'Tops' }).click()
+
+    await expect(page).toHaveURL(WOMEN_TOPS_URL)
+    await expect(page).toHaveTitle('Tops - Women')
+   }) 
+   
 });

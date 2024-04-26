@@ -4,37 +4,69 @@ import MenPage from "./menPage";
 import RadiantTeePage from "./radiantTeePage.js";
 
 class HomePage {
-    constructor(page) {
-        this.page = page
-    }
+  constructor(page) {
+    this.page = page;
+  }
 
-    locators = {
-        getWhatsNewLink: () => this.page.getByRole('listitem').filter({ hasText: "What's New" }),
-        getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
-        getMenLink: () => this.page.getByRole('menuitem', {name: 'Men'}).last(),
+  locators = {
+    getWhatsNewLink: () =>
+      this.page.getByRole("listitem").filter({ hasText: "What's New" }),
+    getWomenLink: () =>
+      this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
+    getMenLink: () => this.page.getByRole('menuitem', {name: 'Men'}).last(),,
         getRadiantTee: () => this.page.getByTitle('Radiant Tee')          
-    }
+    getSearchInputField: () =>
+      this.page.getByPlaceholder("Search entire store here..."),
+    getWaitForAutocompleteSearchItems: () =>
+      this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
+    getAutocompleteSearchItems: () =>
+      this.page.locator("#search_autocomplete>ul>li>span:first-child"),
+    getSearchButton: () => this.page.locator('button[title="Search"]'),
+    getRadiantTee: () => this.page.getByTitle('Radiant Tee')          
 
-    async open() {
-        await this.page.goto('/')
-    }
+  };
 
-    async clickWhatsNewLink() {
-        await this.locators.getWhatsNewLink().click();
+  async open() {
+    await this.page.goto("/");
+  }
 
-        return new WhatsNewPage(this.page);
-    }
+  async clickWhatsNewLink() {
+    await this.locators.getWhatsNewLink().click();
 
-    async clickWomenLink() {
-        await this.locators.getWomenLink().click();
+    return new WhatsNewPage(this.page);
+  }
 
-        return new WomenPage(this.page);
-    }
+  async clickWomenLink() {
+    await this.locators.getWomenLink().click();
 
-    async clickMenLink() {
-        await this.locators.getMenLink().click();
+    return new WomenPage(this.page);
+  }
 
-        return new MenPage(this.page);
+  async clickMenLink() {
+    await this.locators.getMenLink().click();
+
+    return new MenPage(this.page);
+  }
+
+  async fillSearchInputField(searchQuerry) {
+    await this.locators.getSearchInputField().fill(searchQuerry);
+
+    return this;
+  }
+
+  async executeSearchAutocompleteList() {
+    await this.locators.getWaitForAutocompleteSearchItems();
+    const searchAutocompleteList = await this.locators
+      .getAutocompleteSearchItems()
+      .allInnerTexts();
+
+    return searchAutocompleteList;
+  }
+
+    async clearSearchInputField() {
+        await this.locators.getSearchInputField().clear();
+
+        return this;
     }
 
     async clickRadiantTee() {
