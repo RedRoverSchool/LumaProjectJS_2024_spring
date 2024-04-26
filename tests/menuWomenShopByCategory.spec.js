@@ -22,12 +22,13 @@ test.describe('menu women shop by category', () => {
       const linkTops = await page.getByRole('link', { name: 'Tops' })
       const linkBottoms = await page.getByRole('link', { name: 'Bottoms' })
 
+      await expect(linkTops).toHaveCSS('color', 'rgb(0, 107, 180)')
+      await expect(linkBottoms).toHaveCSS('color', 'rgb(0, 107, 180)')
+
       await linkTops.click()
       await expect(page).toHaveURL('/women/tops-women.html')
       await expect(page.getByRole('heading', { name: 'Tops' })).toBeVisible()
-      //await expect(linkTops).toHaveCSS('color', 'rgb(0, 107, 180)')
       
-
       await page.locator('.logo>img').click()
       await page.getByRole('link', { name: 'Women'}).click()
 
