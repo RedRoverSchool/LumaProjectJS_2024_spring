@@ -19,6 +19,7 @@ class HomePage {
       this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () =>
       this.page.locator("#search_autocomplete>ul>li>span:first-child"),
+    getSearchButton: () => this.page.locator('button[title="Search"]')
   };
 
   async open() {
@@ -37,11 +38,11 @@ class HomePage {
     return new WomenPage(this.page);
   }
 
-    async clickMenLink() {
-        await this.locators.getMenLink().click();
+  async clickMenLink() {
+    await this.locators.getMenLink().click();
 
-        return new MenPage(this.page);
-    }
+    return new MenPage(this.page);
+  }
 
   async fillSearchInputField(searchQuerry) {
     await this.locators.getSearchInputField().fill(searchQuerry);
