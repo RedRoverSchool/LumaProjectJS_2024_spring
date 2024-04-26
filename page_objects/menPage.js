@@ -1,5 +1,3 @@
-import TeesWomenPage from "./teesWomenPage";
-
 class MenPage {
     constructor(page) {
         this.page = page;
