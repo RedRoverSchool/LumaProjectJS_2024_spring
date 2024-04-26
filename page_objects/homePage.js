@@ -1,5 +1,6 @@
 import WhatsNewPage from "./whatsNewPage.js";
 import WomenPage from "./womenPage.js";
+import MenPage from "./menPage";
 
 class HomePage {
     constructor(page) {
@@ -8,7 +9,8 @@ class HomePage {
 
     locators = {
         getWhatsNewLink: () => this.page.getByRole('listitem').filter({ hasText: "What's New" }),
-        getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']")
+        getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
+        getMenLink: () => this.page.getByRole('menuitem', {name: 'Men'}).last()
     }
 
     async open() {
@@ -25,6 +27,12 @@ class HomePage {
         await this.locators.getWomenLink().click();
 
         return new WomenPage(this.page);
+    }
+
+    async clickMenLink() {
+        await this.locators.getMenLink().click();
+
+        return new MenPage(this.page);
     }
 }
 export default HomePage;
