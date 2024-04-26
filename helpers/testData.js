@@ -6,7 +6,7 @@ export const TEES_WOMEN_PAGE_END_POINT = '/women/tops-women/tees-women.html';
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
-
+export const SEARCH_QUERY = "short";
 
 
 //login  credential
