@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY } from "../../helpers/testData.js";
+import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE } from "../../helpers/testData.js";
 
 test.describe('homePage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -42,5 +42,27 @@ test.describe('homePage.spec', () => {
         );
         await homePage.fillSearchInputField(SEARCH_QUERY);
         await expect(homePage.locators.getSearchButton()).not.toHaveAttribute("disabled");
+    });
+
+    test('Verify the search field is not case-sensitive', async ({ page }) => {
+
+        const homePage = new HomePage(page);
+
+        await homePage.fillSearchInputField(SEARCH_QUERY);
+
+        const autocompleteListLowerCaseActual = await homePage.executeSearchAutocompleteList();
+
+        await homePage.clearSearchInputField();
+        await homePage.fillSearchInputField(SEARCH_QUERY_UPPERCASE);
+
+        const autocompleteListUpperCaseActual =
+            await homePage.executeSearchAutocompleteList();
+
+        expect(autocompleteListLowerCaseActual.sort()).toEqual(
+            autocompleteListUpperCaseActual.sort()
+        );
+        expect(autocompleteListLowerCaseActual.length).toEqual(
+            autocompleteListUpperCaseActual.length
+        );
     });
 })

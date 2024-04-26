@@ -58,5 +58,12 @@ class HomePage {
 
     return searchAutocompleteList;
   }
+
+    async clearSearchInputField() {
+        await this.locators.getSearchInputField().clear();
+
+        return this;
+    }
+
 }
 export default HomePage;
