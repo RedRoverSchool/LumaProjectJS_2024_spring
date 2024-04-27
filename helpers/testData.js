@@ -16,6 +16,19 @@ export const SEARCH_QUERY = "short";
 export const SEARCH_QUERY_UPPERCASE = SEARCH_QUERY.toLocaleUpperCase();
 export const WOMEN_TOPS_HEADER = 'Tops'
 export const WOMEN_BOTTOMS_HEADER = 'Bottoms'
-
+export const shoppingItem1 = {
+    name: "Radiant Tee",
+    price: 22.00,
+    size: "S",
+    color: "Blue",
+    quantity: 1
+};
+export const shoppingItem2 = {
+    name: "Radiant Tee",
+    price: 22.00,
+    size: "M",
+    color: "Blue",
+    quantity: 1
+};
 
 //login  credential
