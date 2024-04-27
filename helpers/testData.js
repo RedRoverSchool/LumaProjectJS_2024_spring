@@ -5,6 +5,7 @@ export const TEES_WOMEN_PAGE_END_POINT = '/women/tops-women/tees-women.html';
 export const MEN_PAGE_END_POINT = '/men.html';
 export const TOPS_WOMEN_PAGE_END_POINT = '/women/tops-women.html';
 export const BOTTOMS_WOMEN_PAGE_END_POINT = '/women/bottoms-women.html';
+export const MEN_BOTTOMS_PAGE_END_POINT = '/men/bottoms-men.html'
 export const TRAINING_URL = "https://magento.softwaretestingboard.com/training.html";
 export const SEARCH_TERMS_POPULAR_PAGE_END_POINT = '/search/term/popular/';
 
