@@ -4,8 +4,8 @@ import MenPage from "./menPage";
 import RadiantTeePage from "./radiantTeePage.js";
 import TrainingPage from "./trainingPage.js";
 import CreateAccountPage from "./createAccountPage.js";
+import MenBottomsPage from "./menBottomsPage";
 import SearchTermPopular from "./searchTermPopularPage.js";
-
 
 class HomePage {
   constructor(page) {
@@ -16,6 +16,7 @@ class HomePage {
     getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
     getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
     getMenLink: () => this.page.getByRole('menuitem', {name: 'Men'}).last(),
+    getMenBottomsLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
     getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
     getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
@@ -51,6 +52,18 @@ class HomePage {
 	await this.locators.getTrainingLink().click();
 
 	return new TrainingPage(this.page);;
+  }
+
+  async hoverMenLink() {
+    await this.locators.getMenLink().hover();
+
+    return this;
+  }
+
+  async clickMenBottomsLink() {
+    await this.locators.getMenBottomsLink().click();
+
+    return new MenBottomsPage(this.page);
   }
 
   async fillSearchInputField(searchQuerry) {
