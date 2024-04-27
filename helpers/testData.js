@@ -32,6 +32,7 @@ export const FIRST_NAME = 'Svetlana';
 export const LAST_NAME = 'Kudryvzeva';
 export const PASSWORD = '12345Sveta!';
 export const PASSWORD_CONFIRM = '12345Sveta!';
+export const NAVBAR_MENU = ["What's New", 'Women', 'Men', 'Gear', 'Training', 'Sale']
 
 function generateRandomEmail() {
     const mailbox = Math.random().toString(36).substring(2, 10);
