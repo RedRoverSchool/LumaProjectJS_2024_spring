@@ -60,4 +60,15 @@ test.describe('header.spec', () => {
         await homePage.open();
         await expect(header.locators.getShoppingCart()).toBeVisible();
     })
+
+    test('verify the modal windows opens on click on shopping cart icon', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const header = new Header(page);
+
+        await homePage.open();
+        await header.locators.getShoppingCart().click();
+
+        await expect(header.locators.getMiniCart()).toBeVisible();
+        await expect(page).toHaveURL(BASE_URL);
+    })
 })

@@ -11,7 +11,8 @@ class Header {
         getTotalQuantity: ()=> this.page.locator('.count:first-child'),
         getTotalCost: () => this.page.locator('.subtotal .price'),
         getProceedToCheckoutBtn: () => this.page.getByRole('button', {name: 'Proceed to Checkout'}),
-        getShoppingCart: () => this.page.getByRole('link', { name: ' My Cart' })
+        getShoppingCart: () => this.page.getByRole('link', { name: ' My Cart' }),
+        getMiniCart: () => this.page.locator('#ui-id-1')
     }
 
     async clickLogoLink() {
