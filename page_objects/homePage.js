@@ -3,6 +3,7 @@ import WomenPage from "./womenPage.js";
 import MenPage from "./menPage";
 import RadiantTeePage from "./radiantTeePage.js";
 import CreateAccountPage from "./createAccountPage.js";
+import BottomsWomenPage from "./bottomsWomenPage.js";
 
 class HomePage {
   constructor(page) {
@@ -18,7 +19,8 @@ class HomePage {
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getSearchButton: () => this.page.locator('button[title="Search"]'),
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
-    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'})
+    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
+    getBottomsWomenLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
   };
 
   async open() {
@@ -74,6 +76,18 @@ class HomePage {
     await this.locators.getCreateAccountLink().click();
 
     return new CreateAccountPage(this.page);
+  }
+
+  async clickBottomsWomenLink() {
+    await this.locators.getBottomsWomenLink().click();
+
+    return new BottomsWomenPage(this.page);
+  }
+
+  async hoverWomenMenuitem() {
+    await this.locators.getWomenLink().hover();
+
+    return this;
   }
 }
 export default HomePage;
