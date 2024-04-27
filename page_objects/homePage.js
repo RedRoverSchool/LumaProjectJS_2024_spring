@@ -1,7 +1,11 @@
 import WhatsNewPage from "./whatsNewPage.js";
 import WomenPage from "./womenPage.js";
 import MenPage from "./menPage";
+import MenBottomsPage from "./menBottomsPage.js";
 import RadiantTeePage from "./radiantTeePage.js";
+import TrainingPage from "./trainingPage.js";
+import CreateAccountPage from "./createAccountPage.js";
+import BottomsWomenPage from "./bottomsWomenPage.js";
 
 class HomePage {
   constructor(page) {
@@ -12,11 +16,22 @@ class HomePage {
     getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
     getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
     getMenLink: () => this.page.getByRole('menuitem', {name: 'Men'}).last(),
+    getMenBottomsLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
+    getSearchInputField: () =>
+      this.page.getByPlaceholder("Search entire store here..."),
+    getWaitForAutocompleteSearchItems: () =>
+      this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
+    getAutocompleteSearchItems: () =>
+      this.page.locator("#search_autocomplete>ul>li>span:first-child"),
+    getSearchButton: () => this.page.locator('button[title="Search"]'),
     getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
     getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getSearchButton: () => this.page.locator('button[title="Search"]'),
-    getRadiantTee: () => this.page.getByTitle('Radiant Tee')
+    getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
+    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
+    getBottomsWomenLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
+    getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' })
   };
 
   async open() {
@@ -41,6 +56,24 @@ class HomePage {
     return new MenPage(this.page);
   }
 
+  async clickTrainingLink() {
+	await this.locators.getTrainingLink().click();
+
+	return new TrainingPage(this.page);;
+  }
+
+  async hoverMenLink() {
+    await this.locators.getMenLink().hover();
+
+    return this;
+  }
+
+  async clickMenBottomsLink() {
+    await this.locators.getMenBottomsLink().click();
+
+    return new MenBottomsPage(this.page);
+  }
+
   async fillSearchInputField(searchQuerry) {
     await this.locators.getSearchInputField().fill(searchQuerry);
 
@@ -62,10 +95,34 @@ class HomePage {
         return this;
     }
 
+    async hoverMenLink() {
+      await this.locators.getMenLink().hover();
+  
+      return this;
+    }
+
   async clickRadiantTee() {
         await this.locators.getRadiantTee().click();
 
         return new RadiantTeePage(this.page);
+  }
+
+  async clickCreateAccountLink(){
+    await this.locators.getCreateAccountLink().click();
+
+    return new CreateAccountPage(this.page);
+  }
+
+  async clickBottomsWomenLink() {
+    await this.locators.getBottomsWomenLink().click();
+
+    return new BottomsWomenPage(this.page);
+  }
+
+  async hoverWomenMenuitem() {
+    await this.locators.getWomenLink().hover();
+
+    return this;
   }
 }
 export default HomePage;
