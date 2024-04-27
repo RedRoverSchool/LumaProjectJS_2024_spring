@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE } from "../../helpers/testData.js";
+import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE, SEARCH_RESULTS_JACKET_PAGE_END_POINT, SEARCH_VALID_VALUE, SEARCH_RESULTS_JACKET_HEADER} from "../../helpers/testData.js";
+import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
 
 test.describe('homePage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -64,5 +65,17 @@ test.describe('homePage.spec', () => {
         expect(autocompleteListLowerCaseActual.length).toEqual(
             autocompleteListUpperCaseActual.length
         );
+    });
+
+    test('Verify user can make search entered the valid text in the search field', async({page}) => {
+        
+        const homePage = new HomePage(page);
+        const searchResultsJacketPage = new SearchResultsJacketPage(page);
+        
+        await homePage.fillSearchInputField(SEARCH_VALID_VALUE);
+        await homePage.locators.getSearchButton().click();
+
+        await expect(searchResultsJacketPage.locators.getSearchResultsHeader()).toHaveText(SEARCH_RESULTS_JACKET_HEADER)
+        await expect(page).toHaveURL(BASE_URL + SEARCH_RESULTS_JACKET_PAGE_END_POINT);
     });
 })
