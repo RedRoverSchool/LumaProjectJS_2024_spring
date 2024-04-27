@@ -43,4 +43,6 @@ export const EMAIL = generateRandomEmail();
 export const MY_ACCOUNT_HEADER = 'My Account';
 export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store.';
 
+export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
+
 //login  credential
