@@ -17,8 +17,10 @@ export const MY_WISH_LIST_TEXT = "My Wish List";
 export const SEARCH_QUERY = "short";
 export const SEARCH_QUERY_UPPERCASE = SEARCH_QUERY.toLocaleUpperCase();
 export const TRAINING_PAGE_HEADER = 'Training';
-export const WOMEN_TOPS_HEADER = 'Tops'
-export const WOMEN_BOTTOMS_HEADER = 'Bottoms'
+export const WOMEN_TOPS_HEADER = 'Tops';
+export const WOMEN_BOTTOMS_HEADER = 'Bottoms';
+export const SEARCH_TERMS_POPULAR_HEADER = 'Popular Search Terms';
+
 
 export const shoppingItem1 = {
     name: "Radiant Tee",
