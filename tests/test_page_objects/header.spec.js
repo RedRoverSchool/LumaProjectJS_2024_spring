@@ -52,4 +52,12 @@ test.describe('header.spec', () => {
         await expect(page).toHaveURL(BASE_URL + SHIPPING_PAGE_END_POINT);
         await expect(shippingPage.locators.getShippingProgressBar()).toHaveText(SHIPPING_PROGRESS_BAR_TEXT);       
     })
+
+    test('verify display the shopping cart icon', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const header = new Header(page);
+
+        await homePage.open();
+        await expect(header.locators.getShoppingCart()).toBeVisible();
+    })
 })

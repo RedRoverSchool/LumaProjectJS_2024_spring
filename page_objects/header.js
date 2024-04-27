@@ -10,8 +10,8 @@ class Header {
         getCounterNumber: ()=> this.page.locator('.counter-number'),        
         getTotalQuantity: ()=> this.page.locator('.count:first-child'),
         getTotalCost: () => this.page.locator('.subtotal .price'),
-        getProceedToCheckoutBtn: () => this.page.getByRole('button', {name: 'Proceed to Checkout'})
-        
+        getProceedToCheckoutBtn: () => this.page.getByRole('button', {name: 'Proceed to Checkout'}),
+        getShoppingCart: () => this.page.getByRole('link', { name: ' My Cart' })
     }
 
     async clickLogoLink() {
