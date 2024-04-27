@@ -97,7 +97,7 @@ test.describe("footer", () => {
   });
 
   test('the “Search” terms link is clickable ', async ({ page }) => {
-    await page.locator('a[href="https://magento.softwaretestingboard.com/search/term/popular/"]').click();
+    await page.getByRole('a[href="https://magento.softwaretestingboard.com/search/term/popular/"]').click();
 
     await page.waitForURL('**/search/term/popular/');
     await expect(page.getByRole('heading', { name: 'Popular Search Terms' })).toBeVisible();

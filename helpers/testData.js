@@ -6,6 +6,8 @@ export const MEN_PAGE_END_POINT = '/men.html';
 export const TOPS_WOMEN_PAGE_END_POINT = '/women/tops-women.html';
 export const BOTTOMS_WOMEN_PAGE_END_POINT = '/women/bottoms-women.html';
 export const TRAINING_URL = "https://magento.softwaretestingboard.com/training.html";
+export const SEARCH_TERMS_POPULAR_PAGE_END_POINT = '/search/term/popular/';
+
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
@@ -17,6 +19,7 @@ export const SEARCH_QUERY_UPPERCASE = SEARCH_QUERY.toLocaleUpperCase();
 export const TRAINING_PAGE_HEADER = 'Training';
 export const WOMEN_TOPS_HEADER = 'Tops'
 export const WOMEN_BOTTOMS_HEADER = 'Bottoms'
+
 export const shoppingItem1 = {
     name: "Radiant Tee",
     price: 22.00,
@@ -36,14 +39,6 @@ export const LAST_NAME = 'Kudryvzeva';
 export const PASSWORD = '12345Sveta!';
 export const PASSWORD_CONFIRM = '12345Sveta!';
 
-function generateRandomEmail() {
-    const mailbox = Math.random().toString(36).substring(2, 10);
-    const domain = "gmail.com";
-    return `${mailbox}@${domain}`;
-  }
 
-export const EMAIL = generateRandomEmail(); 
-export const MY_ACCOUNT_HEADER = 'My Account';
-export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store.';
 
 //login  credential

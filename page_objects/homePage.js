@@ -4,6 +4,8 @@ import MenPage from "./menPage";
 import RadiantTeePage from "./radiantTeePage.js";
 import TrainingPage from "./trainingPage.js";
 import CreateAccountPage from "./createAccountPage.js";
+import SearchTermPopular from "./searchTermPopularPage.js";
+
 
 class HomePage {
   constructor(page) {
@@ -41,7 +43,6 @@ class HomePage {
 
   async clickMenLink() {
     await this.locators.getMenLink().click();
-
     return new MenPage(this.page);
   }
 
@@ -72,16 +73,11 @@ class HomePage {
         return this;
     }
 
-  async clickRadiantTee() {
-        await this.locators.getRadiantTee().click();
 
-        return new RadiantTeePage(this.page);
-  }
+    async clickSearchTermsLink() {
+      await this.locators.getSearchTermsLink().click();
 
-  async clickCreateAccountLink(){
-    await this.locators.getCreateAccountLink().click();
-
-    return new CreateAccountPage(this.page);
+      return new SearchTermPopular(this.page);
   }
 }
 export default HomePage;
