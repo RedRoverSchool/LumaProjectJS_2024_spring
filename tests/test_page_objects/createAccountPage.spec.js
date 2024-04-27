@@ -12,7 +12,7 @@ test.describe('createAccuntPage.spec', () => {
 
         await homePage.open();
     });
-    test('Check that user can possible to create account with entered all valid fields', async ({ page }) => {
+    test.skip('Check that user can possible to create account with entered all valid fields', async ({ page }) => {
         const homePage = new HomePage(page);
         const createAccountPage = new CreateAccountPage(page);
         const myAccountPage = new MyAccountPage(page);

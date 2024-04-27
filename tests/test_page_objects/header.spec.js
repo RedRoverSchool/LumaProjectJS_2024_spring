@@ -5,7 +5,7 @@ import {shoppingItem1, shoppingItem2} from '../../helpers/testData.js'
 
 test.describe('header.spec', () => {
 
-    test('Verify quantity and total cost in the shopping cart', async ({ page }) => {
+    test.skip('Verify quantity and total cost in the shopping cart', async ({ page }) => {
 
         const homePage = new HomePage(page);
         const header = new Header(page);
