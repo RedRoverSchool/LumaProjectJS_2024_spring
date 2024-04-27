@@ -5,6 +5,7 @@ export const TEES_WOMEN_PAGE_END_POINT = '/women/tops-women/tees-women.html';
 export const MEN_PAGE_END_POINT = '/men.html';
 export const TOPS_WOMEN_PAGE_END_POINT = '/women/tops-women.html';
 export const BOTTOMS_WOMEN_PAGE_END_POINT = '/women/bottoms-women.html';
+export const SHIPPING_PAGE_END_POINT = '/checkout/#shipping';
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
@@ -29,5 +30,6 @@ export const shoppingItem2 = {
     color: "Blue",
     quantity: 1
 };
+export const SHIPPING_PROGRESS_BAR_TEXT = 'Shipping';
 
 //login  credential
