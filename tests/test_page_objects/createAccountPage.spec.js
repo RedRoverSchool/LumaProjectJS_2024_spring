@@ -6,7 +6,7 @@ import MyAccountPage from "../../page_objects/myAccountPage.js";
 
 
 
-test.describe.only('createAccuntPage.spec', () => {
+test.describe('createAccuntPage.spec', () => {
     test.beforeEach(async ({ page }) => {
         const homePage = new HomePage(page);
 
