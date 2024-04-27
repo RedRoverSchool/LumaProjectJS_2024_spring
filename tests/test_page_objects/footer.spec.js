@@ -4,7 +4,6 @@ import Footer from '../../page_objects/footer.js';
 import SearchTermPopularPage from "../../page_objects/searchTermPopularPage.js";
 import { BASE_URL, SEARCH_TERMS_POPULAR_PAGE_END_POINT, SEARCH_TERMS_POPULAR_PAGE_HEADER } from "../../helpers/testData.js";
 
-
 test.describe('footer.spec', () => {
     test.beforeEach(async({page}) => {
         const homePage = new HomePage(page);
