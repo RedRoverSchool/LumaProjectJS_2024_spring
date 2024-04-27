@@ -1,7 +1,6 @@
 import WhatsNewPage from "./whatsNewPage.js";
 import WomenPage from "./womenPage.js";
 import MenPage from "./menPage";
-import MenBottomsPage from "./menBottomsPage.js";
 import RadiantTeePage from "./radiantTeePage.js";
 import TrainingPage from "./trainingPage.js";
 import CreateAccountPage from "./createAccountPage.js";
