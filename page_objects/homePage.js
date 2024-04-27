@@ -1,6 +1,7 @@
 import WhatsNewPage from "./whatsNewPage.js";
 import WomenPage from "./womenPage.js";
 import MenPage from "./menPage";
+import MenBottomsPage from "./menBottomsPage.js";
 
 class HomePage {
   constructor(page) {
@@ -19,7 +20,9 @@ class HomePage {
       this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () =>
       this.page.locator("#search_autocomplete>ul>li>span:first-child"),
-    getSearchButton: () => this.page.locator('button[title="Search"]')
+    getSearchButton: () => this.page.locator('button[title="Search"]'),
+
+   getMenBottomsTab: () => this.page.getByRole('menuitem', { name: 'Bottoms'}),
   };
 
   async open() {
@@ -65,5 +68,16 @@ class HomePage {
         return this;
     }
 
+    async hoverMenLink() {
+      await this.locators.getMenLink().hover();
+  
+      return this;
+    }
+
+    async clickMenBottomsTab() {
+    await this.locators.getMenBottomsTab().click ()
+
+    return new MenBottomsPage(this.page);
+  }
 }
 export default HomePage;
