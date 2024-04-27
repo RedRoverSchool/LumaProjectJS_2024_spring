@@ -50,6 +50,6 @@ test.describe('header.spec', () => {
         await shippingPage.locators.getShippingAddressHeader().waitFor(5000);
 
         await expect(page).toHaveURL(BASE_URL + SHIPPING_PAGE_END_POINT);
-        await expect(shippingPage.locators.getShippingProgressBar()).toHaveText(SHIPPING_PROGRESS_BAR_TEXTg);       
+        await expect(shippingPage.locators.getShippingProgressBar()).toHaveText(SHIPPING_PROGRESS_BAR_TEXT);       
     })
 })
