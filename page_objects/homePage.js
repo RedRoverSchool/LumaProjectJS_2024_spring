@@ -6,7 +6,6 @@ import RadiantTeePage from "./radiantTeePage.js";
 import TrainingPage from "./trainingPage.js";
 import CreateAccountPage from "./createAccountPage.js";
 import BottomsWomenPage from "./bottomsWomenPage.js";
-
 import SearchTermPopularPage from "./searchTermPopularPage.js";
 
 class HomePage {
