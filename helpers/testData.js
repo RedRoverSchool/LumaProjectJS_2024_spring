@@ -5,6 +5,7 @@ export const TEES_WOMEN_PAGE_END_POINT = '/women/tops-women/tees-women.html';
 export const MEN_PAGE_END_POINT = '/men.html';
 export const TOPS_WOMEN_PAGE_END_POINT = '/women/tops-women.html';
 export const BOTTOMS_WOMEN_PAGE_END_POINT = '/women/bottoms-women.html';
+export const TRAINING_URL = "https://magento.softwaretestingboard.com/training.html";
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
@@ -13,6 +14,7 @@ export const COMPARE_PRODUCTS_TEXT = "Compare Products";
 export const MY_WISH_LIST_TEXT = "My Wish List";
 export const SEARCH_QUERY = "short";
 export const SEARCH_QUERY_UPPERCASE = SEARCH_QUERY.toLocaleUpperCase();
+export const TRAINING_PAGE_HEADER = 'Training';
 export const WOMEN_TOPS_HEADER = 'Tops'
 export const WOMEN_BOTTOMS_HEADER = 'Bottoms'
 export const shoppingItem1 = {

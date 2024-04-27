@@ -2,6 +2,7 @@ import WhatsNewPage from "./whatsNewPage.js";
 import WomenPage from "./womenPage.js";
 import MenPage from "./menPage";
 import RadiantTeePage from "./radiantTeePage.js";
+import TrainingPage from "./trainingPage.js";
 
 class HomePage {
   constructor(page) {
@@ -16,7 +17,8 @@ class HomePage {
     getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getSearchButton: () => this.page.locator('button[title="Search"]'),
-    getRadiantTee: () => this.page.getByTitle('Radiant Tee')
+    getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
+	 getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' })
   };
 
   async open() {
@@ -39,6 +41,12 @@ class HomePage {
     await this.locators.getMenLink().click();
 
     return new MenPage(this.page);
+  }
+
+  async clickTrainingLink() {
+	await this.locators.getTrainingLink().click();
+
+	return new TrainingPage(this.page);;
   }
 
   async fillSearchInputField(searchQuerry) {
