@@ -6,6 +6,7 @@ export const MEN_PAGE_END_POINT = '/men.html';
 export const TOPS_WOMEN_PAGE_END_POINT = '/women/tops-women.html';
 export const BOTTOMS_WOMEN_PAGE_END_POINT = '/women/bottoms-women.html';
 export const TRAINING_URL = "https://magento.softwaretestingboard.com/training.html";
+export const MEN_TOPS_PAGE_END_POINT = '/men/tops-men.html'
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
@@ -45,5 +46,20 @@ function generateRandomEmail() {
 export const EMAIL = generateRandomEmail(); 
 export const MY_ACCOUNT_HEADER = 'My Account';
 export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store.';
+export const LIST_STYLE_MEN_TOPS = [
+    'Insulated',
+    'Jacket',
+    'Lightweight',
+    'Hooded',
+    'Heavy Duty',
+    'Rain Coat',
+    'Hard Shell',
+    'Soft Shell',
+    'Windbreaker',
+    '¼ zip',
+    'Full Zip',
+    'Reversible',
+    'Tank',
+    'Tee']
 
 //login  credential
