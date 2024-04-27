@@ -32,7 +32,7 @@ class HomePage {
     getSearchButton: () => this.page.locator('button[title="Search"]'),
     getSearchTermPopularLink: ()=> this.page.getByRole('link', {name: 'Search Terms'}),
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
-    getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' })
+    getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
 	  getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
     getBottomsWomenLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
 
