@@ -4,9 +4,9 @@ import MenPage from "./menPage";
 import SearchTermPopular from "./searchTermPopularPage.js";
 
 class HomePage {
-    constructor(page) {
-        this.page = page
-    }
+  constructor(page) {
+    this.page = page;
+  }
 
     locators = {
         getWhatsNewLink: () => this.page.getByRole('listitem').filter({ hasText: "What's New" }),
@@ -15,32 +15,32 @@ class HomePage {
         getSearchTermsLink:() => this.page.getByRole('link', {name: 'Search Terms'}),
     }
 
-    async open() {
-        await this.page.goto('/')
-    }
+  async open() {
+    await this.page.goto("/");
+  }
 
-    async clickWhatsNewLink() {
-        await this.locators.getWhatsNewLink().click();
+  async clickWhatsNewLink() {
+    await this.locators.getWhatsNewLink().click();
 
-        return new WhatsNewPage(this.page);
-    }
+    return new WhatsNewPage(this.page);
+  }
 
-    async clickWomenLink() {
-        await this.locators.getWomenLink().click();
+  async clickWomenLink() {
+    await this.locators.getWomenLink().click();
 
-        return new WomenPage(this.page);
-    }
+    return new WomenPage(this.page);
+  }
 
-    async clickMenLink() {
-        await this.locators.getMenLink().click();
+  async clickMenLink() {
+    await this.locators.getMenLink().click();
 
         return new MenPage(this.page);
     }
 
     async clickSearchTermsLink() {
-        await this.locators.getSearchTermsLink().click();
+      await this.locators.getSearchTermsLink().click();
 
-        return new SearchTermPopular(this.page);
-    }
+      return new SearchTermPopular(this.page);
+  }
 }
 export default HomePage;
