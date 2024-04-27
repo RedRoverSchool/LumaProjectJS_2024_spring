@@ -1,6 +1,12 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import {BASE_URL, MEN_PAGE_HEADER, MEN_PAGE_END_POINT, COMPARE_PRODUCTS_TEXT, MY_WISH_LIST_TEXT} from "../../helpers/testData.js";
+import {BASE_URL} from "../../helpers/testData.js";
+import {
+    MEN_PAGE_END_POINT,
+    MEN_PAGE_HEADER,
+    COMPARE_PRODUCTS_TEXT,
+    MY_WISH_LIST_TEXT
+} from "../../helpers/testMenData.js";
 import MenPage from "../../page_objects/menPage";
 
 test('Menu/Men available to click, see clothes only for men', async ({ page }) => {
