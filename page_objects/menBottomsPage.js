@@ -5,6 +5,7 @@ class MenBottomsPage {
         this.page = page;
     }
     locators = {
+        getBottomsHeading: () => this.page.getByRole('heading', { name: 'Bottoms' }),
         getMenBottomsBreadcrumbs: () => this.page.locator('//div[@class="breadcrumbs"]'),
         getBreadcrumbsMenuHome: () => this.page.locator('[class="item home"]'),
         getBreadcrumbsMenuMen: () => this.page.locator('[class="item category11"]'),
