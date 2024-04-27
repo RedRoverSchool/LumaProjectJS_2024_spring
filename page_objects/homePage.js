@@ -3,6 +3,7 @@ import WomenPage from "./womenPage.js";
 import MenPage from "./menPage";
 import RadiantTeePage from "./radiantTeePage.js";
 import TrainingPage from "./trainingPage.js";
+import CreateAccountPage from "./createAccountPage.js";
 
 class HomePage {
   constructor(page) {
@@ -19,6 +20,7 @@ class HomePage {
     getSearchButton: () => this.page.locator('button[title="Search"]'),
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
 	 getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' })
+    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'})
   };
 
   async open() {
@@ -74,6 +76,12 @@ class HomePage {
         await this.locators.getRadiantTee().click();
 
         return new RadiantTeePage(this.page);
+  }
+
+  async clickCreateAccountLink(){
+    await this.locators.getCreateAccountLink().click();
+
+    return new CreateAccountPage(this.page);
   }
 }
 export default HomePage;
