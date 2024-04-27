@@ -65,4 +65,6 @@ test.describe('homePage.spec', () => {
             autocompleteListUpperCaseActual.length
         );
     });
+
+    
 })

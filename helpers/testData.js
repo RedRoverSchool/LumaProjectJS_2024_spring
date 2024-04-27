@@ -42,5 +42,15 @@ export const PASSWORD = '12345Sveta!';
 export const PASSWORD_CONFIRM = '12345Sveta!';
 
 
+function generateRandomEmail() {
+    const mailbox = Math.random().toString(36).substring(2, 10);
+    const domain = "gmail.com";
+    return `${mailbox}@${domain}`;
+  }
+
+export const EMAIL = generateRandomEmail(); 
+export const MY_ACCOUNT_HEADER = 'My Account';
+export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store.';
+
 
 //login  credential

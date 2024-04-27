@@ -93,5 +93,17 @@ class HomePage {
 
       return new SearchTermPopular(this.page);
   }
+
+  async clickRadiantTee() {
+    await this.locators.getRadiantTee().click();
+
+    return new RadiantTeePage(this.page);
+}
+
+async clickCreateAccountLink(){
+await this.locators.getCreateAccountLink().click();
+return new CreateAccountPage(this.page);
+}
+
 }
 export default HomePage;
