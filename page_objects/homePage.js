@@ -5,6 +5,7 @@ import MenBottomsPage from "./menBottomsPage.js";
 import RadiantTeePage from "./radiantTeePage.js";
 import TrainingPage from "./trainingPage.js";
 import CreateAccountPage from "./createAccountPage.js";
+import SearchTermPopularPage from "./searchTermPopularPage.js";
 
 class HomePage {
   constructor(page) {
@@ -29,7 +30,8 @@ class HomePage {
     getSearchButton: () => this.page.locator('button[title="Search"]'),
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
 	 getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
-    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'})
+    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
+    getSearchTermPopularLink: ()=> this.page.getByRole('link', {name: 'Search Terms'})
   };
 
   async open() {
@@ -110,5 +112,13 @@ class HomePage {
 
     return new CreateAccountPage(this.page);
   }
+
+  async clickSearchTermPopularLink() {
+    await this.locators.getSearchTermPopularLink().click();
+
+    return new SearchTermPopularPage(this.page);
+}
+
+
 }
 export default HomePage;
