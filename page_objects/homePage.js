@@ -31,8 +31,7 @@ class HomePage {
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
     getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
     getBottomsWomenLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
-	  getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
-    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'})
+    getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' })
   };
 
   async open() {
