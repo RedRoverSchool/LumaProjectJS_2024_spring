@@ -3,6 +3,9 @@ import WomenPage from "./womenPage.js";
 import MenPage from "./menPage";
 import MenBottomsPage from "./menBottomsPage.js";
 import RadiantTeePage from "./radiantTeePage.js";
+import TrainingPage from "./trainingPage.js";
+import CreateAccountPage from "./createAccountPage.js";
+import MenBottomsPage from "./menBottomsPage";
 
 class HomePage {
   constructor(page) {
@@ -13,6 +16,7 @@ class HomePage {
     getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
     getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
     getMenLink: () => this.page.getByRole('menuitem', {name: 'Men'}).last(),
+    getMenBottomsLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
     getSearchInputField: () =>
       this.page.getByPlaceholder("Search entire store here..."),
     getWaitForAutocompleteSearchItems: () =>
@@ -26,7 +30,9 @@ class HomePage {
     getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getSearchButton: () => this.page.locator('button[title="Search"]'),
-    getRadiantTee: () => this.page.getByTitle('Radiant Tee')
+    getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
+	 getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
+    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'})
   };
 
   async open() {
@@ -49,6 +55,24 @@ class HomePage {
     await this.locators.getMenLink().click();
 
     return new MenPage(this.page);
+  }
+
+  async clickTrainingLink() {
+	await this.locators.getTrainingLink().click();
+
+	return new TrainingPage(this.page);;
+  }
+
+  async hoverMenLink() {
+    await this.locators.getMenLink().hover();
+
+    return this;
+  }
+
+  async clickMenBottomsLink() {
+    await this.locators.getMenBottomsLink().click();
+
+    return new MenBottomsPage(this.page);
   }
 
   async fillSearchInputField(searchQuerry) {
@@ -86,6 +110,12 @@ class HomePage {
         await this.locators.getRadiantTee().click();
 
         return new RadiantTeePage(this.page);
+  }
+
+  async clickCreateAccountLink(){
+    await this.locators.getCreateAccountLink().click();
+
+    return new CreateAccountPage(this.page);
   }
 }
 export default HomePage;
