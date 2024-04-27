@@ -6,6 +6,8 @@ import TrainingPage from "./trainingPage.js";
 import CreateAccountPage from "./createAccountPage.js";
 import MenBottomsPage from "./menBottomsPage";
 import MenTopsPage from "./menTopsPage.js";
+import BottomsWomenPage from "./bottomsWomenPage.js";
+
 
 class HomePage {
   constructor(page) {
@@ -32,6 +34,11 @@ class HomePage {
 	  getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
     getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
     getMenTopsLink: () => this.page.locator('#ui-id-17')
+
+    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
+    getBottomsWomenLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
+    getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' })
+
   };
 
   async open() {
@@ -116,6 +123,17 @@ class HomePage {
     await this.locators.getMenTopsLink().click()
 
     return new MenTopsPage(this.page)
+}
+  async clickBottomsWomenLink() {
+    await this.locators.getBottomsWomenLink().click();
+
+    return new BottomsWomenPage(this.page);
+  }
+
+  async hoverWomenMenuitem() {
+    await this.locators.getWomenLink().hover();
+
+    return this;
   }
 }
 export default HomePage;
