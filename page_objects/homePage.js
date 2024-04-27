@@ -5,7 +5,6 @@ import MenBottomsPage from "./menBottomsPage.js";
 import RadiantTeePage from "./radiantTeePage.js";
 import TrainingPage from "./trainingPage.js";
 import CreateAccountPage from "./createAccountPage.js";
-import MenBottomsPage from "./menBottomsPage";
 
 class HomePage {
   constructor(page) {
@@ -24,8 +23,6 @@ class HomePage {
     getAutocompleteSearchItems: () =>
       this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getSearchButton: () => this.page.locator('button[title="Search"]'),
-
-   getMenBottomsTab: () => this.page.getByRole('menuitem', { name: 'Bottoms'}),
     getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
     getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
@@ -102,10 +99,6 @@ class HomePage {
       return this;
     }
 
-    async clickMenBottomsTab() {
-    await this.locators.getMenBottomsTab().click ()
-
-    return new MenBottomsPage(this.page);
   async clickRadiantTee() {
         await this.locators.getRadiantTee().click();
 
