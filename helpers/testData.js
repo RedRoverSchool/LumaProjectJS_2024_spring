@@ -6,6 +6,7 @@ export const TOPS_WOMEN_PAGE_END_POINT = '/women/tops-women.html';
 export const BOTTOMS_WOMEN_PAGE_END_POINT = '/women/bottoms-women.html';
 export const MEN_BOTTOMS_PAGE_END_POINT = '/men/bottoms-men.html'
 export const TRAINING_URL = "https://magento.softwaretestingboard.com/training.html";
+export const MEN_TOPS_PAGE_END_POINT = '/men/tops-men.html'
 export const SHIPPING_PAGE_END_POINT = '/checkout/#shipping';
 
 //test data
@@ -43,6 +44,23 @@ function generateRandomEmail() {
 export const EMAIL = generateRandomEmail(); 
 export const MY_ACCOUNT_HEADER = 'My Account';
 export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store.';
+export const LIST_STYLE_MEN_TOPS = [
+    'Insulated',
+    'Jacket',
+    'Lightweight',
+    'Hooded',
+    'Heavy Duty',
+    'Rain Coat',
+    'Hard Shell',
+    'Soft Shell',
+    'Windbreaker',
+    '¼ zip',
+    'Full Zip',
+    'Reversible',
+    'Tank',
+    'Tee']
+
+export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
 export const SHIPPING_PROGRESS_BAR_TEXT = 'Shipping';
 
 //login  credential
