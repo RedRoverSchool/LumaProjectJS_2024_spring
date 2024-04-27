@@ -45,6 +45,3 @@ export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store
 export const SEARCH_TERMS_POPULAR_PAGE_END_POINT = '/search/term/popular/';
 
 export const SEARCH_TERMS_POPULAR_PAGE_HEADER = 'Popular Search Terms'
-
-
-//login  credential
