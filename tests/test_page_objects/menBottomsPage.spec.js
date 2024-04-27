@@ -5,7 +5,7 @@ import MenBottomsPage from "../../page_objects/menBottomsPage.js";
 import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT } from "../../helpers/testData.js";
 
     test.describe ('menBottomsPage.spec', () => {
-    test.only ("Verify men's bottom tab", async ({ page }) => {
+    test ("Verify men's bottom tab", async ({ page }) => {
 
     const homePage = new HomePage(page);
     const menBottomsPage = new MenBottomsPage(page);
