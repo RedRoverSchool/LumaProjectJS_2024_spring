@@ -64,7 +64,7 @@ export const LIST_STYLE_MEN_TOPS = [
     'Full Zip',
     'Reversible',
     'Tank',
-    'Tee']
+    'Tee'];
 
 export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
 export const SHIPPING_PROGRESS_BAR_TEXT = 'Shipping';
