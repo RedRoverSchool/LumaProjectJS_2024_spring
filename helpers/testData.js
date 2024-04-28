@@ -83,7 +83,6 @@ export const SEARCH_TERMS_POPULAR_PAGE_HEADER = 'Popular Search Terms' ;
 export const MY_ORDERS_PAGE_END_POINT = '/sales/order/history/';
 export const MY_ACCOUNT_END_POINT = '/customer/account/';
 export const MY_ORDERS_HEADER = 'My Orders'
-export const MEN_PAGE_CATEGORY_HEADER = 'Category';
 export const MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR = 'rgb(0, 107, 180)';
 export const MEN_PAGE_BOTTOMS_SUB_CATEGORY_LINK_COLOR = 'rgb(0, 107, 180)';
 

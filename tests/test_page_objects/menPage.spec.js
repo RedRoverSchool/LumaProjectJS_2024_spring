@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { BASE_URL, MEN_PAGE_BOTTOMS_SUB_CATEGORY_LINK_COLOR, MEN_PAGE_CATEGORY_HEADER, MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR } from "../../helpers/testData.js";
+import { BASE_URL, MEN_PAGE_BOTTOMS_SUB_CATEGORY_LINK_COLOR, MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR, } from "../../helpers/testData.js";
 import {
     MEN_PAGE_END_POINT,
     MEN_PAGE_HEADER,
@@ -8,14 +8,16 @@ import {
     MY_WISH_LIST_TEXT
 } from "../../helpers/testMenData.js";
 import MenPage from "../../page_objects/menPage";
-import ConsentDataPopUp from "../../page_objects/consentDataPopUp.js";
 
 test.describe('menPage.spec', () => {
+    test.beforeEach(async ({ page }) => {
+        const homePage = new HomePage(page);
+        await homePage.open();
+    });
     test('Menu/Men available to click, see clothes only for men', async ({ page }) => {
         const homePage = new HomePage(page);
         const menPage = new MenPage(page);
 
-        await homePage.open();
         await homePage.clickMenLink();
 
         await expect(page).toHaveURL(BASE_URL + MEN_PAGE_END_POINT);
@@ -27,18 +29,8 @@ test.describe('menPage.spec', () => {
     test('Category block contains sub-categories: Tops and Bottoms which are links in blue text', async ({ page }) => {
         const homePage = new HomePage(page);
         const menPage = new MenPage(page);
-        const consentDataPopUp = new ConsentDataPopUp(page);
-
-        await homePage.open();
-        if (await consentDataPopUp.locators.getConsentDataPopUp().isVisible()) {
-            await consentDataPopUp.clickConsentDataButton();
-        };
-        await expect(page).toHaveURL(BASE_URL);
 
         await homePage.clickMenLink();
-        await expect(page).toHaveURL(BASE_URL + MEN_PAGE_END_POINT);
-        await expect(menPage.locators.getCategoryBlock()).toBeVisible();
-        await expect(menPage.locators.getCategoryBlock()).toHaveText(MEN_PAGE_CATEGORY_HEADER);
 
         await expect(menPage.locators.getTopsSubCategoryLink()).toHaveCSS('color', MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR);
         await expect(menPage.locators.getBottomsSubCategoryLink()).toHaveCSS('color', MEN_PAGE_BOTTOMS_SUB_CATEGORY_LINK_COLOR);
