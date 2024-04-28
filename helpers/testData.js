@@ -18,8 +18,6 @@ export const TRAINING_PAGE_HEADER = 'Training';
 export const TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT  = 'Training';
 export const TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT  = 'Home';
 export const WOMEN_TOPS_HEADER = 'Tops'
-export const WOMEN_BOTTOMS_HEADER = 'Bottoms'
-export const WOMEN_TOPS_HEADER = 'Tops';
 export const WOMEN_BOTTOMS_HEADER = 'Bottoms';
 export const shoppingItem1 = {
     name: "Radiant Tee",
