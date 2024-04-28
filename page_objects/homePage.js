@@ -1,12 +1,14 @@
 import WhatsNewPage from "./whatsNewPage.js";
 import WomenPage from "./womenPage.js";
 import MenPage from "./menPage";
-import MenBottomsPage from "./menBottomsPage.js";
 import RadiantTeePage from "./radiantTeePage.js";
 import TrainingPage from "./trainingPage.js";
 import CreateAccountPage from "./createAccountPage.js";
+import MenBottomsPage from "./menBottomsPage";
+import MenTopsPage from "./menTopsPage.js";
 import BottomsWomenPage from "./bottomsWomenPage.js";
 import SearchTermPopularPage from "./searchTermPopularPage.js";
+
 
 class HomePage {
   constructor(page) {
@@ -18,19 +20,18 @@ class HomePage {
     getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
     getMenLink: () => this.page.getByRole('menuitem', {name: 'Men'}).last(),
     getMenBottomsLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
-    getSearchInputField: () =>
-      this.page.getByPlaceholder("Search entire store here..."),
-    getWaitForAutocompleteSearchItems: () =>
-      this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
-    getAutocompleteSearchItems: () =>
-      this.page.locator("#search_autocomplete>ul>li>span:first-child"),
-    getSearchButton: () => this.page.locator('button[title="Search"]'),
     getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
     getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getSearchButton: () => this.page.locator('button[title="Search"]'),
+    getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
+    getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
+    getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
     getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
+	  getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
+    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
+    getMenTopsLink: () => this.page.locator('#ui-id-17'),
     getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
     getBottomsWomenLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
     getSearchTermPopularLink: ()=> this.page.getByRole('link', {name: 'Search Terms'}),
@@ -115,11 +116,10 @@ class HomePage {
 
     return new CreateAccountPage(this.page);
   }
+  async clickMenTopsLink(){
+    await this.locators.getMenTopsLink().click()
 
-  async clickSearchTermPopularLink() {
-    await this.locators.getSearchTermPopularLink().click();
-
-    return new SearchTermPopularPage(this.page);
+    return new MenTopsPage(this.page)
 }
 
   async clickBottomsWomenLink() {
@@ -133,6 +133,12 @@ class HomePage {
 
     return this;
   }
+  
+   async clickSearchTermPopularLink() {
+    await this.locators.getSearchTermPopularLink().click();
+
+    return new SearchTermPopularPage(this.page);
+}
 
 }
 export default HomePage;
