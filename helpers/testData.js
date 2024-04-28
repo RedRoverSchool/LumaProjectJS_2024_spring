@@ -51,7 +51,10 @@ export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store
 export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
 
 export const SEARCH_VALID_VALUE = 'jacket';
+export const SEARCH_INVALID_VALUE = `${SEARCH_VALID_VALUE}test`;
 export const SEARCH_RESULTS_JACKET_HEADER = `Search results for: '${SEARCH_VALID_VALUE}'`;
+export const WARNING_MESSAGE_NO_RESULTS = ' Your search returned no results. ';
+export const ITEMS = ' Items ';
 
 export const LIST_STYLE_MEN_TOPS = [
     'Insulated',
