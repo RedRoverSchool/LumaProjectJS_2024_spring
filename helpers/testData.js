@@ -68,6 +68,7 @@ export const LIST_STYLE_MEN_TOPS = [
     'Reversible',
     'Tank',
     'Tee'];
+export const SALE_SIDE_MENU_SECTIONS = ["WOMEN'S DEALS", "MENS'S DEALS", "GEAR DEALS"];
 
 //export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
 export const SHIPPING_PROGRESS_BAR_TEXT = 'Shipping';

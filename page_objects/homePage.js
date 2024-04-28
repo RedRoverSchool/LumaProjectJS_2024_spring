@@ -8,7 +8,7 @@ import MenBottomsPage from "./menBottomsPage";
 import MenTopsPage from "./menTopsPage.js";
 import BottomsWomenPage from "./bottomsWomenPage.js";
 import SearchTermPopularPage from "./searchTermPopularPage.js";
-
+import SalePage from "./salePage.js";
 
 class HomePage {
   constructor(page) {
@@ -36,6 +36,7 @@ class HomePage {
     getBottomsWomenLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
     getSearchTermPopularLink: () => this.page.getByRole('link', { name: 'Search Terms' }),
     getFirstCardImage: () => this.page.getByAltText('Radiant Tee'),
+    getSaleLink: () => this.page.locator('#ui-id-8'),
 
   };
 
@@ -145,6 +146,12 @@ class HomePage {
     await this.locators.getFirstCardImage().click();
 
     return new RadiantTeePage(this.page);
+  }
+
+  async clickSaleLink() {
+    await this.locators.getSaleLink().click();
+
+    return new SalePage(this.page);
   }
 }
 export default HomePage;
