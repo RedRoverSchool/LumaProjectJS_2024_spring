@@ -27,7 +27,6 @@ class HomePage {
     getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
-	  getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
     getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
     getMenTopsLink: () => this.page.locator('#ui-id-17'),
     getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
@@ -58,9 +57,9 @@ class HomePage {
   }
 
   async clickTrainingLink() {
-	await this.locators.getTrainingLink().click();
+	 await this.locators.getTrainingLink().click();
 
-	return new TrainingPage(this.page);;
+	 return new TrainingPage(this.page);
   }
 
   async hoverMenLink() {
