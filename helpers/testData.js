@@ -31,3 +31,6 @@ export const shoppingItem2 = {
 };
 
 //login  credential
+
+export const email = 'kat123@gmail.com';
+export const password = 'Password!';

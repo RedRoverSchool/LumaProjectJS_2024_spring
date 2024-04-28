@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe('sign out', () => {
 
-    const email = 'katikati3@gmail.com';
+    const email = 'kat123@gmail.com';
     const password = 'Password!';
 
   test.beforeEach(async ({ page }) => {
