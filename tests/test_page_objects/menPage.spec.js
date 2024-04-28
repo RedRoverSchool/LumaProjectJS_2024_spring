@@ -30,7 +30,7 @@ test.describe('menPage.spec', () => {
         const consentDataPopUp = new ConsentDataPopUp(page);
 
         await homePage.open();
-        if (await consentDataPopUp.locators.getConsentDataPopUp()) {
+        if (await consentDataPopUp.locators.getConsentDataPopUp().isVisible()) {
             await consentDataPopUp.clickConsentDataButton();
         };
         await expect(page).toHaveURL(BASE_URL);
