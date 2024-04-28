@@ -32,6 +32,11 @@ test.describe('header.spec', () => {
         await expect(header.locators.getTotalCost()).toHaveText("$" + totalCost);    
     })
 
+    test('Verify the Create an Account link is displayed on the main page in the header', async ({ page }) => {
+        const homePage = new HomePage(page);
+        await expect(homePage.locators.getCreateAccountLink()).toBeVisible();
+    })
+
     test('"Proceed to Checkout" button in the Shopping Cart Modal Window is visible, clickable, and redirects to the Shipping Page', async ({ page }) => {
         const homePage = new HomePage(page);
         const header = new Header(page);
