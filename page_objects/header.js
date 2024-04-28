@@ -12,7 +12,8 @@ class Header {
         getTotalCost: () => this.page.locator('.subtotal .price'),
         getProceedToCheckoutBtn: () => this.page.getByRole('button', {name: 'Proceed to Checkout'}),
         getShoppingCart: () => this.page.getByRole('link', { name: ' My Cart' }),
-        getMiniCart: () => this.page.locator('#ui-id-1')
+        getMiniCart: () => this.page.locator('#ui-id-1'),
+        getEmptyCardMessage: () => this.page.locator('.block-minicart .subtitle.empty')
     }
 
     async clickLogoLink() {
