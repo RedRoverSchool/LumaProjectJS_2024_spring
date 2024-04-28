@@ -9,6 +9,7 @@ export const TRAINING_URL = "https://magento.softwaretestingboard.com/training.h
 export const SEARCH_RESULTS_JACKET_PAGE_END_POINT = '/catalogsearch/result/?q=jacket';
 export const MEN_TOPS_PAGE_END_POINT = '/men/tops-men.html';
 export const SHIPPING_PAGE_END_POINT = '/checkout/#shipping';
+export const RADIANT_TEE_PAGE_END_POINT = '/radiant-tee.html';
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";

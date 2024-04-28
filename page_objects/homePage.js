@@ -18,8 +18,8 @@ class HomePage {
   locators = {
     getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
     getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
-    getMenLink: () => this.page.getByRole('menuitem', {name: 'Men'}).last(),
-    getMenBottomsLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
+    getMenLink: () => this.page.getByRole('menuitem', { name: 'Men' }).last(),
+    getMenBottomsLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
     getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
     getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
@@ -29,12 +29,13 @@ class HomePage {
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
     getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
-	  getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
-    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
+    getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
+    getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
     getMenTopsLink: () => this.page.locator('#ui-id-17'),
-    getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
-    getBottomsWomenLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
-    getSearchTermPopularLink: ()=> this.page.getByRole('link', {name: 'Search Terms'}),
+    getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
+    getBottomsWomenLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
+    getSearchTermPopularLink: () => this.page.getByRole('link', { name: 'Search Terms' }),
+    getFirstCardImage: () => this.page.getByAltText('Radiant Tee'),
 
   };
 
@@ -61,9 +62,9 @@ class HomePage {
   }
 
   async clickTrainingLink() {
-	 await this.locators.getTrainingLink().click();
+    await this.locators.getTrainingLink().click();
 
-	 return new TrainingPage(this.page);
+    return new TrainingPage(this.page);
   }
 
   async hoverMenLink() {
@@ -93,34 +94,34 @@ class HomePage {
     return searchAutocompleteList;
   }
 
-    async clearSearchInputField() {
-        await this.locators.getSearchInputField().clear();
+  async clearSearchInputField() {
+    await this.locators.getSearchInputField().clear();
 
-        return this;
-    }
-
-    async hoverMenLink() {
-      await this.locators.getMenLink().hover();
-  
-      return this;
-    }
-
-  async clickRadiantTee() {
-        await this.locators.getRadiantTee().click();
-
-        return new RadiantTeePage(this.page);
+    return this;
   }
 
-  async clickCreateAccountLink(){
+  async hoverMenLink() {
+    await this.locators.getMenLink().hover();
+
+    return this;
+  }
+
+  async clickRadiantTee() {
+    await this.locators.getRadiantTee().click();
+
+    return new RadiantTeePage(this.page);
+  }
+
+  async clickCreateAccountLink() {
     await this.locators.getCreateAccountLink().click();
 
     return new CreateAccountPage(this.page);
   }
-  async clickMenTopsLink(){
+  async clickMenTopsLink() {
     await this.locators.getMenTopsLink().click()
 
     return new MenTopsPage(this.page)
-}
+  }
 
   async clickBottomsWomenLink() {
     await this.locators.getBottomsWomenLink().click();
@@ -133,12 +134,17 @@ class HomePage {
 
     return this;
   }
-  
-   async clickSearchTermPopularLink() {
+
+  async clickSearchTermPopularLink() {
     await this.locators.getSearchTermPopularLink().click();
 
     return new SearchTermPopularPage(this.page);
-}
+  }
 
+  async clickFirstCardImage() {
+    await this.locators.getFirstCardImage().click();
+
+    return new RadiantTeePage(this.page);
+  }
 }
 export default HomePage;

@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE, SEARCH_RESULTS_JACKET_PAGE_END_POINT, SEARCH_VALID_VALUE, SEARCH_RESULTS_JACKET_HEADER} from "../../helpers/testData.js";
+import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE, SEARCH_RESULTS_JACKET_PAGE_END_POINT, SEARCH_VALID_VALUE, SEARCH_RESULTS_JACKET_HEADER, RADIANT_TEE_PAGE_END_POINT} from "../../helpers/testData.js";
 import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
+import RadiantTeePage from "../../page_objects/radiantTeePage.js";
 
 test.describe('homePage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -78,4 +79,14 @@ test.describe('homePage.spec', () => {
         await expect(searchResultsJacketPage.locators.getSearchResultsHeader()).toHaveText(SEARCH_RESULTS_JACKET_HEADER)
         await expect(page).toHaveURL(BASE_URL + SEARCH_RESULTS_JACKET_PAGE_END_POINT);
     });
+
+    test('1st card: clicking card image redirects to respective product card', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const radiantTeePage = new RadiantTeePage(page);
+
+        await homePage.clickFirstCardImage();
+
+        await expect(page).toHaveURL(BASE_URL + RADIANT_TEE_PAGE_END_POINT);
+        await expect(radiantTeePage.locators.getRadiantTeeHeader()).toBeVisible();
+    })
 })
