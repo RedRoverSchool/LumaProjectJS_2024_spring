@@ -7,6 +7,7 @@ import CreateAccountPage from "./createAccountPage.js";
 import MenBottomsPage from "./menBottomsPage";
 import MenTopsPage from "./menTopsPage.js";
 import BottomsWomenPage from "./bottomsWomenPage.js";
+import SearchTermPopularPage from "./searchTermPopularPage.js";
 
 
 class HomePage {
@@ -27,11 +28,14 @@ class HomePage {
     getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
+    getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
+	  getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
     getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
     getMenTopsLink: () => this.page.locator('#ui-id-17'),
     getCreateAccountLink: () => this.page.getByRole('link', {name: 'Create an Account'}),
     getBottomsWomenLink: () => this.page.getByRole('menuitem', {name: 'Bottoms'}),
-    getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' })
+    getSearchTermPopularLink: ()=> this.page.getByRole('link', {name: 'Search Terms'}),
+
   };
 
   async open() {
@@ -117,6 +121,7 @@ class HomePage {
 
     return new MenTopsPage(this.page)
 }
+
   async clickBottomsWomenLink() {
     await this.locators.getBottomsWomenLink().click();
 
@@ -128,5 +133,12 @@ class HomePage {
 
     return this;
   }
+  
+   async clickSearchTermPopularLink() {
+    await this.locators.getSearchTermPopularLink().click();
+
+    return new SearchTermPopularPage(this.page);
+}
+
 }
 export default HomePage;
