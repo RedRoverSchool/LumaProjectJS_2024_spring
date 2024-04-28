@@ -69,7 +69,10 @@ export const LIST_STYLE_MEN_TOPS = [
 //export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
 export const SHIPPING_PROGRESS_BAR_TEXT = 'Shipping';
 export const SEARCH_TERMS_POPULAR_PAGE_END_POINT = '/search/term/popular/';
-export const SEARCH_TERMS_POPULAR_PAGE_HEADER = 'Popular Search Terms'
+export const SEARCH_TERMS_POPULAR_PAGE_HEADER = 'Popular Search Terms' ;
+export const MY_ORDERS_PAGE_END_POINT = '/sales/order/history/';
+export const MY_ACCOUNT_END_POINT = '/customer/account/';
+export const MY_ORDERS_HEADER = 'My Orders'
 
 //login  credential
 
