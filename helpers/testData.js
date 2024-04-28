@@ -69,6 +69,12 @@ export const LIST_STYLE_MEN_TOPS = [
     'Tank',
     'Tee'];
 
+export const LIST_CATEGORY_MEN_TOPS = [
+    'Jackets 11 item', 
+    'Hoodies & Sweatshirts 13 item', 
+    'Tees 12 item', 
+    'Tanks 12 item'];
+
 //export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
 export const SHIPPING_PROGRESS_BAR_TEXT = 'Shipping';
 export const SEARCH_TERMS_POPULAR_PAGE_END_POINT = '/search/term/popular/';
