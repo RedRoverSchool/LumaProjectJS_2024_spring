@@ -9,7 +9,7 @@ import MenTopsPage from "./menTopsPage.js";
 import BottomsWomenPage from "./bottomsWomenPage.js";
 import SearchTermPopularPage from "./searchTermPopularPage.js";
 import SalePage from "./salePage.js";
-
+import GearWatchesPage from "./gearWatchesPage.js";
 
 class HomePage {
   constructor(page) {
@@ -25,9 +25,7 @@ class HomePage {
     getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getSearchButton: () => this.page.locator('button[title="Search"]'),
-    getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
     getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
-    getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
     getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
@@ -38,7 +36,8 @@ class HomePage {
     getFirstCardImage: () => this.page.getByAltText('Radiant Tee'),
     getDropdownWishList: () => this.page.getByRole('banner').getByText('My Account My Wish List Sign'),
     getSaleLink: () => this.page.locator('#ui-id-8'),
-
+    getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),    
+    getGearWatchesSubmenuItem: () => this.page.getByRole("menuitem", { name: "Watches" }), //Watches Gear SubmenuItem
   };
 
   async open() {
@@ -160,5 +159,17 @@ class HomePage {
 
     return new SalePage(this.page);
   }
+
+    async hoverGearMenuItem() {
+        await this.locators.getGearMenuItem().hover();
+
+        return this;
+    }
+
+    async clickGearWatchesSubmenuItem() {
+        await this.locators.getGearWatchesSubmenuItem().click();
+
+        return new GearWatchesPage(this.page);
+    }
 }
 export default HomePage;

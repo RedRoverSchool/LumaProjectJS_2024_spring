@@ -90,7 +90,25 @@ export const WOMEN_JACKETS_NAME = 'Inez Full Zip Jacket';
 export const INEZ_FULL_ZIP_JACKET1_END_POINT = '/inez-full-zip-jacket.html';
 export const SHOPPING_CART_END_POINT = '/checkout/cart/';
 export const EMPTY_CARD_MESSAGE = 'You have no items in your shopping cart.';
-export const MY_WISH_LIST_EMPTY_MESSAGE ='You have no items in your wish list.'
+export const MY_WISH_LIST_EMPTY_MESSAGE = 'You have no items in your wish list.';
+export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE = [
+  "CATEGORY",
+  "PRICE",
+  "ACTIVITY",
+  "MATERIAL",
+  "GENDER",
+  "NEW",
+  "SALE",
+];
+export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
+  "div.filter-options>div:nth-child(1) ol li a",
+  "div.filter-options>div:nth-child(2) ol li a",
+  "div.filter-options>div:nth-child(3) ol li a",
+  "div.filter-options>div:nth-child(4) ol li a",
+  "div.filter-options>div:nth-child(5) ol li a",
+  "div.filter-options>div:nth-child(6) ol li a",
+  "div.filter-options>div:nth-child(7) ol li a",
+];
 
 
 //login  credential
