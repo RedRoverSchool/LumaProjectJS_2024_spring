@@ -148,6 +148,5 @@ class HomePage {
   return new RadiantTeePage(this.page);
 }
 
-
 }
 export default HomePage;
