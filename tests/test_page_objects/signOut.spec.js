@@ -43,4 +43,21 @@ test.describe('signOut.spec', () => {
 
   })
 
+  test('should be the "Log out" link, the user logs out of his account by clicking on it', async ({ page }) => {
+    const homePage = new HomePage(page);
+
+    await homePage.clickWhatsNewLink();
+
+    const signInPage = new SignInPage(page);
+    await signInPage.fillFieldEmail();
+    await signInPage.fillFieldPassword();
+    await signInPage.clickButtonSignIn();
+    await page.waitForTimeout(4000);
+
+    await signInPage.clickDpopdown();
+    await signInPage.clickSignOut();
+    await expect(signInPage.locators.getMessageSignedOut()).toBeTruthy();
+
+  })
+
 })

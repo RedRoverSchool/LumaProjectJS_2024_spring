@@ -69,11 +69,11 @@ test.describe('homePage.spec', () => {
         );
     });
 
-    test('Verify user can make search entered the valid text in the search field', async({page}) => {
-        
+    test('Verify user can make search entered the valid text in the search field', async ({ page }) => {
+
         const homePage = new HomePage(page);
         const searchResultsJacketPage = new SearchResultsJacketPage(page);
-        
+
         await homePage.fillSearchInputField(SEARCH_VALID_VALUE);
         await homePage.locators.getSearchButton().click();
 
@@ -91,11 +91,11 @@ test.describe('homePage.spec', () => {
         await expect(radiantTeePage.locators.getRadiantTeeHeader()).toBeVisible();
     });
 
-    test('Verify user doesn`t receive the results when make search with invalid text ', async({page}) => {
-        
+    test('Verify user doesn`t receive the results when make search with invalid text ', async ({ page }) => {
+
         const homePage = new HomePage(page);
         const searchNoResultsPage = new SearchNoResultsPage(page);
-        
+
         await homePage.fillSearchInputField(SEARCH_INVALID_VALUE);
         await homePage.locators.getSearchButton().click();
         await expect(searchNoResultsPage.locators.getWarningMessageNoResults()).toHaveText(WARNING_MESSAGE_NO_RESULTS);
@@ -124,5 +124,15 @@ test.describe('homePage.spec', () => {
         homePage.hoverWomenLink();
 
         await expect(homePage.locators.getWomenCategories()).toHaveText(WOMEN_CATEGORIES);
-      });
+    });
+
+    test('1st card: clicking card name redirects to respective product cards', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const radiantTeePage = new RadiantTeePage(page);
+
+        await homePage.clickFirstCardName();
+
+        await expect(page).toHaveURL(BASE_URL + RADIANT_TEE_PAGE_END_POINT);
+        await expect(radiantTeePage.locators.getRadiantTeeHeader()).toBeVisible();
+    })
 })
