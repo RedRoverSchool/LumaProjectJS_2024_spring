@@ -50,4 +50,15 @@ test.describe('trainingPage.spec', () => {
 
   })
 
- });
+  test('Verify that the "Shop By Category" section is displayed on the “Training” page', async({page}) => {
+		const homePage = new HomePage(page);
+		const trainingPage = new TrainingPage(page);
+		  
+		await homePage.clickTrainingLink();	        
+	
+
+		expect(trainingPage.locators.getTrainingCompareProductsSection()).toBeTruthy();
+		await expect(trainingPage.locators.getTrainingCompareProductsSection()).toBeVisible();
+  })
+  
+});
