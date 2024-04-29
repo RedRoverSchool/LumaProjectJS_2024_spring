@@ -102,6 +102,22 @@ test.describe('homePage.spec', () => {
         await expect(searchNoResultsPage.locators.getNoResultsInfo()).toBeHidden();
     });
 
+    test("Verify the search button (magnifier) is inactive after the search field is cleared", async ({
+        page,
+    }) => {
+        const homePage = new HomePage(page);
+
+        await homePage.fillSearchInputField(SEARCH_QUERY);
+        await expect(homePage.locators.getSearchButton()).not.toHaveAttribute(
+            "disabled"
+        );
+
+        await homePage.clearSearchInputField();
+        await expect(homePage.locators.getSearchButton()).toHaveAttribute(
+            "disabled"
+        );
+    });
+
     test("Verify user can hover over the title “Women” and see dropdown list with 2 subcategories", async ({ page }) => {
         const homePage = new HomePage(page);
 
@@ -109,5 +125,4 @@ test.describe('homePage.spec', () => {
 
         await expect(homePage.locators.getWomenCategories()).toHaveText(WOMEN_CATEGORIES);
       });
-
 })

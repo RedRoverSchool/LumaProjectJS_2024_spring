@@ -1,7 +1,7 @@
 import HomePage from "./homePage";
 
 class MenPage {
-    constructor(page) {
+    constructor (page) {
         this.page = page;
     }
 
@@ -10,7 +10,10 @@ class MenPage {
         getCompareProducts: () => this.page.locator('[role="heading"]').first(),
         getMyWishList: () => this.page.locator('[role="heading"]').nth(1),
         breadcrumbsMenuHome: () => this.page.locator(
-            'xpath = //li[@class="item home"]/a[@href="https://magento.softwaretestingboard.com/"]')
+            'xpath = //li[@class="item home"]/a[@href="https://magento.softwaretestingboard.com/"]'),
+        getCategoryBlock: () => this.page.locator('.options dt'),
+        getTopsSubCategoryLink: () => this.page.getByRole('link', { name: 'Tops' }),
+        getBottomsSubCategoryLink: () => this.page.getByRole('link', { name: 'Bottoms' }),
     }
 
     async clickBeadcrumbsMenuHome() {
