@@ -94,6 +94,25 @@ export const MY_WISH_LIST_EMPTY_MESSAGE ='You have no items in your wish list.'
 export const MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR = 'rgb(0, 107, 180)';
 export const MEN_PAGE_BOTTOMS_SUB_CATEGORY_LINK_COLOR = 'rgb(0, 107, 180)';
 export const SHOPING_CART_COUNTER_NUMBER = '1';
+export const WOMEN_CATEGORIES = ["Tops", "Bottoms"];
+export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE = [
+  "CATEGORY",
+  "PRICE",
+  "ACTIVITY",
+  "MATERIAL",
+  "GENDER",
+  "NEW",
+  "SALE",
+];
+export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
+  "div.filter-options>div:nth-child(1) ol li a",
+  "div.filter-options>div:nth-child(2) ol li a",
+  "div.filter-options>div:nth-child(3) ol li a",
+  "div.filter-options>div:nth-child(4) ol li a",
+  "div.filter-options>div:nth-child(5) ol li a",
+  "div.filter-options>div:nth-child(6) ol li a",
+  "div.filter-options>div:nth-child(7) ol li a",
+];
 
 
 //login  credential

@@ -13,7 +13,7 @@ class Header {
         getProceedToCheckoutBtn: () => this.page.getByRole('button', {name: 'Proceed to Checkout'}),
         getShoppingCart: () => this.page.getByRole('link', { name: ' My Cart' }),
         getMiniCart: () => this.page.locator('#ui-id-1'),
-        getEmptyCardMessage: () => this.page.locator('.block-minicart .subtitle.empty')
+        getEmptyCardMessage: () => this.page.locator('.block-minicart .subtitle.empty'),    
     }
 
     async clickLogoLink() {
