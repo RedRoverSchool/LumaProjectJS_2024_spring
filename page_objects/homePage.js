@@ -10,6 +10,7 @@ import BottomsWomenPage from "./bottomsWomenPage.js";
 import SearchTermPopularPage from "./searchTermPopularPage.js";
 import SalePage from "./salePage.js";
 import GearWatchesPage from "./gearWatchesPage.js";
+import Footer from "./footer.js";
 import GearPage from "./gearPage.js";
 
 class HomePage {
@@ -46,6 +47,8 @@ class HomePage {
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
+    getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
+    getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
   };
 
   async open() {
@@ -202,6 +205,16 @@ class HomePage {
     await this.locators.getGearWatchesSubmenuItem().click();
 
     return new GearWatchesPage(this.page);
+  }
+
+  async clickFirstCardName() {
+    await this.locators.getFirstCardImage().click();
+
+    return new RadiantTeePage(this.page);
+  }
+
+  getFooter() {
+    return new Footer(this.page);
   }
   async clickGearMenuItem() {
     await this.locators.getGearMenuItem().click();
