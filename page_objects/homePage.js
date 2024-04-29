@@ -10,6 +10,7 @@ import BottomsWomenPage from "./bottomsWomenPage.js";
 import SearchTermPopularPage from "./searchTermPopularPage.js";
 import SalePage from "./salePage.js";
 import GearWatchesPage from "./gearWatchesPage.js";
+import Footer from "./footer.js";
 
 class HomePage {
   constructor(page) {
@@ -43,8 +44,8 @@ class HomePage {
     getHotSellersAddToCartButton: () => this.page.getByTitle('Add to Cart'),
     getWomenCategories: () => this.page.locator('.nav-2 > ul > li > a'),
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
-    getGearWatchesSubmenuItem: () =>
-      this.page.getByRole("menuitem", { name: "Watches" }),
+    getGearWatchesSubmenuItem: () => this.page.getByRole("menuitem", { name: "Watches" }),
+    getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
   };
 
   async open() {
@@ -201,6 +202,10 @@ class HomePage {
     await this.locators.getGearWatchesSubmenuItem().click();
 
     return new GearWatchesPage(this.page);
+  }
+
+  getFooter() {
+    return new Footer(this.page);
   }
 }
 export default HomePage;

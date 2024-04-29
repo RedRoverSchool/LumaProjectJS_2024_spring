@@ -28,5 +28,25 @@ test.describe('footer.spec', () => {
         await expect(searchTermPopularPage.locators.getSearchTermPopularHeader()).toContainText(SEARCH_TERMS_POPULAR_PAGE_HEADER);
     });
 
+    test('Verify that "Search terms" link redirects to the "Popular Search Terms" page', async ({ page }) => {
+        const searchTermPopularPage = await new HomePage(page)
+            .getFooter()
+            .clickSearchTerms();
+        await expect(page).toHaveURL(BASE_URL + SEARCH_TERMS_POPULAR_PAGE_END_POINT);
+        expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
+
+        await searchTermPopularPage.getHeader().clickLogoLink();
+        await expect(page).toHaveURL(BASE_URL)
+
+        const list = await new HomePage(page).locators.getNavigationMenuItemsList();
+        for (const item of await list.all()) {
+            await item.click()
+            await new Footer(page).clickSearchTerms();
+            await expect(page).toHaveURL(BASE_URL + SEARCH_TERMS_POPULAR_PAGE_END_POINT);
+            expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
+        }
+    });
+
+
 });
 
