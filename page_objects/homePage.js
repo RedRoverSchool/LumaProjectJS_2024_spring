@@ -41,6 +41,7 @@ class HomePage {
     getHotSellersXSSizeButton: () => this.page.getByRole('option', {name: 'XS'}),
     getHotSellersBlueColor: () => this.page.getByRole('option', {name: 'Blue'}),
     getHotSellersAddToCartButton: () => this.page.getByTitle('Add to Cart'),
+    getWomenCategories: () => this.page.locators('.nav-2 > ul > li > a'),
 
   };
 
@@ -178,6 +179,12 @@ class HomePage {
 
   async clickHotSellersAddToCartButton(ind) {
     await this.locators.getHotSellersAddToCartButton().nth(ind).click();
+
+    return this;
+  }
+
+  async hoverWomenLink() {
+    await this.locators.getWomenLink().hover();
 
     return this;
   }
