@@ -41,6 +41,7 @@ class HomePage {
     getHotSellersXSSizeButton: () => this.page.getByRole('option', {name: 'XS'}),
     getHotSellersBlueColor: () => this.page.getByRole('option', {name: 'Blue'}),
     getHotSellersAddToCartButton: () => this.page.getByTitle('Add to Cart'),
+    getWomenCategories: () => this.page.locator('.nav-2 > ul > li > a'),
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
@@ -182,18 +183,6 @@ class HomePage {
     await this.locators.getHotSellersAddToCartButton().nth(ind).click();
 
     return this;
-  }
-
-  async hoverGearMenuItem() {
-    await this.locators.getGearMenuItem().hover();
-
-    return this;
-  }
-
-  async clickGearWatchesSubmenuItem() {
-    await this.locators.getGearWatchesSubmenuItem().click();
-
-    return new GearWatchesPage(this.page);
   }
 }
 export default HomePage;

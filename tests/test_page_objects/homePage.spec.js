@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE, SEARCH_RESULTS_JACKET_PAGE_END_POINT, SEARCH_VALID_VALUE, SEARCH_RESULTS_JACKET_HEADER, RADIANT_TEE_PAGE_END_POINT, SEARCH_INVALID_VALUE, WARNING_MESSAGE_NO_RESULTS} from "../../helpers/testData.js";
+import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE, SEARCH_RESULTS_JACKET_PAGE_END_POINT, SEARCH_VALID_VALUE, SEARCH_RESULTS_JACKET_HEADER, RADIANT_TEE_PAGE_END_POINT, SEARCH_INVALID_VALUE, WARNING_MESSAGE_NO_RESULTS, WOMEN_CATEGORIES } from "../../helpers/testData.js";
 import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
 import RadiantTeePage from "../../page_objects/radiantTeePage.js";
 import SearchNoResultsPage from "../../page_objects/searchNoResultsPage.js";
@@ -118,4 +118,11 @@ test.describe('homePage.spec', () => {
         );
     });
 
+    test("Verify user can hover over the title “Women” and see dropdown list with 2 subcategories", async ({ page }) => {
+        const homePage = new HomePage(page);
+
+        homePage.hoverWomenLink();
+
+        await expect(homePage.locators.getWomenCategories()).toHaveText(WOMEN_CATEGORIES);
+      });
 })
