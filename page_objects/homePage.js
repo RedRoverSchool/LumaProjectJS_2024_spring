@@ -46,113 +46,113 @@ class HomePage {
       this.page.getByRole("menuitem", { name: "Watches" }),
   };
 
-  async open() {
-    await this.page.goto("/");
-  }
+ async open() {
+  await this.page.goto("/");
+}
 
   async clickWhatsNewLink() {
-    await this.locators.getWhatsNewLink().click();
+  await this.locators.getWhatsNewLink().click();
 
-    return new WhatsNewPage(this.page);
-  }
+  return new WhatsNewPage(this.page);
+}
 
   async clickWomenLink() {
-    await this.locators.getWomenLink().click();
+  await this.locators.getWomenLink().click();
 
-    return new WomenPage(this.page);
-  }
+  return new WomenPage(this.page);
+}
 
   async clickMenLink() {
-    await this.locators.getMenLink().click();
+  await this.locators.getMenLink().click();
 
-    return new MenPage(this.page);
-  }
+  return new MenPage(this.page);
+}
 
   async clickTrainingLink() {
-    await this.locators.getTrainingLink().click();
+  await this.locators.getTrainingLink().click();
 
-    return new TrainingPage(this.page);
-  }
+  return new TrainingPage(this.page);
+}
 
   async hoverMenLink() {
-    await this.locators.getMenLink().hover();
+  await this.locators.getMenLink().hover();
 
-    return this;
-  }
+  return this;
+}
 
   async clickMenBottomsLink() {
-    await this.locators.getMenBottomsLink().click();
+  await this.locators.getMenBottomsLink().click();
 
-    return new MenBottomsPage(this.page);
-  }
+  return new MenBottomsPage(this.page);
+}
 
   async fillSearchInputField(searchQuerry) {
-    await this.locators.getSearchInputField().fill(searchQuerry);
+  await this.locators.getSearchInputField().fill(searchQuerry);
 
-    return this;
-  }
+  return this;
+}
 
   async executeSearchAutocompleteList() {
-    await this.locators.getWaitForAutocompleteSearchItems();
-    const searchAutocompleteList = await this.locators
-      .getAutocompleteSearchItems()
-      .allInnerTexts();
+  await this.locators.getWaitForAutocompleteSearchItems();
+  const searchAutocompleteList = await this.locators
+    .getAutocompleteSearchItems()
+    .allInnerTexts();
 
-    return searchAutocompleteList;
-  }
+  return searchAutocompleteList;
+}
 
   async clearSearchInputField() {
-    await this.locators.getSearchInputField().clear();
+  await this.locators.getSearchInputField().clear();
 
-    return this;
-  }
+  return this;
+}
 
   async hoverMenLink() {
-    await this.locators.getMenLink().hover();
+  await this.locators.getMenLink().hover();
 
-    return this;
-  }
+  return this;
+}
 
   async clickRadiantTee() {
-    await this.locators.getRadiantTee().click();
+  await this.locators.getRadiantTee().click();
 
-    return new RadiantTeePage(this.page);
-  }
+  return new RadiantTeePage(this.page);
+}
 
   async clickCreateAccountLink() {
-    await this.locators.getCreateAccountLink().click();
+  await this.locators.getCreateAccountLink().click();
 
-    return new CreateAccountPage(this.page);
-  }
+  return new CreateAccountPage(this.page);
+}
   async clickMenTopsLink() {
-    await this.locators.getMenTopsLink().click();
+  await this.locators.getMenTopsLink().click()
 
-    return new MenTopsPage(this.page);
-  }
+  return new MenTopsPage(this.page)
+}
 
   async clickBottomsWomenLink() {
-    await this.locators.getBottomsWomenLink().click();
+  await this.locators.getBottomsWomenLink().click();
 
-    return new BottomsWomenPage(this.page);
-  }
+  return new BottomsWomenPage(this.page);
+}
 
   async hoverWomenMenuitem() {
-    await this.locators.getWomenLink().hover();
+  await this.locators.getWomenLink().hover();
 
-    return this;
-  }
+  return this;
+}
 
   async clickSearchTermPopularLink() {
-    await this.locators.getSearchTermPopularLink().click();
+  await this.locators.getSearchTermPopularLink().click();
 
-    return new SearchTermPopularPage(this.page);
-  }
+  return new SearchTermPopularPage(this.page);
+}
 
   async clickFirstCardImage() {
-    await this.locators.getFirstCardImage().click();
+  await this.locators.getFirstCardImage().click();
 
-    return new RadiantTeePage(this.page);
-  }
+  return new RadiantTeePage(this.page);
+}
 
   async clickSaleLink() {
     await this.locators.getSaleLink().click();
