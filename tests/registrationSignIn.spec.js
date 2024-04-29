@@ -45,7 +45,6 @@ test.describe('registrationSignIn', () => {
         await page.locator('input[name="login[password]"]').fill('123asdRRRRRRRR');
         await page.getByRole('button', {name:'Sign In'}).click();
     
-        
         await expect(page.locator('div[class="page messages"]')).toHaveText('The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.');
       })
 });
