@@ -6,6 +6,14 @@ export const TOPS_WOMEN_PAGE_END_POINT = '/women/tops-women.html';
 export const BOTTOMS_WOMEN_PAGE_END_POINT = '/women/bottoms-women.html';
 export const MEN_BOTTOMS_PAGE_END_POINT = '/men/bottoms-men.html'
 export const TRAINING_URL = "https://magento.softwaretestingboard.com/training.html";
+export const NAVBAR_URLs = [
+    '/what-is-new.html',
+    '/women/tops-women.html',
+    '/men.html',
+    '/gear.html',
+    '/training.html',
+    '/sale.html'
+]
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
