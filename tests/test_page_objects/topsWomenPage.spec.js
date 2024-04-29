@@ -36,13 +36,13 @@ test.describe('topWomenPage.spec', () => {
         await topsWomenPage.clickCategoryFilterOption();
         await topsWomenPage.clickFilterOptionJacketsLink();
     
-        const allItems = await topsWomenPage.locators.getArrayAllItems();          
+        const allItemsOnTopsWomenPage = await topsWomenPage.locators.getArrayAllItems();          
 
-        const allItemsContainExpectedText = allItems.every((item) => {
+        const allItemsContainJacketText = allItemsOnTopsWomenPage.every((item) => {
         return JACKET_ITEMS.some((keyword) => item.includes(keyword));
         });
     
-        expect(allItemsContainExpectedText).toBeTruthy();
+        expect(allItemsContainJacketText).toBeTruthy();
       });
 });
 
