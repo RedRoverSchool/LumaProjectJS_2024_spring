@@ -33,5 +33,4 @@ test.describe('createAccuntPage.spec', () => {
        await expect(myAccountPage.locators.getMyAccountHeader()).toHaveText(MY_ACCOUNT_HEADER);
        await expect(myAccountPage.locators.getThanksMessage()).toHaveText(THANKS_MESSAGE);
     });
-
 })

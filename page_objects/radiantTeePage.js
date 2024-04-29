@@ -8,7 +8,8 @@ class RadiantTeePage {
         getRadiantTeeSizeS: () => this.page.getByText('S', { exact: true }),
         getRadiantTeeSizeM: () => this.page.getByText('M', { exact: true }),
         getRadiantTeeColorBlue: () => this.page.getByRole('option', { name: "Blue" }),
-        getAddToCartBtn: () => this.page.getByRole('button', { name: "Add to Cart" })       
+        getAddToCartBtn: () => this.page.getByRole('button', { name: "Add to Cart" }),
+        getRadiantTeeHeader: () => this.page.getByRole('heading', {name: 'Radiant Tee'})       
     }
 
     async clickRadiantTeeSizeS() {
@@ -34,6 +35,5 @@ class RadiantTeePage {
 
         return this.page;
     }
-
 }
 export default RadiantTeePage
