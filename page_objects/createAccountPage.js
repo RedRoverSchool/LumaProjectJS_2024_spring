@@ -1,4 +1,5 @@
 import MyAccountPage from "./myAccountPage";
+import HomePage from "./homePage";
 
 class CreateAccountPage {
     constructor(page) {
@@ -11,7 +12,8 @@ class CreateAccountPage {
         getEmailField: () => this.page.locator('#email_address'),
         getPasswordField: () => this.page.locator('#password'),
         getConfirmPasswordField: () => this.page.locator('#password-confirmation'),
-        getCreateAccountButton: () => this.page.getByRole('button', { name: "Create an Account" })
+        getCreateAccountButton: () => this.page.getByRole('button', { name: "Create an Account" }),
+        getLogoLink: () => this.page.getByLabel('store logo'),
         
     };
 
@@ -79,6 +81,12 @@ class CreateAccountPage {
         await this.locators.getCreateAccountButton().click();
 
         return new MyAccountPage(this.page);
+    }
+
+    async clickLogoLink() {
+        await this.locators.getLogoLink().click();
+
+        return new HomePage(this.page);
     }
 
 }

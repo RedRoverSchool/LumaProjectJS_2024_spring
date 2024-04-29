@@ -45,6 +45,8 @@ class HomePage {
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
+    getMyAccountMenuButton: () => this.page.locator("div[class='panel header'] span[role='button']"),
+    getMyAccountDropDown: () => this.page.locator("div[aria-hidden='false'] ul[class='header links']"),
   };
 
   async open() {
@@ -201,6 +203,12 @@ class HomePage {
     await this.locators.getGearWatchesSubmenuItem().click();
 
     return new GearWatchesPage(this.page);
+  }
+
+  async clickMyAccountMenuButton() {
+    await this.locators.getMyAccountMenuButton().click();
+
+    return this.page;
   }
 }
 export default HomePage;
