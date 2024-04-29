@@ -103,4 +103,10 @@ test.describe('header.spec', () => {
 
         await expect(header.locators.getCounterNumber()).toHaveText('1');
       })
+
+      test('<Header/Header logo> Validate website has store logo', async({page}) => {
+        const header = new Header(page);
+        
+        await expect(header.locators.getLogoLink()).toBeVisible();
+      })
 })
