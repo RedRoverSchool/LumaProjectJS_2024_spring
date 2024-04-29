@@ -13,9 +13,6 @@ test.describe('menPage.spec', () => {
     test.beforeEach(async ({ page }) => {
         const homePage = new HomePage(page);
         await homePage.open();
-        if (await homePage.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible()) {
-            await homePage.getByRole('button', { name: 'Consent' }).click();
-        };
     });
     test('Menu/Men available to click, see clothes only for men', async ({ page }) => {
         const homePage = new HomePage(page);
@@ -35,8 +32,8 @@ test.describe('menPage.spec', () => {
 
         await homePage.clickMenLink();
         
-        await expect(menPage.locators.shopByCategoryBlock()).toBeVisible();
-        await expect(menPage.locators.shopByCategoryBlock()).toHaveCSS('float', MEN_PAGE_SHOP_BY_CATEGORY_BLOCK_ALIGHMENT);
+        await expect(menPage.locators.getShopByCategoryBlock()).toBeVisible();
+        await expect(menPage.locators.getShopByCategoryBlock()).toHaveCSS('float', MEN_PAGE_SHOP_BY_CATEGORY_BLOCK_ALIGHMENT);
     });
 
     test('Category block contains sub-categories: Tops and Bottoms which are links in blue text', async ({ page }) => {
