@@ -45,6 +45,7 @@ class HomePage {
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
+    getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]')
   };
 
   async open() {
@@ -201,6 +202,12 @@ class HomePage {
     await this.locators.getGearWatchesSubmenuItem().click();
 
     return new GearWatchesPage(this.page);
+  }
+
+  async clickFirstCardName() {
+    await this.locators.getFirstCardImage().click();
+
+    return new RadiantTeePage(this.page);
   }
 }
 export default HomePage;
