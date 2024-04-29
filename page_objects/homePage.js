@@ -37,7 +37,7 @@ class HomePage {
     getDropdownWishList: () => this.page.getByRole('banner').getByText('My Account My Wish List Sign'),
     getSaleLink: () => this.page.locator('#ui-id-8'),
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),    
-    getGearWatchesSubmenuItem: () => this.page.getByRole("menuitem", { name: "Watches" }), //Watches Gear SubmenuItem
+    getGearWatchesSubmenuItem: () => this.page.getByRole("menuitem", { name: "Watches" })
   };
 
   async open() {
