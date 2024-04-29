@@ -102,7 +102,7 @@ test.describe('homePage.spec', () => {
         await expect(searchNoResultsPage.locators.getNoResultsInfo()).toBeHidden();
     });
 
-    test("TC 04.2.1_07 Verify user can hover over the title “Women” and see dropdown list with 2 subcategories", async ({ page }) => {
+    test("Verify user can hover over the title “Women” and see dropdown list with 2 subcategories", async ({ page }) => {
         const homePage = new HomePage(page);
 
         homePage.hoverWomenLink();
