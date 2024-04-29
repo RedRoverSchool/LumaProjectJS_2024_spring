@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { BASE_URL, MEN_PAGE_BOTTOMS_SUB_CATEGORY_LINK_COLOR, MEN_PAGE_SHOP_BY_CATEGORY_BLOCK_ALIGHMENT, MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR, } from "../../helpers/testData.js";
+import { BASE_URL, MEN_PAGE_BOTTOMS_SUB_CATEGORY_LINK_COLOR, MEN_PAGE_SHOP_BY_CATEGORY_BLOCK_ALIGNMENT, MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR, } from "../../helpers/testData.js";
 import {
     MEN_PAGE_END_POINT,
     MEN_PAGE_HEADER,
@@ -33,7 +33,7 @@ test.describe('menPage.spec', () => {
         await homePage.clickMenLink();
         
         await expect(menPage.locators.getShopByCategoryBlock()).toBeVisible();
-        await expect(menPage.locators.getShopByCategoryBlock()).toHaveCSS('float', MEN_PAGE_SHOP_BY_CATEGORY_BLOCK_ALIGHMENT);
+        await expect(menPage.locators.getShopByCategoryBlock()).toHaveCSS('float', MEN_PAGE_SHOP_BY_CATEGORY_BLOCK_ALIGNMENT);
     });
 
     test('Category block contains sub-categories: Tops and Bottoms which are links in blue text', async ({ page }) => {
