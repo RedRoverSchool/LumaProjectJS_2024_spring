@@ -4,7 +4,8 @@ class SalePage {
     }
 
     locators = {
-        getSideMenuSections: () => this.page.locator('.categories-menu span')
+        getSideMenuSections: () => this.page.locator('.categories-menu span'),
+        getSalePageHeader: () => this.page.getByRole('heading', { name: 'Sale'})
     }
 
     async obtainSideMenuSectionsText() {

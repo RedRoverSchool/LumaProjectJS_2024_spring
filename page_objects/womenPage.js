@@ -9,6 +9,7 @@ class WomenPage {
     }
 
     locators = {
+        getWomenPageHeader: () => this.page.locator('#page-title-heading'),
         getWomenTeesLink: () => this.page.getByRole('link', { name: 'Women’s Tees' }),
         getWomenTopsLink: () => this.page.getByRole('link', { name: 'Tops' }),
         getWomenBottomsLink: () => this.page.getByRole('link', { name: 'Bottoms' }),

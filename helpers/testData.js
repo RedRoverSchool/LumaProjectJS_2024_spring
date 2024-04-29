@@ -10,17 +10,20 @@ export const SEARCH_RESULTS_JACKET_PAGE_END_POINT = '/catalogsearch/result/?q=ja
 export const MEN_TOPS_PAGE_END_POINT = '/men/tops-men.html';
 export const SHIPPING_PAGE_END_POINT = '/checkout/#shipping';
 export const RADIANT_TEE_PAGE_END_POINT = '/radiant-tee.html';
-export const NAVBAR_URLs = [
+export const NAVBAR_URLs_END_POINTS = [
     '/what-is-new.html',
-    '/women/tops-women.html',
+    '/women.html',
     '/men.html',
     '/gear.html',
     '/training.html',
     '/sale.html'
-]
+];
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
+export const WOMEN_PAGE_HEADER = 'Women';
+export const GEAR_PAGE_HEADER = 'Gear'
+export const SALE_PAGE_HEADER = 'Sale'
 export const SEARCH_QUERY = "short";
 export const SEARCH_QUERY_UPPERCASE = SEARCH_QUERY.toLocaleUpperCase();
 export const TRAINING_PAGE_HEADER = 'Training';

@@ -10,6 +10,7 @@ import BottomsWomenPage from "./bottomsWomenPage.js";
 import SearchTermPopularPage from "./searchTermPopularPage.js";
 import SalePage from "./salePage.js";
 import GearWatchesPage from "./gearWatchesPage.js";
+import GearPage from "./gearPage.js";
 
 class HomePage {
   constructor(page) {
@@ -201,6 +202,11 @@ class HomePage {
     await this.locators.getGearWatchesSubmenuItem().click();
 
     return new GearWatchesPage(this.page);
+  }
+  async clickGearMenuItem() {
+    await this.locators.getGearMenuItem().click();
+
+    return new GearPage(this.page);
   }
 }
 export default HomePage;
