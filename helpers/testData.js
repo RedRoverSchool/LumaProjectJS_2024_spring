@@ -114,6 +114,7 @@ export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
   "div.filter-options>div:nth-child(7) ol li a",
 ];
 
+export const JACKET_ITEMS = ["Jacket", "Shell"];
 
 //login  credential
 
