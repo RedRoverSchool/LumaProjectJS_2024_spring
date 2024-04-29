@@ -29,7 +29,6 @@ class HomePage {
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
     getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
-    getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
     getMenTopsLink: () => this.page.locator('#ui-id-17'),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
