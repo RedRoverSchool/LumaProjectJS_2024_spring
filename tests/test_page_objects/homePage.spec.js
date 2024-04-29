@@ -102,4 +102,20 @@ test.describe('homePage.spec', () => {
         await expect(searchNoResultsPage.locators.getNoResultsInfo()).toBeHidden();
     });
 
+    test("Verify the search button (magnifier) is inactive after the search field is cleared", async ({
+        page,
+    }) => {
+        const homePage = new HomePage(page);
+
+        await homePage.fillSearchInputField(SEARCH_QUERY);
+        await expect(homePage.locators.getSearchButton()).not.toHaveAttribute(
+            "disabled"
+        );
+
+        await homePage.clearSearchInputField();
+        await expect(homePage.locators.getSearchButton()).toHaveAttribute(
+            "disabled"
+        );
+    });
+
 })
