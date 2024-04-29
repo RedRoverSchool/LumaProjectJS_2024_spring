@@ -45,7 +45,7 @@ class HomePage {
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
-    getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]')
+    getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
     getMyAccountMenuButton: () => this.page.locator("div[class='panel header'] span[role='button']"),
     getMyAccountDropDown: () => this.page.locator("div[aria-hidden='false'] ul[class='header links']"),
   };
