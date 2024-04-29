@@ -46,7 +46,5 @@ test.describe('footer.spec', () => {
             expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
         }
     });
-
-
 });
 
