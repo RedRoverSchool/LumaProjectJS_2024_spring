@@ -12,7 +12,6 @@ class SearchTermPopularPage {
     getHeader() {
         return new Header(this.page);
     }
-
 }
 
 export default SearchTermPopularPage;
