@@ -8,7 +8,7 @@ import MenBottomsPage from "./menBottomsPage";
 import MenTopsPage from "./menTopsPage.js";
 import BottomsWomenPage from "./bottomsWomenPage.js";
 import SearchTermPopularPage from "./searchTermPopularPage.js";
-
+import SalePage from "./salePage.js";
 
 
 class HomePage {
@@ -30,7 +30,6 @@ class HomePage {
     getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
     getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
-    getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
     getMenTopsLink: () => this.page.locator('#ui-id-17'),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
@@ -38,6 +37,8 @@ class HomePage {
     getSearchTermPopularLink: () => this.page.getByRole('link', { name: 'Search Terms' }),
     getFirstCardImage: () => this.page.getByAltText('Radiant Tee'),
     getDropdownWishList: () => this.page.getByRole('banner').getByText('My Account My Wish List Sign'),
+    getSaleLink: () => this.page.locator('#ui-id-8'),
+
   };
 
   async open() {
@@ -147,6 +148,11 @@ class HomePage {
 
   return new RadiantTeePage(this.page);
 }
+  
+  async clickSaleLink() {
+    await this.locators.getSaleLink().click();
 
+    return new SalePage(this.page);
+  }
 }
 export default HomePage;

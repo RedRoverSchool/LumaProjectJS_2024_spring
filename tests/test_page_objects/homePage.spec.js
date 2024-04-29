@@ -1,8 +1,9 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE, SEARCH_RESULTS_JACKET_PAGE_END_POINT, SEARCH_VALID_VALUE, SEARCH_RESULTS_JACKET_HEADER, RADIANT_TEE_PAGE_END_POINT} from "../../helpers/testData.js";
+import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE, SEARCH_RESULTS_JACKET_PAGE_END_POINT, SEARCH_VALID_VALUE, SEARCH_RESULTS_JACKET_HEADER, RADIANT_TEE_PAGE_END_POINT, SEARCH_INVALID_VALUE, WARNING_MESSAGE_NO_RESULTS} from "../../helpers/testData.js";
 import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
 import RadiantTeePage from "../../page_objects/radiantTeePage.js";
+import SearchNoResultsPage from "../../page_objects/searchNoResultsPage.js";
 
 test.describe('homePage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -88,5 +89,17 @@ test.describe('homePage.spec', () => {
 
         await expect(page).toHaveURL(BASE_URL + RADIANT_TEE_PAGE_END_POINT);
         await expect(radiantTeePage.locators.getRadiantTeeHeader()).toBeVisible();
-    })
+    });
+
+    test('Verify user doesn`t receive the results when make search with invalid text ', async({page}) => {
+        
+        const homePage = new HomePage(page);
+        const searchNoResultsPage = new SearchNoResultsPage(page);
+        
+        await homePage.fillSearchInputField(SEARCH_INVALID_VALUE);
+        await homePage.locators.getSearchButton().click();
+        await expect(searchNoResultsPage.locators.getWarningMessageNoResults()).toHaveText(WARNING_MESSAGE_NO_RESULTS);
+        await expect(searchNoResultsPage.locators.getNoResultsInfo()).toBeHidden();
+    });
+
 })

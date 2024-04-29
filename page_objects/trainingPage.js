@@ -7,7 +7,9 @@ class TrainingPage {
 		getTrainingHeader: () => this.page.getByLabel('Training').getByText('Training'),
 		getBreadcrumbMenuAll: () => this.page.getByText('Home Training'),
 		getBreadcrumbMenuTraining: () => this.page.locator('strong').filter({ hasText: /^Training$/ }),
-		getBreadcrumbMenuHome: () => this.page.getByRole('link', { name: 'Home' })
+		getBreadcrumbMenuHome: () => this.page.getByRole('link', { name: 'Home' }),
+		getTrainingPromoBlock: () => this.page.locator('div').filter({ hasText: 'Motivate yourself. Reach' }).nth(2),
+		getTrainingCompareProductsSection: () => this.page.getByRole('heading', { name: 'Compare Products' })
 	};
 	
 	async clickBreadcrumbMenuHome() {
