@@ -41,7 +41,7 @@ class HomePage {
     getHotSellersXSSizeButton: () => this.page.getByRole('option', {name: 'XS'}),
     getHotSellersBlueColor: () => this.page.getByRole('option', {name: 'Blue'}),
     getHotSellersAddToCartButton: () => this.page.getByTitle('Add to Cart'),
-    getWomenCategories: () => this.page.locators('.nav-2 > ul > li > a'),
+    getWomenCategories: () => this.page.locator('.nav-2 > ul > li > a'),
 
   };
 

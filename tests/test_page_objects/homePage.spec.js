@@ -107,10 +107,7 @@ test.describe('homePage.spec', () => {
 
         homePage.hoverWomenLink();
 
-        await expect(homePage.locators.getWomenCategories).toHaveText(WOMEN_CATEGORIES);
-        // await page.getByText("Women", { exact: true }).hover();
-    
-        // await expect(page.locator(".nav-2 > ul > li > a")).toHaveText(womenCategories);
+        await expect(homePage.locators.getWomenCategories()).toHaveText(WOMEN_CATEGORIES);
       });
 
 })
