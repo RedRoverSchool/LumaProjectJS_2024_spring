@@ -5,7 +5,7 @@ import {
     shoppingItem1, shoppingItem2,
     BASE_URL,
     SHIPPING_PAGE_END_POINT, SHIPPING_PROGRESS_BAR_TEXT,
-    EMPTY_CARD_MESSAGE
+    EMPTY_CARD_MESSAGE, SHOPING_CART_COUNTER_NUMBER
 } from '../../helpers/testData.js'
 import ShippingPage from '../../page_objects/shippingPage.js';
 
@@ -101,6 +101,6 @@ test.describe('header.spec', () => {
         await homePage.clickHotSellersAddToCartButton(0);
         await header.waitForCounterNumber();
 
-        await expect(header.locators.getCounterNumber()).toHaveText('1');
+        await expect(header.locators.getCounterNumber()).toHaveText(SHOPING_CART_COUNTER_NUMBER);
       })
 })
