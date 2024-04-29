@@ -91,6 +91,8 @@ export const INEZ_FULL_ZIP_JACKET1_END_POINT = '/inez-full-zip-jacket.html';
 export const SHOPPING_CART_END_POINT = '/checkout/cart/';
 export const EMPTY_CARD_MESSAGE = 'You have no items in your shopping cart.';
 export const MY_WISH_LIST_EMPTY_MESSAGE ='You have no items in your wish list.'
+export const MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR = 'rgb(0, 107, 180)';
+export const MEN_PAGE_BOTTOMS_SUB_CATEGORY_LINK_COLOR = 'rgb(0, 107, 180)';
 export const SHOPING_CART_COUNTER_NUMBER = '1';
 
 
