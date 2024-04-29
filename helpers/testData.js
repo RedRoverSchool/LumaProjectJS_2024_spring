@@ -130,6 +130,11 @@ export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
 ];
 
 export const JACKET_ITEMS = ["Jacket", "Shell"];
+export const PRODUCT_LIST = 'products-list';
+
+
+
+
 
 //login  credential
 

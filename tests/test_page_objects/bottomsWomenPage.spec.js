@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import BottomsWomenPage from "../../page_objects/bottomsWomenPage.js";
-import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS} from "../../helpers/testData.js";
+import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, PRODUCT_LIST} from "../../helpers/testData.js";
 import { WOMEN_BOTTOMS_CATEGORIES } from "../../helpers/testWomenData.js";
 
 test.describe('bottomsWomenPage.spec', () => {
@@ -44,6 +44,7 @@ test.describe('bottomsWomenPage.spec', () => {
     });
 
     test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
+   
         const homePage = new HomePage(page);
         const bottomsWomenPage = new BottomsWomenPage(page);
 
@@ -55,4 +56,16 @@ test.describe('bottomsWomenPage.spec', () => {
         
         expect(actualPantsText).toEqual(WOMEN_BOTTOMS_CATEGORIES[0]);
     });
+
+    test("Product display mode change in the catalog to List mode", async ({ page }) => {
+        const homePage = new HomePage(page);
+        const bottomsWomenPage = new BottomsWomenPage(page);
+
+        await homePage.hoverWomenMenuitem();
+        await homePage.clickBottomsWomenLink();
+        await bottomsWomenPage.clickListViewLink();
+
+        expect(await bottomsWomenPage.locators.getProductsListWrapper()).toHaveClass(new RegExp(PRODUCT_LIST));
+});
+
 })
