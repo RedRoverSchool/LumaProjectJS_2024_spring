@@ -3,7 +3,6 @@ import HomePage from "../../page_objects/homePage";
 import Footer from "../../page_objects/footer";
 import PrivacyPolicyPage from "../../page_objects/privacyPolicyPage";
 import { NAV_MENU_ITEM_NAMES, NUMBER_NAV_MENU_ITEMS } from "../../helpers/testPrivacyPolicyData";
-import { beforeEach } from 'node:test';
 
 test.describe('privacyPolicyPage.spec', () => {
 
