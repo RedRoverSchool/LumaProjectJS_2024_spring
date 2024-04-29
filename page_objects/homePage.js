@@ -9,14 +9,14 @@ import MenTopsPage from "./menTopsPage.js";
 import BottomsWomenPage from "./bottomsWomenPage.js";
 import SearchTermPopularPage from "./searchTermPopularPage.js";
 import SalePage from "./salePage.js";
-
+import GearWatchesPage from "./gearWatchesPage.js";
 
 class HomePage {
   constructor(page) {
     this.page = page;
   }
 
-  locators = {
+    locators = {
     getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
     getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
     getMenLink: () => this.page.getByRole('menuitem', { name: 'Men' }).last(),
@@ -41,7 +41,11 @@ class HomePage {
     getHotSellersXSSizeButton: () => this.page.getByRole('option', {name: 'XS'}),
     getHotSellersBlueColor: () => this.page.getByRole('option', {name: 'Blue'}),
     getHotSellersAddToCartButton: () => this.page.getByTitle('Add to Cart'),
-
+    getWomenCategories: () => this.page.locator('.nav-2 > ul > li > a'),
+    getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
+    getGearWatchesSubmenuItem: () =>
+      this.page.getByRole("menuitem", { name: "Watches" }),
+    getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]')
   };
 
   async open() {
@@ -180,6 +184,30 @@ class HomePage {
     await this.locators.getHotSellersAddToCartButton().nth(ind).click();
 
     return this;
+  }
+
+  async hoverWomenLink() {
+    await this.locators.getWomenLink().hover();
+
+    return this;
+  }
+  
+    async hoverGearMenuItem() {
+    await this.locators.getGearMenuItem().hover();
+
+    return this;
+  }
+
+  async clickGearWatchesSubmenuItem() {
+    await this.locators.getGearWatchesSubmenuItem().click();
+
+    return new GearWatchesPage(this.page);
+  }
+
+  async clickFirstCardName() {
+    await this.locators.getFirstCardImage().click();
+
+    return new RadiantTeePage(this.page);
   }
 }
 export default HomePage;
