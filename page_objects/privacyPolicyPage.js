@@ -1,4 +1,3 @@
-import { NAV_MENU_ITEM_NAMES } from "../helpers/testPrivacyPolicyData";
 class PrivacyPolicyPage {
 
     constructor(page) {
