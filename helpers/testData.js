@@ -51,7 +51,10 @@ export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store
 export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
 
 export const SEARCH_VALID_VALUE = 'jacket';
+export const SEARCH_INVALID_VALUE = `${SEARCH_VALID_VALUE}test`;
 export const SEARCH_RESULTS_JACKET_HEADER = `Search results for: '${SEARCH_VALID_VALUE}'`;
+export const WARNING_MESSAGE_NO_RESULTS = ' Your search returned no results. ';
+export const ITEMS = ' Items ';
 
 export const LIST_STYLE_MEN_TOPS = [
     'Insulated',
@@ -68,14 +71,26 @@ export const LIST_STYLE_MEN_TOPS = [
     'Reversible',
     'Tank',
     'Tee'];
+export const SALE_SIDE_MENU_SECTIONS = ["WOMEN'S DEALS", "MENS'S DEALS", "GEAR DEALS"];
 
-//export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
+export const LIST_CATEGORY_MEN_TOPS = [
+    'Jackets 11 item', 
+    'Hoodies & Sweatshirts 13 item', 
+    'Tees 12 item', 
+    'Tanks 12 item'];
+
+
 export const SHIPPING_PROGRESS_BAR_TEXT = 'Shipping';
 export const SEARCH_TERMS_POPULAR_PAGE_END_POINT = '/search/term/popular/';
-export const SEARCH_TERMS_POPULAR_PAGE_HEADER = 'Popular Search Terms'
-
-//login  credential
-
+export const SEARCH_TERMS_POPULAR_PAGE_HEADER = 'Popular Search Terms' ;
+export const MY_ORDERS_PAGE_END_POINT = '/sales/order/history/';
+export const MY_ACCOUNT_END_POINT = '/customer/account/';
+export const MY_ORDERS_HEADER = 'My Orders';
+export const WOMEN_JACKETS_NAME = 'Inez Full Zip Jacket';
+export const INEZ_FULL_ZIP_JACKET1_END_POINT = '/inez-full-zip-jacket.html';
+export const SHOPPING_CART_END_POINT = '/checkout/cart/';
+export const EMPTY_CARD_MESSAGE = 'You have no items in your shopping cart.';
+export const MY_WISH_LIST_EMPTY_MESSAGE ='You have no items in your wish list.'
 
 
 //login  credential
