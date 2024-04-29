@@ -36,6 +36,9 @@ class HomePage {
     getSearchTermPopularLink: () => this.page.getByRole('link', { name: 'Search Terms' }),
     getFirstCardImage: () => this.page.getByAltText('Radiant Tee'),
     getSaleLink: () => this.page.locator('#ui-id-8'),
+    getHotSellersXSSizeButton: () => this.page.getByRole('option', {name: 'XS'}),
+    getHotSellersBlueColor: () => this.page.getByRole('option', {name: 'Blue'}),
+    getHotSellersAddToCartButton: () => this.page.getByTitle('Add to Cart'),
 
   };
 
@@ -151,6 +154,24 @@ class HomePage {
     await this.locators.getSaleLink().click();
 
     return new SalePage(this.page);
+  }
+
+  async clickHotSellersXSSizeButton(ind) {
+    await this.locators.getHotSellersXSSizeButton().nth(ind).click();
+
+    return this;
+  }
+
+  async clickHotSellersBlueColor(ind) {
+    await this.locators.getHotSellersBlueColor().nth(ind).click();
+
+    return this;
+  }
+
+  async clickHotSellersAddToCartButton(ind) {
+    await this.locators.getHotSellersAddToCartButton().nth(ind).click();
+
+    return this;
   }
 }
 export default HomePage;

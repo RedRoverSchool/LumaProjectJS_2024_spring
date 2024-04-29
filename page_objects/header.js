@@ -34,5 +34,11 @@ class Header {
         return new ShippingPage(this.page);
     }
 
+    async waitForCounterNumber() {
+        await this.locators.getCounterNumber().waitFor();
+
+        return this;
+    }
+
 }
 export default Header;

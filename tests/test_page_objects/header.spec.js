@@ -91,4 +91,16 @@ test.describe('header.spec', () => {
 
         await expect(header.locators.getEmptyCardMessage()).toHaveText(EMPTY_CARD_MESSAGE);
     })
+
+    test('<Header/Shopping Cart Icon> Verify a counter with the number of items in the cart is displayed after adding new product', async({ page }) => {
+        const homePage = new HomePage(page);
+        const header = new Header(page);
+
+        await homePage.clickHotSellersXSSizeButton(0);
+        await homePage.clickHotSellersBlueColor(0);
+        await homePage.clickHotSellersAddToCartButton(0);
+        await header.waitForCounterNumber();
+
+        await expect(header.locators.getCounterNumber()).toHaveText('1');
+      })
 })
