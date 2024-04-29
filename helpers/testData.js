@@ -89,8 +89,7 @@ export const MY_ORDERS_HEADER = 'My Orders';
 export const WOMEN_JACKETS_NAME = 'Inez Full Zip Jacket';
 export const INEZ_FULL_ZIP_JACKET1_END_POINT = '/inez-full-zip-jacket.html';
 export const SHOPPING_CART_END_POINT = '/checkout/cart/';
-
-
+export const MY_WISH_LIST_EMPTY_MESSAGE ='You have no items in your wish list.'
 
 
 //login  credential
