@@ -1,6 +1,7 @@
 import TeesWomenPage from "./teesWomenPage";
 import TopsWomenPage from "./topsWomenPage";
 import BottomsWomenPage from "./bottomsWomenPage";
+import JacketsWomenPage from "./jacketsWomenPage";
 
 class WomenPage {
     constructor(page) {
@@ -10,7 +11,8 @@ class WomenPage {
     locators = {
         getWomenTeesLink: () => this.page.getByRole('link', { name: 'Women’s Tees' }),
         getWomenTopsLink: () => this.page.getByRole('link', { name: 'Tops' }),
-        getWomenBottomsLink: () => this.page.getByRole('link', { name: 'Bottoms' })
+        getWomenBottomsLink: () => this.page.getByRole('link', { name: 'Bottoms' }),
+        getWomenJacketsLink: () => this.page.getByRole('link', { name: 'Jackets' }),
     }
 
     async clickWomenTeesLink() {
@@ -28,6 +30,12 @@ class WomenPage {
 
         return new BottomsWomenPage(this.page);
     }
+    async clickWomenJacketsLink() {
+        await this.locators.getWomenJacketsLink().click();
+
+        return new JacketsWomenPage(this.page);
+    }
+    
 }
 
 export default WomenPage;
