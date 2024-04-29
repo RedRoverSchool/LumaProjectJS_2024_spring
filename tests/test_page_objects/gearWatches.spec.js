@@ -1,8 +1,9 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import GearWatchesPage from "../../page_objects/gearWatchesPage.js";
+import WatchProductPage from "../../page_objects/watchProductPage.js";
 import {
-  LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE
+  LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE, LIST_OF_MATERIALS_SUBITEMS_EXPECTED
 } from "../../helpers/testData.js";
 
 test.describe('gearWatchesPage.spec', () => {
@@ -48,4 +49,33 @@ test.describe('gearWatchesPage.spec', () => {
       }
     })
   })
+
+  LIST_OF_MATERIALS_SUBITEMS_EXPECTED.forEach((material) => {
+    test.only(`Verify the related products are displayed after applying ${material} Material filter on the Gear/Watches page`, async ({
+      page,
+    }) => {
+      test.slow();
+      const gearWatchesPage = new GearWatchesPage(page);
+      const watchProductPage = new WatchProductPage(page);
+      
+      gearWatchesPage.clickShoppingOption(LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[3]);
+      await gearWatchesPage.locators.getWaitForListOfShoppingOptions(
+        LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE, 3);
+      gearWatchesPage.clickSubMenuLink(material);
+       
+       await expect(
+         gearWatchesPage.locators.getNowShoppingBySubtitle()
+       ).toBeVisible();
+      const arrayOfProducts = await gearWatchesPage.locators.getAllProducts().allInnerTexts();
+
+      for (let product of arrayOfProducts) {
+        gearWatchesPage.openProductPage(product);
+        watchProductPage.openMoreInformationSection();
+        watchProductPage.locators.getMoreInformationSectionContent().waitFor({ state: 'visible' });
+
+        await expect(watchProductPage.locators.getMoreInformationSectionContent()).toContainText(material);
+        await page.goBack();
+      }
+    });
+  });
 })
