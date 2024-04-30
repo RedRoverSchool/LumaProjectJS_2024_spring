@@ -12,6 +12,7 @@ import SalePage from "./salePage.js";
 import GearWatchesPage from "./gearWatchesPage.js";
 import Footer from "./footer.js";
 import GearPage from "./gearPage.js";
+import GearBagsPage from "./gearBagsPage.js";
 
 class HomePage {
   constructor(page) {
@@ -49,6 +50,7 @@ class HomePage {
       this.page.getByRole("menuitem", { name: "Watches" }),
     getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
     getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
+    getGearBagsSubmenuItem: () => this.page.locator("#ui-id-25"),
   };
 
   async open() {
@@ -220,6 +222,12 @@ class HomePage {
     await this.locators.getGearMenuItem().click();
 
     return new GearPage(this.page);
+  }
+
+  async clickGearBagsSubmenuItem() {
+    await this.locators.getGearBagsSubmenuItem().click();
+
+    return new  GearBagsPage(this.page);
   }
 }
 export default HomePage;

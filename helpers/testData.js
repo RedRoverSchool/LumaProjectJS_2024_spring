@@ -18,6 +18,7 @@ export const NAVBAR_URLs_END_POINTS = [
     '/training.html',
     '/sale.html'
 ];
+export const GEAR_BAGS_PAGE_END_POINT = '/gear/bags.html';
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
@@ -31,6 +32,7 @@ export const TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT  = 'Training';
 export const TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT  = 'Home';
 export const WOMEN_TOPS_HEADER = 'Tops'
 export const WOMEN_BOTTOMS_HEADER = 'Bottoms';
+export const GEAR_BAGS_HEADER = 'Bags';
 export const shoppingItem1 = {
     name: "Radiant Tee",
     price: 22.00,
