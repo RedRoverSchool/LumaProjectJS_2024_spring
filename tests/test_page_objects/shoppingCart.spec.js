@@ -47,5 +47,24 @@ test.describe('shopping Cart', () => {
 
         await expect(shoppingCartPage.locators.getMoveToWishListLink()).toBeVisible();
     })
+
+    test.skip('Validate the message - the product has been moved to your wish list', async ({ page }) => {
+        const myAccountPage = new MyAccountPage(page);
+        const womenPage = new WomenPage(page);
+        const jacketsWomenPage = new JacketsWomenPage(page);
+        const inezFullZipJacketPage = new InezFullZipJacketPage(page);
+        const shoppingCartPage = new ShoppingCartPage(page);
+        await page.waitForURL(BASE_URL + MY_ACCOUNT_END_POINT);
+        await myAccountPage.clickWomenLink();
+        await womenPage.clickWomenJacketsLink();
+        await jacketsWomenPage.clickWomenJacketsName();
+        await inezFullZipJacketPage.clickInezJacketSizeOptionLable();
+        await inezFullZipJacketPage.clickInezJacketColorOptionLable();
+        await inezFullZipJacketPage.clickInezJacketAddToCartButton();
+        await inezFullZipJacketPage.clickShoppingCartLink();
+        await shoppingCartPage.clickMoveToWishListLink();
+
+        await expect(shoppingCartPage.locators.getAlerMessageAddToWishList()).toBeVisible();
+    })
 })
 

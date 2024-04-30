@@ -13,7 +13,8 @@ class SalePage {
     locators = {
         getSideMenuSections: () => this.page.locator('.categories-menu span'),
         getItemsFromMensDealsSection: (option) => this.page.getByRole("link", { name: option }).last(), 
-        getTitleForEachPageFromMensDeals: () => this.page.locator('#page-title-heading > span')
+        getTitleForEachPageFromMensDeals: () => this.page.locator('#page-title-heading > span'),
+        getSalePageHeader: () => this.page.getByRole('heading', { name: 'Sale'})
 
     }
 
