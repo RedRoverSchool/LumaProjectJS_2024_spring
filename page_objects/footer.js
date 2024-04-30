@@ -1,4 +1,5 @@
 import PrivacyPolicyPage from './privacyPolicyPage';
+import SearchTermPopularPage from "././searchTermPopularPage";
 
 class Footer {
     constructor(page){
@@ -7,13 +8,19 @@ class Footer {
 
     locators = {
         getFooter: () => this.page.locator('.page-wrapper footer'),
-        getPrivacyAndCookiePolicyLink: () => this.page.getByRole('link', { name: 'Privacy and Cookie Policy' })
+        getPrivacyAndCookiePolicyLink: () => this.page.getByRole('link', { name: 'Privacy and Cookie Policy' }),
+        getSearchTerms: () => this.page.getByText('Search Terms'),
     }
 
     async clickPrivacyAndCookiePolicyLink() {
         await this.locators.getPrivacyAndCookiePolicyLink().click();
 
         return new PrivacyPolicyPage(this.page);
+    }
+
+    async clickSearchTerms(page) {
+        await this.locators.getSearchTerms().click()
+        return new SearchTermPopularPage(this.page);
     }
 }
 

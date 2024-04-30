@@ -14,6 +14,7 @@ class MenPage {
         getCategoryBlock: () => this.page.locator('.options dt'),
         getTopsSubCategoryLink: () => this.page.getByRole('link', { name: 'Tops' }),
         getBottomsSubCategoryLink: () => this.page.getByRole('link', { name: 'Bottoms' }),
+        getShopByCategoryBlock: () => this.page.locator('[class="sidebar sidebar-main"]'),
     }
 
     async clickBeadcrumbsMenuHome() {

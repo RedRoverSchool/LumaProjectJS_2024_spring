@@ -13,9 +13,14 @@ class MenBottomsPage {
         getBreadcrumbsMenuBottoms: () => this.page.locator('[class="item category13"]'),
         breadcrumbsMenuMen: () => this.page.locator(
             'xpath=//li[@class="item category11"]/a[@href="https://magento.softwaretestingboard.com/men.html"]'),
+
         // getAddWishListProduct: () => this.page.locator('li').filter({ hasText: 'Pierce Gym Short As low as $' }).getByLabel('Add to Wish List'),
         getPierceGymclick: () => this.page.getByRole('link', { name: 'Pierce Gym Short' }).first(),
         getMyWishList: () => this.page.getByText('Pierce Gym Short $27.00 Add')
+
+        getMenBottomsShopingOptionsSidebarTitle: () => this.page.getByRole('heading', {name: 'Shopping Options'}),
+        getMenBottomsShopingOptionsSidebarPosition: () => this.page.locator('.sidebar.sidebar-main'),
+
     }
 
     async clickBreadcrumbsMenuMen() {
@@ -23,6 +28,7 @@ class MenBottomsPage {
 
         return new MenPage(this.page);
     }
+
 
     // async addWishListProductPierce() {
     //     await this.locators.getAddWishListProduct().click();
@@ -32,6 +38,14 @@ class MenBottomsPage {
     async ckickPierceGymc() {
         await this.locators.getPierceGymclick().click();
         return this.page;
+
+    async getPositionOfSidebar() {
+        const position = await this.page.$eval('.sidebar.sidebar-main', sidebar => {
+            return window.getComputedStyle(sidebar).float;
+          });
+
+          return position;
+
     }
 }
 

@@ -11,6 +11,9 @@ import SearchTermPopularPage from "./searchTermPopularPage.js";
 import SalePage from "./salePage.js";
 import GearWatchesPage from "./gearWatchesPage.js";
 import SignInPage from "./signInPage.js"
+import Footer from "./footer.js";
+import GearPage from "./gearPage.js";
+import GearBagsPage from "./gearBagsPage.js";
 
 
 class HomePage {
@@ -45,9 +48,12 @@ class HomePage {
     getHotSellersAddToCartButton: () => this.page.getByTitle('Add to Cart'),
     getWomenCategories: () => this.page.locator('.nav-2 > ul > li > a'),
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
+	 getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
       getWhatsNewLink: () => this.page.getByRole('link', { name: 'Sign In' }),
+    getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
+    getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
 
   };
 
@@ -207,9 +213,31 @@ class HomePage {
     return new GearWatchesPage(this.page);
   }
 
+
   async clickWhatsNewLink() {
     await this.locators.getWhatsNewLink().click();
     return new SignInPage(this.page);
+
+  async clickFirstCardName() {
+    await this.locators.getFirstCardImage().click();
+
+    return new RadiantTeePage(this.page);
+  }
+
+  getFooter() {
+    return new Footer(this.page);
+  }
+  async clickGearMenuItem() {
+    await this.locators.getGearMenuItem().click();
+
+    return new GearPage(this.page);
+  }
+
+  async clickGearBagsSubmenuItem() {
+	await this.locators.getGearBagsSubmenuItem().click();
+
+	return new GearBagsPage(this.page);
+
 }
 }
 export default HomePage;
