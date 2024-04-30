@@ -131,6 +131,14 @@ export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
   "div.filter-options>div:nth-child(6) ol li a",
   "div.filter-options>div:nth-child(7) ol li a",
 ];
+export const LIST_OF_MATERIALS_SUBITEMS_EXPECTED = [
+    "Leather",
+    "Metal",
+    "Plastic",
+    "Rubber",
+    "Stainless Steel",
+    "Silicone",
+  ];
 
 export const JACKET_ITEMS = ["Jacket", "Shell"];
 

@@ -29,12 +29,6 @@ class MenBottomsPage {
         return new MenPage(this.page);
     }
 
-
-    // async addWishListProductPierce() {
-    //     await this.locators.getAddWishListProduct().click();
-    //     return new WishListPage(this.page);
-
-
     async ckickPierceGymc() {
         await this.locators.getPierceGymclick().click();
         return this.page;
