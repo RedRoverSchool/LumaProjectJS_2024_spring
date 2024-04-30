@@ -141,6 +141,7 @@ export const LIST_OF_MATERIALS_SUBITEMS_EXPECTED = [
   ];
 
 export const JACKET_ITEMS = ["Jacket", "Shell"];
+export const ORDERS_AND_RETURNS_HEADER = 'Orders and Returns';
 
 //login  credential
 
