@@ -48,7 +48,7 @@ test.describe('shopping Cart', () => {
         await expect(shoppingCartPage.locators.getMoveToWishListLink()).toBeVisible();
     })
 
-    test.skip('Validate the message - the product has been moved to your wish list', async ({ page }) => {
+    test('Validate the message - the product has been moved to your wish list', async ({ page }) => {
         const myAccountPage = new MyAccountPage(page);
         const womenPage = new WomenPage(page);
         const jacketsWomenPage = new JacketsWomenPage(page);
