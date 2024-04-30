@@ -134,6 +134,14 @@ export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
 
 export const JACKET_ITEMS = ["Jacket", "Shell"];
 
+export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
+  '.filter-options-item.allow.active > div > ol > li:nth-child(1) a', 
+  '.filter-options-item.allow.active > div > ol > li:nth-child(2) a'
+  ];
+  
+export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
+export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
+ 
 //login  credential
 
 export const email = 'kat123@gmail.com';
