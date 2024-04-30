@@ -9,11 +9,26 @@ class TrainingPage {
 		getBreadcrumbMenuTraining: () => this.page.locator('strong').filter({ hasText: /^Training$/ }),
 		getBreadcrumbMenuHome: () => this.page.getByRole('link', { name: 'Home' }),
 		getTrainingPromoBlock: () => this.page.locator('div').filter({ hasText: 'Motivate yourself. Reach' }).nth(2),
-		getTrainingCompareProductsSection: () => this.page.getByRole('heading', { name: 'Compare Products' })
+		getTrainingCompareProductsSection: () => this.page.getByRole('heading', { name: 'Compare Products' }),
+		getTrainingShopByCategorySection: () => this.page.getByText('Shop By Shopping Options'),
+		getTrainingVideoDownloadLink: () => this.page.getByRole('link', { name: 'Video Download' }),
+		getTrainingCompareButton: () => this.page.getByRole('link', { name: 'Compare', exact: true })
 	};
 	
 	async clickBreadcrumbMenuHome() {
 		await this.locators.getBreadcrumbMenuHome().click();
+	
+		return this.page;
+	}
+
+	async clickVideoDownloadLink() {
+		await this.locators.getTrainingVideoDownloadLink().click();
+	
+		return this.page;
+	}
+
+	async clickTrainingCompareButton() {
+		await this.locators.getTrainingCompareButton().click();
 	
 		return this.page;
 	}
