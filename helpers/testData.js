@@ -6,6 +6,7 @@ export const TOPS_WOMEN_PAGE_END_POINT = '/women/tops-women.html';
 export const BOTTOMS_WOMEN_PAGE_END_POINT = '/women/bottoms-women.html';
 export const MEN_BOTTOMS_PAGE_END_POINT = '/men/bottoms-men.html';
 export const TRAINING_URL = "https://magento.softwaretestingboard.com/training.html";
+export const TRAINING_PAGE_VIDEODOWNLOAD_URL = "https://magento.softwaretestingboard.com/training/training-video.html";
 export const SEARCH_RESULTS_JACKET_PAGE_END_POINT = '/catalogsearch/result/?q=jacket';
 export const MEN_TOPS_PAGE_END_POINT = '/men/tops-men.html';
 export const SHIPPING_PAGE_END_POINT = '/checkout/#shipping';
@@ -29,6 +30,7 @@ export const SEARCH_QUERY_UPPERCASE = SEARCH_QUERY.toLocaleUpperCase();
 export const TRAINING_PAGE_HEADER = 'Training';
 export const TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT  = 'Training';
 export const TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT  = 'Home';
+export const VIDEODOWNLOAD_PAGE_HEADER = 'Video Download';
 export const WOMEN_TOPS_HEADER = 'Tops'
 export const WOMEN_BOTTOMS_HEADER = 'Bottoms';
 export const shoppingItem1 = {
