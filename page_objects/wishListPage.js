@@ -10,11 +10,6 @@ class WishListPage {
         getTitleMyWishList: () => this.page.locator('.page-title-wrapper'),
         getItemQuantity: () => this.page.getByText('1 Item').nth(2)
     }
-    async open() {
-        await this.page.goto("https://magento.softwaretestingboard.com/wishlist/");
-      }
-
-
 
 }
 export default WishListPage;

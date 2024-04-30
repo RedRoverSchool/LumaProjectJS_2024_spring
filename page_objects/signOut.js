@@ -14,8 +14,8 @@ class HomePage {
     await this.page.goto('/')
    }
 
-   async clickWhatsNewLink() {
-    await this.locators.getWhatsNewLink().click();
+   async clickSignInLink() {
+    await this.locators.clickSignInLink().click();
     return new SignInPage(this.page);
    }
 }
