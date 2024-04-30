@@ -2,7 +2,9 @@ import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import TrainingPage from "../../page_objects/trainingPage.js";
 import VideoDownloadPage from "../../page_objects/videoDownloadPage.js";
-import { TRAINING_URL, TRAINING_PAGE_HEADER, BASE_URL, TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT, TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT, TRAINING_PAGE_VIDEODOWNLOAD_URL, VIDEODOWNLOAD_PAGE_HEADER} from "../../helpers/testData.js";
+import GearBagsPage from "../../page_objects/gearBagsPage.js";
+import CompareProductsPage from "../../page_objects/compareProductsPage.js";
+import { TRAINING_URL, TRAINING_PAGE_HEADER, BASE_URL, TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT, TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT, TRAINING_PAGE_VIDEODOWNLOAD_URL, VIDEODOWNLOAD_PAGE_HEADER, COMPARE_URL_REGEX, COMPARE_PRODUCT_PAGE_HEADER, COMPARE_PRODUCT_PAGE_ITEM_TEXT} from "../../helpers/testData.js";
 
 test.describe('trainingPage.spec', () => {
 	test.beforeEach(async ({ page }) => {
@@ -74,5 +76,30 @@ test.describe('trainingPage.spec', () => {
 		await expect(videoDownloadPage.locators.getVideoDownloadHeader()).toBeVisible();
 		await expect(videoDownloadPage.locators.getVideoDownloadHeader()).toContainText(VIDEODOWNLOAD_PAGE_HEADER);
   })
+
+  test('Verify that the User can use the “Compare Products” feature to compare different training products and identify their features and benefits', async({page}) => {
+		const homePage = new HomePage(page);
+		const trainingPage = new TrainingPage(page);
+		const gearBagsPage = new GearBagsPage(page);
+		const compareProductsPage = new CompareProductsPage(page);
+
+
+		await homePage.hoverGearMenuItem();
+		await homePage.clickGearBagsSubmenuItem();
+		await page.waitForTimeout(3000);
+		await gearBagsPage.hoverPushItMessengerItem();
+		await page.waitForTimeout(5000);
+		await gearBagsPage.clickgetPushItMessengerItemAddtoCampare();
+		await page.waitForTimeout(5000);
+		await gearBagsPage.clickTrainingLink();
+		await trainingPage.clickTrainingCompareButton();
+		
+		const currentURL = page.url();
+		expect(currentURL).toMatch(COMPARE_URL_REGEX);
+		await expect(compareProductsPage.locators.getCompareProductsHeader()).toBeVisible();
+		await expect(compareProductsPage.locators.getCompareProductsHeader()).toContainText(COMPARE_PRODUCT_PAGE_HEADER);
+		await expect(compareProductsPage.locators.getCompareProductsItem()).toBeVisible();
+		await expect(compareProductsPage.locators.getCompareProductsItem()).toContainText(COMPARE_PRODUCT_PAGE_ITEM_TEXT);
+	})
   
 });
