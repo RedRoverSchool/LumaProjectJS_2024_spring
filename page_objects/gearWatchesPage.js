@@ -22,7 +22,8 @@ class GearWatchesPage {
             this.page.getByRole("link", { name: option }),
         getAllProducts: () => this.page
             .locator("a.product-item-link[href]"),
-        getProductPage:(product) => this.page.getByText(product)
+        getProductPage: (product) => this.page.getByText(product),
+        getFilterValue: () => this.page.locator(".filter-value"),
   };
 
   async clickShoppingOption(option) {
