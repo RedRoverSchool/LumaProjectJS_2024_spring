@@ -20,6 +20,7 @@ export const NAVBAR_URLs_END_POINTS = [
     '/training.html',
     '/sale.html'
 ];
+export const GEAR_BAGS_PAGE_END_POINT = '/gear/bags.html';
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
@@ -36,6 +37,7 @@ export const COMPARE_PRODUCT_PAGE_HEADER = 'Compare Products';
 export const COMPARE_PRODUCT_PAGE_ITEM_TEXT = 'Push It Messenger Bag';
 export const WOMEN_TOPS_HEADER = 'Tops'
 export const WOMEN_BOTTOMS_HEADER = 'Bottoms';
+export const GEAR_BAGS_HEADER = 'Bags';
 export const shoppingItem1 = {
     name: "Radiant Tee",
     price: 22.00,
@@ -62,7 +64,7 @@ function generateRandomEmail() {
     return `${mailbox}@${domain}`;
   };
 
-export const EMAIL = generateRandomEmail(); 
+export const EMAIL = generateRandomEmail();
 export const MY_ACCOUNT_HEADER = 'My Account';
 export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store.';
 export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
@@ -91,9 +93,9 @@ export const LIST_STYLE_MEN_TOPS = [
 export const SALE_SIDE_MENU_SECTIONS = ["WOMEN'S DEALS", "MENS'S DEALS", "GEAR DEALS"];
 
 export const LIST_CATEGORY_MEN_TOPS = [
-    'Jackets 11 item', 
-    'Hoodies & Sweatshirts 13 item', 
-    'Tees 12 item', 
+    'Jackets 11 item',
+    'Hoodies & Sweatshirts 13 item',
+    'Tees 12 item',
     'Tanks 12 item'];
 
 
@@ -142,6 +144,14 @@ export const LIST_OF_MATERIALS_SUBITEMS_EXPECTED = [
 
 export const JACKET_ITEMS = ["Jacket", "Shell"];
 
+export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
+  '.filter-options-item.allow.active > div > ol > li:nth-child(1) a', 
+  '.filter-options-item.allow.active > div > ol > li:nth-child(2) a'
+  ];
+  
+export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
+export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
+ 
 //login  credential
 
 export const email = 'kat123@gmail.com';
