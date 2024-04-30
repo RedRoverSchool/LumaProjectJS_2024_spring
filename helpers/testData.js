@@ -20,6 +20,7 @@ export const NAVBAR_URLs_END_POINTS = [
     '/training.html',
     '/sale.html'
 ];
+export const GEAR_BAGS_PAGE_END_POINT = '/gear/bags.html';
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
@@ -36,6 +37,7 @@ export const COMPARE_PRODUCT_PAGE_HEADER = 'Compare Products';
 export const COMPARE_PRODUCT_PAGE_ITEM_TEXT = 'Push It Messenger Bag';
 export const WOMEN_TOPS_HEADER = 'Tops'
 export const WOMEN_BOTTOMS_HEADER = 'Bottoms';
+export const GEAR_BAGS_HEADER = 'Bags';
 export const shoppingItem1 = {
     name: "Radiant Tee",
     price: 22.00,
