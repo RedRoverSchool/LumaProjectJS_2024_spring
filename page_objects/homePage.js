@@ -11,14 +11,15 @@ import SearchTermPopularPage from "./searchTermPopularPage.js";
 import SalePage from "./salePage.js";
 import GearWatchesPage from "./gearWatchesPage.js";
 import Footer from "./footer.js";
-import GearBagsPage from "./gearBagsPage.js";
+import GearPage from "./gearPage.js";
+import GearBagsPage from "./gearBagsPage.js";import GearBagsPage from "./gearBagsPage.js";
 
 class HomePage {
   constructor(page) {
     this.page = page;
   }
 
-  locators = {
+    locators = {
     getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
     getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
     getMenLink: () => this.page.getByRole('menuitem', { name: 'Men' }).last(),
@@ -40,11 +41,12 @@ class HomePage {
     getFirstCardImage: () => this.page.getByAltText('Radiant Tee'),
     getDropdownWishList: () => this.page.getByRole('banner').getByText('My Account My Wish List Sign'),
     getSaleLink: () => this.page.locator('#ui-id-8'),
-    getHotSellersXSSizeButton: () => this.page.getByRole('option', { name: 'XS' }),
-    getHotSellersBlueColor: () => this.page.getByRole('option', { name: 'Blue' }),
+    getHotSellersXSSizeButton: () => this.page.getByRole('option', {name: 'XS'}),
+    getHotSellersBlueColor: () => this.page.getByRole('option', {name: 'Blue'}),
     getHotSellersAddToCartButton: () => this.page.getByTitle('Add to Cart'),
     getWomenCategories: () => this.page.locator('.nav-2 > ul > li > a'),
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
+	  getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
     getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
@@ -113,6 +115,12 @@ class HomePage {
     return this;
   }
 
+  async hoverMenLink() {
+    await this.locators.getMenLink().hover();
+
+    return this;
+  }
+ 
   async clickRadiantTee() {
     await this.locators.getRadiantTee().click();
 
@@ -125,7 +133,7 @@ class HomePage {
     return new CreateAccountPage(this.page);
   }
   async clickMenTopsLink() {
-    await this.locators.getMenTopsLink().click()
+    await this.locators.getMenTopsLink().click();
 
     return new MenTopsPage(this.page)
   }
@@ -211,6 +219,17 @@ class HomePage {
   getFooter() {
     return new Footer(this.page);
   }
+  async clickGearMenuItem() {
+    await this.locators.getGearMenuItem().click();
+
+    return new GearPage(this.page);
+  }
+
+  async clickGearBagsSubmenuItem() {
+	await this.locators.getGearBagsSubmenuItem().click();
+
+	return new GearBagsPage(this.page);
+}
 
   async clickGearBags() {
     await this.locators.getGearBagsLink().click();
