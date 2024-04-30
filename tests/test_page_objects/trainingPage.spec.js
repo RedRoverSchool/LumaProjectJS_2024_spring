@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import TrainingPage from "../../page_objects/trainingPage.js";
-import { TRAINING_URL, TRAINING_PAGE_HEADER, BASE_URL, TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT, TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT} from "../../helpers/testData.js";
+import VideoDownloadPage from "../../page_objects/videoDownloadPage.js";
+import { TRAINING_URL, TRAINING_PAGE_HEADER, BASE_URL, TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT, TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT, TRAINING_PAGE_VIDEODOWNLOAD_URL, VIDEODOWNLOAD_PAGE_HEADER} from "../../helpers/testData.js";
 
 test.describe('trainingPage.spec', () => {
 	test.beforeEach(async ({ page }) => {
@@ -57,8 +58,21 @@ test.describe('trainingPage.spec', () => {
 		await homePage.clickTrainingLink();	        
 	
 
-		expect(trainingPage.locators.getTrainingCompareProductsSection()).toBeTruthy();
-		await expect(trainingPage.locators.getTrainingCompareProductsSection()).toBeVisible();
+		expect(trainingPage.locators.getTrainingShopByCategorySection()).toBeTruthy();
+		await expect(trainingPage.locators.getTrainingShopByCategorySection()).toBeVisible();
+  })
+
+  test('Verify that clicking on the "Video Download" link redirects to the correct "Video Download" page', async({page}) => {
+		const homePage = new HomePage(page);
+		const trainingPage = new TrainingPage(page);
+		const videoDownloadPage = new VideoDownloadPage(page);
+  
+		await homePage.clickTrainingLink();
+		await trainingPage.clickVideoDownloadLink();
+
+		await expect(page).toHaveURL(TRAINING_PAGE_VIDEODOWNLOAD_URL);
+		await expect(videoDownloadPage.locators.getVideoDownloadHeader()).toBeVisible();
+		await expect(videoDownloadPage.locators.getVideoDownloadHeader()).toContainText(VIDEODOWNLOAD_PAGE_HEADER);
   })
   
 });

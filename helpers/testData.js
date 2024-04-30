@@ -6,18 +6,31 @@ export const TOPS_WOMEN_PAGE_END_POINT = '/women/tops-women.html';
 export const BOTTOMS_WOMEN_PAGE_END_POINT = '/women/bottoms-women.html';
 export const MEN_BOTTOMS_PAGE_END_POINT = '/men/bottoms-men.html';
 export const TRAINING_URL = "https://magento.softwaretestingboard.com/training.html";
+export const TRAINING_PAGE_VIDEODOWNLOAD_URL = "https://magento.softwaretestingboard.com/training/training-video.html";
 export const SEARCH_RESULTS_JACKET_PAGE_END_POINT = '/catalogsearch/result/?q=jacket';
 export const MEN_TOPS_PAGE_END_POINT = '/men/tops-men.html';
 export const SHIPPING_PAGE_END_POINT = '/checkout/#shipping';
 export const RADIANT_TEE_PAGE_END_POINT = '/radiant-tee.html';
+export const NAVBAR_URLs_END_POINTS = [
+    '/what-is-new.html',
+    '/women.html',
+    '/men.html',
+    '/gear.html',
+    '/training.html',
+    '/sale.html'
+];
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
+export const WOMEN_PAGE_HEADER = 'Women';
+export const GEAR_PAGE_HEADER = 'Gear'
+export const SALE_PAGE_HEADER = 'Sale'
 export const SEARCH_QUERY = "short";
 export const SEARCH_QUERY_UPPERCASE = SEARCH_QUERY.toLocaleUpperCase();
 export const TRAINING_PAGE_HEADER = 'Training';
 export const TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT  = 'Training';
 export const TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT  = 'Home';
+export const VIDEODOWNLOAD_PAGE_HEADER = 'Video Download';
 export const WOMEN_TOPS_HEADER = 'Tops'
 export const WOMEN_BOTTOMS_HEADER = 'Bottoms';
 export const shoppingItem1 = {
@@ -38,6 +51,7 @@ export const FIRST_NAME = 'Svetlana';
 export const LAST_NAME = 'Kudryvzeva';
 export const PASSWORD = '12345Sveta!';
 export const PASSWORD_CONFIRM = '12345Sveta!';
+export const NAVBAR_MENU = ["What's New", 'Women', 'Men', 'Gear', 'Training', 'Sale']
 
 function generateRandomEmail() {
     const mailbox = Math.random().toString(36).substring(2, 10);
@@ -93,6 +107,7 @@ export const EMPTY_CARD_MESSAGE = 'You have no items in your shopping cart.';
 export const MY_WISH_LIST_EMPTY_MESSAGE ='You have no items in your wish list.'
 export const MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR = 'rgb(0, 107, 180)';
 export const MEN_PAGE_BOTTOMS_SUB_CATEGORY_LINK_COLOR = 'rgb(0, 107, 180)';
+export const MEN_PAGE_SHOP_BY_CATEGORY_BLOCK_ALIGNMENT = 'left';
 export const SHOPING_CART_COUNTER_NUMBER = '1';
 export const WOMEN_CATEGORIES = ["Tops", "Bottoms"];
 export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE = [
@@ -122,6 +137,7 @@ export const LIST_OF_MATERIALS_SUBITEMS_EXPECTED = [
     "Silicone",
   ];
 
+export const JACKET_ITEMS = ["Jacket", "Shell"];
 
 //login  credential
 
