@@ -16,7 +16,7 @@ class MenBottomsPage {
 
         // getAddWishListProduct: () => this.page.locator('li').filter({ hasText: 'Pierce Gym Short As low as $' }).getByLabel('Add to Wish List'),
         getPierceGymclick: () => this.page.getByRole('link', { name: 'Pierce Gym Short' }).first(),
-        getMyWishList: () => this.page.getByText('Pierce Gym Short $27.00 Add')
+        getMyWishList: () => this.page.getByText('Pierce Gym Short $27.00 Add'),
 
         getMenBottomsShopingOptionsSidebarTitle: () => this.page.getByRole('heading', {name: 'Shopping Options'}),
         getMenBottomsShopingOptionsSidebarPosition: () => this.page.locator('.sidebar.sidebar-main'),
@@ -38,6 +38,7 @@ class MenBottomsPage {
     async ckickPierceGymc() {
         await this.locators.getPierceGymclick().click();
         return this.page;
+    }
 
     async getPositionOfSidebar() {
         const position = await this.page.$eval('.sidebar.sidebar-main', sidebar => {

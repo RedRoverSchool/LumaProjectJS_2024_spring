@@ -217,6 +217,7 @@ class HomePage {
   async clickWhatsNewLink() {
     await this.locators.getWhatsNewLink().click();
     return new SignInPage(this.page);
+  }
 
   async clickFirstCardName() {
     await this.locators.getFirstCardImage().click();
