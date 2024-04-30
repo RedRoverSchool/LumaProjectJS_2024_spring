@@ -9,6 +9,7 @@ class GearBagsPage {
         getPushItMessengerItem: () => this.page.getByRole('link', { name: 'Push It Messenger Bag' }).first(),
         getPushItMessengerItemAddtoCampare: () => this.page.locator('li').filter({ hasText: 'Push It Messenger Bag Rating' }).getByLabel('Add to Compare'),
         getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
+        getGearBagsPageHeader: () => this.page.getByRole('heading', { name: 'Bags' }),
         getMaterialOption: () => this.page.getByRole("tab", { name: "Material" }),
         getMateialItemList: () => this.page.locator('.filter-options>:nth-child(4) li')
     };
@@ -17,7 +18,7 @@ class GearBagsPage {
         await this.locators.getPushItMessengerItem().hover();
 
         return this;
-    }
+    } 
 
     async clickgetPushItMessengerItemAddtoCampare() {
         await this.locators.getPushItMessengerItemAddtoCampare().click();

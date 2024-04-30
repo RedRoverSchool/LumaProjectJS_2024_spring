@@ -12,14 +12,14 @@ import SalePage from "./salePage.js";
 import GearWatchesPage from "./gearWatchesPage.js";
 import Footer from "./footer.js";
 import GearPage from "./gearPage.js";
-import GearBagsPage from "./gearBagsPage.js";import GearBagsPage from "./gearBagsPage.js";
+import GearBagsPage from "./gearBagsPage.js";
 
 class HomePage {
   constructor(page) {
     this.page = page;
   }
 
-    locators = {
+  locators = {
     getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
     getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
     getMenLink: () => this.page.getByRole('menuitem', { name: 'Men' }).last(),
@@ -41,16 +41,17 @@ class HomePage {
     getFirstCardImage: () => this.page.getByAltText('Radiant Tee'),
     getDropdownWishList: () => this.page.getByRole('banner').getByText('My Account My Wish List Sign'),
     getSaleLink: () => this.page.locator('#ui-id-8'),
-    getHotSellersXSSizeButton: () => this.page.getByRole('option', {name: 'XS'}),
-    getHotSellersBlueColor: () => this.page.getByRole('option', {name: 'Blue'}),
+    getHotSellersXSSizeButton: () => this.page.getByRole('option', { name: 'XS' }),
+    getHotSellersBlueColor: () => this.page.getByRole('option', { name: 'Blue' }),
     getHotSellersAddToCartButton: () => this.page.getByTitle('Add to Cart'),
     getWomenCategories: () => this.page.locator('.nav-2 > ul > li > a'),
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
-	  getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
+    getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
     getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
     getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
+    getGearBagsSubmenuItem: () => this.page.locator("#ui-id-25"),
     getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" })
   };
 
@@ -120,7 +121,7 @@ class HomePage {
 
     return this;
   }
- 
+
   async clickRadiantTee() {
     await this.locators.getRadiantTee().click();
 
@@ -226,14 +227,14 @@ class HomePage {
   }
 
   async clickGearBagsSubmenuItem() {
-	await this.locators.getGearBagsSubmenuItem().click();
+    await this.locators.getGearBagsSubmenuItem().click();
 
-	return new GearBagsPage(this.page);
-}
+    return new GearBagsPage(this.page);
+  }
 
   async clickGearBags() {
     await this.locators.getGearBagsLink().click();
-    
+
     return new GearBagsPage(this.page);
   }
 }
