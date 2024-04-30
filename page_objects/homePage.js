@@ -10,6 +10,8 @@ import BottomsWomenPage from "./bottomsWomenPage.js";
 import SearchTermPopularPage from "./searchTermPopularPage.js";
 import SalePage from "./salePage.js";
 import GearWatchesPage from "./gearWatchesPage.js";
+import SignInPage from "./signInPage.js"
+
 
 class HomePage {
   constructor(page) {
@@ -45,6 +47,8 @@ class HomePage {
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
+      getWhatsNewLink: () => this.page.getByRole('link', { name: 'Sign In' }),
+
   };
 
   async open() {
@@ -190,7 +194,7 @@ class HomePage {
 
     return this;
   }
-  
+
     async hoverGearMenuItem() {
     await this.locators.getGearMenuItem().hover();
 
@@ -202,5 +206,10 @@ class HomePage {
 
     return new GearWatchesPage(this.page);
   }
+
+  async clickWhatsNewLink() {
+    await this.locators.getWhatsNewLink().click();
+    return new SignInPage(this.page);
+}
 }
 export default HomePage;
