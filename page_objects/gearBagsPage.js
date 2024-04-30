@@ -29,17 +29,6 @@ class GearBagsPage {
 	 
 		return new TrainingPage(this.page);
 	 }
-
 }
-export default GearBagsPage;class GearBagsPage {
-    constructor (page) {
-        this.page = page;
-    }
-
-    locators = {
-        getGearBagsPageHeader: () => this.page.getByRole('heading', { name: 'Bags' }),  
-    }
- }
-
 export default GearBagsPage;
 
