@@ -5,7 +5,8 @@ import TopsWomenPage from "../../page_objects/topsWomenPage";
 import {
     BASE_URL,
     MY_WISH_LIST_EMPTY_MESSAGE,
-    TOPS_WOMEN_PAGE_END_POINT
+    TOPS_WOMEN_PAGE_END_POINT,
+    JACKET_ITEMS
 } from "../../helpers/testData";
 
 test.describe('topWomenPage.spec', () => {
@@ -22,5 +23,48 @@ test.describe('topWomenPage.spec', () => {
         await expect(topsWomenPage.locators.getWomenMyWishListHeading()).toBeVisible();
         await expect(topsWomenPage.locators.getWomenMyWishListEmptyMessage()).toHaveText(MY_WISH_LIST_EMPTY_MESSAGE);
     });
+
+    test("after applying the filter Jackets, only jackets are displayed on the page", async ({ page }) => {
+        const homePage = new HomePage(page);
+        const womenPage = new WomenPage(page);
+        const topsWomenPage = new TopsWomenPage(page)
+
+        await homePage.open();
+        await homePage.clickWomenLink();
+        await womenPage.clickWomenTopsLink();
+    
+        await topsWomenPage.clickCategoryFilterOption();
+        await topsWomenPage.clickFilterOptionJacketsLink();
+    
+        const allItemsOnTopsWomenPage = await topsWomenPage.locators.getArrayAllItems();          
+
+        const allItemsContainJacketText = allItemsOnTopsWomenPage.every((item) => {
+        return JACKET_ITEMS.some((keyword) => item.includes(keyword));
+        });
+    
+        expect(allItemsContainJacketText).toBeTruthy();
+      });
+
+      test("number of items in Jackets Category equals number of items on the page after filtering", async ({ page }) => {
+        const homePage = new HomePage(page);
+        const womenPage = new WomenPage(page);
+        const topsWomenPage = new TopsWomenPage(page)
+
+        await homePage.open();
+        await homePage.clickWomenLink();
+        await womenPage.clickWomenTopsLink();
+    
+        await topsWomenPage.clickCategoryFilterOption();        
+
+        const textOfJacketItems = await topsWomenPage.locators.getTextCategoryJacketItems();
+        const expectedNumberJacketItems = parseInt(textOfJacketItems.match(/\d+/));
+
+        await topsWomenPage.clickFilterOptionJacketsLink();
+    
+        const allJacketItemsOnPage = await topsWomenPage.locators.getArrayAllItems();
+        const actualNumberJacketItems = allJacketItemsOnPage.length;  
+        
+        expect(expectedNumberJacketItems).toEqual(actualNumberJacketItems);      
+      });
 });
 

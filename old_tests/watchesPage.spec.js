@@ -220,7 +220,7 @@ test.describe('watchesPage', () => {
         }
     });
 
-    const listOfWatchMaterials = [
+    const LIST_OF_MATERIALS_SUBITEMS_EXPECTED = [
       "Leather",
       "Metal",
       "Plastic",
@@ -229,7 +229,7 @@ test.describe('watchesPage', () => {
       "Silicone",
     ];
 
-    listOfWatchMaterials.forEach((material) => {
+    LIST_OF_MATERIALS_SUBITEMS_EXPECTED.forEach((material) => {
       test(`Verify the related products are displayed after applying ${material} Material filter on the Gear/Watches page`, async ({
         page,
       }) => {

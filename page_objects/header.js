@@ -1,3 +1,4 @@
+import HomePage from "./homePage";
 import ShippingPage from "./shippingPage";
 
 class Header {
@@ -19,7 +20,7 @@ class Header {
     async clickLogoLink() {
         await this.locators.getLogoLink().click();
 
-        return this.page;
+        return new HomePage(this.page);
     }
 
     async clickCounterNumber() {
