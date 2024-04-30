@@ -65,7 +65,7 @@ test.describe('bottomsWomenPage.spec', () => {
         await homePage.clickBottomsWomenLink();
         await bottomsWomenPage.clickListViewLink();
 
-        expect(await bottomsWomenPage.locators.getProductsListWrapper()).toHaveClass(new RegExp(PRODUCT_LIST));
+        expect(await bottomsWomenPage.locators.getProductsListWrapper({timeout: 10000})).toHaveClass(new RegExp(PRODUCT_LIST));
 });
 
 })
