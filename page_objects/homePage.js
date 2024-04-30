@@ -161,12 +161,6 @@ class HomePage {
   async clickSaleLink() {
     await this.locators.getSaleLink().click();
 
-    return new RadiantTeePage(this.page);
-  }
-
-  async clickSaleLink() {
-    await this.locators.getSaleLink().click();
-
     return new SalePage(this.page);
   }
 
