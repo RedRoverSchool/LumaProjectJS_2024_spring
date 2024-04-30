@@ -55,4 +55,17 @@ test.describe('bottomsWomenPage.spec', () => {
         
         expect(actualPantsText).toEqual(WOMEN_BOTTOMS_CATEGORIES[0]);
     });
+
+    test("User can able to select a category from the suggested list of 2 (two) options: Shorts", async ({ page }) => {
+        const homePage = new HomePage(page);
+        const bottomsWomenPage = new BottomsWomenPage(page);
+
+        await homePage.hoverWomenMenuitem();
+        await homePage.clickBottomsWomenLink();
+        await bottomsWomenPage.clickWomenBottomsCategory();
+        await bottomsWomenPage.clickBottomsCategoryShorts();
+        const actualShortsText =await bottomsWomenPage.getLocatorInnerText(bottomsWomenPage.locators.getShortsCategoryLocator());
+
+        expect(actualShortsText).toEqual(WOMEN_BOTTOMS_CATEGORIES[1]);
+    })
 })

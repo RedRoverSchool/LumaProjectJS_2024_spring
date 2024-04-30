@@ -10,7 +10,9 @@ class BottomsWomenPage {
         getCategoryInStyle: () => this.page.locator('[aria-hidden="false"] .items>.item'),
         getBottomsCategory: () => this.page.getByText('Category'),
         getBottomsCategoryPants: () => this.page.locator(".filter-options li a[href$='bottoms-women.html?cat=27']"),//getByRole('link', {name: 'Pants'})
-        getPantsCategoryLocator: () => this.page.locator('li .filter-value')
+        getPantsCategoryLocator: () => this.page.locator('li .filter-value'),
+        getBottomsCategoryShorts: () => this.page.locator(".filter-options li a[href$='bottoms-women.html?cat=28']"),
+        getShortsCategoryLocator: () => this.page.locator('li .filter-value')
     }
 
     async getLocatorInnerText(locator) {
@@ -38,6 +40,12 @@ class BottomsWomenPage {
 
     async clickBottomsCategoryPants() {
         await this.locators.getBottomsCategoryPants().click();
+
+        return this;
+    }
+
+    async clickBottomsCategoryShorts() {
+        await this.locators.getBottomsCategoryShorts().click();
 
         return this;
     }
