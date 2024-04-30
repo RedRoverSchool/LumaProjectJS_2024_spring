@@ -64,7 +64,7 @@ function generateRandomEmail() {
     return `${mailbox}@${domain}`;
   };
 
-export const EMAIL = generateRandomEmail(); 
+export const EMAIL = generateRandomEmail();
 export const MY_ACCOUNT_HEADER = 'My Account';
 export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store.';
 export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
@@ -93,9 +93,9 @@ export const LIST_STYLE_MEN_TOPS = [
 export const SALE_SIDE_MENU_SECTIONS = ["WOMEN'S DEALS", "MENS'S DEALS", "GEAR DEALS"];
 
 export const LIST_CATEGORY_MEN_TOPS = [
-    'Jackets 11 item', 
-    'Hoodies & Sweatshirts 13 item', 
-    'Tees 12 item', 
+    'Jackets 11 item',
+    'Hoodies & Sweatshirts 13 item',
+    'Tees 12 item',
     'Tanks 12 item'];
 
 

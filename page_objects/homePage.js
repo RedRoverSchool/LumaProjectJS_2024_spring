@@ -10,9 +10,11 @@ import BottomsWomenPage from "./bottomsWomenPage.js";
 import SearchTermPopularPage from "./searchTermPopularPage.js";
 import SalePage from "./salePage.js";
 import GearWatchesPage from "./gearWatchesPage.js";
+import SignInPage from "./signInPage.js"
 import Footer from "./footer.js";
 import GearPage from "./gearPage.js";
 import GearBagsPage from "./gearBagsPage.js";
+
 
 class HomePage {
   constructor(page) {
@@ -49,8 +51,10 @@ class HomePage {
     getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
+      getSignInLink: () => this.page.getByRole('link', { name: 'Sign In' }),
     getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
     getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
+
     getGearBagsSubmenuItem: () => this.page.locator("#ui-id-25"),
     getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" })
   };
@@ -209,6 +213,12 @@ class HomePage {
     await this.locators.getGearWatchesSubmenuItem().click();
 
     return new GearWatchesPage(this.page);
+  }
+
+
+  async clickSignInLink() {
+    await this.locators.getSignInLink().click();
+    return new SignInPage(this.page);
   }
 
   async clickFirstCardName() {
