@@ -6,26 +6,24 @@ class WatchProductPage {
 
   locators = {
     getMoreInformationSection: () =>
-          this.page.getByRole("tab", { name: "More Information" }),
-    getWaitToMoreInformationSectionContent: () => this.page.waitForSelector(
-          "#product-attribute-specs-table"
-    ),
+      this.page.getByRole("tab", { name: "More Information" }),
+    getWaitToMoreInformationSectionContent: () =>
+      this.page.waitForSelector("#product-attribute-specs-table"),
     getMoreInformationSectionContent: () =>
-          this.page.getByLabel("More Information").locator("div"),
-    
+      this.page.locator("table#product-attribute-specs-table tbody"),
   };
 
   async openMoreInformationSection() {
     await this.locators.getMoreInformationSection().click();
 
     return this;
-    }
-    
-    async goBackToGearWatchesPage() {
-        await this.page.goBack();
+  }
 
-        return new GearWatchesPage(this.page);
-    }
+  async goBackToGearWatchesPage() {
+    await this.page.goBack();
+
+    return new GearWatchesPage(this.page);
+  }
 }
 
 export default WatchProductPage;
