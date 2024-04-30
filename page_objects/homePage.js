@@ -71,9 +71,7 @@ class HomePage {
       getSignInLink: () => this.page.getByRole('link', { name: 'Sign In' }),
     getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
     getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
-
     getGearBagsSubmenuItem: () => this.page.locator("#ui-id-25"),
-
     getMyAccountMenuButton: () => this.page.locator("div[class='panel header'] span[role='button']"),
     getMyAccountDropDown: () => this.page.locator("div[aria-hidden='false'] ul[class='header links']"),
   };
