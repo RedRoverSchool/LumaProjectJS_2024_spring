@@ -6,7 +6,7 @@ class HomePage {
    }
    locators = {
 
-    getWhatsNewLink: () => this.page.getByRole('link', { name: 'Sign In' }),
+    getSignInLink: () => this.page.getByRole('link', { name: 'Sign In' }),
 
    }
 
@@ -14,8 +14,8 @@ class HomePage {
     await this.page.goto('/')
    }
 
-   async clickWhatsNewLink() {
-    await this.locators.getWhatsNewLink().click();
+   async clickSignInLink() {
+    await this.locators.getSignInLink().click();
     return new SignInPage(this.page);
    }
 }
