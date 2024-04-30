@@ -68,7 +68,7 @@ class HomePage {
 	 getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
-      getWhatsNewLink: () => this.page.getByRole('link', { name: 'Sign In' }),
+      getSignInLink: () => this.page.getByRole('link', { name: 'Sign In' }),
     getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
     getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
 
@@ -231,8 +231,8 @@ class HomePage {
   }
 
 
-  async clickWhatsNewLink() {
-    await this.locators.getWhatsNewLink().click();
+  async clickSignInLink() {
+    await this.locators.getSignInLink().click();
     return new SignInPage(this.page);
   }
 

@@ -13,7 +13,7 @@ test.describe('menBottomWishList.spec', () => {
     const homePage = new HomePage(page);
     await homePage.open();
 
-    await homePage.clickWhatsNewLink();
+    await homePage.clickSignInLink();
 
     const signInPage = new SignInPage(page);
     await signInPage.fillFieldEmail();

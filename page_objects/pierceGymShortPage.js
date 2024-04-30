@@ -9,10 +9,6 @@ class PierceGymShortPage {
 
     }
 
-    async open() {
-        await this.page.goto('https://magento.softwaretestingboard.com/pierce-gym-short.html');
-    }
-
     async addWishList () {
         await this.locators.getWishList().click();
         return this.page;
