@@ -1,5 +1,9 @@
 import MenPage from "./menPage";
+
 import WishListPage from "./wishListPage";
+
+import { LIST_CATEGORY_MEN_BOTTOMS, LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS } from "../helpers/testData";
+
 
 class MenBottomsPage {
     constructor(page) {
@@ -21,6 +25,11 @@ class MenBottomsPage {
         getMenBottomsShopingOptionsSidebarTitle: () => this.page.getByRole('heading', {name: 'Shopping Options'}),
         getMenBottomsShopingOptionsSidebarPosition: () => this.page.locator('.sidebar.sidebar-main'),
 
+
+        getMenBottomsCategory: () => this.page.locator('.filter-options-title').getByText('Category'),
+        getMenBottomsSubCategory: (i) => this.page.locator(LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS[i]),
+        getMenBottomsCategoryValue: (i) => this.page.locator('.filter-value').getByText(LIST_CATEGORY_MEN_BOTTOMS[i]),
+
     }
 
     async clickBreadcrumbsMenuMen() {
@@ -41,6 +50,24 @@ class MenBottomsPage {
 
           return position;
 
+    }
+
+    async hoverMenBottomsCategory() {
+        await this.locators.getMenBottomsCategory().hover();
+
+        return this.page;
+    }
+
+    async clickMenBottomsCategory() {
+        await this.locators.getMenBottomsCategory().click();
+
+        return this.page;
+    }
+
+    async clickMenBottomsSubCategory(i) {
+        await this.locators.getMenBottomsSubCategory([i]).click();
+
+        return this.page;
     }
 }
 
