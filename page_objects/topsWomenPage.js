@@ -10,6 +10,7 @@ class TopsWomenPage {
         getCategoryFilterOption: () => this.page.getByRole("tab", { name: "Category" }),
         getFilterOptionJacketsLink: () => this.page.getByRole("link", { name: "Jackets" }),        
         getArrayAllItems: () => this.page.locator(".products .product-items .product-item-link").allTextContents(),
+        getTextCategoryJacketItems: () => this.page.locator('#narrow-by-list > div.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(1) > a > span').innerText(),
     }
 
     async clickCategoryFilterOption() {

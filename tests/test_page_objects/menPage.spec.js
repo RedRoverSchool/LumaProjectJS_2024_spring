@@ -13,7 +13,9 @@ import {
     MEN_PAGE_END_POINT,
     MEN_PAGE_HEADER,
     COMPARE_PRODUCTS_TEXT,
-    MY_WISH_LIST_TEXT
+    MY_WISH_LIST_TEXT,
+    HOT_SELLERS_NAME, 
+    HOT_SELLERS_ENDPOINT_URL
 } from "../../helpers/testMenData.js";
 import MenPage from "../../page_objects/menPage";
 
@@ -70,4 +72,16 @@ test.describe('menPage.spec', () => {
             expect(typeof parseInt(rowArrayValue[1])).toEqual(MEN_PAGE_SHOP_BY_CATEGORY_SUB_CATEGORIES_COUNTER_DATATYPE);
         };
     });
+
+    HOT_SELLERS_NAME.forEach((productsName, idx) => {
+        test(`Menu/Men/Hot Sellers Verify user can click on product's name and be redirected to the ${productsName} page`, async({ page }) => {    
+            const homePage = new HomePage(page);
+
+            const menPage = await homePage.clickMenLink();
+            const menHotSellersPage = await menPage.clickMenHotSellersName(productsName);
+         
+            await expect(page).toHaveURL(new RegExp(HOT_SELLERS_ENDPOINT_URL[idx]));
+            await expect(menHotSellersPage.locators.getMenName(productsName)).toHaveText(HOT_SELLERS_NAME[idx]);
+          });
+      });
 });

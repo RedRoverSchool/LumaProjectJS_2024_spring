@@ -44,5 +44,27 @@ test.describe('topWomenPage.spec', () => {
     
         expect(allItemsContainJacketText).toBeTruthy();
       });
+
+      test("number of items in Jackets Category equals number of items on the page after filtering", async ({ page }) => {
+        const homePage = new HomePage(page);
+        const womenPage = new WomenPage(page);
+        const topsWomenPage = new TopsWomenPage(page)
+
+        await homePage.open();
+        await homePage.clickWomenLink();
+        await womenPage.clickWomenTopsLink();
+    
+        await topsWomenPage.clickCategoryFilterOption();        
+
+        const textOfJacketItems = await topsWomenPage.locators.getTextCategoryJacketItems();
+        const expectedNumberJacketItems = parseInt(textOfJacketItems.match(/\d+/));
+
+        await topsWomenPage.clickFilterOptionJacketsLink();
+    
+        const allJacketItemsOnPage = await topsWomenPage.locators.getArrayAllItems();
+        const actualNumberJacketItems = allJacketItemsOnPage.length;  
+        
+        expect(expectedNumberJacketItems).toEqual(actualNumberJacketItems);      
+      });
 });
 
