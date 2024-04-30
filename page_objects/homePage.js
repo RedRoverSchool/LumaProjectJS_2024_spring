@@ -64,7 +64,7 @@ class HomePage {
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
     getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
-    getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),,
+    getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
   };
 
   async open() {
