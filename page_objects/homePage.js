@@ -12,7 +12,7 @@ import SalePage from "./salePage.js";
 import GearWatchesPage from "./gearWatchesPage.js";
 import Footer from "./footer.js";
 import GearPage from "./gearPage.js";
-import GearBagsPage from "./gearBagsPage.js";import GearBagsPage from "./gearBagsPage.js";
+import GearBagsPage from "./gearBagsPage.js";
 
 class HomePage {
   constructor(page) {
