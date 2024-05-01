@@ -12,6 +12,17 @@ export const SEARCH_RESULTS_JACKET_PAGE_END_POINT = '/catalogsearch/result/?q=ja
 export const MEN_TOPS_PAGE_END_POINT = '/men/tops-men.html';
 export const SHIPPING_PAGE_END_POINT = '/checkout/#shipping';
 export const RADIANT_TEE_PAGE_END_POINT = '/radiant-tee.html';
+export const RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT = '/radiant-tee.html#reviews';
+export const BREATHE_EASY_TANK_PAGE_END_POINT = '/breathe-easy-tank.html';
+
+export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
+    '/men/tops-men/hoodies-and-sweatshirts-men.html',
+    '/men/tops-men/jackets-men.html',
+    '/men/tops-men/tees-men.html',
+    '/men/bottoms-men/pants-men.html',
+    '/men/bottoms-men/shorts-men.html'
+  ];
+
 export const NAVBAR_URLs_END_POINTS = [
     '/what-is-new.html',
     '/women.html',
@@ -137,6 +148,15 @@ export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
   "div.filter-options>div:nth-child(6) ol li a",
   "div.filter-options>div:nth-child(7) ol li a",
 ];
+export const LIST_OF_SUBMENU_ITEMS_EXPECTED = [
+    ["Electronic", "Exercise", "Fashion", "Timepiece"],
+    ["$40.00 - $49.99", "$50.00 - $59.99", "$90.00 and above"],
+    ["Outdoor", "Recreation", "Gym", "Athletic", "Sports"],
+    ["Leather", "Metal", "Plastic", "Rubber", "Stainless Steel", "Silicone"],
+    ["Men", "Women", "Unisex"],
+    ["Yes"],
+    ["Yes"]
+];
 export const LIST_OF_MATERIALS_SUBITEMS_EXPECTED = [
     "Leather",
     "Metal",
@@ -147,7 +167,10 @@ export const LIST_OF_MATERIALS_SUBITEMS_EXPECTED = [
   ];
 
 export const JACKET_ITEMS = ["Jacket", "Shell"];
+export const LIST_OF_ITEMS_IN_MENS_DEALS_ON_SALE_PAGE = ["Hoodies and Sweatshirts", "Jackets", "Tees", "Pants", "Shorts"];
+export const LIST_OF_TITLES_FOR_PAGES_FROM_MENS_DEALS = ['Hoodies & Sweatshirts', 'Jackets', 'Tees', 'Pants', 'Shorts'];
 export const ORDERS_AND_RETURNS_HEADER = 'Orders and Returns';
+
 
 export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
   '.filter-options-item.allow.active > div > ol > li:nth-child(1) a', 
