@@ -41,7 +41,7 @@ test.describe('gearBags.spec', () => {
         })
     }) 
 
-   test('verify that clicking on pagination BTN "Page 2" redirects to a relevant page', async ({ page }) => {
+   test('verify clicking on pagination BTN "Page 2" redirects to a relevant page', async ({ page }) => {
             const homePage = new HomePage(page)
             const gearBagsPage = new GearBagsPage(page)
 
