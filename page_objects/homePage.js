@@ -25,6 +25,7 @@ class HomePage {
   locators = {
     getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
     getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
+    getMenLinkNav: () => this.page.locator(".nav-sections .navigation li a[href$='/men.html']"),
     getMenLink: () => this.page.getByRole('menuitem', { name: 'Men' }).last(),
     getMenBottomsLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
     getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
@@ -246,6 +247,13 @@ class HomePage {
     await this.locators.getGearBagsLink().click();
 
     return new GearBagsPage(this.page);
+  }
+
+  async clickMenLinkNav() {
+    await this.locators.getMenLinkNav().click();
+
+    return new MenPage(this.page);
+
   }
 }
 export default HomePage;
