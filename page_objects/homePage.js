@@ -15,6 +15,7 @@ import Footer from "./footer.js";
 import GearPage from "./gearPage.js";
 import GearBagsPage from "./gearBagsPage.js";
 import OrdersAndReturnsPage from "./ordersAndReturnsPage.js";
+import ProductCardPage from "./ProductCardPage.js";
 
 
 class HomePage {
@@ -57,7 +58,8 @@ class HomePage {
     getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
     getOrdersAndReturnsLink: () => this.page.locator('.page-wrapper footer li:has-text("Orders and Returns")'),
     getGearBagsSubmenuItem: () => this.page.locator("#ui-id-25"),
-    getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" })
+    getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" }),
+    getHotSellersItem : ()=>this.page.locator('li[class="product-item"]:first-child')
   };
 
   async open() {
@@ -246,6 +248,13 @@ class HomePage {
     await this.locators.getGearBagsLink().click();
 
     return new GearBagsPage(this.page);
+  }
+
+  async goToCardPage() {
+    await this.locators.getHotSellersItem().click();
+    
+
+    return new ProductCardPage(this.page);
   }
 }
 export default HomePage;
