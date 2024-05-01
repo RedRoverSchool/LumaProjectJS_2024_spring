@@ -18,6 +18,7 @@ import OrdersAndReturnsPage from "./ordersAndReturnsPage.js";
 import ProductCardPage from "./ProductCardPage.js";
 
 
+
 class HomePage {
   constructor(page) {
     this.page = page;
@@ -53,13 +54,17 @@ class HomePage {
     getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
-      getSignInLink: () => this.page.getByRole('link', { name: 'Sign In' }),
+    getSignInLink: () => this.page.getByRole('link', { name: 'Sign In' }),
     getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
     getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
     getOrdersAndReturnsLink: () => this.page.locator('.page-wrapper footer li:has-text("Orders and Returns")'),
     getGearBagsSubmenuItem: () => this.page.locator("#ui-id-25"),
     getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" }),
     getHotSellersItem : ()=>this.page.locator('li[class="product-item"]:first-child')
+    getFirstCardReviews: () => this.page.locator('a.action.view[href*="radiant-tee"]'),
+    getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
+    getSecondCardImage: () => this.page.getByAltText('Breathe-Easy Tank'),
+
   };
 
   async open() {
@@ -236,13 +241,13 @@ class HomePage {
   async clickGearBagsSubmenuItem() {
     await this.locators.getGearBagsSubmenuItem().click();
 
-  	return new GearBagsPage(this.page);
-}
+    return new GearBagsPage(this.page);
+  }
   async clickOrdersAndReturnsLink() {
     await this.locators.getOrdersAndReturnsLink().click();
 
     return new OrdersAndReturnsPage(this.page);
-} 
+  }
 
   async clickGearBags() {
     await this.locators.getGearBagsLink().click();
@@ -250,11 +255,30 @@ class HomePage {
     return new GearBagsPage(this.page);
   }
 
+
   async goToCardPage() {
     await this.locators.getHotSellersItem().click();
     
 
     return new ProductCardPage(this.page);
+  }
+  async clickFirstCardReviews () {
+    await this.locators.getFirstCardReviews().click();
+
+    return new RadiantTeePage(this.page)
+  }
+
+  async clickSecondCardName() {
+    await this.locators.getSecondCardName().click();
+
+    return new BreatheEasyTankPage(this.page)
+  }
+
+  async clickSecondCardImage() {
+    await this.locators.getSecondCardImage().click();
+
+    return new BreatheEasyTankPage(this.page)
+
   }
 }
 export default HomePage;

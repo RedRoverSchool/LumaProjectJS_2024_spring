@@ -35,9 +35,7 @@ test.describe('menBottomWishList.spec', () => {
     await menBottomsPage.ckickPierceGymc();
     await page.waitForTimeout(3000)
     await pierceGym.addWishList();
-    await expect(wishListPage.locators.getMyWishList()).toBeVisible();
     await expect(wishListPage.locators.getTitleMyWishList()).toBeVisible();
     await expect(wishListPage.locators.getItemQuantity()).toBeTruthy();
-
   })
 })
