@@ -63,6 +63,7 @@ class HomePage {
     getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
     getSecondCardImage: () => this.page.getByAltText('Breathe-Easy Tank'),
     getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),
+    getSecondCardReviews: () => this.page.locator('a[class="action view"][href*="breathe-easy-tank"]'),
   };
 
   async open() {
@@ -277,6 +278,12 @@ class HomePage {
     await this.locators.getWomenTopsLink().click();
 
     return new WomenTopsPage(this.page)
+  }
+  
+  async clickSecondCardReviews() {
+    await this.locators.getSecondCardReviews().click();
+
+    return new BreatheEasyTankPage(this.page)
   }
 }
 export default HomePage;
