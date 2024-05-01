@@ -1,21 +1,20 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import {
-    BASE_URL,
-    MEN_PAGE_BOTTOMS_SUB_CATEGORY_LINK_COLOR,
-    MEN_PAGE_SHOP_BY_CATEGORY_BLOCK_ALIGNMENT,
-    MEN_PAGE_SHOP_BY_CATEGORY_SUB_CATEGORIES_AMOUNT,
-    MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR,
-    MEN_PAGE_SHOP_BY_CATEGORY_SUB_CATEGORIES_VALUES_REGEX,
-    MEN_PAGE_SHOP_BY_CATEGORY_SUB_CATEGORIES_COUNTER_DATATYPE
-} from "../../helpers/testData.js";
+import { BASE_URL } from "../../helpers/testData.js";
 import {
     MEN_PAGE_END_POINT,
     MEN_PAGE_HEADER,
     COMPARE_PRODUCTS_TEXT,
     MY_WISH_LIST_TEXT,
-    HOT_SELLERS_NAME, 
-    HOT_SELLERS_ENDPOINT_URL
+    HOT_SELLERS_NAME,
+    HOT_SELLERS_ENDPOINT_URL,
+    MEN_PAGE_BOTTOMS_SUB_CATEGORY_LINK_COLOR,
+    MEN_PAGE_SHOP_BY_CATEGORY_BLOCK_ALIGNMENT,
+    MEN_PAGE_SHOP_BY_CATEGORY_SUB_CATEGORIES_AMOUNT,
+    MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR,
+    MEN_PAGE_SHOP_BY_CATEGORY_SUB_CATEGORIES_VALUES_REGEX,
+    MEN_PAGE_SHOP_BY_CATEGORY_SUB_CATEGORIES_COUNTER_DATATYPE,
+    MEN_PAGE_SUB_CATEGORY_ENDPOINT_URL
 } from "../../helpers/testMenData.js";
 import MenPage from "../../page_objects/menPage";
 
@@ -74,14 +73,29 @@ test.describe('menPage.spec', () => {
     });
 
     HOT_SELLERS_NAME.forEach((productsName, idx) => {
-        test(`Menu/Men/Hot Sellers Verify user can click on product's name and be redirected to the ${productsName} page`, async({ page }) => {    
+        test(`Menu/Men/Hot Sellers Verify user can click on product's name and be redirected to the ${productsName} page`, async ({ page }) => {
             const homePage = new HomePage(page);
 
             const menPage = await homePage.clickMenLink();
             const menHotSellersPage = await menPage.clickMenHotSellersName(productsName);
-         
+
             await expect(page).toHaveURL(new RegExp(HOT_SELLERS_ENDPOINT_URL[idx]));
             await expect(menHotSellersPage.locators.getMenName(productsName)).toHaveText(HOT_SELLERS_NAME[idx]);
-          });
-      });
+        });
+    });
+
+    for (const subCategory in MEN_PAGE_SUB_CATEGORY_ENDPOINT_URL) {
+        test(`${subCategory} sub-category link led to the ${subCategory}-Men page`, async ({ page }) => {
+            const homePage = new HomePage(page);
+            const subCategoryPageEndpointUrl = MEN_PAGE_SUB_CATEGORY_ENDPOINT_URL[subCategory];
+
+            const menPage = await homePage.clickMenLink();
+
+            await expect(menPage.locators.getSubCategoryLink(subCategory)).toBeVisible();
+            await menPage.clickSubCategoryLink(subCategory);
+
+            await expect(page).toHaveTitle(`${subCategory} - Men`);
+            await expect(page).toHaveURL(new RegExp(subCategoryPageEndpointUrl));
+        });
+    };
 });
