@@ -14,8 +14,8 @@ test('test visibility information on product card', async ({ page }) => {
     homePage.goToCardPage()
     
     await expect(productCartPage.locators.getTitleOfProductCart()).toHaveText('Radiant Tee');
-    await expect(await productCartPage.locators.getPriceOfProduct()).toHaveText('$22.00');
-    await expect(await productCartPage.locators.getProductInStock()).toBeVisible();
+    await expect(productCartPage.locators.getPriceOfProduct()).toHaveText('$22.00');
+    await expect(productCartPage.locators.getProductInStock()).toBeVisible();
   });
 
 })
