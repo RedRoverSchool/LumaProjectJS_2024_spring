@@ -20,6 +20,8 @@ class MenPage {
         getSubCaregoriesInCategoryBlock: () => this.page.locator('ol.items li'),
         getMenHotSellersName: (productsName) => this.page.getByTitle(productsName),
         getProductItemLink: () => this.page.locator('.product-item-link').first(),
+        getBottomsSideMenuLink: () => this.page.getByRole('link', {name: 'Bottoms'})
+
     }
 
     async clickBeadcrumbsMenuHome() {
@@ -37,6 +39,11 @@ class MenPage {
     async clickProductItemLink() {
         await this.locators.getProductItemLink().click();
         return new ProductPage(this.page)
+      
+    async clickBottomsSideMenuLink() {
+        await this.locators.getBottomsSideMenuLink().click();
+
+        return new MenBottomsPage(this.page);
     }
 }
 export default MenPage;

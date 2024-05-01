@@ -1,9 +1,10 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE, SEARCH_RESULTS_JACKET_PAGE_END_POINT, SEARCH_VALID_VALUE, SEARCH_RESULTS_JACKET_HEADER, RADIANT_TEE_PAGE_END_POINT, SEARCH_INVALID_VALUE, WARNING_MESSAGE_NO_RESULTS, WOMEN_CATEGORIES } from "../../helpers/testData.js";
+import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE, SEARCH_RESULTS_JACKET_PAGE_END_POINT, SEARCH_VALID_VALUE, SEARCH_RESULTS_JACKET_HEADER, RADIANT_TEE_PAGE_END_POINT, SEARCH_INVALID_VALUE, WARNING_MESSAGE_NO_RESULTS, WOMEN_CATEGORIES, RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT, BREATHE_EASY_TANK_PAGE_END_POINT, BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT } from "../../helpers/testData.js";
 import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
 import RadiantTeePage from "../../page_objects/radiantTeePage.js";
 import SearchNoResultsPage from "../../page_objects/searchNoResultsPage.js";
+import BreatheEasyTankPage from "../../page_objects/breatheEasyTankPage.js";
 
 test.describe('homePage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -135,4 +136,45 @@ test.describe('homePage.spec', () => {
         await expect(page).toHaveURL(BASE_URL + RADIANT_TEE_PAGE_END_POINT);
         await expect(radiantTeePage.locators.getRadiantTeeHeader()).toBeVisible();
     })
+
+    test('1st card: clicking card reviews redirects to "reviews" tab on respective product card', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const radiantTeePage = new RadiantTeePage(page);
+        
+        await homePage.clickFirstCardReviews();
+
+        await expect(page).toHaveURL(BASE_URL + RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT);
+        await expect(radiantTeePage.locators.getRadiantTeeReviewsTab()).toBeVisible();        
+    })
+
+    test('2nd card: clicking the card name redirects to the respective product card', async ({page}) => {
+        const homePage = new HomePage(page);
+        const breatheEasyTankPage = new BreatheEasyTankPage(page);
+
+        await homePage.clickSecondCardName();
+
+        await expect(page).toHaveURL(BASE_URL + BREATHE_EASY_TANK_PAGE_END_POINT);
+        await expect(breatheEasyTankPage.locators.getBreatheEasyTankHeader()).toBeVisible();
+    })
+
+    test('2nd card: clicking the card image redirects to the respective product card', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const breatheEasyTankPage = new BreatheEasyTankPage(page);
+
+        await homePage.clickSecondCardImage();
+
+        await expect(page).toHaveURL(BASE_URL + BREATHE_EASY_TANK_PAGE_END_POINT);
+        await expect(breatheEasyTankPage.locators.getBreatheEasyTankHeader()).toBeVisible();
+    })
+
+    test('2nd card: clicking card reviews redirects to "reviews" tab on respective product card', async ({page}) => {
+        const homePage = new HomePage(page);
+        const breatheEasyTankPage = new BreatheEasyTankPage(page);
+
+        await homePage.clickSecondCardReviews();
+
+        await expect(page).toHaveURL(BASE_URL + BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT);
+        await expect(breatheEasyTankPage.locators.getBreatheEasyTankReviewsTab()).toBeVisible();        
+    })
+
 })

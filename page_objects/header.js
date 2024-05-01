@@ -14,7 +14,8 @@ class Header {
         getProceedToCheckoutBtn: () => this.page.getByRole('button', {name: 'Proceed to Checkout'}),
         getShoppingCart: () => this.page.getByRole('link', { name: ' My Cart' }),
         getMiniCart: () => this.page.locator('#ui-id-1'),
-        getEmptyCardMessage: () => this.page.locator('.block-minicart .subtitle.empty'),    
+        getEmptyCardMessage: () => this.page.locator('.block-minicart .subtitle.empty'),
+        getCrossIconModalWindowShoppingCart: () => this.page.locator('.action.close'),    
     }
 
     async clickLogoLink() {
@@ -37,6 +38,18 @@ class Header {
 
     async waitForCounterNumber() {
         await this.locators.getCounterNumber().waitFor();
+
+        return this;
+    }
+
+    async clickShoppingCartIcon() {
+        await this.locators.getShoppingCart().click();
+
+        return this;
+    }
+
+    async clickCrossIconModalWindowShoppingCart() {
+        await this.locators.getCrossIconModalWindowShoppingCart().click();
 
         return this;
     }
