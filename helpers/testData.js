@@ -139,6 +139,15 @@ export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
   "div.filter-options>div:nth-child(6) ol li a",
   "div.filter-options>div:nth-child(7) ol li a",
 ];
+export const LIST_OF_SUBMENU_ITEMS_EXPECTED = [
+    ["Electronic", "Exercise", "Fashion", "Timepiece"],
+    ["$40.00 - $49.99", "$50.00 - $59.99", "$90.00 and above"],
+    ["Outdoor", "Recreation", "Gym", "Athletic", "Sports"],
+    ["Leather", "Metal", "Plastic", "Rubber", "Stainless Steel", "Silicone"],
+    ["Men", "Women", "Unisex"],
+    ["Yes"],
+    ["Yes"]
+];
 export const LIST_OF_MATERIALS_SUBITEMS_EXPECTED = [
     "Leather",
     "Metal",
