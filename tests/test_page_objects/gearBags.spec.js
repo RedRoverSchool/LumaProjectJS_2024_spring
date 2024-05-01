@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
 import HomePage from '../../page_objects/homePage.js';
 import GearBagsPage from '../../page_objects/gearBagsPage.js';
-import { BASE_URL, GEAR_BAGS_HEADER, GEAR_BAGS_PAGE_END_POINT } from '../../helpers/testData.js';
+import { BASE_URL, GEAR_BAGES_SECOND_PAGE_END_POINT, GEAR_BAGS_HEADER, GEAR_BAGS_PAGE_END_POINT } from '../../helpers/testData.js';
 import { MATERIAL_OPTION_NAMES, ACTIVE_SECOND_PAGE_TEXT, ACTIVE_PAGE_CLASS_PAGINATION, ACTIVE_PAGE_TEXT } from "../../helpers/testGearBagsData";
+import exp from 'constants';
 
 test.describe('gearBags.spec', () => {
     test.beforeEach(async({page}) => {
@@ -40,22 +41,17 @@ test.describe('gearBags.spec', () => {
         })
     }) 
 
-    test('verify that clicking on pagination BTN redirects to a requested page', async ({ page }) => {
-        const homePage = new HomePage(page)
-        const gearBagsPage = new GearBagsPage(page)
+   test('verify that clicking on pagination BTN "Page 2" redirects to a relevant page', async ({ page }) => {
+            const homePage = new HomePage(page)
+            const gearBagsPage = new GearBagsPage(page)
 
-        await homePage.hoverGearMenuItem()
-        await homePage.clickGearBags()
-        await gearBagsPage.clickInactiveSecondPagePaginationLink()
-        //const buttonPage2 = page.locator('.items.pages-items').getByRole('link', { name: 'Page 2' })
-        //await buttonPage2.click()
-
-        await expect(gearBagsPage.locators.getPaginationSecondPageAttr()).toHaveText(ACTIVE_PAGE_TEXT + '2')
-        await expect(gearBagsPage.locators.getPaginationSecondPageAttr()).toHaveClass(ACTIVE_PAGE_CLASS_PAGINATION);
-        await expect(gearBagsPage.locators.getPaginationFirstPageAttr()).not.toContainText(ACTIVE_PAGE_TEXT);
-
-        
-   })
-
-    
+            await homePage.hoverGearMenuItem()
+            await homePage.clickGearBags()
+            await gearBagsPage.clickInactiveSecondPagePaginationLink()
+            
+            await expect(gearBagsPage.locators.getPaginationSecondPageAttr()).toHaveText(ACTIVE_PAGE_TEXT + '2')
+            await expect(gearBagsPage.locators.getPaginationSecondPageAttr()).toHaveClass(ACTIVE_PAGE_CLASS_PAGINATION)
+            await expect(gearBagsPage.locators.getPaginationFirstPageAttr()).not.toContainText(ACTIVE_PAGE_TEXT)
+            await expect(page).toHaveURL(BASE_URL + GEAR_BAGES_SECOND_PAGE_END_POINT)
+        })
 })

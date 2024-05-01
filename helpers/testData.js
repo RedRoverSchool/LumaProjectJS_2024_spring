@@ -21,6 +21,7 @@ export const NAVBAR_URLs_END_POINTS = [
     '/sale.html'
 ];
 export const GEAR_BAGS_PAGE_END_POINT = '/gear/bags.html';
+export const GEAR_BAGES_SECOND_PAGE_END_POINT = '/gear/bags.html?p=2'
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
