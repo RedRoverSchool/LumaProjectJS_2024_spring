@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import GearPage from "../../page_objects/gearPage.js";
 
-test.describe('menPage.spec', () => {
+test.describe('gearPage.spec', () => {
     test.beforeEach(async ({ page }) => {
         const homePage = new HomePage(page);
         await homePage.open();
