@@ -15,7 +15,7 @@ import Footer from "./footer.js";
 import GearPage from "./gearPage.js";
 import GearBagsPage from "./gearBagsPage.js";
 import OrdersAndReturnsPage from "./ordersAndReturnsPage.js";
-
+import BreatheEasyTankPage from "./breatheEasyTankPage.js";
 
 class HomePage {
   constructor(page) {
@@ -58,7 +58,8 @@ class HomePage {
     getOrdersAndReturnsLink: () => this.page.locator('.page-wrapper footer li:has-text("Orders and Returns")'),
     getGearBagsSubmenuItem: () => this.page.locator("#ui-id-25"),
     getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" }),
-    getFirstCardReviews: () => this.page.locator('a.action.view[href*="radiant-tee"]')
+    getFirstCardReviews: () => this.page.locator('a.action.view[href*="radiant-tee"]'),
+    getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
   };
 
   async open() {
@@ -253,6 +254,12 @@ class HomePage {
     await this.locators.getFirstCardReviews().click();
 
     return new RadiantTeePage(this.page)
+  }
+
+  async clickSecondCardName() {
+    await this.locators.getSecondCardName().click();
+
+    return new BreatheEasyTankPage(this.page)
   }
 }
 export default HomePage;
