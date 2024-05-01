@@ -12,6 +12,7 @@ export const SEARCH_RESULTS_JACKET_PAGE_END_POINT = '/catalogsearch/result/?q=ja
 export const MEN_TOPS_PAGE_END_POINT = '/men/tops-men.html';
 export const SHIPPING_PAGE_END_POINT = '/checkout/#shipping';
 export const RADIANT_TEE_PAGE_END_POINT = '/radiant-tee.html';
+export const RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT = '/radiant-tee.html#reviews';
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
     '/men/tops-men/hoodies-and-sweatshirts-men.html',
