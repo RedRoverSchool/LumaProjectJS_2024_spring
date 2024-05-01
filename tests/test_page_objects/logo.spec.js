@@ -14,7 +14,6 @@ test.describe('logo.spec', () => {
         const logo = new Logo(page);
         const allLinksWithLogo = NAVBAR_URLs_END_POINTS;
         allLinksWithLogo.push(MY_ACCOUNT_CREATE_END_POINT);
-        console.log(allLinksWithLogo)
 
         for(let link of allLinksWithLogo){
         await logo.locators.getLogo(link);
