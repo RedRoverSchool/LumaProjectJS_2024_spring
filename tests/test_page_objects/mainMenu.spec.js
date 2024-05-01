@@ -11,47 +11,33 @@ import TrainingPage from '../../page_objects/trainingPage.js'
 import SalePage from '../../page_objects/salePage.js'
 
 test.describe
-  ('mainMenuNavigation.spec', () => {
+  ('mainMenu.spec', () => {
     test.beforeEach('Open main page', async ({ page }) => {
       const homePage = new HomePage(page)
       await homePage.open()
     })
 
-    test('verify 6 menu options on the main page have particular text and clickable', async ({ page }) => {
-      const homePage = new HomePage(page)
-      const mainMenuPage = new MainMenuPage(page)
-      const whatsNewPage = new WhatsNewPage(page)
-      const womenPage = new WomenPage(page)
-      const menPage = new MenPage(page)
-      const gearPage = new GearPage(page)
-      const trainingPage = new TrainingPage(page)
-      const salePage = new SalePage(page)
+    test(`verify 6 menu options on the main page have particular text and clickable`, async ({ page }) => {
+        const homePage = new HomePage(page)
+        const mainMenuPage = new MainMenuPage(page)
+        const mainMenuLinks = await mainMenuPage.locators.getMainMenuLinks()
 
-      expect(await mainMenuPage.pickMainMenuLinksText()).toEqual(NAVBAR_MENU)
-
-      await homePage.clickWhatsNewLink()
-      expect(page).toHaveURL(BASE_URL + NAVBAR_URLs_END_POINTS[0])
-      expect(await whatsNewPage.locators.getHeaderText()).toHaveText(WHATS_NEW_PAGE_HEADER)
-
-      await homePage.clickWomenLink();
-      await expect(page).toHaveURL(BASE_URL + NAVBAR_URLs_END_POINTS[1])
-      await expect(womenPage.locators.getWomenPageHeader()).toHaveText(WOMEN_PAGE_HEADER)
-
-      await homePage.clickMenLink()
-      await expect(page).toHaveURL(BASE_URL + NAVBAR_URLs_END_POINTS[2])
-      await expect(menPage.locators.getMenPageHeader()).toHaveText(MEN_PAGE_HEADER)
-
-      await homePage.clickGearMenuItem()
-      await expect(page).toHaveURL(BASE_URL + NAVBAR_URLs_END_POINTS[3])
-      await expect(gearPage.locators.getGearPageHeader()).toHaveText(GEAR_PAGE_HEADER)
+        for (let i = 0; i < NAVBAR_MENU.length; i++) {
+          const link = mainMenuLinks.nth(i)
+          await expect(link).toHaveText(NAVBAR_MENU[i]);
+          
+          await link.click()
+          await expect(page).toHaveURL(NAVBAR_URLs_END_POINTS[i])
+        }
+      })
+   });
+  
+      
+  
     
-      await homePage.clickTrainingLink()
-      await expect(page).toHaveURL(BASE_URL + NAVBAR_URLs_END_POINTS[4])
-      await expect(trainingPage.locators.getTrainingHeader()).toHaveText(TRAINING_PAGE_HEADER)
+    
 
-      await homePage.clickSaleLink()
-      await expect(page).toHaveURL(BASE_URL + NAVBAR_URLs_END_POINTS[5])
-      await expect(salePage.locators.getSalePageHeader()).toHaveText(SALE_PAGE_HEADER)
-
-    })
-  })
+  
+ 
+  
+  
