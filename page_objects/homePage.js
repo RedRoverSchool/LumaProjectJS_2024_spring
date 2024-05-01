@@ -253,7 +253,6 @@ class HomePage {
     await this.locators.getMenLinkNav().click();
 
     return new MenPage(this.page);
-
   }
 }
 export default HomePage;

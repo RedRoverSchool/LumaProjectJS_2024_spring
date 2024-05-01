@@ -19,7 +19,6 @@ test.describe('menPage.spec', () => {
         await  menPage.clickProductItemLink();
         const productPage = new ProductPage(page);
         
-        await expect(productPage.locators.getProductName()).toBeVisible;
-        
+        expect(productPage.locators.getProductName()).toBeVisible;
     })
 });
