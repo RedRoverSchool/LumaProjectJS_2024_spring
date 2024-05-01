@@ -14,16 +14,6 @@ import {
     MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR,
     MEN_PAGE_SHOP_BY_CATEGORY_SUB_CATEGORIES_VALUES_REGEX,
     MEN_PAGE_SHOP_BY_CATEGORY_SUB_CATEGORIES_COUNTER_DATATYPE,
-    MEN_BOTTOMS_PAGE_END_POINT
-} from "../../helpers/testData.js";
-import {
-    MEN_PAGE_END_POINT,
-    MEN_PAGE_HEADER,
-    COMPARE_PRODUCTS_TEXT,
-    MY_WISH_LIST_TEXT,
-    HOT_SELLERS_NAME, 
-    HOT_SELLERS_ENDPOINT_URL
-    MEN_PAGE_SHOP_BY_CATEGORY_SUB_CATEGORIES_COUNTER_DATATYPE,
     MEN_PAGE_SUB_CATEGORY_ENDPOINT_URL
 } from "../../helpers/testMenData.js";
 import MenPage from "../../page_objects/menPage";
@@ -92,23 +82,19 @@ test.describe('menPage.spec', () => {
 
             await expect(page).toHaveURL(new RegExp(HOT_SELLERS_ENDPOINT_URL[idx]));
             await expect(menHotSellersPage.locators.getMenName(productsName)).toHaveText(HOT_SELLERS_NAME[idx]);
-          });
-      });
+        });
+    });
 
-    test('Verify redirection to Men-Bottoms page from Men page', async({page}) => {
+    test('Verify redirection to Men-Bottoms page from Men page', async ({ page }) => {
         const homePage = new HomePage(page);
         const menPage = new MenPage(page);
         const menBottomsPage = new MenBottomsPage(page);
 
         await homePage.clickMenLink();
         await menPage.clickBottomsSideMenuLink();
-        
-        await expect(menBottomsPage.locators.getBottomsHeading()).toBeVisible(); 
-        await expect(page).toHaveURL(BASE_URL + MEN_BOTTOMS_PAGE_END_POINT);
-    })
-});
 
-        });
+        await expect(menBottomsPage.locators.getBottomsHeading()).toBeVisible();
+        await expect(page).toHaveURL(BASE_URL + MEN_BOTTOMS_PAGE_END_POINT);
     });
 
     for (const subCategory in MEN_PAGE_SUB_CATEGORY_ENDPOINT_URL) {

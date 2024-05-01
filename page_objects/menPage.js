@@ -2,8 +2,6 @@ import HomePage from "./homePage";
 import MenBottomsPage from "./menBottomsPage";
 import MenHotSellersPage from "./menHotSellersPage";
 import MenTopsPage from "./menTopsPage";
-import MenBottomsPage from "./menBottomsPage";
-import { error } from "console";
 
 class MenPage {
     constructor (page) {
@@ -22,7 +20,7 @@ class MenPage {
         getShopByCategoryBlock: () => this.page.locator('[class="sidebar sidebar-main"]'),
         getSubCaregoriesInCategoryBlock: () => this.page.locator('ol.items li'),
         getMenHotSellersName: (productsName) => this.page.getByTitle(productsName),
-        getBottomsSideMenuLink: () => this.page.getByRole('link', {name: 'Bottoms'})
+        getBottomsSideMenuLink: () => this.page.getByRole('link', { name: 'Bottoms' }),
         getSubCategoryLink: (subCategoryLink) => this.page.getByRole('link', { name: subCategoryLink }),
     }
 
@@ -40,7 +38,7 @@ class MenPage {
 
     async clickSubCategoryLink(subCategoryLink) {
         await this.locators.getSubCategoryLink(subCategoryLink).click();
-        
+
         if (subCategoryLink == 'Tops') {
             return new MenTopsPage(this.page);
         } else if (subCategoryLink == 'Bottoms') {
