@@ -115,6 +115,7 @@ export const SEARCH_TERMS_POPULAR_PAGE_END_POINT = '/search/term/popular/';
 export const SEARCH_TERMS_POPULAR_PAGE_HEADER = 'Popular Search Terms' ;
 export const MY_ORDERS_PAGE_END_POINT = '/sales/order/history/';
 export const MY_ACCOUNT_END_POINT = '/customer/account/';
+export const MY_ACCOUNT_CREATE_END_POINT = '/customer/account/create/';
 export const MY_ORDERS_HEADER = 'My Orders';
 export const WOMEN_JACKETS_NAME = 'Inez Full Zip Jacket';
 export const INEZ_FULL_ZIP_JACKET1_END_POINT = '/inez-full-zip-jacket.html';
@@ -178,6 +179,7 @@ export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
   
 export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
 export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
+export const LOGO_ALIGNMENT = 'left';
  
 //login  credential
 
