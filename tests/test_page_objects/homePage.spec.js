@@ -147,7 +147,7 @@ test.describe('homePage.spec', () => {
         await expect(radiantTeePage.locators.getRadiantTeeReviewsTab()).toBeVisible();        
     })
 
-    test('2st card: clicking the card name redirects to the respective product card', async ({page}) => {
+    test('2nd card: clicking the card name redirects to the respective product card', async ({page}) => {
         const homePage = new HomePage(page);
         const breatheEasyTankPage = new BreatheEasyTankPage(page);
 
@@ -156,4 +156,15 @@ test.describe('homePage.spec', () => {
         await expect(page).toHaveURL(BASE_URL + BREATHE_EASY_TANK_PAGE_END_POINT);
         await expect(breatheEasyTankPage.locators.getBreatheEasyTankHeader()).toBeVisible();
     })
+
+    test('2nd card: clicking the card image redirects to the respective product card', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const breatheEasyTankPage = new BreatheEasyTankPage(page);
+
+        await homePage.clickSecondCardImage();
+
+        await expect(page).toHaveURL(BASE_URL + BREATHE_EASY_TANK_PAGE_END_POINT);
+        await expect(breatheEasyTankPage.locators.getBreatheEasyTankHeader()).toBeVisible();
+    })
+
 })

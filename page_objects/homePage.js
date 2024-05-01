@@ -60,6 +60,7 @@ class HomePage {
     getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" }),
     getFirstCardReviews: () => this.page.locator('a.action.view[href*="radiant-tee"]'),
     getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
+    getSecondCardImage: () => this.page.getByAltText('Breathe-Easy Tank'),
   };
 
   async open() {
@@ -258,6 +259,12 @@ class HomePage {
 
   async clickSecondCardName() {
     await this.locators.getSecondCardName().click();
+
+    return new BreatheEasyTankPage(this.page)
+  }
+
+  async clickSecondCardImage() {
+    await this.locators.getSecondCardImage().click();
 
     return new BreatheEasyTankPage(this.page)
   }
