@@ -1,4 +1,5 @@
 import HomePage from "./homePage";
+import MenBottomsPage from "./menBottomsPage";
 import MenHotSellersPage from "./menHotSellersPage";
 import MenTopsPage from "./menTopsPage";
 import MenBottomsPage from "./menBottomsPage";
@@ -21,6 +22,7 @@ class MenPage {
         getShopByCategoryBlock: () => this.page.locator('[class="sidebar sidebar-main"]'),
         getSubCaregoriesInCategoryBlock: () => this.page.locator('ol.items li'),
         getMenHotSellersName: (productsName) => this.page.getByTitle(productsName),
+        getBottomsSideMenuLink: () => this.page.getByRole('link', {name: 'Bottoms'})
         getSubCategoryLink: (subCategoryLink) => this.page.getByRole('link', { name: subCategoryLink }),
     }
 
@@ -46,6 +48,12 @@ class MenPage {
         } else {
             throw new Error(`Unknown CategoryLink`)
         }
+    }
+
+    async clickBottomsSideMenuLink() {
+        await this.locators.getBottomsSideMenuLink().click();
+
+        return new MenBottomsPage(this.page);
     }
 }
 export default MenPage;
