@@ -7,7 +7,7 @@ test.describe('womenTopsPage.spec', () => {
         const homePage = new HomePage(page);
         await homePage.open();
     });
-    test.only('Verify visability of Shopping Option in the menu on the left side', async ({ page }) => {
+    te('Verify visability of Shopping Option in the menu on the left side', async ({ page }) => {
         const homePage = new HomePage(page);
         const womenTopsPage = new WomenTopsPage(page);
   
