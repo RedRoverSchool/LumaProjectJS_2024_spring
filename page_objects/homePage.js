@@ -16,6 +16,7 @@ import GearPage from "./gearPage.js";
 import GearBagsPage from "./gearBagsPage.js";
 import OrdersAndReturnsPage from "./ordersAndReturnsPage.js";
 import BreatheEasyTankPage from "./breatheEasyTankPage.js";
+import WomenTopsPage from "./womenTopsPage.js";
 
 class HomePage {
   constructor(page) {
@@ -61,10 +62,13 @@ class HomePage {
     getFirstCardReviews: () => this.page.locator('a.action.view[href*="radiant-tee"]'),
     getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
     getSecondCardImage: () => this.page.getByAltText('Breathe-Easy Tank'),
+    getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),
   };
 
   async open() {
     await this.page.goto("/");
+    if (await this.page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible()) 
+            await this.page.getByRole('button', { name: 'Consent' }).click();
   }
 
   async clickWhatsNewLink() {
@@ -267,6 +271,12 @@ class HomePage {
     await this.locators.getSecondCardImage().click();
 
     return new BreatheEasyTankPage(this.page)
+  }
+
+  async clickWomenTopsLink() {
+    await this.locators.getWomenTopsLink().click();
+
+    return new WomenTopsPage(this.page)
   }
 }
 export default HomePage;
