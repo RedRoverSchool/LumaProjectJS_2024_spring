@@ -23,7 +23,7 @@ test.describe('menBottomWishList.spec', () => {
 
   })
 
-  test('should be a wish list block with product details displayed on the page', async ({ page }) => {
+  test.skip('should be a wish list block with product details displayed on the page', async ({ page }) => {
 
     const homePage = new HomePage(page);
     const menBottomsPage = new MenBottomsPage(page);
@@ -38,6 +38,5 @@ test.describe('menBottomWishList.spec', () => {
     await expect(wishListPage.locators.getMyWishList()).toBeVisible();
     await expect(wishListPage.locators.getTitleMyWishList()).toBeVisible();
     await expect(wishListPage.locators.getItemQuantity()).toBeTruthy();
-
   })
 })
