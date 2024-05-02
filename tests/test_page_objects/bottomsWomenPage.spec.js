@@ -11,18 +11,7 @@ test.describe('bottomsWomenPage.spec', () => {
         await homePage.open();
     })
 
-    test('Verify that the user can navigate from the home page to the "Women - Bottoms" page', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const bottomsWomenPage = new BottomsWomenPage(page);
-
-        await homePage.hoverWomenMenuitem();
-        await homePage.clickBottomsWomenLink();
-        
-        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
-        await expect(bottomsWomenPage.locators.getWomenBottomsPageHeader()).toHaveText(WOMEN_BOTTOMS_HEADER);
-      });
-
-      test('Verify the availability of a list of 9 category in the "Style" option drop-down list', async ({ page }) => {
+    test('Verify the availability of a list of 9 category in the "Style" option drop-down list', async ({ page }) => {
         const homePage = new HomePage(page);
         const bottomsWomenPage = new BottomsWomenPage(page);
 

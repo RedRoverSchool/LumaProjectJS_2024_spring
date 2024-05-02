@@ -1,10 +1,11 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE, SEARCH_RESULTS_JACKET_PAGE_END_POINT, SEARCH_VALID_VALUE, SEARCH_RESULTS_JACKET_HEADER, RADIANT_TEE_PAGE_END_POINT, SEARCH_INVALID_VALUE, WARNING_MESSAGE_NO_RESULTS, WOMEN_CATEGORIES, RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT, BREATHE_EASY_TANK_PAGE_END_POINT, BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT } from "../../helpers/testData.js";
+import { BASE_URL, WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER, SEARCH_QUERY, SEARCH_QUERY_UPPERCASE, SEARCH_RESULTS_JACKET_PAGE_END_POINT, SEARCH_VALID_VALUE, SEARCH_RESULTS_JACKET_HEADER, RADIANT_TEE_PAGE_END_POINT, SEARCH_INVALID_VALUE, WARNING_MESSAGE_NO_RESULTS, WOMEN_CATEGORIES, RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT, BREATHE_EASY_TANK_PAGE_END_POINT, BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER } from "../../helpers/testData.js";
 import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
 import RadiantTeePage from "../../page_objects/radiantTeePage.js";
 import SearchNoResultsPage from "../../page_objects/searchNoResultsPage.js";
 import BreatheEasyTankPage from "../../page_objects/breatheEasyTankPage.js";
+import BottomsWomenPage from "../../page_objects/bottomsWomenPage.js";
 
 test.describe('homePage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -176,5 +177,16 @@ test.describe('homePage.spec', () => {
         await expect(page).toHaveURL(BASE_URL + BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT);
         await expect(breatheEasyTankPage.locators.getBreatheEasyTankReviewsTab()).toBeVisible();        
     })
+
+    test('Verify that the user can navigate from the home page to the "Women - Bottoms" page', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const bottomsWomenPage = new BottomsWomenPage(page);
+
+        await homePage.hoverWomenMenuitem();
+        await homePage.clickBottomsWomenLink();
+        
+        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
+        await expect(bottomsWomenPage.locators.getWomenBottomsPageHeader()).toHaveText(WOMEN_BOTTOMS_HEADER);
+    });
 
 })
