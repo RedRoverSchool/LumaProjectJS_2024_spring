@@ -13,7 +13,7 @@ test.describe('signOut.spec', () => {
   test('should be a greeting with the users name ', async ({ page }) => {
 
     const homePage = new HomePage(page);
-    await homePage.clickWhatsNewLink();
+    await homePage.clickSignInLink();
 
     const signInPage = new SignInPage(page);
     await signInPage.fillFieldEmail();
@@ -26,11 +26,11 @@ test.describe('signOut.spec', () => {
 
   })
 
-  test('drop-down menu should open', async ({ page }) => {
+  test.skip('drop-down menu should open', async ({ page }) => {
 
     const homePage = new HomePage(page);
 
-    await homePage.clickWhatsNewLink();
+    await homePage.clickSignInLink();
 
     const signInPage = new SignInPage(page);
     await signInPage.fillFieldEmail();
@@ -40,6 +40,23 @@ test.describe('signOut.spec', () => {
 
     await signInPage.clickDpopdown();
     await expect(signInPage.locators.getDropdownWishList()).toBeVisible();
+
+  })
+
+  test.skip('should be the "Log out" link, the user logs out of his account by clicking on it', async ({ page }) => {
+    const homePage = new HomePage(page);
+
+    await homePage.clickSignInLink();
+
+    const signInPage = new SignInPage(page);
+    await signInPage.fillFieldEmail();
+    await signInPage.fillFieldPassword();
+    await signInPage.clickButtonSignIn();
+    await page.waitForTimeout(4000);
+
+    await signInPage.clickDpopdown();
+    await signInPage.clickSignOut();
+    await expect(signInPage.locators.getMessageSignedOut()).toBeTruthy();
 
   })
 

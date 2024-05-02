@@ -33,4 +33,14 @@ test.describe('menTops', () => {
         })
         await expect(menTopsPage.locators.getMenTopsListCategory()).toBeVisible();
     });
+    test('displays the number of available products in the Insulated(5) category', async ({page}) => {
+        const homePage = new HomePage(page)
+        const menTopsPage = new MenTopsPage(page)
+
+        await homePage.hoverMenLink();
+        await homePage.clickMenTopsLink();
+        await menTopsPage.clickMenTopsStyle();
+
+        await expect(menTopsPage.locators.getMenTopsStyleInsulated()).toBeVisible();
+    })
 })

@@ -1,3 +1,5 @@
+import ProductCardPage from "../page_objects/productCardPage.js";
+
 class MenTopsPage{
    constructor(page){
     this.page = page;
@@ -7,6 +9,8 @@ class MenTopsPage{
     getMenTopsListStyle: () => this.page.locator('a[href*= "men/tops-men.html?style_general"]'),
     getMenTopsCategory: () => this.page.getByRole('tab', { name: 'Category' }),
     getMenTopsListCategory: () => this.page.locator('#narrow-by-list').getByRole('tabpanel'),
+    getMenTopsStyleInsulated: () => this.page.locator('a[href*= "men/tops-men.html?style_general=116"]').filter({ hasText: 'Insulated 5 item' }),
+    getListOfProductCardTitles: () => this.page.locator('a.product-item-link[href]'),
    };
    async clickMenTopsStyle(){
     await this.locators.getMenTopsStyle().click()
@@ -17,5 +21,11 @@ class MenTopsPage{
       await this.locators.getMenTopsCategory().click();
       return new MenTopsPage(this.page);
    };
+
+   async clickProductCard(product) { 
+      await this.page.getByText(product).click();
+
+      return new ProductCardPage(this.page);
+   }
  }
 export default MenTopsPage

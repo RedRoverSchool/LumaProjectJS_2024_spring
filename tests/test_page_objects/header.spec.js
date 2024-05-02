@@ -5,7 +5,7 @@ import {
     shoppingItem1, shoppingItem2,
     BASE_URL,
     SHIPPING_PAGE_END_POINT, SHIPPING_PROGRESS_BAR_TEXT,
-    EMPTY_CARD_MESSAGE
+    EMPTY_CARD_MESSAGE, SHOPING_CART_COUNTER_NUMBER
 } from '../../helpers/testData.js'
 import ShippingPage from '../../page_objects/shippingPage.js';
 
@@ -101,6 +101,33 @@ test.describe('header.spec', () => {
         await homePage.clickHotSellersAddToCartButton(0);
         await header.waitForCounterNumber();
 
-        await expect(header.locators.getCounterNumber()).toHaveText('1');
+        await expect(header.locators.getCounterNumber()).toHaveText(SHOPING_CART_COUNTER_NUMBER);
       })
+
+      test('<Header/Header logo> Validate website has store logo', async({page}) => {
+        const header = new Header(page);
+        
+        await expect(header.locators.getLogoLink()).toBeVisible();
+      })
+      test('Verify only shopping cart icon is displayed if no items in the shopping cart', async ({page}) => {
+        const homePage = new HomePage(page);
+        const header = new Header(page);
+
+        await header.locators.getShoppingCart()
+        await header.locators.getCounterNumber();
+
+        await expect(header.locators.getShoppingCart()).toBeVisible();
+        await expect(header.locators.getCounterNumber()).not.toBeVisible();
+      })
+
+      test('Verify the modal windows can close', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const header = new Header(page);
+
+        await homePage.open();
+        await header.clickShoppingCartIcon();
+        await header.clickCrossIconModalWindowShoppingCart();
+        
+        await expect(header.locators.getEmptyCardMessage()).not.toBeVisible();
+    })
 })

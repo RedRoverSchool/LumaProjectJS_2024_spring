@@ -1,3 +1,4 @@
+import HomePage from "./homePage";
 import ShippingPage from "./shippingPage";
 
 class Header {
@@ -13,13 +14,14 @@ class Header {
         getProceedToCheckoutBtn: () => this.page.getByRole('button', {name: 'Proceed to Checkout'}),
         getShoppingCart: () => this.page.getByRole('link', { name: ' My Cart' }),
         getMiniCart: () => this.page.locator('#ui-id-1'),
-        getEmptyCardMessage: () => this.page.locator('.block-minicart .subtitle.empty')
+        getEmptyCardMessage: () => this.page.locator('.block-minicart .subtitle.empty'),
+        getCrossIconModalWindowShoppingCart: () => this.page.locator('.action.close'),    
     }
 
     async clickLogoLink() {
         await this.locators.getLogoLink().click();
 
-        return this.page;
+        return new HomePage(this.page);
     }
 
     async clickCounterNumber() {
@@ -36,6 +38,18 @@ class Header {
 
     async waitForCounterNumber() {
         await this.locators.getCounterNumber().waitFor();
+
+        return this;
+    }
+
+    async clickShoppingCartIcon() {
+        await this.locators.getShoppingCart().click();
+
+        return this;
+    }
+
+    async clickCrossIconModalWindowShoppingCart() {
+        await this.locators.getCrossIconModalWindowShoppingCart().click();
 
         return this;
     }
