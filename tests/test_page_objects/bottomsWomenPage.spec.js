@@ -57,4 +57,16 @@ test.describe('bottomsWomenPage.spec', () => {
 
         expect(actualShortsText).toEqual(WOMEN_BOTTOMS_CATEGORIES[1]);
     })
-})
+
+    test('Women/Bottoms/Shopping options/Price filter is displayed', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const bottomsWomenPage = new BottomsWomenPage(page);
+
+          await homePage.hoverWomenMenuitem();
+          await homePage.clickBottomsWomenLink();
+          await bottomsWomenPage.clickOptionPrice();
+    
+          await expect(bottomsWomenPage.locators.getOptionPriceFilter()).toBeVisible();
+    })
+});
+
