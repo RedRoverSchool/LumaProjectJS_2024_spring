@@ -4,7 +4,10 @@ import TrainingPage from "../../page_objects/trainingPage.js";
 import VideoDownloadPage from "../../page_objects/videoDownloadPage.js";
 import GearBagsPage from "../../page_objects/gearBagsPage.js";
 import CompareProductsPage from "../../page_objects/compareProductsPage.js";
-import { TRAINING_URL, TRAINING_PAGE_HEADER, BASE_URL, TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT, TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT, TRAINING_PAGE_VIDEODOWNLOAD_URL, VIDEODOWNLOAD_PAGE_HEADER, COMPARE_URL_REGEX, COMPARE_PRODUCT_PAGE_HEADER, COMPARE_PRODUCT_PAGE_ITEM_TEXT} from "../../helpers/testData.js";
+import SignInPage from "../../page_objects/signInPage.js";
+import WishListPage from "../../page_objects/wishListPage.js";
+import PushItMessengerBagPage from "../../page_objects/pushItMessengerBagPage.js";
+import { TRAINING_URL, TRAINING_PAGE_HEADER, BASE_URL, TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT, TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT, TRAINING_PAGE_VIDEODOWNLOAD_URL, VIDEODOWNLOAD_PAGE_HEADER, COMPARE_URL_REGEX, COMPARE_PRODUCT_PAGE_HEADER, COMPARE_PRODUCT_PAGE_ITEM_TEXT, MY_WISHLIST_PAGE_URL, MY_WISHLIST_PAGE_ITEM_TEXT, MY_WISHLIST_PAGE_HEADER} from "../../helpers/testData.js";
 
 test.describe('trainingPage.spec', () => {
 	test.beforeEach(async ({ page }) => {
@@ -101,5 +104,37 @@ test.describe('trainingPage.spec', () => {
 		await expect(compareProductsPage.locators.getCompareProductsItem()).toBeVisible();
 		await expect(compareProductsPage.locators.getCompareProductsItem()).toContainText(COMPARE_PRODUCT_PAGE_ITEM_TEXT);
 	})
+
+		test('Verify that the User can add training products to the wish list for tracking and accessing additional information about them in the training materials', async({page}) => {
+		const homePage = new HomePage(page);
+		const trainingPage = new TrainingPage(page);
+		const gearBagsPage = new GearBagsPage(page);
+		const signInPage = new SignInPage(page);
+		const wishListPage = new WishListPage(page);
+		const pushItMessengerBagPage = new PushItMessengerBagPage(page);
+
+		await homePage.clickSignInLink();
+		await signInPage.fillEmailField();
+		await signInPage.fillPasswordField();
+		await signInPage.clickButtonSignIn();
+
+		await homePage.hoverGearMenuItem();
+		await homePage.clickGearBagsSubmenuItem();
+		await page.waitForTimeout(3000);
+		await gearBagsPage.clickPushItMessengerItem();
+		await page.waitForTimeout(3000);
+		await pushItMessengerBagPage.clickPushItMessengerItemAddtoWishList();
+
+		await wishListPage.clickTrainingLink();
+
+		await trainingPage.clickGoToWishListLink()
+		
+		await expect(page).toHaveURL(MY_WISHLIST_PAGE_URL);
+		await expect(wishListPage.locators.getMyWishListHeader()).toBeVisible();
+		await expect(wishListPage.locators.getMyWishListHeader()).toContainText(MY_WISHLIST_PAGE_HEADER);
+		await wishListPage.hoverMyWishListItemName();
+		await expect(wishListPage.locators.getMyWishListItemNameLocator()).toBeVisible();
+		await expect(wishListPage.locators.getMyWishListItemNameLocator()).toHaveText(MY_WISHLIST_PAGE_ITEM_TEXT);
+ })
   
 });

@@ -8,6 +8,7 @@ export const MEN_BOTTOMS_PAGE_END_POINT = '/men/bottoms-men.html';
 export const TRAINING_URL = "https://magento.softwaretestingboard.com/training.html";
 export const TRAINING_PAGE_VIDEODOWNLOAD_URL = "https://magento.softwaretestingboard.com/training/training-video.html";
 export const COMPARE_URL_REGEX = new RegExp("https://magento.softwaretestingboard.com/catalog/product_compare/index/uenc/.+");
+export const MY_WISHLIST_PAGE_URL = "https://magento.softwaretestingboard.com/wishlist/";
 export const SEARCH_RESULTS_JACKET_PAGE_END_POINT = '/catalogsearch/result/?q=jacket';
 export const MEN_TOPS_PAGE_END_POINT = '/men/tops-men.html';
 export const SHIPPING_PAGE_END_POINT = '/checkout/#shipping';
@@ -47,6 +48,8 @@ export const TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT  = 'Home';
 export const VIDEODOWNLOAD_PAGE_HEADER = 'Video Download';
 export const COMPARE_PRODUCT_PAGE_HEADER = 'Compare Products';
 export const COMPARE_PRODUCT_PAGE_ITEM_TEXT = 'Push It Messenger Bag';
+export const MY_WISHLIST_PAGE_ITEM_TEXT = 'Push It Messenger Bag';
+export const MY_WISHLIST_PAGE_HEADER = 'My Wish List';
 export const WOMEN_TOPS_HEADER = 'Tops'
 export const WOMEN_BOTTOMS_HEADER = 'Bottoms';
 export const GEAR_BAGS_HEADER = 'Bags';
@@ -184,4 +187,7 @@ export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?c
 
 export const email = 'kat123@gmail.com';
 export const password = 'Password!';
+
+export const EMAIL_WISHLIST = 'johnLennon@gmail.com';
+export const PASSWORD_WISHLIST = 'Jonny1940!';
 
