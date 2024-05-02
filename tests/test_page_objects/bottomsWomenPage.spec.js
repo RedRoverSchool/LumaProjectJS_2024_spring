@@ -68,5 +68,29 @@ test.describe('bottomsWomenPage.spec', () => {
     
           await expect(bottomsWomenPage.locators.getOptionPriceFilter()).toBeVisible();
     })
+
+    test('Verify that each category displays the number of products', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const bottomsWomenPage = new BottomsWomenPage(page);
+
+        await homePage.hoverWomenMenuitem();
+        await homePage.clickBottomsWomenLink();
+    
+        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
+    
+        await bottomsWomenPage.clickWomenBottomsOptionStyle();
+    
+        expect(await bottomsWomenPage.locators.getAriaSelectedWomenBottoms()).toBeTruthy();
+        
+        const categoriesStyle = await bottomsWomenPage.locators.getCategoriesStyle();
+    
+        for (const category of categoriesStyle) {
+            const countItems = await bottomsWomenPage.locators.getCountItemsInCategoryStyle(category);
+    
+            expect(countItems).toBeTruthy();
+            expect(await countItems.isVisible()).toBeTruthy();
+            expect(await countItems.textContent()).toMatch(/\d+/);
+        }
+    });
 });
 

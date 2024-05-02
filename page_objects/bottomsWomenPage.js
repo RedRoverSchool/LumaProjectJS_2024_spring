@@ -14,7 +14,9 @@ class BottomsWomenPage {
         getBottomsCategoryShorts: () => this.page.locator(".filter-options li a[href$='bottoms-women.html?cat=28']"),
         getShortsCategoryLocator: () => this.page.locator('li .filter-value'),
         getOptionPrice: () => this.page.locator('.filter-options-title').nth(3),
-        getOptionPriceFilter: () => this.page.locator('.filter-options-content').nth(3)
+        getOptionPriceFilter: () => this.page.locator('.filter-options-content').nth(3),
+        getCategoriesStyle: () => this.page.$$('a[href*=\'style\']'),
+        getCountItemsInCategoryStyle: (category) => category.$('span.count')
     }
 
     async getLocatorInnerText(locator) {
