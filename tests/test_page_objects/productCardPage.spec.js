@@ -23,7 +23,6 @@ test.describe('productCardPage.spec', () => {
         const LIST_OF_PRODUCT_CARD_TITLES = await menTopsPage.locators
             .getListOfProductCardTitles()
             .allInnerTexts();
-        console.log(LIST_OF_PRODUCT_CARD_TITLES);
 
         for (let i = 0; i < LIST_OF_PRODUCT_CARD_TITLES.length; i++)
         {
