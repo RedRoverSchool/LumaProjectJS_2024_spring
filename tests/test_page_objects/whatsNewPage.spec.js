@@ -29,4 +29,22 @@ test.describe('whatIsNewPage.spec', () => {
         await expect(whatsNewPage.locators.getMenuNewInMens()).toBeVisible();
       });
     
+      test("TC 04.1.3_02 Verify links are displayed in New In Mens", async ({page}) => {
+        const homePage = new HomePage(page);
+        const whatsNewPage = new WhatsNewPage(page);
+
+        await homePage.clickWhatsNewLink();
+
+        let itemsArr = [whatsNewPage.locators.getNewInMensHoodies(),
+        whatsNewPage.locators.getNewInMensJackets(),
+        whatsNewPage.locators.getNewInMensPants(),
+        whatsNewPage.locators.getNewInMensShorts(),
+        whatsNewPage.locators.getNewInMensTanks(),
+        whatsNewPage.locators.getNewInMensTees(),
+        ];
+        for(let i = 0; i < itemsArr.length; i++) {
+          await expect(itemsArr[i]).toBeVisible();
+        }
+      });
+    
 })
