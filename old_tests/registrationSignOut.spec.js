@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe('sign out', () => {
 
-    const email = 'katikati3@gmail.com';
+    const email = 'kat123@gmail.com';
     const password = 'Password!';
 
   test.beforeEach(async ({ page }) => {
@@ -31,7 +31,7 @@ test.describe('sign out', () => {
     await page.getByLabel('Password').fill(password);
     await page.getByRole('button', { name: 'Sign In' }).click();
     await page.getByRole('banner').locator('button').filter({ hasText: 'Change' }).click();
-    await page.getByRole('banner').getByText('My Account My Wish List Sign');
+    // await page.getByRole('banner').getByText('My Account My Wish List Sign');
     await expect(page.getByRole('banner').getByText('My Account My Wish List Sign')).toBeTruthy();
  })
 
