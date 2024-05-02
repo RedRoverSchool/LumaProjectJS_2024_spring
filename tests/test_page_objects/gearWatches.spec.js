@@ -146,4 +146,18 @@ test.describe('gearWatchesPage.spec', () => {
     };
   })
 
+  test('Filter Products By ActivityType on gearWatchesPage', async ({ page }) => {
+    test.slow();
+    const gearWatchesPage = new GearWatchesPage(page);
+
+    await gearWatchesPage.clickShoppingOption(LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[2]);
+
+    for (let i = 0; i < LIST_OF_SUBMENU_ITEMS_EXPECTED[2].length; i++) {
+        
+        await gearWatchesPage.clickSubMenuLink(LIST_OF_SUBMENU_ITEMS_EXPECTED[2][i]);
+        await expect (gearWatchesPage.locators.getFilterValue()).toHaveText(LIST_OF_SUBMENU_ITEMS_EXPECTED[2][i]);
+        await gearWatchesPage.clickClearAllButton();
+        await gearWatchesPage.clickShoppingOption(LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[2]);
+    }
+});
 });

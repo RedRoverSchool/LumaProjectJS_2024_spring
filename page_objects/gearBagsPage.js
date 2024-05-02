@@ -1,4 +1,5 @@
 import TrainingPage from "./trainingPage";
+import PushItMessengerBagPage from "./pushItMessengerBagPage";
 
 class GearBagsPage {
     constructor(page) {
@@ -19,6 +20,12 @@ class GearBagsPage {
 
         return this;
     } 
+
+	 async clickPushItMessengerItem() {
+		await this.locators.getPushItMessengerItem().click();
+
+		return new PushItMessengerBagPage(this.page);
+  } 
 
     async clickgetPushItMessengerItemAddtoCampare() {
         await this.locators.getPushItMessengerItemAddtoCampare().click();
@@ -44,4 +51,5 @@ class GearBagsPage {
         return text;
     }
 }
+
 export default GearBagsPage;

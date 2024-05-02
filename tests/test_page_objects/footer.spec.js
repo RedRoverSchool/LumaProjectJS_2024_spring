@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import HomePage from '../../page_objects/homePage.js';
 import Footer from '../../page_objects/footer.js';
 import SearchTermPopularPage from "../../page_objects/searchTermPopularPage.js";
+import SignInPage from '../../page_objects/signInPage.js';
 import { BASE_URL, SEARCH_TERMS_POPULAR_PAGE_END_POINT, SEARCH_TERMS_POPULAR_PAGE_HEADER } from "../../helpers/testData.js";
 
 test.describe('footer.spec', () => {
@@ -46,5 +47,21 @@ test.describe('footer.spec', () => {
             expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
         }
     });
+
+    test('Verify links visibility in the footer for logged-in user', async ({page}) => {
+        const homePage = new HomePage(page);
+        await homePage.open();
+
+        const signInPage = await homePage.clickSignInLink();
+        await signInPage.fillFieldEmail();
+        await signInPage.fillFieldPassword();
+
+        await signInPage.clickButtonSignIn();
+        const footerPage = new Footer(page);
+        await expect(footerPage.locators.getSearchTerms()).toBeVisible();
+        await expect(footerPage.locators.getPrivacyAndCookiePolicyLink()).toBeVisible();
+        await expect(footerPage.locators.getNotesLink()).toBeVisible();
+        await expect(footerPage.locators.getAdvancedSearchLink()).toBeVisible();
+    })
 });
 
