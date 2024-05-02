@@ -4,6 +4,8 @@ import Footer from '../../page_objects/footer.js';
 import SearchTermPopularPage from "../../page_objects/searchTermPopularPage.js";
 import SignInPage from '../../page_objects/signInPage.js';
 import { BASE_URL, SEARCH_TERMS_POPULAR_PAGE_END_POINT, SEARCH_TERMS_POPULAR_PAGE_HEADER } from "../../helpers/testData.js";
+import { PRIVACY_POLICY_END_POINT } from '../../helpers/testPrivacyPolicyData.js';
+import PrivacyPolicyPage from '../../page_objects/privacyPolicyPage.js';
 
 test.describe('footer.spec', () => {
     test.beforeEach(async({page}) => {
@@ -62,6 +64,17 @@ test.describe('footer.spec', () => {
         await expect(footerPage.locators.getPrivacyAndCookiePolicyLink()).toBeVisible();
         await expect(footerPage.locators.getNotesLink()).toBeVisible();
         await expect(footerPage.locators.getAdvancedSearchLink()).toBeVisible();
+    })
+
+    test('Verify Search Terms link is clickable and redirects logged-in user to the required page', async ({page}) => {
+        const homePage = new HomePage(page);
+        const signInPage = await homePage.clickSignInLink();
+        await signInPage.fillFieldEmail();
+        await signInPage.fillFieldPassword();
+        await signInPage.clickButtonSignIn();
+
+        const searchTermPopularPage = await homePage.getFooter().clickSearchTerms();
+        await expect(page).toHaveURL(BASE_URL + SEARCH_TERMS_POPULAR_PAGE_END_POINT);       
     })
 });
 
