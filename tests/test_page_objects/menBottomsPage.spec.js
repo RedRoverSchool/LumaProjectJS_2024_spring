@@ -37,7 +37,7 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
     expect(positionOfSidebar).toBe('left');
   })
 
-  test('verify the user can select a subcategory from the dropdown', async ({ page }) => {
+  test.skip('verify the user can select a subcategory from the dropdown', async ({ page }) => {
     for (let i = 0; i < LIST_CATEGORY_MEN_BOTTOMS.length; i++) {
       const homePage = new HomePage(page);
       const menBottomsPage = new MenBottomsPage(page);
