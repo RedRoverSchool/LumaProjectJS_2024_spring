@@ -123,7 +123,7 @@ test.describe('homePage.spec', () => {
     test("Verify user can hover over the title “Women” and see dropdown list with 2 subcategories", async ({ page }) => {
         const homePage = new HomePage(page);
 
-        homePage.hoverWomenLink();
+        await homePage.hoverWomenLink();
 
         await expect(homePage.locators.getWomenCategories()).toHaveText(WOMEN_CATEGORIES);
     });
