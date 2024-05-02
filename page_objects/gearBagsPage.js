@@ -44,4 +44,5 @@ class GearBagsPage {
         return text;
     }
 }
+
 export default GearBagsPage;

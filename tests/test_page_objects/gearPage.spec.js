@@ -21,4 +21,30 @@ test.describe('gearPage.spec', () => {
         await expect(SubCategoryFitnessColour).toHaveCSS('border-color', "rgb(0, 107, 180)");
         await expect(SubCategoryWatchesColour).toHaveCSS('border-color', "rgb(0, 107, 180)");
     });
+
+    test("Verify that “Bags”, “Fitness equipment” and “Watches” to be placed under filter “Shop By Category” are clickable.", async ({ page }) => {
+        const homePage = new HomePage(page);
+        const gearPage = new GearPage(page);
+
+        await homePage.clickGearMenuItem();
+
+        await gearPage.clickSubCategoryBags();
+        const gearBagsText = page.locator(".base[data-ui-id='page-title-wrapper']");
+        
+        await expect(gearBagsText).toBeVisible();
+
+        await homePage.clickGearMenuItem();
+
+        await gearPage.clickSubCategoryFitness();
+        const gearFitnessText = page.locator(".base[data-ui-id='page-title-wrapper']")
+        
+        await expect(gearFitnessText).toBeVisible();
+
+        await homePage.clickGearMenuItem();
+
+        await gearPage.clickSubCategoryWatches();
+        const gearWatchesText = page.locator(".base[data-ui-id='page-title-wrapper']");
+        
+        await expect(gearWatchesText).toBeVisible();
+    });
 });
