@@ -1,6 +1,7 @@
 import HomePage from "./homePage.js";
 import MenHotSellersPage from "./menHotSellersPage.js";
 import ProductPage from "./productPage.js";
+import MenBottomsPage from "./menBottomsPage.js"
 
 class MenPage {
     constructor (page) {
