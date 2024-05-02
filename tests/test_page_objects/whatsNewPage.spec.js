@@ -19,4 +19,14 @@ test.describe('whatIsNewPage.spec', () => {
         await expect(page).toHaveURL(BASE_URL + WHATS_NEW_PAGE_END_POINT);
         await expect(whatsNewPage.locators.getPageHeader()).toHaveText(WHATS_NEW_PAGE_HEADER);
     });  
+    
+    test("TC 04.1.3_01 Verify the “NEW IN MEN'S section is displayed on the What's New page", async ({page}) => {
+        const homePage = new HomePage(page);
+        const whatsNewPage = new WhatsNewPage(page);
+
+        await homePage.clickWhatsNewLink();
+
+        await expect(whatsNewPage.locators.getMenuNewInMens()).toBeVisible();
+      });
+    
 })

@@ -8,7 +8,8 @@ class WhatsNewPage {
     locators = {
         getPageHeader: () => this.page.getByRole('heading').first(),
         getLogoLink: () => this.page.getByLabel('store logo'),
-        getHeaderText: () => this.page.getByRole('heading', {name: "What's New"})
+        getHeaderText: () => this.page.getByRole('heading', {name: "What's New"}),
+        getMenuNewInMens: () => this.page.getByText("New in men's"),
     }
 
     async clickLogoLink() {
