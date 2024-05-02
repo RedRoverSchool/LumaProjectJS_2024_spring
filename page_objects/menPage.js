@@ -1,6 +1,7 @@
-import HomePage from "./homePage";
-import MenBottomsPage from "./menBottomsPage";
-import MenHotSellersPage from "./menHotSellersPage";
+import HomePage from "./homePage.js";
+import MenHotSellersPage from "./menHotSellersPage.js";
+import ProductPage from "./productPage.js";
+import MenBottomsPage from "./menBottomsPage.js"
 
 class MenPage {
     constructor (page) {
@@ -19,7 +20,9 @@ class MenPage {
         getShopByCategoryBlock: () => this.page.locator('[class="sidebar sidebar-main"]'),
         getSubCaregoriesInCategoryBlock: () => this.page.locator('ol.items li'),
         getMenHotSellersName: (productsName) => this.page.getByTitle(productsName),
+        getProductItemLink: () => this.page.locator('.product-item-link').first(),
         getBottomsSideMenuLink: () => this.page.getByRole('link', {name: 'Bottoms'})
+
     }
 
     async clickBeadcrumbsMenuHome() {
@@ -34,6 +37,11 @@ class MenPage {
         return new MenHotSellersPage(this.page);
     }
 
+    async clickProductItemLink() {
+        await this.locators.getProductItemLink().click();
+        return new ProductPage(this.page)
+    }
+      
     async clickBottomsSideMenuLink() {
         await this.locators.getBottomsSideMenuLink().click();
 

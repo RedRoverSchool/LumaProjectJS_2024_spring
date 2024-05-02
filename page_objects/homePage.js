@@ -25,6 +25,7 @@ class HomePage {
   locators = {
     getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
     getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
+    getMenLinkNav: () => this.page.locator(".nav-sections .navigation li a[href$='/men.html']"),
     getMenLink: () => this.page.getByRole('menuitem', { name: 'Men' }).last(),
     getMenBottomsLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
     getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
@@ -142,6 +143,7 @@ class HomePage {
 
     return new CreateAccountPage(this.page);
   }
+
   async clickMenTopsLink() {
     await this.locators.getMenTopsLink().click();
 
@@ -229,6 +231,7 @@ class HomePage {
   getFooter() {
     return new Footer(this.page);
   }
+
   async clickGearMenuItem() {
     await this.locators.getGearMenuItem().click();
 
@@ -240,6 +243,7 @@ class HomePage {
 
     return new GearBagsPage(this.page);
   }
+
   async clickOrdersAndReturnsLink() {
     await this.locators.getOrdersAndReturnsLink().click();
 
@@ -250,6 +254,12 @@ class HomePage {
     await this.locators.getGearBagsLink().click();
 
     return new GearBagsPage(this.page);
+  }
+
+  async clickMenLinkNav() {
+    await this.locators.getMenLinkNav().click();
+
+    return new MenPage(this.page);
   }
 
   async clickFirstCardReviews () {
