@@ -130,12 +130,6 @@ class HomePage {
     return this;
   }
 
-  async hoverMenLink() {
-    await this.locators.getMenLink().hover();
-
-    return this;
-  }
-
   async clickRadiantTee() {
     await this.locators.getRadiantTee().click();
 
@@ -147,12 +141,6 @@ class HomePage {
 
     return new CreateAccountPage(this.page);
   }
-
-    async hoverMenLink() {
-        await this.locators.getMenLink().hover();
-
-        return this;
-    }
 
   async clickMenTopsLink() {
     await this.locators.getMenTopsLink().click();
