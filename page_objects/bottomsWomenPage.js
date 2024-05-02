@@ -8,13 +8,13 @@ class BottomsWomenPage {
         getWomenBottomsOptionStyle: () => this.page.getByRole('tab', { name: 'Style' }),
         getAriaSelectedWomenBottoms: () => this.page.locator('[aria-selected]'),
         getCategoryInStyle: () => this.page.locator('[aria-hidden="false"] .items>.item'),
-        getOptionPrice: () => this.page.locator('.filter-options-title').nth(3),
-        getOptionPriceFilter: () => this.page.locator('.filter-options-content').nth(3),
         getBottomsCategory: () => this.page.getByText('Category'),
         getBottomsCategoryPants: () => this.page.locator(".filter-options li a[href$='bottoms-women.html?cat=27']"),//getByRole('link', {name: 'Pants'})
         getPantsCategoryLocator: () => this.page.locator('li .filter-value'),
         getBottomsCategoryShorts: () => this.page.locator(".filter-options li a[href$='bottoms-women.html?cat=28']"),
-        getShortsCategoryLocator: () => this.page.locator('li .filter-value')
+        getShortsCategoryLocator: () => this.page.locator('li .filter-value'),
+        getOptionPrice: () => this.page.locator('.filter-options-title').nth(3),
+        getOptionPriceFilter: () => this.page.locator('.filter-options-content').nth(3)
     }
 
     async getLocatorInnerText(locator) {
@@ -34,12 +34,6 @@ class BottomsWomenPage {
         return { extractedItems, areEqual };
     }
 
-    async clickOptionPrice(){
-        await this.locators.getOptionPrice().click();
-
-        return this;
-    }
-
     async clickWomenBottomsCategory() {
         await this.locators.getBottomsCategory().click();
 
@@ -54,6 +48,12 @@ class BottomsWomenPage {
 
     async clickBottomsCategoryShorts() {
         await this.locators.getBottomsCategoryShorts().click();
+
+        return this;
+    }
+
+    async clickOptionPrice(){
+        await this.locators.getOptionPrice().click();
 
         return this;
     }
