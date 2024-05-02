@@ -5,8 +5,10 @@ class PrivacyPolicyPage {
     }
 
     locators = {
-        navMenuItemList: () => this.page.locator('#privacy-policy-nav-content').getByRole('listitem')
-    }
+        getNavMenuItemList: () => this.page.locator('#privacy-policy-nav-content').getByRole('listitem'),
+        getContentHeadersList: () => this.page.locator('h2')       
+    };
+   
 
 }
 export default PrivacyPolicyPage;

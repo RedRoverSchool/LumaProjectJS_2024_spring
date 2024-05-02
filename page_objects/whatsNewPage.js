@@ -7,7 +7,8 @@ class WhatsNewPage {
 
     locators = {
         getPageHeader: () => this.page.getByRole('heading').first(),
-        getLogoLink: () => this.page.getByLabel('store logo')
+        getLogoLink: () => this.page.getByLabel('store logo'),
+        getHeaderText: () => this.page.getByRole('heading', {name: "What's New"})
     }
 
     async clickLogoLink() {
