@@ -10,10 +10,10 @@ class ProductCardPage {
         getRelatedProductsSectionTitle: () => this.page.locator('#block-related-heading'),
     };
 
-    goBackToMenTopsPage() {
-        this.page.goBack();
+    async goBackToMenTopsPage() {
+       await this.page.goBack();
 
-        return new MenTopsPage(this.page);
+       return new MenTopsPage(this.page);
     }
 }
 
