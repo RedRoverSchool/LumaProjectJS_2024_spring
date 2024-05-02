@@ -39,6 +39,7 @@ class MenPage {
     async clickProductItemLink() {
         await this.locators.getProductItemLink().click();
         return new ProductPage(this.page)
+    }
       
     async clickBottomsSideMenuLink() {
         await this.locators.getBottomsSideMenuLink().click();
