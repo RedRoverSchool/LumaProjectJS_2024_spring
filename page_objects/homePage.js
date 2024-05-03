@@ -17,6 +17,8 @@ import GearBagsPage from "./gearBagsPage.js";
 import OrdersAndReturnsPage from "./ordersAndReturnsPage.js";
 import BreatheEasyTankPage from "./breatheEasyTankPage.js";
 import WomenTopsPage from "./womenTopsPage.js";
+import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
+import HeroHoodiePage from "./heroHoodiePage.js"
 
 class HomePage {
   constructor(page) {
@@ -65,6 +67,9 @@ class HomePage {
     getSecondCardImage: () => this.page.getByAltText('Breathe-Easy Tank'),
     getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),
     getSecondCardReviews: () => this.page.locator('a[class="action view"][href*="breathe-easy-tank"]'),
+    getThirdCardImage: () => this.page.getByAltText('Argus All-Weather Tank'),
+    getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
+    getFourthCardName: () => this.page.getByAltText('Hero Hoodie'),
   };
 
   async open() {
@@ -280,6 +285,24 @@ class HomePage {
     await this.locators.getSecondCardReviews().click();
 
     return new BreatheEasyTankPage(this.page)
+  }
+
+  async clickThirdCardImage() {
+    await this.locators.getThirdCardImage().click();
+    
+    return new ArgusAllWeatherTankPage(this.page)
+  }
+
+  async clickThirdCardName() {
+    await this.locators.getThirdCardName().click();
+
+    return new ArgusAllWeatherTankPage(this.page)
+  }
+
+  async clickFourthCardName() {
+    await this.locators.getFourthCardName().click();
+
+    return new HeroHoodiePage(this.page)
   }
 }
 export default HomePage;
