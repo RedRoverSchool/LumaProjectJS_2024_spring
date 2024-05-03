@@ -44,7 +44,7 @@ test.describe('footer.spec', () => {
             await item.click()
             await new Footer(page).clickSearchTerms();
             await expect(page).toHaveURL(BASE_URL + SEARCH_TERMS_POPULAR_PAGE_END_POINT);
-            expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
+            await expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
         }
     });
 
