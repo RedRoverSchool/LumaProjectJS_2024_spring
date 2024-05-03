@@ -8,6 +8,8 @@ import {
   TOPS_WOMEN_PAGE_END_POINT,
   JACKET_ITEMS,
 } from "../../helpers/testData";
+import { MODE_GRID_ACTIVE_ATTR_CLASS, MODE_LIST_ACTIVE_ATTR_CLASS } from '../../helpers/testWomenData'
+import MainMenuPage from "../../page_objects/mainMenu";
 
 const setup = async (page) => {
   const homePage = new HomePage(page);
@@ -73,4 +75,33 @@ test.describe("topWomenPage.spec", () => {
 
     expect(expectedNumberJacketItems).toEqual(actualNumberJacketItems);
   });
+
+  test('TC 05.1.4_01 Women/Tops/Display mode can be changed, visible', async ({
+    page
+  }) => {
+    const homePage = new HomePage(page)
+    const womenPage = new WomenPage(page)
+    const topsWomenPage = new TopsWomenPage(page)
+
+    await homePage.open()
+    await homePage.hoverWomenLink()
+    await homePage.clickWomenTopsLink()
+
+    await expect(topsWomenPage.locators.getDisplayModeGrid()).toBeVisible()
+
+    await topsWomenPage.clickDisplayModeGrid()
+    await expect(topsWomenPage.locators.getDisplayModeGrid()).toHaveClass(
+      MODE_GRID_ACTIVE_ATTR_CLASS
+    )
+    await expect(topsWomenPage.locators.getDisplayModeList()).not.toHaveClass(
+      MODE_LIST_ACTIVE_ATTR_CLASS
+    )
+
+    await topsWomenPage.clickDisplayModeList()
+    await expect(topsWomenPage.locators.getDisplayModeList()).toBeVisible()
+    await expect(topsWomenPage.locators.getDisplayModeList()).toHaveClass(
+      MODE_LIST_ACTIVE_ATTR_CLASS
+    )
+  })
+
 });

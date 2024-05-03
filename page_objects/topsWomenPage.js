@@ -11,6 +11,8 @@ class TopsWomenPage {
         getFilterOptionJacketsLink: () => this.page.getByRole("link", { name: "Jackets" }),        
         getArrayAllItems: () => this.page.locator(".products .product-items .product-item-link").allTextContents(),
         getTextCategoryJacketItems: () => this.page.locator('#narrow-by-list > div.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(1) > a > span').innerText(),
+        getDisplayModeGrid: () => this.page.getByTitle('Grid', { exact: true }).first(),
+        getDisplayModeList: () => this.page.getByTitle('List', { exact: true }).first(),     
     }
 
     async clickCategoryFilterOption() {
@@ -22,7 +24,17 @@ class TopsWomenPage {
         await this.locators.getFilterOptionJacketsLink().click();
 
         return this.page;
-    }      
+    }   
+    async clickDisplayModeGrid() {
+        await this.locators.getDisplayModeGrid().click()
+
+        return this.page;
+    }
+    async clickDisplayModeList() {
+        await this.locators.getDisplayModeList().click()
+
+        return this.page;
+    }
  }
 
 export default TopsWomenPage;
