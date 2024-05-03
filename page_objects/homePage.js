@@ -70,6 +70,7 @@ class HomePage {
     getThirdCardImage: () => this.page.getByAltText('Argus All-Weather Tank'),
     getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
     getFourthCardName: () => this.page.getByAltText('Hero Hoodie'),
+    getFourthCardImage: () => this.page.getByAltText('Hero Hoodie'),
   };
 
   async open() {
@@ -301,6 +302,12 @@ class HomePage {
 
   async clickFourthCardName() {
     await this.locators.getFourthCardName().click();
+
+    return new HeroHoodiePage(this.page)
+  }
+
+  async clickFourthCardImage() {
+    await this.locators.getFourthCardImage().click();
 
     return new HeroHoodiePage(this.page)
   }

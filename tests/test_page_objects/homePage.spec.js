@@ -220,4 +220,14 @@ test.describe('homePage.spec', () => {
         await expect(page).toHaveURL(BASE_URL + HERO_HOODIE_PAGE_END_POINT);
         await expect(heroHoodiePage.locators.getHeroHoodieHeader()).toBeVisible();
     })
+
+    test('4th card: clicking the card image redirects to the respective product card', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const heroHoodiePage = new HeroHoodiePage(page);
+
+        await homePage.clickFourthCardImage();
+
+        await expect(page).toHaveURL(BASE_URL + HERO_HOODIE_PAGE_END_POINT);
+        await expect(heroHoodiePage.locators.getHeroHoodieHeader()).toBeVisible();
+    })
 })
