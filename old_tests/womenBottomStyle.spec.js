@@ -72,6 +72,5 @@ test.describe('Women/Bottoms/Style', () => {
     const result = extractAndCompareItems(receivedResult, expectedItems);
 
     expect(result.extractedItems).toEqual(expectedItems);
-
   });
 });

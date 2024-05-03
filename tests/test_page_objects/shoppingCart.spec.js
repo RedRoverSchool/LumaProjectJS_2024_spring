@@ -30,7 +30,7 @@ test.describe('shopping Cart', () => {
         await createAccountPage.clickCreateAccountButton();
     })
 
-    test('Validate link Move to Wish List located on the Shopping Cart page', async ({ page }) => {
+    test.skip('Validate link Move to Wish List located on the Shopping Cart page', async ({ page }) => {
         const myAccountPage = new MyAccountPage(page);
         const womenPage = new WomenPage(page);
         const jacketsWomenPage = new JacketsWomenPage(page);

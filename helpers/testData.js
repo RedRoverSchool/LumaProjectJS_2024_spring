@@ -17,6 +17,9 @@ export const RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT = '/radiant-tee.html#reviews
 export const BREATHE_EASY_TANK_PAGE_END_POINT = '/breathe-easy-tank.html';
 export const BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT = '/breathe-easy-tank.html#reviews';
 export const SALE_PAGE_END_POINT = '/sale.html';
+export const ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT = '/argus-all-weather-tank.html';
+export const HERO_HOODIE_PAGE_END_POINT = '/hero-hoodie.html'
+export const SIGN_IN_PAGE_END_POINT = "/customer/account/login/referer/*";
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
   '/men/tops-men/hoodies-and-sweatshirts-men.html',
@@ -120,6 +123,7 @@ export const SEARCH_TERMS_POPULAR_PAGE_END_POINT = '/search/term/popular/';
 export const SEARCH_TERMS_POPULAR_PAGE_HEADER = 'Popular Search Terms';
 export const MY_ORDERS_PAGE_END_POINT = '/sales/order/history/';
 export const MY_ACCOUNT_END_POINT = '/customer/account/';
+export const MY_ACCOUNT_CREATE_END_POINT = '/customer/account/create/';
 export const MY_ORDERS_HEADER = 'My Orders';
 export const WOMEN_JACKETS_NAME = 'Inez Full Zip Jacket';
 export const INEZ_FULL_ZIP_JACKET1_END_POINT = '/inez-full-zip-jacket.html';
@@ -188,6 +192,8 @@ export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
 
 export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
 export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
+export const LOGO_ALIGNMENT = 'left';
+ 
 
 //login  credential
 
