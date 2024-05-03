@@ -20,7 +20,6 @@ export const SALE_PAGE_END_POINT = '/sale.html';
 export const ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT = '/argus-all-weather-tank.html';
 export const HERO_HOODIE_PAGE_END_POINT = '/hero-hoodie.html'
 export const SIGN_IN_PAGE_END_POINT = "/customer/account/login/referer/*";
-
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
   '/men/tops-men/hoodies-and-sweatshirts-men.html',
   '/men/tops-men/jackets-men.html',
@@ -116,7 +115,6 @@ export const LIST_CATEGORY_MEN_TOPS = [
   'Hoodies & Sweatshirts 13 item',
   'Tees 12 item',
   'Tanks 12 item'];
-
 
 export const SHIPPING_PROGRESS_BAR_TEXT = 'Shipping';
 export const SEARCH_TERMS_POPULAR_PAGE_END_POINT = '/search/term/popular/';
