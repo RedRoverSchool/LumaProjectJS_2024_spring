@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import BottomsWomenPage from "../../page_objects/bottomsWomenPage.js";
-import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS} from "../../helpers/testData.js";
+import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, PRODUCT_CARDS} from "../../helpers/testData.js";
 import { WOMEN_BOTTOMS_CATEGORIES } from "../../helpers/testWomenData.js";
 
 test.describe('bottomsWomenPage.spec', () => {
@@ -55,6 +55,24 @@ test.describe('bottomsWomenPage.spec', () => {
             expect(await countItems.textContent()).toMatch(/\d+/);
         }
     });
+
+
+    test('Verify that when you select each category in the "Style" option, product cards are displayed on the page in the quantity available for this category', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const bottomsWomenPage = new BottomsWomenPage(page);
+        
+        await homePage.hoverWomenMenuitem();
+        await homePage.clickBottomsWomenLink();
+    
+        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
+    
+        const categoriesStyle = await bottomsWomenPage.locators.getObjectCategoriesStyle();
+        const productCards = PRODUCT_CARDS;
+        
+        await bottomsWomenPage.verifyProductCardsQuantity(categoriesStyle, productCards);
+
+        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
+        });
 
     test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
         const homePage = new HomePage(page);
