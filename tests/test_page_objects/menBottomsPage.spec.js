@@ -66,5 +66,19 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
       await expect(menBottomsPage.locators.getMenBottomsDefault12ItemCard()).toHaveCount(12);
       await expect(menBottomsPage.locators.getMenBottomsParagraphFilterGridText()).toHaveText('Items 1-12 of 24');
     })
+    test("Checking that the list is selected and has 10 positions by defaultBottoms", async ({ page }) => {
+      const homePage = new HomePage(page);
+      const menBottomsPage = new MenBottomsPage(page);
+
+      await homePage.hoverMenLink();
+      await homePage.clickMenBottomsLink();
+      await menBottomsPage.waitForTimeout(2000);
+      await menBottomsPage.clickMenBottomsFilterList();
+
+      await expect(menBottomsPage.locators.getMenBottomsDefault10ItemCardList()).toHaveCount(10);
+      await expect(menBottomsPage.locators.getMenBottomsParagraphFilterListText()).toHaveText('Items 1-10 of 24');
+      await expect(menBottomsPage.locators.getMenBottomsFilterList()).toHaveClass(/active/);
+  
+    })
 });
   
