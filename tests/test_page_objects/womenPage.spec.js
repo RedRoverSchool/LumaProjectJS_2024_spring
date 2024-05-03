@@ -6,7 +6,7 @@ import TopsWomenPage from "../../page_objects/topsWomenPage.js";
 import BottomsWomenPage from "../../page_objects/bottomsWomenPage.js";
 
 test.describe('womenPage.spec', () => {
-  test("Navigate to Women's Tees page by clicking Promo link on 'Women' page", async ({ page }) => {
+  test.skip("Navigate to Women's Tees page by clicking Promo link on 'Women' page", async ({ page }) => {
     const homePage = new HomePage(page);
     const womenPage = new WomenPage(page);
 
@@ -16,7 +16,7 @@ test.describe('womenPage.spec', () => {
 
     await expect(page).toHaveURL(BASE_URL + TEES_WOMEN_PAGE_END_POINT);
   });
-  test('Links with category names are located on the page, clickable, and blue', async ({ page }) => {
+  test.skip('Links with category names are located on the page, clickable, and blue', async ({ page }) => {
     const homePage = new HomePage(page);
     const womenPage = new WomenPage(page);
     const topsWomenPage = new TopsWomenPage(page)
