@@ -18,6 +18,7 @@ export const BREATHE_EASY_TANK_PAGE_END_POINT = '/breathe-easy-tank.html';
 export const BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT = '/breathe-easy-tank.html#reviews';
 export const ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT = '/argus-all-weather-tank.html';
 export const HERO_HOODIE_PAGE_END_POINT = '/hero-hoodie.html'
+export const SIGN_IN_PAGE_END_POINT = "/customer/account/login/referer/*";
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
   '/men/tops-men/hoodies-and-sweatshirts-men.html',

@@ -6,7 +6,9 @@ import {
   MY_WISH_LIST_EMPTY_MESSAGE,
   TOPS_WOMEN_PAGE_END_POINT,
   JACKET_ITEMS,
-} from "../../helpers/testData"; 
+  SIGN_IN_PAGE_END_POINT,
+} from "../../helpers/testData";
+import {getRandomNumber, urlToRegexPattern} from "../../helpers/testUtils";
 
 test.describe("topWomenPage.spec", () => {
   test.beforeEach(async ({ page }) => {
@@ -64,5 +66,23 @@ test.describe("topWomenPage.spec", () => {
     const actualNumberJacketItems = allJacketItemsOnPage.length;
 
     expect(expectedNumberJacketItems).toEqual(actualNumberJacketItems);
+  });
+
+  test('clicking AddToWishList button redirects guest users to Login page', async ({ page }) => {
+    const expectedEndPoint = new RegExp(urlToRegexPattern(BASE_URL + SIGN_IN_PAGE_END_POINT));
+    const homePage = new HomePage(page);
+
+    const womenPage = await homePage.clickWomenLink();
+    const topsWomenPage = await womenPage.clickWomenTopsLink();
+
+    const randomProductCardIndex = getRandomNumber(await topsWomenPage.getAllProductCardsLength());
+
+    await topsWomenPage.hoverRandomWomenTopsProductItem(randomProductCardIndex);
+    await topsWomenPage.clickRandomWomenTopsAddToWishListButton(randomProductCardIndex);
+    await page.waitForLoadState();
+
+    await expect(page.url(),
+        "FAIL: SignInPage is NOT opened on click on AddToWishList button for unsigned users.")
+        .toMatch(expectedEndPoint);
   });
 });
