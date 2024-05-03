@@ -19,6 +19,7 @@ import BreatheEasyTankPage from "./breatheEasyTankPage.js";
 import WomenTopsPage from "./womenTopsPage.js";
 import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
 import HeroHoodiePage from "./heroHoodiePage.js"
+import TopsWomenPage from "./topsWomenPage.js";
 
 class HomePage {
   constructor(page) {
@@ -304,5 +305,12 @@ class HomePage {
 
     return new HeroHoodiePage(this.page)
   }
+
+  async clickTopsWomenLink() {
+    await this.locators.getWomenTopsLink().click();
+
+    return new TopsWomenPage(this.page)
+  }
+  
 }
 export default HomePage;

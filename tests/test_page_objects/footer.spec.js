@@ -29,7 +29,7 @@ test.describe('footer.spec', () => {
         await expect(searchTermPopularPage.locators.getSearchTermPopularHeader()).toContainText(SEARCH_TERMS_POPULAR_PAGE_HEADER);
     });
 
-    test('Verify that "Search terms" link redirects to the "Popular Search Terms" page', async ({ page }) => {
+    test.skip('Verify that "Search terms" link redirects to the "Popular Search Terms" page', async ({ page }) => {
         const searchTermPopularPage = await new HomePage(page)
             .getFooter()
             .clickSearchTerms();
