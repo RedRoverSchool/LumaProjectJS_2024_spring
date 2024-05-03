@@ -13,7 +13,7 @@ class GearBagsPage {
         getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
         getGearBagsPageHeader: () => this.page.getByRole('heading', { name: 'Bags' }),
         getMaterialOption: () => this.page.getByRole("tab", { name: "Material" }),
-        getMateialItemList: () => this.page.locator('.filter-options>:nth-child(4) li'),
+        getMateialItemList: () => this.page.locator('.filter-options>:nth-child(5) li'),
         getInactiveSecondPagePaginationLink: () =>this.page.locator('.items.pages-items').getByRole('link', { name: 'Page 2' }),
 		getPaginationSecondPageAttr: () => this.page.locator('div.pages li').nth(2),
 		getPaginationFirstPageAttr: () => this.page.locator('div.pages li').nth(1),
