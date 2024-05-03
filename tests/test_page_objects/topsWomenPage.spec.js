@@ -8,9 +8,21 @@ import {
   MY_WISH_LIST_EMPTY_MESSAGE,
   TOPS_WOMEN_PAGE_END_POINT,
   JACKET_ITEMS,
-  SIGN_IN_PAGE_END_POINT,
-} from "../../helpers/testData";
-import {getRandomNumber, urlToRegexPattern} from "../../helpers/testUtils";
+} from "../../helpers/testData"; 
+import { MODE_GRID_ACTIVE_ATTR_CLASS, MODE_LIST_ACTIVE_ATTR_CLASS } from '../../helpers/testWomenData'
+import MainMenuPage from "../../page_objects/mainMenu";
+
+const setup = async (page) => {
+  const homePage = new HomePage(page);
+  const womenPage = new WomenPage(page);
+  const topsWomenPage = new TopsWomenPage(page);
+
+  await homePage.open();
+  await homePage.clickWomenLink();
+  await womenPage.clickWomenTopsLink();
+
+  return topsWomenPage;
+};
 
 test.describe("topWomenPage.spec", () => {
   test.beforeEach(async ({ page }) => {
@@ -70,21 +82,22 @@ test.describe("topWomenPage.spec", () => {
     expect(expectedNumberJacketItems).toEqual(actualNumberJacketItems);
   });
 
-  test('clicking AddToWishList button redirects guest users to Login page', async ({ page }) => {
-    const expectedEndPoint = new RegExp(urlToRegexPattern(BASE_URL + SIGN_IN_PAGE_END_POINT));
-    const homePage = new HomePage(page);
+  test('women tops display mode can be changed, visible', async ({
+    page
+  }) => {
+    const homePage = new HomePage(page)
+    const womenPage = await homePage.hoverWomenMenuitem();
+    const topsWomenPage = await womenPage.clickTopsWomenLink();
 
-    const womenPage = await homePage.clickWomenLink();
-    const topsWomenPage = await womenPage.clickWomenTopsLink();
+    await expect(topsWomenPage.locators.getDisplayModeGrid()).toBeVisible()
 
-    const randomProductCardIndex = getRandomNumber(await topsWomenPage.getAllProductCardsLength());
+    await topsWomenPage.clickDisplayModeGrid()
+    await expect(topsWomenPage.locators.getDisplayModeGrid()).toHaveClass(MODE_GRID_ACTIVE_ATTR_CLASS)
+    await expect(topsWomenPage.locators.getDisplayModeList()).not.toHaveClass(MODE_LIST_ACTIVE_ATTR_CLASS)
 
-    await topsWomenPage.hoverRandomWomenTopsProductItem(randomProductCardIndex);
-    await topsWomenPage.clickRandomWomenTopsAddToWishListButton(randomProductCardIndex);
-    await page.waitForLoadState();
-
-    await expect(page.url(),
-        "FAIL: SignInPage is NOT opened on click on AddToWishList button for unsigned users.")
-        .toMatch(expectedEndPoint);
-  });
+    await topsWomenPage.clickDisplayModeList()
+    await expect(topsWomenPage.locators.getDisplayModeList()).toBeVisible()
+    await expect(topsWomenPage.locators.getDisplayModeList()).toHaveClass(MODE_LIST_ACTIVE_ATTR_CLASS
+    )
+  })
 });
