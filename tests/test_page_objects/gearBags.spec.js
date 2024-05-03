@@ -2,7 +2,8 @@ import { test, expect } from '@playwright/test';
 import HomePage from '../../page_objects/homePage.js';
 import GearBagsPage from '../../page_objects/gearBagsPage.js';
 import { BASE_URL, GEAR_BAGS_HEADER, GEAR_BAGS_PAGE_END_POINT } from '../../helpers/testData.js';
-import { MATERIAL_OPTION_NAMES } from "../../helpers/testGearBagsData";
+import { MATERIAL_OPTION_NAMES, ACTIVE_SECOND_PAGE_TEXT, ACTIVE_PAGE_CLASS_PAGINATION, ACTIVE_PAGE_TEXT } from "../../helpers/testGearBagsData";
+import { GEAR_BAGES_SECOND_PAGE_END_POINT } from '../../helpers/testGearBagsData.js'
 
 test.describe('gearBags.spec', () => {
     test.beforeEach(async({page}) => {
@@ -39,5 +40,17 @@ test.describe('gearBags.spec', () => {
             expect(materialNameText).toEqual(MATERIAL_OPTION_NAMES[idx]);           
         })
     }) 
-    
+    test('BTN "Page" redirects to the corresponding page', async ({ page }) => {
+        const homePage = new HomePage(page)
+        const gearBagsPage = new GearBagsPage(page)
+
+        await homePage.hoverGearMenuItem()
+        await homePage.clickGearBags()
+        await gearBagsPage.clickInactiveSecondPagePaginationLink()
+        
+        await expect(gearBagsPage.locators.getPaginationSecondPageAttr()).toHaveText(ACTIVE_PAGE_TEXT + '2')
+        await expect(gearBagsPage.locators.getPaginationSecondPageAttr()).toHaveClass(ACTIVE_PAGE_CLASS_PAGINATION)
+        await expect(gearBagsPage.locators.getPaginationFirstPageAttr()).not.toHaveText(ACTIVE_PAGE_TEXT)
+        await expect(page).toHaveURL(BASE_URL + GEAR_BAGES_SECOND_PAGE_END_POINT)
+    })
 })
