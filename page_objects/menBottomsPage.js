@@ -30,6 +30,14 @@ class MenBottomsPage {
         getMenBottomsSubCategory: (i) => this.page.locator(LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS[i]),
         getMenBottomsCategoryValue: (i) => this.page.locator('.filter-value').getByText(LIST_CATEGORY_MEN_BOTTOMS[i]),
 
+        getMenBottomsFilterGrid: () => this.page.locator('strong[title="Grid"]').first(),
+        getMenBottomsDefault12ItemCard: () => this.page.locator('li[class = "item product product-item"]'),
+        getMenBottomsParagraphFilterGridText: () => this.page.locator('#maincontent').getByRole('paragraph'),
+        getMenBottomsFilterListIcon:() => this.page.locator('a[class="modes-mode mode-list"]').first(),
+        getMenBottomsFilterList: () => this.page.locator('strong[title="List"]').first(),
+        getMenBottomsDefault10ItemCardList: () => this.page.locator('li[class = "item product product-item"]'),
+        getMenBottomsParagraphFilterListText: () => this.page.locator('#maincontent').getByRole('paragraph')
+
     }
 
     async clickBreadcrumbsMenuMen() {
@@ -66,6 +74,16 @@ class MenBottomsPage {
 
     async clickMenBottomsSubCategory(i) {
         await this.locators.getMenBottomsSubCategory([i]).click();
+
+        return this.page;
+    }
+    async clickMenBottomsFilterList(){
+        await this.locators.getMenBottomsFilterListIcon().click();
+
+        return this.page;
+    }
+    async waitForTimeout(timeout) {
+        await this.page.waitForTimeout(timeout);
 
         return this.page;
     }
