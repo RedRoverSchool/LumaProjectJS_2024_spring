@@ -37,6 +37,13 @@ export const NAVBAR_URLs_END_POINTS = [
 ];
 export const GEAR_BAGS_PAGE_END_POINT = '/gear/bags.html';
 
+export const MEN_TOPS_CATEGORY_PAGES_END_POINT = [
+  '/men/tops-men.html?cat=14',
+  '/men/tops-men.html?cat=15',
+  '/men/tops-men.html?cat=16',
+  '/men/tops-men.html?cat=17'
+];
+
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
 export const WOMEN_PAGE_HEADER = 'Women';
@@ -116,6 +123,7 @@ export const LIST_CATEGORY_MEN_TOPS = [
   'Tanks 12 item'];
 
 
+
 export const SHIPPING_PROGRESS_BAR_TEXT = 'Shipping';
 export const SEARCH_TERMS_POPULAR_PAGE_END_POINT = '/search/term/popular/';
 export const SEARCH_TERMS_POPULAR_PAGE_HEADER = 'Popular Search Terms';
@@ -187,6 +195,18 @@ export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
   '.filter-options-item.allow.active > div > ol > li:nth-child(2) a'
 
   ];
+
+export const LIST_OF_SUB_CATEGORY_ON_MEN_TOPS_PAGE_LOCATORS = [
+'.filter-options-item.allow.active > div > ol > li:nth-child(1) a',
+'.filter-options-item.allow.active > div > ol > li:nth-child(2) a',
+'.filter-options-item.allow.active > div > ol > li:nth-child(3) a',
+'.filter-options-item.allow.active > div > ol > li:nth-child(4) a'];
+
+export const LIST_LABELS_SUB_CATEGORY = [
+  'Jackets',
+  'Hoodies & Sweatshirts',
+  'Tees',
+  'Tanks'];
 
 export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
 export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
