@@ -119,4 +119,15 @@ test.describe('header.spec', () => {
         await expect(header.locators.getShoppingCart()).toBeVisible();
         await expect(header.locators.getCounterNumber()).not.toBeVisible();
       })
+
+      test('Verify the modal windows can close', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const header = new Header(page);
+
+        await homePage.open();
+        await header.clickShoppingCartIcon();
+        await header.clickCrossIconModalWindowShoppingCart();
+        
+        await expect(header.locators.getEmptyCardMessage()).not.toBeVisible();
+    })
 })

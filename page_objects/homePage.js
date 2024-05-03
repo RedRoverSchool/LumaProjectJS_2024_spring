@@ -15,7 +15,10 @@ import Footer from "./footer.js";
 import GearPage from "./gearPage.js";
 import GearBagsPage from "./gearBagsPage.js";
 import OrdersAndReturnsPage from "./ordersAndReturnsPage.js";
-
+import BreatheEasyTankPage from "./breatheEasyTankPage.js";
+import WomenTopsPage from "./womenTopsPage.js";
+import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
+import HeroHoodiePage from "./heroHoodiePage.js"
 
 class HomePage {
   constructor(page) {
@@ -37,6 +40,7 @@ class HomePage {
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
     getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
+    getMenLink: () =>this.page.locator('li.nav-3'),
     getMenTopsLink: () => this.page.locator('#ui-id-17'),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
     getBottomsWomenLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
@@ -52,16 +56,26 @@ class HomePage {
     getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
-      getSignInLink: () => this.page.getByRole('link', { name: 'Sign In' }),
+    getSignInLink: () => this.page.getByRole('link', { name: 'Sign In' }),
     getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
     getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
     getOrdersAndReturnsLink: () => this.page.locator('.page-wrapper footer li:has-text("Orders and Returns")'),
     getGearBagsSubmenuItem: () => this.page.locator("#ui-id-25"),
-    getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" })
+    getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" }),
+    getFirstCardReviews: () => this.page.locator('a.action.view[href*="radiant-tee"]'),
+    getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
+    getSecondCardImage: () => this.page.getByAltText('Breathe-Easy Tank'),
+    getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),
+    getSecondCardReviews: () => this.page.locator('a[class="action view"][href*="breathe-easy-tank"]'),
+    getThirdCardImage: () => this.page.getByAltText('Argus All-Weather Tank'),
+    getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
+    getFourthCardName: () => this.page.getByAltText('Hero Hoodie'),
   };
 
   async open() {
     await this.page.goto("/");
+    if (await this.page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible()) 
+            await this.page.getByRole('button', { name: 'Consent' }).click();
   }
 
   async clickWhatsNewLink() {
@@ -121,12 +135,6 @@ class HomePage {
     return this;
   }
 
-  async hoverMenLink() {
-    await this.locators.getMenLink().hover();
-
-    return this;
-  }
-
   async clickRadiantTee() {
     await this.locators.getRadiantTee().click();
 
@@ -138,6 +146,7 @@ class HomePage {
 
     return new CreateAccountPage(this.page);
   }
+
   async clickMenTopsLink() {
     await this.locators.getMenTopsLink().click();
 
@@ -234,18 +243,66 @@ class HomePage {
   async clickGearBagsSubmenuItem() {
     await this.locators.getGearBagsSubmenuItem().click();
 
-  	return new GearBagsPage(this.page);
-}
+    return new GearBagsPage(this.page);
+  }
   async clickOrdersAndReturnsLink() {
     await this.locators.getOrdersAndReturnsLink().click();
 
     return new OrdersAndReturnsPage(this.page);
-} 
+  }
 
   async clickGearBags() {
     await this.locators.getGearBagsLink().click();
 
     return new GearBagsPage(this.page);
+  }
+
+  async clickFirstCardReviews () {
+    await this.locators.getFirstCardReviews().click();
+
+    return new RadiantTeePage(this.page)
+  }
+
+  async clickSecondCardName() {
+    await this.locators.getSecondCardName().click();
+
+    return new BreatheEasyTankPage(this.page)
+  }
+
+  async clickSecondCardImage() {
+    await this.locators.getSecondCardImage().click();
+
+    return new BreatheEasyTankPage(this.page)
+  }
+
+  async clickWomenTopsLink() {
+    await this.locators.getWomenTopsLink().click();
+
+    return new WomenTopsPage(this.page)
+  }
+  
+  async clickSecondCardReviews() {
+    await this.locators.getSecondCardReviews().click();
+
+    return new BreatheEasyTankPage(this.page)
+  }
+
+  async clickThirdCardImage() {
+    await this.locators.getThirdCardImage().click();
+    
+    return new ArgusAllWeatherTankPage(this.page)
+  }
+
+  async clickThirdCardName() {
+    await this.locators.getThirdCardName().click();
+
+    return new ArgusAllWeatherTankPage(this.page)
+  }
+
+  async clickFourthCardName() {
+    await this.locators.getFourthCardName().click();
+
+    return new HeroHoodiePage(this.page)
   }
 }
 export default HomePage;

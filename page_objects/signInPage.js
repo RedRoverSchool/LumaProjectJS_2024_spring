@@ -1,4 +1,4 @@
-import { email, password } from "../helpers/testData";
+import { email, password, EMAIL_WISHLIST, PASSWORD_WISHLIST } from "../helpers/testData";
 import HomePage from "./homePage";
 
 
@@ -26,6 +26,16 @@ class SignInPage {
         await this.locators.getFieldPassword().fill(password);
         return this;
     }
+
+	 async fillEmailField() {
+		await this.locators.getfieldEmail().fill(EMAIL_WISHLIST);
+		return this;
+  }
+
+  async fillPasswordField() {
+		await this.locators.getFieldPassword().fill(PASSWORD_WISHLIST);
+		return this;
+  }
 
     async clickButtonSignIn() {
         await this.locators.getButtonSignIn().click();

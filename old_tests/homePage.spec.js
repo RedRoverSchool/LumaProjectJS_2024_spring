@@ -21,7 +21,6 @@ test.describe('homePage', () => {
     })
 
     const firstCardURL = 'https://magento.softwaretestingboard.com/radiant-tee.html';
-    // const firstCardHeading = page.getByRole('heading', {name: 'Radiant Tee'});
 
     test('1st card: clicking card image redirects to respective product card', async ({ page }) => {
         await page.getByAltText('Radiant Tee').click();
