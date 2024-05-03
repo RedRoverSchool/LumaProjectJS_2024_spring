@@ -13,7 +13,9 @@ class MenTopsPage{
     getMenTopsStyleInsulated: () => this.page.locator('a[href*= "men/tops-men.html?style_general=116"]').filter({ hasText: 'Insulated 5 item' }),
     getMenTopsPrice: () => this.page.getByRole('tab', { name: 'Price' }),
     getMenTopsListPrice: () => this.page.locator('#narrow-by-list').getByRole('tabpanel').locator('.item'),
-    getListOfProductCardTitles: () => this.page.locator('a.product-item-link[href]')
+    getListOfProductCardTitles: () => this.page.locator('a.product-item-link[href]'),
+    getMenTopsPriceListProductQuantity: () => this.page.locator('#narrow-by-list').getByRole('tabpanel').locator('.item').locator('.count'),
+    getMenTopsPriceListProductCountPseudoElement: () => this.page.locator('#narrow-by-list').getByRole('tabpanel').locator('.item').locator('.count').first()
    };
 
    async clickMenTopsStyle(){
@@ -47,6 +49,24 @@ class MenTopsPage{
       await this.page.getByText(product).click();
 
       return new ProductCardPage(this.page);
+   }
+
+   async getMenTopsPriceListProductCount(){
+      const priceListProductCount = await this.locators.getMenTopsPriceListProductQuantity().allInnerTexts();
+
+      return priceListProductCount.map((item) => item.replaceAll('\nitem', ''));
+   }
+
+   async getMenTopsPriceListProductCountPseudoElementBefore(){
+      const productCountPseudoElementBefore = await this.locators.getMenTopsPriceListProductCountPseudoElement().evaluate(el => window.getComputedStyle(el, ':before').content);
+
+      return productCountPseudoElementBefore.substring(1, 2);
+   }
+
+   async getMenTopsPriceListProductCountPseudoElementAfter(){
+      const productCountPseudoElementAfter = await this.locators.getMenTopsPriceListProductCountPseudoElement().evaluate(el => window.getComputedStyle(el, ':after').content);
+
+      return productCountPseudoElementAfter.substring(1, 2);
    }
  }
 export default MenTopsPage
