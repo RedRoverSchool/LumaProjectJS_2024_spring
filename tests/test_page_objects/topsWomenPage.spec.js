@@ -1,13 +1,12 @@
 import { expect, test } from "@playwright/test";
 import HomePage from "../../page_objects/homePage";
-import WomenPage from "../../page_objects/womenPage";
-import TopsWomenPage from "../../page_objects/topsWomenPage";
+
 import {
   BASE_URL,
   MY_WISH_LIST_EMPTY_MESSAGE,
   TOPS_WOMEN_PAGE_END_POINT,
   JACKET_ITEMS,
-} from "../../helpers/testData";
+} from "../../helpers/testData"; 
 import { MODE_GRID_ACTIVE_ATTR_CLASS, MODE_LIST_ACTIVE_ATTR_CLASS } from '../../helpers/testWomenData'
 import MainMenuPage from "../../page_objects/mainMenu";
 
@@ -24,24 +23,28 @@ const setup = async (page) => {
 };
 
 test.describe("topWomenPage.spec", () => {
-  test("verify message displayed in Wish List Section for Empty Wish List", async ({
-    page,
-  }) => {
-    const topsWomenPage = await setup(page);
+  test.beforeEach(async ({ page }) => {
+    const homePage = new HomePage(page);
+
+    await homePage.open();
+})
+
+  test("verify message displayed in Wish List Section for Empty Wish List", async ({ page }) => {
+    const homePage = new HomePage(page); 
+    
+    const womenPage = await homePage.hoverWomenMenuitem();
+    const topsWomenPage = await womenPage.clickTopsWomenLink();
 
     await expect(page).toHaveURL(BASE_URL + TOPS_WOMEN_PAGE_END_POINT);
-    await expect(
-      topsWomenPage.locators.getWomenMyWishListHeading()
-    ).toBeVisible();
-    await expect(
-      topsWomenPage.locators.getWomenMyWishListEmptyMessage()
-    ).toHaveText(MY_WISH_LIST_EMPTY_MESSAGE);
+    await expect(topsWomenPage.locators.getWomenMyWishListHeading()).toBeVisible();
+    await expect(topsWomenPage.locators.getWomenMyWishListEmptyMessage()).toHaveText(MY_WISH_LIST_EMPTY_MESSAGE);
   });
 
-  test("after applying the filter Jackets, only jackets are displayed on the page", async ({
-    page,
-  }) => {
-    const topsWomenPage = await setup(page);
+  test("after applying the filter Jackets, only jackets are displayed on the page", async ({ page }) => {
+    const homePage = new HomePage(page);   
+
+    const womenPage = await homePage.hoverWomenMenuitem();
+    const topsWomenPage = await womenPage.clickTopsWomenLink();
 
     await topsWomenPage.clickCategoryFilterOption();
     await topsWomenPage.clickFilterOptionJacketsLink();
@@ -56,10 +59,11 @@ test.describe("topWomenPage.spec", () => {
     expect(allItemsContainJacketText).toBeTruthy();
   });
 
-  test("number of items in Jackets Category equals number of items on the page after filtering", async ({
-    page,
-  }) => {
-    const topsWomenPage = await setup(page);
+  test("number of items in Jackets Category equals number of items on the page after filtering", async ({ page }) => {
+    const homePage = new HomePage(page); 
+    
+    const womenPage = await homePage.hoverWomenMenuitem();
+    const topsWomenPage = await womenPage.clickTopsWomenLink();
 
     await topsWomenPage.clickCategoryFilterOption();
 
