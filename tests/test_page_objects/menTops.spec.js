@@ -2,6 +2,8 @@ import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import { LIST_STYLE_MEN_TOPS, BASE_URL, MEN_TOPS_PAGE_END_POINT, LIST_CATEGORY_MEN_TOPS } from "../../helpers/testData.js"
 import MenTopsPage from "../../page_objects/menTopsPage.js";
+import { MEN_TOPS_PRICE_LIST } from "../../helpers/testMenData.js";
+
 test.describe('menTops', () => {
     test.beforeEach(async ({ page }) => {
         const homePage = new HomePage(page);
@@ -51,13 +53,10 @@ test.describe('menTops', () => {
         const homePage = new HomePage(page);
         const menTopsPage = new MenTopsPage(page);
 
-        const expectedDropdownList = '$10.00 - $19.99 , $20.00 - $29.99, $30.00 - $39.99, $40.00 - $49.99, $50.00 - $59.99, $60.00 - $69.99, $70.00 - $79.99, $90.00 and above';
-
         await homePage.hoverMenLink();
         await homePage.clickMenTopsLink();
         await menTopsPage.clickMenTopsPrice();
-        let temp = await menTopsPage.locators.getMenTopsListPrice();
-        let actualDropdownList = temp;
-        await expect(actualDropdownList).toHaveText(expectedDropdownList);
+        
+        expect(await menTopsPage.getMenTopsPriceList()).toEqual(MEN_TOPS_PRICE_LIST);
     })
 })

@@ -10,7 +10,7 @@ class MenTopsPage{
     getMenTopsListCategory: () => this.page.locator('#narrow-by-list').getByRole('tabpanel'),
     getMenTopsStyleInsulated: () => this.page.locator('a[href*= "men/tops-men.html?style_general=116"]').filter({ hasText: 'Insulated 5 item' }),
     getMenTopsPrice: () => this.page.getByRole('tab', { name: 'Price' }),
-    getMenTopsListPrice: () => this.page.locator('#narrow-by-list').getByRole('tabpanel')
+    getMenTopsListPrice: () => this.page.locator('#narrow-by-list').getByRole('tabpanel').locator('.item')
    };
 
    async clickMenTopsStyle(){
@@ -29,5 +29,15 @@ class MenTopsPage{
 
       return this
    };
+
+   async getMenTopsPriceList(){
+      const priceList = await this.locators.getMenTopsListPrice().allInnerTexts();
+
+      return await priceList.map((el) => { 
+         const arr = el.trim().replaceAll('\nitem', '').split(' ');
+         arr.pop();
+         return arr.join(' ');
+     });
+   }
  }
 export default MenTopsPage
