@@ -199,4 +199,14 @@ test.describe('homePage.spec', () => {
         await expect(page).toHaveURL(BASE_URL + ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT);
         await expect(argusAllWeatherTankPage.locators.getArgusAllWeatherTankPageHeader()).toBeVisible();
     })
+
+    test('3rd card: clicking the card name redirects to the respective product card', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const argusAllWeatherTankPage = new ArgusAllWeatherTankPage(page);
+        
+        await homePage.clickThirdCardName();
+
+        await expect(page).toHaveURL(BASE_URL + ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT);
+        await expect(argusAllWeatherTankPage.locators.getArgusAllWeatherTankPageHeader()).toBeVisible();
+    })
 })

@@ -67,6 +67,7 @@ class HomePage {
     getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),
     getSecondCardReviews: () => this.page.locator('a[class="action view"][href*="breathe-easy-tank"]'),
     getThirdCardImage: () => this.page.getByAltText('Argus All-Weather Tank'),
+    getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
   };
 
   async open() {
@@ -287,6 +288,12 @@ class HomePage {
   async clickThirdCardImage() {
     await this.locators.getThirdCardImage().click();
     
+    return new ArgusAllWeatherTankPage(this.page)
+  }
+
+  async clickThirdCardName() {
+    await this.locators.getThirdCardName().click();
+
     return new ArgusAllWeatherTankPage(this.page)
   }
 }
