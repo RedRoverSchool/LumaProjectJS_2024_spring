@@ -3,21 +3,21 @@ import HomePage from '../../page_objects/homePage.js';
 import GearBagsPage from '../../page_objects/gearBagsPage.js';
 import { BASE_URL, GEAR_BAGS_HEADER, GEAR_BAGS_PAGE_END_POINT } from '../../helpers/testData.js';
 import { MATERIAL_OPTION_NAMES, ACTIVE_SECOND_PAGE_TEXT, ACTIVE_PAGE_CLASS_PAGINATION, ACTIVE_PAGE_TEXT } from "../../helpers/testGearBagsData";
-import { GEAR_BAGES_SECOND_PAGE_END_POINT } from '../../helpers/testGearBagsData.js'
+import { GEAR_BAGES_SECOND_PAGE_END_POINT } from '../../helpers/testGearBagsData.js';
+import BagItemPage from '../../page_objects/bagItemPage.js';
 
 test.describe('gearBags.spec', () => {
     test.beforeEach(async({page}) => {
         const homePage = new HomePage(page);
 
         await homePage.open();
+        await homePage.hoverGearMenuItem();
+        await homePage.clickGearBags();
     })
 
      test('Redirect to "Gear Bags" page', async({page}) => {
         const homePage = new HomePage(page);
         const gearBagsPage = new GearBagsPage(page);
-
-        await homePage.hoverGearMenuItem();
-        await homePage.clickGearBagsSubmenuItem();
        
         await expect(page).toHaveURL(BASE_URL + GEAR_BAGS_PAGE_END_POINT);
         await expect(gearBagsPage.locators.getGearBagsPageHeader()).toHaveText(GEAR_BAGS_HEADER);
@@ -28,9 +28,6 @@ test.describe('gearBags.spec', () => {
             const homePage = new HomePage(page);
             const gearBagsPage = new GearBagsPage(page);
 
-            await homePage.hoverGearMenuItem();
-            await homePage.clickGearBags();
-
             await gearBagsPage.clickMaterialOption();
 
             const materialName = gearBagsPage.locators.getMateialItemList().nth(idx)
@@ -39,7 +36,8 @@ test.describe('gearBags.spec', () => {
             expect(materialName).toBeVisible();
             expect(materialNameText).toEqual(MATERIAL_OPTION_NAMES[idx]);           
         })
-    }) 
+    })
+    
     test('BTN "Page" redirects to the corresponding page', async ({ page }) => {
         const homePage = new HomePage(page)
         const gearBagsPage = new GearBagsPage(page)
@@ -53,4 +51,23 @@ test.describe('gearBags.spec', () => {
         await expect(gearBagsPage.locators.getPaginationFirstPageAttr()).not.toHaveText(ACTIVE_PAGE_TEXT)
         await expect(page).toHaveURL(BASE_URL + GEAR_BAGES_SECOND_PAGE_END_POINT)
     })
+    
+    test('Apply filter "Leather" and verify that each bag has selected material in the description', async ({ page }) => {
+        const gearBagsPage = new GearBagsPage(page);
+
+        await gearBagsPage.clickMaterialOption();
+        await gearBagsPage.clickMaterialLeather();
+
+        const numberOfItems = await gearBagsPage.getNumberOfProductItems();
+    
+        for (let i = 0; i < numberOfItems; i++) {
+            const bagItemPage = await gearBagsPage.clickOneProduct(i);
+            await bagItemPage.clickMoreImformationPanel();
+          
+            expect(await bagItemPage.getMaterialInformationText()).toContain(MATERIAL_OPTION_NAMES[3]);
+                   
+            await page.goBack();
+            await page.goBack();
+        }      
+      })
 })
