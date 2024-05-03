@@ -55,5 +55,16 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
       await expect(page).toHaveURL(BASE_URL + MEN_BOTTOMS_PAGE_END_POINT + ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE[i]);
       }
     })
+    test("Checking that the grid is selected and has 12 positions by defaultBottoms", async ({ page }) => {
+      const homePage = new HomePage(page);
+      const menBottomsPage = new MenBottomsPage(page);
+
+      await homePage.hoverMenLink();
+      await homePage.clickMenBottomsLink();
+  
+      await expect(menBottomsPage.locators.getMenBottomsFilterGrid()).toHaveClass(/active/);
+      await expect(menBottomsPage.locators.getMenBottomsDefault12ItemCard()).toHaveCount(12);
+      await expect(menBottomsPage.locators.getMenBottomsParagraphFilterGridText()).toHaveText('Items 1-12 of 24');
+    })
 });
   
