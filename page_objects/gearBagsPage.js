@@ -14,8 +14,12 @@ class GearBagsPage {
         getGearBagsPageHeader: () => this.page.getByRole('heading', { name: 'Bags' }),
         getMaterialOption: () => this.page.getByRole("tab", { name: "Material" }),
         getMateialItemList: () => this.page.locator('.filter-options>:nth-child(4) li'),
+
+        getInactiveSecondPagePaginationLink: () =>this.page.locator('.items.pages-items').getByRole('link', { name: 'Page 2' }),
+		    getPaginationSecondPageAttr: () => this.page.locator('div.pages li').nth(2),
+		    getPaginationFirstPageAttr: () => this.page.locator('div.pages li').nth(1)
         getMateialLeather: () => this.page.getByRole('link', {name: 'Leather'}),
-        getProductItamList: () => this.page.getByRole('img')            
+        getProductItamList: () => this.page.getByRole('img')   
     };
 
     async hoverPushItMessengerItem() {
@@ -53,6 +57,10 @@ class GearBagsPage {
 
         return text;
     }
+
+    async clickInactiveSecondPagePaginationLink() {
+		  await this.locators.getInactiveSecondPagePaginationLink().click()
+	  }
 
     async clickMaterialLeather() {
         await this.locators.getMateialLeather().click();
