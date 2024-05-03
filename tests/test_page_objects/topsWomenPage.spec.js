@@ -76,7 +76,7 @@ test.describe("topWomenPage.spec", () => {
     expect(expectedNumberJacketItems).toEqual(actualNumberJacketItems);
   });
 
-  test('TC 05.1.4_01 Women/Tops/Display mode can be changed, visible', async ({
+  test('Women/Tops/Display mode can be changed, visible', async ({
     page
   }) => {
     const homePage = new HomePage(page)
