@@ -1,4 +1,5 @@
 import TrainingPage from "./trainingPage";
+import BagItemPage from "./bagItemPage";
 
 class GearBagsPage {
     constructor(page) {
@@ -11,7 +12,9 @@ class GearBagsPage {
         getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
         getGearBagsPageHeader: () => this.page.getByRole('heading', { name: 'Bags' }),
         getMaterialOption: () => this.page.getByRole("tab", { name: "Material" }),
-        getMateialItemList: () => this.page.locator('.filter-options>:nth-child(4) li')
+        getMateialItemList: () => this.page.locator('.filter-options>:nth-child(4) li'),
+        getMateialLeather: () => this.page.getByRole('link', {name: 'Leather'}),
+        getProductItamList: () => this.page.getByRole('img')            
     };
 
     async hoverPushItMessengerItem() {
@@ -42,6 +45,22 @@ class GearBagsPage {
         const text = (await this.locators.getMateialItemList().nth(idx).innerText()).split(' ')[0];
 
         return text;
+    }
+
+    async clickMaterialLeather() {
+        await this.locators.getMateialLeather().click();
+
+        return this;
+    }
+
+    async getNumberOfProductItems() {
+        return await this.locators.getProductItamList().count();        
+    }
+
+    async clickOneProduct(idx) {
+        await this.locators.getProductItamList().nth(idx).click();
+
+        return new BagItemPage(this.page);
     }
 }
 export default GearBagsPage;
