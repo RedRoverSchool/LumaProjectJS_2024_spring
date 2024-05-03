@@ -66,7 +66,7 @@ test.describe('bottomsWomenPage.spec', () => {
     
         await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
     
-        const categoriesStyle = await bottomsWomenPage.locators.getObjectCategoriesStyle();
+        const categoriesStyle = await bottomsWomenPage.getObjectCategoriesStyle();
         const productCards = PRODUCT_CARDS;
         
         await bottomsWomenPage.verifyProductCardsQuantity(categoriesStyle, productCards);

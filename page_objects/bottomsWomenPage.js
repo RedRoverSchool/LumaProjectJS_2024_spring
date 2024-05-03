@@ -18,12 +18,6 @@ class BottomsWomenPage {
         getCategoriesStyle: () => this.page.$$('a[href*=\'style\']'),
         getCountItemsInCategoryStyle: (category) => category.$('span.count'),
         getCountsItemsInCategoryStyle: () => this.page.$$("a[href*='style']>span.count"),
-        getObjectCategoriesStyle: () => this.page.$$eval("a[href*='style']", elements =>
-            elements.map(element => ({
-                name: element.innerText.replace(/\bitem\b|\d+/g, "").trim(),
-                count: parseInt(element.querySelector("span.count").innerText.trim())
-            }))
-        ),
         getSelectCategory: () => this.page.locator(".filter-value"),
         getProductCards: () => this.page.locator(".item.product.product-item"),
         getButtonClearAll: () => this.page.getByRole('link', {name: 'Clear All'})
@@ -68,6 +62,14 @@ class BottomsWomenPage {
         await this.locators.getOptionPrice().click();
 
         return this;
+    }
+
+    async getObjectCategoriesStyle() {
+        return await this.page.$$eval("a[href*='style']", elements =>
+        elements.map(element => ({
+            name: element.innerText.replace(/\bitem\b|\d+/g, "").trim(),
+            count: parseInt(element.querySelector("span.count").innerText.trim())
+        })))
     }
 
     async clickButtonClearAll(){
