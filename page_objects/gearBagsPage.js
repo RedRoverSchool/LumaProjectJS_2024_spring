@@ -14,11 +14,20 @@ class GearBagsPage {
         getGearBagsPageHeader: () => this.page.getByRole('heading', { name: 'Bags' }),
         getMaterialOption: () => this.page.getByRole("tab", { name: "Material" }),
         getMateialItemList: () => this.page.locator('.filter-options>:nth-child(4) li'),
+<<<<<<< HEAD
         getInactiveSecondPagePaginationLink: () =>this.page.locator('.items.pages-items').getByRole('link', { name: 'Page 2' }),
 		getPaginationSecondPageAttr: () => this.page.locator('div.pages li').nth(2),
 		getPaginationFirstPageAttr: () => this.page.locator('div.pages li').nth(1),
         getMateialLeather: () => this.page.getByRole('link', {name: 'Leather'}),
         getProductItamList: () => this.page.getByRole('img')         
+=======
+
+        getInactiveSecondPagePaginationLink: () =>this.page.locator('.items.pages-items').getByRole('link', { name: 'Page 2' }),
+		    getPaginationSecondPageAttr: () => this.page.locator('div.pages li').nth(2),
+		    getPaginationFirstPageAttr: () => this.page.locator('div.pages li').nth(1)
+        getMateialLeather: () => this.page.getByRole('link', {name: 'Leather'}),
+        getProductItamList: () => this.page.getByRole('img')   
+>>>>>>> cc1faa89ba044103d74a0525dea408eb10a43043
     };
 
     async hoverPushItMessengerItem() {
@@ -58,8 +67,13 @@ class GearBagsPage {
     }
 
     async clickInactiveSecondPagePaginationLink() {
+<<<<<<< HEAD
 		await this.locators.getInactiveSecondPagePaginationLink().click()
 	}
+=======
+		  await this.locators.getInactiveSecondPagePaginationLink().click()
+	  }
+>>>>>>> cc1faa89ba044103d74a0525dea408eb10a43043
 
     async clickMaterialLeather() {
         await this.locators.getMateialLeather().click();
