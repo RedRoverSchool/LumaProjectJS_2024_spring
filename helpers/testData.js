@@ -1,3 +1,5 @@
+import exp from "constants";
+
 //URL
 export const BASE_URL = 'https://magento.softwaretestingboard.com';
 export const WHATS_NEW_PAGE_END_POINT = '/what-is-new.html';
@@ -16,6 +18,7 @@ export const RADIANT_TEE_PAGE_END_POINT = '/radiant-tee.html';
 export const RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT = '/radiant-tee.html#reviews';
 export const BREATHE_EASY_TANK_PAGE_END_POINT = '/breathe-easy-tank.html';
 export const BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT = '/breathe-easy-tank.html#reviews';
+export const FORGOT_YOUR_PASSWORD_PAGE_END_POINT = '/customer/account/forgotpassword/';
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
   '/men/tops-men/hoodies-and-sweatshirts-men.html',
@@ -189,6 +192,7 @@ export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
 export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
 export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
 export const LOGO_ALIGNMENT = 'left';
+export const FORGOT_YOUR_PASSWORD_PAGE_HEADER = 'Forgot Your Password?';
  
 
 //login  credential

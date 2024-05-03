@@ -1,4 +1,5 @@
 import { email, password, EMAIL_WISHLIST, PASSWORD_WISHLIST } from "../helpers/testData";
+import ForgotPasswordPage from "./forgotPassword";
 import HomePage from "./homePage";
 
 
@@ -14,7 +15,8 @@ class SignInPage {
         getTabDropdown: () => this.page.getByRole('banner').locator('button').filter({ hasText: 'Change' }),
         getDropdownWishList: () => this.page.getByRole('banner').getByText('My Account My Wish List Sign'),
         getSignOutlinck: () => this.page.getByRole('link', { name: 'Sign Out' }),
-        getMessageSignedOut: () => this.page.getByText('You are signed out')
+        getMessageSignedOut: () => this.page.getByText('You are signed out'),
+        getForgotPasswordLink: () => this.page.getByRole('link', {name: 'Forgot Your Password?'})
     }
 
     async fillFieldEmail() {
@@ -56,6 +58,12 @@ class SignInPage {
     async clickSignOut() {
         await this.locators.getSignOutlinck().click();
         return this;
+    }
+
+    async clickForgotPasswordLink() {
+        await this.locators.getForgotPasswordLink().click();
+
+        return new ForgotPasswordPage(this.page);
     }
 
 }
