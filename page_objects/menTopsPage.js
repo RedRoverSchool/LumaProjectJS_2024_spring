@@ -1,3 +1,5 @@
+import ProductCardPage from "../page_objects/productCardPage.js";
+
 class MenTopsPage{
    constructor(page){
     this.page = page;
@@ -10,7 +12,8 @@ class MenTopsPage{
     getMenTopsListCategory: () => this.page.locator('#narrow-by-list').getByRole('tabpanel'),
     getMenTopsStyleInsulated: () => this.page.locator('a[href*= "men/tops-men.html?style_general=116"]').filter({ hasText: 'Insulated 5 item' }),
     getMenTopsPrice: () => this.page.getByRole('tab', { name: 'Price' }),
-    getMenTopsListPrice: () => this.page.locator('#narrow-by-list').getByRole('tabpanel').locator('.item')
+    getMenTopsListPrice: () => this.page.locator('#narrow-by-list').getByRole('tabpanel').locator('.item'),
+    getListOfProductCardTitles: () => this.page.locator('a.product-item-link[href]')
    };
 
    async clickMenTopsStyle(){
@@ -27,7 +30,7 @@ class MenTopsPage{
    async clickMenTopsPrice(){
       await this.locators.getMenTopsPrice().click();
 
-      return this
+      return this;
    };
 
    async getMenTopsPriceList(){
@@ -37,7 +40,13 @@ class MenTopsPage{
          const arr = el.trim().replaceAll('\nitem', '').split(' ');
          arr.pop();
          return arr.join(' ');
-     });
+      });
+   }
+
+   async clickProductCard(product) { 
+      await this.page.getByText(product).click();
+
+      return new ProductCardPage(this.page);
    }
  }
 export default MenTopsPage

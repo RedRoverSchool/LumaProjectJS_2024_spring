@@ -30,6 +30,10 @@ class MenBottomsPage {
         getMenBottomsSubCategory: (i) => this.page.locator(LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS[i]),
         getMenBottomsCategoryValue: (i) => this.page.locator('.filter-value').getByText(LIST_CATEGORY_MEN_BOTTOMS[i]),
 
+        getMenBottomsFilterGrid: () => this.page.locator('strong[title="Grid"]').first(),
+        getMenBottomsDefault12ItemCard: () => this.page.locator('li[class = "item product product-item"]'),
+        getMenBottomsParagraphFilterGridText: () => this.page.locator('#maincontent').getByRole('paragraph')
+
     }
 
     async clickBreadcrumbsMenuMen() {

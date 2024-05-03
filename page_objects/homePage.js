@@ -38,6 +38,7 @@ class HomePage {
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
     getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
+    getMenLink: () =>this.page.locator('li.nav-3'),
     getMenTopsLink: () => this.page.locator('#ui-id-17'),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
     getBottomsWomenLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
@@ -129,12 +130,6 @@ class HomePage {
     return this;
   }
 
-  async hoverMenLink() {
-    await this.locators.getMenLink().hover();
-
-    return this;
-  }
-
   async clickRadiantTee() {
     await this.locators.getRadiantTee().click();
 
@@ -146,6 +141,7 @@ class HomePage {
 
     return new CreateAccountPage(this.page);
   }
+
   async clickMenTopsLink() {
     await this.locators.getMenTopsLink().click();
 
