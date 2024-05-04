@@ -21,7 +21,8 @@ import {
     CUSTOMER_LOGIN_PAGE_END_POINT, 
     CUSTOMER_LOGIN_PAGE_HEADER,
     ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT,
-    HERO_HOODIE_PAGE_END_POINT
+    HERO_HOODIE_PAGE_END_POINT,
+    FUSION_BACKPACK_END_POINT,
 } from "../../helpers/testData.js";
 import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
 import RadiantTeePage from "../../page_objects/radiantTeePage.js";
@@ -31,6 +32,7 @@ import SignInPage from "../../page_objects/signInPage.js";
 import BottomsWomenPage from "../../page_objects/bottomsWomenPage.js";
 import ArgusAllWeatherTankPage from "../../page_objects/argusAllWeatherTankPage.js";
 import HeroHoodiePage from "../../page_objects/heroHoodiePage.js";
+import FusionBackpack from "../../page_objects/fusionbackpackPage.js";
 
 test.describe('homePage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -262,5 +264,15 @@ test.describe('homePage.spec', () => {
 
         await expect(page).toHaveURL(BASE_URL + HERO_HOODIE_PAGE_END_POINT);
         await expect(heroHoodiePage.locators.getHeroHoodieHeader()).toBeVisible();
+    })
+
+    test('5th card: clicking the card image redirects to the respective product card', async ({page}) => {
+        const homePage = new HomePage(page);
+        const fusionbackpack = new FusionBackpack(page);
+
+        await homePage.clickFifthCardImage();
+
+        await expect(page).toHaveURL(BASE_URL + FUSION_BACKPACK_END_POINT);
+        await expect(fusionbackpack.locators.getFusionBackpackHeader()).toBeVisible();
     })
 })

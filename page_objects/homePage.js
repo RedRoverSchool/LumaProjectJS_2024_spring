@@ -20,6 +20,7 @@ import WomenTopsPage from "./womenTopsPage.js";
 import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
 import HeroHoodiePage from "./heroHoodiePage.js"
 import TopsWomenPage from "./topsWomenPage.js";
+import FusionBackpack from "./fusionbackpackPage.js";
 
 class HomePage {
   constructor(page) {
@@ -72,6 +73,7 @@ class HomePage {
     getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
     getFourthCardName: () => this.page.getByAltText('Hero Hoodie'),
     getFourthCardImage: () => this.page.getByAltText('Hero Hoodie'),
+    getFifthCardImage: () => this.page.getByAltText('Fusion Backpack'),
   };
 
   async open() {
@@ -317,6 +319,12 @@ class HomePage {
     await this.locators.getWomenTopsLink().click();
 
     return new TopsWomenPage(this.page)
+  }
+
+  async clickFifthCardImage() {
+    await this.locators.getFifthCardImage().click();
+
+    return new FusionBackpack(this.page)
   }
   
 }
