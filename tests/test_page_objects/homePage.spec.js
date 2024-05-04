@@ -285,4 +285,14 @@ test.describe('homePage.spec', () => {
         await expect(page).toHaveURL(BASE_URL + FUSION_BACKPACK_END_POINT);
         await expect(fusionbackpack.locators.getFusionBackpackHeader()).toBeVisible();
     })
+
+    test('5th card: clicking card reviews redirects to "reviews" tab on respective product card', async ({page}) => { 
+        const homePage = new HomePage(page);
+        const fusionbackpack = new FusionBackpack(page);
+
+        await homePage.clickFifthCardReviews();
+
+        await expect(fusionbackpack.locators.getFusionBackpackHeader()).toBeVisible();
+        await expect(fusionbackpack.locators.getFusionBackpackReviewsTab()).toBeVisible();
+    })
 })

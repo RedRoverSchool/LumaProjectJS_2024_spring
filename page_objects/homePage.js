@@ -75,6 +75,7 @@ class HomePage {
     getFourthCardImage: () => this.page.getByAltText('Hero Hoodie'),
     getFifthCardImage: () => this.page.getByAltText('Fusion Backpack'),
     getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
+    getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
   };
 
   async open() {
@@ -330,6 +331,12 @@ class HomePage {
   
   async clickFifthCardName() {
     await this.locators.getFifthCardName().click();
+
+    return new FusionBackpack(this.page)
+  }
+
+  async clickFifthCardReviews() {
+    await this.locators.getFifthCardReviews().click();
 
     return new FusionBackpack(this.page)
   }
