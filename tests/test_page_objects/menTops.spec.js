@@ -51,21 +51,17 @@ test.describe('menTops', () => {
 
     test('check Men/Tops price filter drop-down has 8 options', async ({page}) => {
         const homePage = new HomePage(page);
-        const menTopsPage = new MenTopsPage(page);
-
         await homePage.hoverMenLink();
-        await homePage.clickMenTopsLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
         await menTopsPage.clickMenTopsPrice();
         
         expect(await menTopsPage.getMenTopsPriceList()).toEqual(MEN_TOPS_PRICE_LIST);
     })
 
     test('check Men/Tops price drop-down has quantity of available items in each price category', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const menTopsPage = new MenTopsPage(page);
-        
+        const homePage = new HomePage(page);       
         await homePage.hoverMenLink();
-        await homePage.clickMenTopsLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
         await menTopsPage.clickMenTopsPrice();
 
         expect(await menTopsPage.getMenTopsPriceListProductCount()).toEqual(MEN_TOPS_PRICE_LIST_PRODUCT_COUNT);
