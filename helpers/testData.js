@@ -21,6 +21,7 @@ export const ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT = '/argus-all-weather-tank.ht
 export const HERO_HOODIE_PAGE_END_POINT = '/hero-hoodie.html';
 export const SIGN_IN_PAGE_END_POINT = "/customer/account/login/referer/*";
 export const FUSION_BACKPACK_END_POINT = '/fusion-backpack.html';
+export const PIERCE_GYM_SHORT = 'https://magento.softwaretestingboard.com/wishlist/index/configure/id/151/product_id/1028/';
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
   '/men/tops-men/hoodies-and-sweatshirts-men.html',
@@ -194,7 +195,7 @@ export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
 export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
 export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
 export const LOGO_ALIGNMENT = 'left';
- 
+
 
 //login  credential
 
