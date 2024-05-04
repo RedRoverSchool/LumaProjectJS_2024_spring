@@ -74,6 +74,7 @@ class HomePage {
     getFourthCardName: () => this.page.getByAltText('Hero Hoodie'),
     getFourthCardImage: () => this.page.getByAltText('Hero Hoodie'),
     getFifthCardImage: () => this.page.getByAltText('Fusion Backpack'),
+    getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
   };
 
   async open() {
@@ -327,5 +328,10 @@ class HomePage {
     return new FusionBackpack(this.page)
   }
   
+  async clickFifthCardName() {
+    await this.locators.getFifthCardName().click();
+
+    return new FusionBackpack(this.page)
+  }
 }
 export default HomePage;

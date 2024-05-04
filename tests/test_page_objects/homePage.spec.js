@@ -275,4 +275,14 @@ test.describe('homePage.spec', () => {
         await expect(page).toHaveURL(BASE_URL + FUSION_BACKPACK_END_POINT);
         await expect(fusionbackpack.locators.getFusionBackpackHeader()).toBeVisible();
     })
+
+    test('5th card: clicking the card name redirects to the respective product card', async ({page}) => {
+        const homePage = new HomePage(page);
+        const fusionbackpack = new FusionBackpack(page);
+
+        await homePage.clickFifthCardName();
+
+        await expect(page).toHaveURL(BASE_URL + FUSION_BACKPACK_END_POINT);
+        await expect(fusionbackpack.locators.getFusionBackpackHeader()).toBeVisible();
+    })
 })
