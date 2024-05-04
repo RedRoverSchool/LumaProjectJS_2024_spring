@@ -196,8 +196,7 @@ export const CUSTOMER_LOGIN_PAGE_HEADER = "Customer Login";
 export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
   '.filter-options-item.allow.active > div > ol > li:nth-child(1) a',
   '.filter-options-item.allow.active > div > ol > li:nth-child(2) a'
-
-  ];
+];
 
 export const LIST_OF_SUB_CATEGORY_ON_MEN_TOPS_PAGE_LOCATORS = [
 '.filter-options-item.allow.active > div > ol > li:nth-child(1) a',
