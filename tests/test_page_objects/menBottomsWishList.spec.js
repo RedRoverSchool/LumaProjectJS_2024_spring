@@ -54,4 +54,21 @@ test.describe('menBottomWishList.spec', () => {
     await expect(wishListPage.locators.getgotoWishListlink()).toBeTruthy();
     await expect(wishListPage.locators.getTitleMyWishList()).toHaveCSS('text-align', 'start');
   })
+
+  test('should be a delete item button, a cross', async ({ page }) => {
+    const homePage = new HomePage(page);
+    const menBottomsPage = new MenBottomsPage(page);
+    const wishListPage = new WishListPage(page);
+    const pierceGym = new PierceGymShortPage(page);
+
+    await homePage.hoverMenLink();
+    await homePage.clickMenBottomsLink();
+    await menBottomsPage.ckickPierceGymc();
+    await page.waitForTimeout(3000)
+    await pierceGym.addWishList();
+
+    await expect(wishListPage.locators.getButtonClose()).toBeVisible();
+    await wishListPage.clickButtonDelete();
+    await expect(wishListPage.locators.getTitleNoItems()).toBeVisible();
+  })
 })
