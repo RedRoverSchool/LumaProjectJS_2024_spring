@@ -38,4 +38,20 @@ test.describe('menBottomWishList.spec', () => {
     await expect(wishListPage.locators.getTitleMyWishList()).toBeVisible();
     await expect(wishListPage.locators.getItemQuantity()).toBeTruthy();
   })
+
+  test('should be a link to "Go to the wish list"', async ({ page }) => {
+    const homePage = new HomePage(page);
+    const menBottomsPage = new MenBottomsPage(page);
+    const wishListPage = new WishListPage(page);
+    const pierceGym = new PierceGymShortPage(page);
+
+    await homePage.hoverMenLink();
+    await homePage.clickMenBottomsLink();
+    await menBottomsPage.ckickPierceGymc();
+    await page.waitForTimeout(3000)
+    await pierceGym.addWishList();
+
+    await expect(wishListPage.locators.getgotoWishListlink()).toBeTruthy();
+    await expect(wishListPage.locators.getTitleMyWishList()).toHaveCSS('text-align', 'start');
+  })
 })

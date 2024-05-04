@@ -16,8 +16,10 @@ export const RADIANT_TEE_PAGE_END_POINT = '/radiant-tee.html';
 export const RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT = '/radiant-tee.html#reviews';
 export const BREATHE_EASY_TANK_PAGE_END_POINT = '/breathe-easy-tank.html';
 export const BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT = '/breathe-easy-tank.html#reviews';
+export const CUSTOMER_LOGIN_PAGE_END_POINT = '/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/';
 export const ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT = '/argus-all-weather-tank.html';
 export const HERO_HOODIE_PAGE_END_POINT = '/hero-hoodie.html'
+export const SIGN_IN_PAGE_END_POINT = "/customer/account/login/referer/*";
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
   '/men/tops-men/hoodies-and-sweatshirts-men.html',
@@ -180,7 +182,7 @@ export const JACKET_ITEMS = ["Jacket", "Shell"];
 export const LIST_OF_ITEMS_IN_MENS_DEALS_ON_SALE_PAGE = ["Hoodies and Sweatshirts", "Jackets", "Tees", "Pants", "Shorts"];
 export const LIST_OF_TITLES_FOR_PAGES_FROM_MENS_DEALS = ['Hoodies & Sweatshirts', 'Jackets', 'Tees', 'Pants', 'Shorts'];
 export const ORDERS_AND_RETURNS_HEADER = 'Orders and Returns';
-
+export const CUSTOMER_LOGIN_PAGE_HEADER = "Customer Login";
 
 export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
   '.filter-options-item.allow.active > div > ol > li:nth-child(1) a',
