@@ -7,7 +7,7 @@ import JacketsWomenPage from '../../page_objects/jacketsWomenPage.js';
 import InezFullZipJacketPage from '../../page_objects/inezFullZipJacketPage.js';
 import ShoppingCartPage from '../../page_objects/shoppingCartPage.js';
 
-import { MY_ACCOUNT_END_POINT, BASE_URL, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, PASSWORD_CONFIRM } from "../../helpers/testData.js";
+import { MY_ACCOUNT_END_POINT, BASE_URL, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, PASSWORD_CONFIRM, MY_ACCOUNT_HEADER } from "../../helpers/testData.js";
 
 test.describe('shopping Cart', () => {
     test.beforeEach(async ({ page }) => {
@@ -30,13 +30,13 @@ test.describe('shopping Cart', () => {
         await createAccountPage.clickCreateAccountButton();
     })
 
-    test.skip('Validate link Move to Wish List located on the Shopping Cart page', async ({ page }) => {
+    test('Validate link Move to Wish List located on the Shopping Cart page', async ({ page }) => {
         const myAccountPage = new MyAccountPage(page);
         const womenPage = new WomenPage(page);
         const jacketsWomenPage = new JacketsWomenPage(page);
         const inezFullZipJacketPage = new InezFullZipJacketPage(page);
         const shoppingCartPage = new ShoppingCartPage(page);
-        await page.waitForURL(BASE_URL + MY_ACCOUNT_END_POINT);
+        await expect(myAccountPage.locators.getMyAccountHeader()).toHaveText(MY_ACCOUNT_HEADER);
         await myAccountPage.clickWomenLink();
         await womenPage.clickWomenJacketsLink();
         await jacketsWomenPage.clickWomenJacketsName();
