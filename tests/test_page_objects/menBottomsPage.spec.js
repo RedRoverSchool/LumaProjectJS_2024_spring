@@ -9,15 +9,6 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
       const homePage = new HomePage(page);
 
       await homePage.open();
-      if (
-        await page
-          .getByRole("dialog", {
-            name: "This site asks for consent to use your data",
-          })
-          .isVisible()
-      ) {
-        await page.getByRole("button", { name: "Consent" }).click();
-      }
   })
 
     test ("Verify men's bottom tab", async ({ page }) => {
