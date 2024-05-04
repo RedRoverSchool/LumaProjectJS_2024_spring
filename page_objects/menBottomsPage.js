@@ -26,7 +26,7 @@ class MenBottomsPage {
         getMenBottomsShopingOptionsSidebarPosition: () => this.page.locator('.sidebar.sidebar-main'),
 
 
-        getMenBottomsCategory: () => this.page.locator('.filter-options-title').getByText('Category'),
+        getMenBottomsCategory: () => this.page.getByText('Category'),
         getMenBottomsSubCategory: (i) => this.page.locator(LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS[i]),
         getMenBottomsCategoryValue: (i) => this.page.locator('.filter-value').getByText(LIST_CATEGORY_MEN_BOTTOMS[i]),
 
@@ -36,8 +36,9 @@ class MenBottomsPage {
         getMenBottomsFilterListIcon:() => this.page.locator('a[class="modes-mode mode-list"]').first(),
         getMenBottomsFilterList: () => this.page.locator('strong[title="List"]').first(),
         getMenBottomsDefault10ItemCardList: () => this.page.locator('li[class = "item product product-item"]'),
-        getMenBottomsParagraphFilterListText: () => this.page.locator('#maincontent').getByRole('paragraph')
+        getMenBottomsParagraphFilterListText: () => this.page.locator('#maincontent').getByRole('paragraph'),
 
+        getMenBottomsClearCategoryFilterLocator: () => this.page.locator('.action.clear.filter-clear'),
     }
 
     async clickBreadcrumbsMenuMen() {
@@ -57,7 +58,6 @@ class MenBottomsPage {
           });
 
           return position;
-
     }
 
     async hoverMenBottomsCategory() {
@@ -77,13 +77,21 @@ class MenBottomsPage {
 
         return this.page;
     }
+
     async clickMenBottomsFilterList(){
         await this.locators.getMenBottomsFilterListIcon().click();
 
         return this.page;
     }
+
     async waitForTimeout(timeout) {
         await this.page.waitForTimeout(timeout);
+
+        return this.page;
+    }
+
+    async clickMenBottomsClearCategoryFilter() {
+        await this.locators.getMenBottomsClearCategoryFilterLocator().click();
 
         return this.page;
     }

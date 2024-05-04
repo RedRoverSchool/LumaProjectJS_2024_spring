@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { LIST_STYLE_MEN_TOPS, BASE_URL, MEN_TOPS_PAGE_END_POINT, LIST_CATEGORY_MEN_TOPS } from "../../helpers/testData.js"
+import { LIST_STYLE_MEN_TOPS, BASE_URL, MEN_TOPS_PAGE_END_POINT, LIST_CATEGORY_MEN_TOPS, LIST_LABELS_SUB_CATEGORY, MEN_TOPS_CATEGORY_PAGES_END_POINT} from "../../helpers/testData.js"
 import MenTopsPage from "../../page_objects/menTopsPage.js";
 import { MEN_TOPS_PRICE_LIST, MEN_TOPS_PRICE_LIST_PRODUCT_COUNT } from "../../helpers/testMenData.js";
 
@@ -69,3 +69,24 @@ test.describe('menTops', () => {
         expect(await menTopsPage.getMenTopsPriceListProductCountPseudoElementAfter()).toEqual(')');
     })
 })
+
+    test('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
+        const homePage = new HomePage(page);
+        const menTopsPage = new MenTopsPage(page);
+
+        await homePage.hoverMenLink();
+        await homePage.clickMenTopsLink();
+    
+        for(let i = 0; i < LIST_LABELS_SUB_CATEGORY.length; i++){
+        await menTopsPage.clickMenTopsCategory();
+        await menTopsPage.clickCategoryOption(i);
+
+        const labelLocator = await menTopsPage.locators.getLabelForEachCategory();
+       
+
+        await expect(labelLocator).toContain(LIST_LABELS_SUB_CATEGORY[i]);
+        expect(page).toHaveURL(MEN_TOPS_CATEGORY_PAGES_END_POINT[i]);
+        await menTopsPage.clickClearAllButton();
+        await expect(page).toHaveURL(BASE_URL + MEN_TOPS_PAGE_END_POINT);
+    }
+});

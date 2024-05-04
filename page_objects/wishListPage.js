@@ -11,7 +11,10 @@ class WishListPage {
 		  getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
 		  getMyWishListHeader: () => this.page.locator('span').filter({ hasText: 'My Wish List' }),
 		  getMyWishListItemName: () => this.page.getByText('Push It Messenger Bag Rating'),
-		  getMyWishListItemNameLocator: () => this.page.locator('.products-grid .product-item-link')
+		  getMyWishListItemNameLocator: () => this.page.locator('.products-grid .product-item-link'),
+		  getgotoWishListlink: () => this.page.getByRole('link', { name: 'Go to Wish List' }),
+		  getButtonClose: () => this.page.locator('#wishlist-sidebar').getByRole('link', { name: ' Remove This Item' }),
+		  getTitleNoItems: () => this.page.locator('#wishlist-view-form').getByText('You have no items in your')
     }
 
 	 async clickTrainingLink() {
@@ -24,7 +27,11 @@ class WishListPage {
 		await this.locators.getMyWishListItemName().hover();
 
 		return this;
-	} 
+	}
+
+	async clickButtonDelete() {
+		await this.locators.getButtonClose().click();
+	}
 
 }
 export default WishListPage;
