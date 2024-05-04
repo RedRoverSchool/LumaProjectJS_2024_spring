@@ -6,6 +6,7 @@ class PierceGymShortPage {
     locators = {
 
         getWishList: () => this.page.getByRole('link', { name: ' Add to Wish List' }),
+        
 
     }
 
