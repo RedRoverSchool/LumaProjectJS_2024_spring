@@ -68,7 +68,6 @@ test.describe('menTops', () => {
         expect(await menTopsPage.getMenTopsPriceListProductCountPseudoElementBefore()).toEqual('(');
         expect(await menTopsPage.getMenTopsPriceListProductCountPseudoElementAfter()).toEqual(')');
     })
-})
 
     test('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
         const homePage = new HomePage(page);
@@ -89,4 +88,5 @@ test.describe('menTops', () => {
         await menTopsPage.clickClearAllButton();
         await expect(page).toHaveURL(BASE_URL + MEN_TOPS_PAGE_END_POINT);
     }
+    })
 });
