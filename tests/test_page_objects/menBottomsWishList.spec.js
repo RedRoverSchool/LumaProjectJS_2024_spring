@@ -87,7 +87,7 @@ test.describe('menBottomWishList.spec', () => {
 
     await expect(wishListPage.locators.getAddToCard()).toBeVisible();
     await wishListPage.clickAddCard();
-    await expect(page).toHaveURL(PIERCE_GYM_SHORT);
+    await expect(pierceGym.locators.getProductShort()).toBeVisible();
 
   })
 })
