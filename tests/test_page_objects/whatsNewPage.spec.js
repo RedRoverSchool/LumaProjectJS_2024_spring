@@ -52,8 +52,8 @@ test.describe('whatIsNewPage.spec', () => {
 
      test("TC 04.1.3_03 Verify Hoodies & Sweatshirts link is clickable and redirect user to respective page", async ({page}) => {
       const homePage = new HomePage(page);
-      const whatsNewPage = new WhatsNewPage(page);
-      const hoodiesAndSweatshirtsPage = new HoodiesAndSweatshirtsPage(page);
+      const whatsNewPage = await homePage.clickWhatsNewLink();
+      const hoodiesAndSweatshirtsPage = await whatsNewPage.clickHoodiesAndSweatshirtsLink();
 
       await homePage.clickWhatsNewLink();
       await whatsNewPage.clickHoodiesAndSweatshirtsLink();
