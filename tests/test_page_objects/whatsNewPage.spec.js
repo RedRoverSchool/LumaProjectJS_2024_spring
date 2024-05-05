@@ -55,9 +55,6 @@ test.describe('whatIsNewPage.spec', () => {
       const whatsNewPage = await homePage.clickWhatsNewLink();
       const hoodiesAndSweatshirtsPage = await whatsNewPage.clickHoodiesAndSweatshirtsLink();
 
-      await homePage.clickWhatsNewLink();
-      await whatsNewPage.clickHoodiesAndSweatshirtsLink();
-      
       await expect(page).toHaveURL(MEN_HOODIES_SWEATERS_PAGE);
      })
 })
