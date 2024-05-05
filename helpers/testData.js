@@ -215,6 +215,12 @@ export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
 export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
 export const LOGO_ALIGNMENT = 'left';
 
+export const LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE = [
+  '.filter-options-item.allow.active > div > ol > li:nth-child(1) > a > span',
+  '.filter-options-item.allow.active > div > ol > li:nth-child(2) > a > span',
+  '.filter-options-item.allow.active > div > ol > li:nth-child(3) > a > span',
+  '.filter-options-item.allow.active > div > ol > li:nth-child(4) > a > span'];
+
 
 //login  credential
 

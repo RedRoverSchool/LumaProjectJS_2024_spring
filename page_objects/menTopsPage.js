@@ -1,5 +1,5 @@
 import ProductCardPage from "../page_objects/productCardPage.js";
-import { LIST_OF_SUB_CATEGORY_ON_MEN_TOPS_PAGE_LOCATORS,LIST_CATEGORY_MEN_TOPS } from "../helpers/testData.js";
+import { LIST_OF_SUB_CATEGORY_ON_MEN_TOPS_PAGE_LOCATORS,LIST_CATEGORY_MEN_TOPS, LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE } from "../helpers/testData.js";
 
 class MenTopsPage{
    constructor(page){
@@ -19,6 +19,9 @@ class MenTopsPage{
     getMenTopsPriceListProductCountPseudoElement: () => this.page.locator('#narrow-by-list').getByRole('tabpanel').locator('.item').locator('.count').first(),
     getCategoryOptions: (ind) => this.page.locator(LIST_OF_SUB_CATEGORY_ON_MEN_TOPS_PAGE_LOCATORS[ind]),
     getLabelForEachCategory: () => this.page.locator('.filter-value').allInnerTexts(),
+    getCountForEachCategory: (ind) => this.page.locator(LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE[ind]),
+    getCountOfItemsOnEachSubCategory: () => this.page.locator('li[class="item product product-item"]'),
+    getNextLink: () => this.page.getByRole('link', { name: 'Next' }),
     getClearAllButton: () => this.page.locator(".action.clear.filter-clear")
    };
 
@@ -81,6 +84,18 @@ class MenTopsPage{
     async clickClearAllButton() {
       await this.locators.getClearAllButton().click();
   
+      return this;
+    }
+
+    async countSubcategoryItems(){
+      const count = await this.locators.getCountOfItemsOnEachSubCategory().count();
+
+      return count;
+    }
+
+    async clickNextPage(){
+      await this.locators.getNextLink().click();
+      
       return this;
     }
  }

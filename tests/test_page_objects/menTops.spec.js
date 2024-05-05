@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { LIST_STYLE_MEN_TOPS, BASE_URL, MEN_TOPS_PAGE_END_POINT, LIST_CATEGORY_MEN_TOPS, LIST_LABELS_SUB_CATEGORY, MEN_TOPS_CATEGORY_PAGES_END_POINT} from "../../helpers/testData.js"
+import { LIST_STYLE_MEN_TOPS, BASE_URL, MEN_TOPS_PAGE_END_POINT, LIST_CATEGORY_MEN_TOPS, LIST_LABELS_SUB_CATEGORY, MEN_TOPS_CATEGORY_PAGES_END_POINT, LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE} from "../../helpers/testData.js"
 import MenTopsPage from "../../page_objects/menTopsPage.js";
 import { MEN_TOPS_PRICE_LIST, MEN_TOPS_PRICE_LIST_PRODUCT_COUNT } from "../../helpers/testMenData.js";
 
@@ -88,5 +88,38 @@ test.describe('menTops', () => {
         await menTopsPage.clickClearAllButton();
         await expect(page).toHaveURL(BASE_URL + MEN_TOPS_PAGE_END_POINT);
     }
-    })
+    });
+
+    test('Verify the count for each subCategory on Tops page is the same as count of items on each specific page', async ({page}) =>{
+        const homePage = new HomePage(page);       
+        await homePage.hoverMenLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
+        
+        const maxCountOnPage = 12;
+
+        for (let i = 0; i < LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE.length; i++) {
+        await menTopsPage.clickMenTopsCategory();
+        const countItemInTopPage = parseInt(await menTopsPage.locators.getCountForEachCategory(i).innerText(), 10);
+        await menTopsPage.clickCategoryOption(i);
+
+        let totalItemCountPerPage = 0;
+
+        const countOfItemsInPage = await menTopsPage.countSubcategoryItems();
+        totalItemCountPerPage += countOfItemsInPage;
+
+        if (countItemInTopPage > maxCountOnPage) {
+        await menTopsPage.clickNextPage();
+        const countOfItemsInNextPage = await menTopsPage.countSubcategoryItems();
+        totalItemCountPerPage += countOfItemsInNextPage;
+        }
+
+        expect(totalItemCountPerPage).toEqual(countItemInTopPage);
+        await menTopsPage.clickClearAllButton();  
+    }
 });
+
+})
+
+
+
+
