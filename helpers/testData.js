@@ -21,7 +21,8 @@ export const ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT = '/argus-all-weather-tank.ht
 export const HERO_HOODIE_PAGE_END_POINT = '/hero-hoodie.html';
 export const SIGN_IN_PAGE_END_POINT = "/customer/account/login/referer/*";
 export const FUSION_BACKPACK_END_POINT = '/fusion-backpack.html';
-export const PIERCE_GYM_SHORT =  "https://magento.softwaretestingboard.com/wishlist/index/configure/id/169/product_id/1028/"
+export const PIERCE_GYM_SHORT =  "https://magento.softwaretestingboard.com/wishlist/index/configure/id/169/product_id/1028/";
+export const SEARCH_ADVANCED_PAGE_END_POINT = '/catalogsearch/advanced/';
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
   '/men/tops-men/hoodies-and-sweatshirts-men.html',
@@ -221,6 +222,7 @@ export const LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE = [
   '.filter-options-item.allow.active > div > ol > li:nth-child(3) > a > span',
   '.filter-options-item.allow.active > div > ol > li:nth-child(4) > a > span'];
 
+export const SEARCH_ADVANCED_PAGE_HEADER = 'Advanced Search';
 
 //login  credential
 
