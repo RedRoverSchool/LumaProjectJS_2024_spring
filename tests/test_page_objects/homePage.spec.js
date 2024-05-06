@@ -298,7 +298,7 @@ test.describe('homePage.spec', () => {
         await expect(fusionbackpack.locators.getFusionBackpackReviewsTab()).toBeVisible();
     })
 
-    test.only('6th card: clicking the card image redirects to the respective product card', async ({page}) => {
+    test('6th card: clicking the card image redirects to the respective product card', async ({page}) => {
         const homePage = new HomePage(page);
 
         const pushItMessengerBagPage = await homePage.clickSixthCardImage();
