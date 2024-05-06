@@ -39,6 +39,7 @@ class MenBottomsPage {
         getMenBottomsParagraphFilterListText: () => this.page.locator('#maincontent').getByRole('paragraph'),
 
         getMenBottomsClearCategoryFilterLocator: () => this.page.locator('.action.clear.filter-clear'),
+        getMenBottomsCategoryListOfItemsLocator: () => this.page.locator('#narrow-by-list > .active > .filter-options-content > ol > li'),
     }
 
     async clickBreadcrumbsMenuMen() {
