@@ -12,7 +12,9 @@ class TopsWomenPage {
         getArrayAllItems: () => this.page.locator(".products .product-items .product-item-link").allTextContents(),
         getTextCategoryJacketItems: () => this.page.locator('#narrow-by-list > div.filter-options-item.allow.active > div.filter-options-content > ol > li:nth-child(1) > a > span').innerText(),
         getWomenTopsProductItemsCards: () => this.page.locator('.product-item-info'),
-        listWomenTopsAddToMyWishListButtons: () => this.page.locator( 'a.action.towishlist'),
+        listWomenTopsAddToMyWishListButtons: () => this.page.locator('a.action.towishlist'),
+        getDisplayModeGrid: () => this.page.getByTitle('Grid', { exact: true }).first(),
+        getDisplayModeList: () => this.page.getByTitle('List', { exact: true }).first(),  
     }
 
     async clickCategoryFilterOption() {
@@ -50,6 +52,16 @@ class TopsWomenPage {
     async clickRandomWomenTopsAddToWishListButton(index) {
         const addToWishListButton =  await this.getAllWomenTopsAddToMyWishListButtons();
         await addToWishListButton[index].click();
+
+        return this.page;
+    }
+    async clickDisplayModeGrid() {
+        await this.locators.getDisplayModeGrid().click()
+
+        return this.page;
+    }
+    async clickDisplayModeList() {
+        await this.locators.getDisplayModeList().click()
 
         return this.page;
     }
