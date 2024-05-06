@@ -23,6 +23,7 @@ import {
     ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT,
     HERO_HOODIE_PAGE_END_POINT,
     FUSION_BACKPACK_END_POINT,
+    PUSH_IT_MESSENGER_BAG_PAGE_END_POINT,
     NAVBAR_MENU,
     NAVBAR_URLs_END_POINTS
 } from "../../helpers/testData.js";
@@ -296,6 +297,15 @@ test.describe('homePage.spec', () => {
 
         await expect(fusionbackpack.locators.getFusionBackpackHeader()).toBeVisible();
         await expect(fusionbackpack.locators.getFusionBackpackReviewsTab()).toBeVisible();
+    })
+
+    test('6th card: clicking the card image redirects to the respective product card', async ({page}) => {
+        const homePage = new HomePage(page);
+
+        const pushItMessengerBagPage = await homePage.clickSixthCardImage();
+        await expect(page).toHaveURL(BASE_URL + PUSH_IT_MESSENGER_BAG_PAGE_END_POINT);
+        await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageHeader()).toBeVisible();
+    })
     })
     test(`verify 6 menu options on the main menu have particular text and clickable`, async ({ page }) => {
         const homePage = new HomePage(page)

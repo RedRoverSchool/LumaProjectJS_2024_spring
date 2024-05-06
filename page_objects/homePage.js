@@ -21,6 +21,7 @@ import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
 import HeroHoodiePage from "./heroHoodiePage.js"
 import TopsWomenPage from "./topsWomenPage.js";
 import FusionBackpack from "./fusionbackpackPage.js";
+import PushItMessengerBagPage from "./pushItMessengerBagPage.js";
 
 class HomePage {
   constructor(page) {
@@ -42,7 +43,7 @@ class HomePage {
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
     getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
-    getMenLink: () =>this.page.locator('li.nav-3'),
+    getMenLink: () => this.page.locator('li.nav-3'),
     getMenTopsLink: () => this.page.locator('#ui-id-17'),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
     getBottomsWomenLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
@@ -76,13 +77,14 @@ class HomePage {
     getFifthCardImage: () => this.page.getByAltText('Fusion Backpack'),
     getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
     getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
+    getSixthCardImage: () => this.page.getByAltText('Push It Messenger Bag'),
     getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all')
   };
 
   async open() {
     await this.page.goto("/");
-    if (await this.page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible()) 
-            await this.page.getByRole('button', { name: 'Consent' }).click();
+    if (await this.page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible())
+      await this.page.getByRole('button', { name: 'Consent' }).click();
   }
 
   async clickWhatsNewLink() {
@@ -264,7 +266,7 @@ class HomePage {
     return new GearBagsPage(this.page);
   }
 
-  async clickFirstCardReviews () {
+  async clickFirstCardReviews() {
     await this.locators.getFirstCardReviews().click();
 
     return new RadiantTeePage(this.page)
@@ -341,10 +343,17 @@ class HomePage {
 
     return new FusionBackpack(this.page)
   }
-    async clickMainMenuLinks(i) {
-      await this.locators.getMainMenuLinks().nth(i).click();
   
-      }
+  async clickSixthCardImage() {
+    await this.locators.getSixthCardImage().click();
+
+    return new PushItMessengerBagPage(this.page)
   }
+  async clickMainMenuLinks(i) {
+    await this.locators.getMainMenuLinks().nth(i).click();
+  
+  }
+}
+  
 
 export default HomePage;
