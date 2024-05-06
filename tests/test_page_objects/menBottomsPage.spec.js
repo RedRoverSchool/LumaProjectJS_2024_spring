@@ -85,7 +85,7 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
   
     })
 
-    test.only("verify that the quantity of available items is visible", async ({ page }) => {
+    test("verify that the quantity of available items is visible", async ({ page }) => {
       const homePage = new HomePage(page);
       await homePage.hoverMenLink();
       const menBottomsPage = await homePage.clickMenBottomsLink();
