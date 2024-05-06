@@ -2,9 +2,8 @@ import { test, expect } from '@playwright/test';
 import HomePage from '../../page_objects/homePage.js';
 import GearBagsPage from '../../page_objects/gearBagsPage.js';
 import { BASE_URL, GEAR_BAGS_HEADER, GEAR_BAGS_PAGE_END_POINT } from '../../helpers/testData.js';
-import { MATERIAL_OPTION_NAMES, ACTIVE_SECOND_PAGE_TEXT, ACTIVE_PAGE_CLASS_PAGINATION, ACTIVE_PAGE_TEXT } from "../../helpers/testGearBagsData";
+import { MATERIAL_OPTION_NAMES, ACTIVE_PAGE_CLASS_PAGINATION, ACTIVE_PAGE_TEXT } from "../../helpers/testGearBagsData";
 import { GEAR_BAGES_SECOND_PAGE_END_POINT } from '../../helpers/testGearBagsData.js';
-import BagItemPage from '../../page_objects/bagItemPage.js';
 
 test.describe('gearBags.spec', () => {
     test.beforeEach(async({page}) => {
@@ -15,8 +14,7 @@ test.describe('gearBags.spec', () => {
         await homePage.clickGearBags();
     })
 
-     test('Redirect to "Gear Bags" page', async({page}) => {
-        const homePage = new HomePage(page);
+     test('Redirect to "Gear Bags" page', async({page}) => {       
         const gearBagsPage = new GearBagsPage(page);
        
         await expect(page).toHaveURL(BASE_URL + GEAR_BAGS_PAGE_END_POINT);
@@ -24,13 +22,12 @@ test.describe('gearBags.spec', () => {
     }) 
     
     MATERIAL_OPTION_NAMES.forEach((name, idx) => {
-        test.skip(`Verify that ${name} from material options list is visible and has right name`, async ({ page }) => {
-            const homePage = new HomePage(page);
+        test(`Verify that ${name} from material options list is visible and has right name`, async ({ page }) => {
             const gearBagsPage = new GearBagsPage(page);
 
             await gearBagsPage.clickMaterialOption();
 
-            const materialName = gearBagsPage.locators.getMateialItemList().nth(idx)
+            const materialName = await gearBagsPage.locators.getMateialItemList().nth(idx)
             const materialNameText = await gearBagsPage.getMaterialItemNameText(idx);
             
             expect(materialName).toBeVisible();
@@ -39,11 +36,10 @@ test.describe('gearBags.spec', () => {
     })
     
     test('BTN "Page" redirects to the corresponding page', async ({ page }) => {
-        const homePage = new HomePage(page)
-        const gearBagsPage = new GearBagsPage(page)
+        const homePage = new HomePage(page)     
 
         await homePage.hoverGearMenuItem()
-        await homePage.clickGearBags()
+        const gearBagsPage = await homePage.clickGearBags()
         await gearBagsPage.clickInactiveSecondPagePaginationLink()
         
         await expect(gearBagsPage.locators.getPaginationSecondPageAttr()).toHaveText(ACTIVE_PAGE_TEXT + '2')

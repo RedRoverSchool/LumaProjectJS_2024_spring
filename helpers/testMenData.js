@@ -32,3 +32,4 @@ export const MEN_TOPS_PRICE_LIST = [
   "$70.00 - $79.99",
   "$90.00 and above"
 ];
+export const MEN_TOPS_PRICE_LIST_PRODUCT_COUNT = ["3", "17", "4", "6", "5", "9", "3", "1"];

@@ -20,6 +20,7 @@ import WomenTopsPage from "./womenTopsPage.js";
 import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
 import HeroHoodiePage from "./heroHoodiePage.js"
 import TopsWomenPage from "./topsWomenPage.js";
+import FusionBackpack from "./fusionbackpackPage.js";
 
 class HomePage {
   constructor(page) {
@@ -71,6 +72,10 @@ class HomePage {
     getThirdCardImage: () => this.page.getByAltText('Argus All-Weather Tank'),
     getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
     getFourthCardName: () => this.page.getByAltText('Hero Hoodie'),
+    getFourthCardImage: () => this.page.getByAltText('Hero Hoodie'),
+    getFifthCardImage: () => this.page.getByAltText('Fusion Backpack'),
+    getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
+    getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
   };
 
   async open() {
@@ -306,11 +311,34 @@ class HomePage {
     return new HeroHoodiePage(this.page)
   }
 
+  async clickFourthCardImage() {
+    await this.locators.getFourthCardImage().click();
+
+    return new HeroHoodiePage(this.page)
+  }
+
   async clickTopsWomenLink() {
     await this.locators.getWomenTopsLink().click();
 
     return new TopsWomenPage(this.page)
   }
+
+  async clickFifthCardImage() {
+    await this.locators.getFifthCardImage().click();
+
+    return new FusionBackpack(this.page)
+  }
   
+  async clickFifthCardName() {
+    await this.locators.getFifthCardName().click();
+
+    return new FusionBackpack(this.page)
+  }
+
+  async clickFifthCardReviews() {
+    await this.locators.getFifthCardReviews().click();
+
+    return new FusionBackpack(this.page)
+  }
 }
 export default HomePage;
