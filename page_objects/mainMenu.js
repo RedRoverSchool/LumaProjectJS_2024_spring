@@ -1,8 +1,3 @@
-import { NAVBAR_MENU } from '../helpers/testData'
-import HomePage from './homePage'
-import WhatsNewPage from './whatsNewPage'
-import WomenPage from './womenPage'
-
 class MainMenuPage {
   constructor (page) {
     this.page = page
