@@ -76,6 +76,7 @@ class HomePage {
     getFifthCardImage: () => this.page.getByAltText('Fusion Backpack'),
     getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
     getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
+    getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all')
   };
 
   async open() {
@@ -340,5 +341,10 @@ class HomePage {
 
     return new FusionBackpack(this.page)
   }
-}
+    async clickMainMenuLinks(i) {
+      await this.locators.getMainMenuLinks().nth(i).click();
+  
+      }
+  }
+
 export default HomePage;

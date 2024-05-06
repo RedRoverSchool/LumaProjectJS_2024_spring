@@ -23,6 +23,8 @@ import {
     ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT,
     HERO_HOODIE_PAGE_END_POINT,
     FUSION_BACKPACK_END_POINT,
+    NAVBAR_MENU,
+    NAVBAR_URLs_END_POINTS
 } from "../../helpers/testData.js";
 import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
 import RadiantTeePage from "../../page_objects/radiantTeePage.js";
@@ -295,4 +297,17 @@ test.describe('homePage.spec', () => {
         await expect(fusionbackpack.locators.getFusionBackpackHeader()).toBeVisible();
         await expect(fusionbackpack.locators.getFusionBackpackReviewsTab()).toBeVisible();
     })
+    test(`verify 6 menu options on the main menu have particular text and clickable`, async ({ page }) => {
+        const homePage = new HomePage(page)
+        const mainMenuLinks = await homePage.locators.getMainMenuLinks()
+  
+        for (let i = 0; i < NAVBAR_MENU.length; i++) {
+          const link = mainMenuLinks.nth(i)
+          await expect(link).toHaveText(NAVBAR_MENU[i]);
+          
+          await homePage.clickMainMenuLinks(i)
+          await expect(page).toHaveURL(NAVBAR_URLs_END_POINTS[i])
+          await expect(page.getByRole('heading').first()).toHaveText(NAVBAR_MENU[i])
+        }
+      })
 })
