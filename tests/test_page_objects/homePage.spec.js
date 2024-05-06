@@ -306,7 +306,7 @@ test.describe('homePage.spec', () => {
         await expect(page).toHaveURL(BASE_URL + PUSH_IT_MESSENGER_BAG_PAGE_END_POINT);
         await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageHeader()).toBeVisible();
     })
-    })
+    
     test(`verify 6 menu options on the main menu have particular text and clickable`, async ({ page }) => {
         const homePage = new HomePage(page)
         const mainMenuLinks = await homePage.locators.getMainMenuLinks()
@@ -319,5 +319,5 @@ test.describe('homePage.spec', () => {
           await expect(page).toHaveURL(NAVBAR_URLs_END_POINTS[i])
           await expect(page.getByRole('heading').first()).toHaveText(NAVBAR_MENU[i])
         }
-      })
+    })
 })
