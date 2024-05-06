@@ -21,6 +21,7 @@ import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
 import HeroHoodiePage from "./heroHoodiePage.js"
 import TopsWomenPage from "./topsWomenPage.js";
 import FusionBackpack from "./fusionbackpackPage.js";
+import PushItMessengerBagPage from "./pushItMessengerBagPage.js";
 
 class HomePage {
   constructor(page) {
@@ -76,6 +77,7 @@ class HomePage {
     getFifthCardImage: () => this.page.getByAltText('Fusion Backpack'),
     getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
     getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
+    getSixthCardImage: () => this.page.getByAltText('Push It Messenger Bag'),
   };
 
   async open() {
@@ -339,6 +341,12 @@ class HomePage {
     await this.locators.getFifthCardReviews().click();
 
     return new FusionBackpack(this.page)
+  }
+  
+  async clickSixthCardImage() {
+    await this.locators.getSixthCardImage().click();
+
+    return new PushItMessengerBagPage(this.page)
   }
 }
 export default HomePage;
