@@ -22,3 +22,14 @@ export const HOT_SELLERS_ENDPOINT_URL = [
     "meteor-workout-short.html",
     "geo-insulated-jogging-pant.html",
   ];
+export const MEN_TOPS_PRICE_LIST = [
+  "$10.00 - $19.99",
+  "$20.00 - $29.99",
+  "$30.00 - $39.99",
+  "$40.00 - $49.99",
+  "$50.00 - $59.99",
+  "$60.00 - $69.99",
+  "$70.00 - $79.99",
+  "$90.00 and above"
+];
+export const MEN_TOPS_PRICE_LIST_PRODUCT_COUNT = ["3", "17", "4", "6", "5", "9", "3", "1"];
