@@ -38,9 +38,8 @@ test.describe('salePage.spec', () => {
 
     test('Check navigation and deal section to the Sale page', async({page}) => {
         const homePage = new HomePage(page);
-        const salePage = new SalePage(page);
-    
-        await homePage.clickSaleLink();
+        
+        const salePage = await homePage.clickSaleLink();
            
         await expect(page).toHaveURL(BASE_URL + SALE_PAGE_END_POINT);
 
