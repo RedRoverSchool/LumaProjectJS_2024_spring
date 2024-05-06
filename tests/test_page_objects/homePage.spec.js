@@ -23,7 +23,6 @@ import {
     ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT,
     HERO_HOODIE_PAGE_END_POINT,
     FUSION_BACKPACK_END_POINT,
-    PUSH_IT_MESSENGER_GACK_END_POINT,
     PUSH_IT_MESSENGER_BAG_PAGE_END_POINT,
 } from "../../helpers/testData.js";
 import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
