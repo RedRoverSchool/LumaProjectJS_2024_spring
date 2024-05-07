@@ -103,5 +103,19 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
   
       expect(LIST_CATEGORY_MEN_BOTTOMS_WITH_QUANTITY).toEqual(receivedElements);
   })
+
+  test("Verify that button Clear All can deselecte options", async ({ page }) => {
+    const homePage = new HomePage(page);
+    await homePage.hoverMenLink();
+    const menBottomsPage = await homePage.clickMenBottomsLink();
+
+    await menBottomsPage.clickMenBottomsCategory();
+    await menBottomsPage.clickMenBottomsCategoryPants();
+
+    const listOfSelectedItems = page.locator(".filter-current");
+    await menBottomsPage.clickMenBottomsClearAllButton();
+
+    await expect(listOfSelectedItems).not.toBeVisible();
+  });
 });
   
