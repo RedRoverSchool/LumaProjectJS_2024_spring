@@ -13,6 +13,11 @@ class ShoppingCartPage {
 
         return this;
     }
+    async waitForMoveToWishListLink() {
+        await this.locators.getMoveToWishListLink().waitFor();
+
+        return this;
+    }
 }
 
 export default ShoppingCartPage;

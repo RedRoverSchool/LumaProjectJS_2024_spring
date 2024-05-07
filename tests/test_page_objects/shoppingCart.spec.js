@@ -48,6 +48,7 @@ test.describe('shopping Cart', () => {
         await inezFullZipJacketPage.clickInezJacketColorOptionLable();
         await inezFullZipJacketPage.clickInezJacketAddToCartButton();
         const shoppingCartPage = await inezFullZipJacketPage.clickShoppingCartLink();
+        await shoppingCartPage.waitForMoveToWishListLink();
         await shoppingCartPage.clickMoveToWishListLink();
 
         await expect(shoppingCartPage.locators.getAlerMessageAddToWishList()).toHaveText(`${WOMEN_JACKETS_NAME} has been moved to your wish list.`);
