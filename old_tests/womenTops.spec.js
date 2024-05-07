@@ -105,5 +105,12 @@ test.describe("womenTops", () => {
     await expect(page).toHaveURL(WOMEN_TOPS_URL)
     await expect(page).toHaveTitle('Tops - Women')
    }) 
-   
+   const { test, expect } = require('@playwright/test');
+
+    test('open page', async ({ page }) => {
+        await page.goto("https://magento.softwaretestingboard.com/women/tops-women.html");
+        expect(await page.locator('.limiter-options').nth(1).textContent()).toContain('12', '24', '36');
+        await page.locator('[data-value="list"]').nth(0).click()
+        expect(await page.locator('.limiter-options').nth(1).textContent()).toContain('5', '10', '15', '20', '25') 
+    });
 });
