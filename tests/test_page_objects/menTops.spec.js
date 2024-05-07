@@ -118,6 +118,13 @@ test.describe('menTops', () => {
     }
 });
 
+test('open page', async ({ page }) => {
+    await page.goto("https://magento.softwaretestingboard.com/men/tops-men.html");
+    expect(await page.locator('.limiter-options option[selected]').nth(1).textContent()).toContain('12');
+    await page.locator('[data-value="list"]').nth(0).click()
+    expect(await page.locator('.limiter-options option[selected]').nth(1).textContent()).toContain('10') 
+});
+
 })
 
 
