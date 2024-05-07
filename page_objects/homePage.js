@@ -77,6 +77,8 @@ class HomePage {
     getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
     getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
     getSixthCardImage: () => this.page.getByAltText('Push It Messenger Bag'),
+    getSixthCardName: () => this.page.locator('a[title="Push It Messenger Bag"]'),
+    getSixthCardReviews: () => this.page.locator('a[class="action view"][href*="push-it-messenger-bag"]')
   };
 
   async open() {
@@ -358,6 +360,18 @@ class HomePage {
   
   async clickSixthCardImage() {
     await this.locators.getSixthCardImage().click();
+
+    return new PushItMessengerBagPage(this.page)
+  }
+
+  async clickSixthCardName() {
+    await this.locators.getSixthCardName().click();
+
+    return new PushItMessengerBagPage(this.page)
+  }
+
+  async clickSixthCardReviews() {
+    await this.locators.getSixthCardReviews().click();
 
     return new PushItMessengerBagPage(this.page)
   }
