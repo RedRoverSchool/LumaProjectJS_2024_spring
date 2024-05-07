@@ -246,6 +246,23 @@ test.describe('homePage.spec', () => {
         await expect(page).toHaveURL(BASE_URL + PUSH_IT_MESSENGER_BAG_PAGE_END_POINT);
         await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageHeader()).toBeVisible();
     })
+
+    test('6th card: clicking the card name redirects to the respective product card', async ({page}) => {
+        const homePage = new HomePage(page);
+
+        const pushItMessengerBagPage = await homePage.clickSixthCardName();
+        await expect(page).toHaveURL(BASE_URL + PUSH_IT_MESSENGER_BAG_PAGE_END_POINT);
+        await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageHeader()).toBeVisible();
+    })
+
+    test('6th card: clicking card reviews redirects to "reviews" tab on respective product card', async ({page}) => { 
+        const homePage = new HomePage(page);
+        
+        const pushItMessengerBagPage = await homePage.clickSixthCardReviews();
+        await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageReviewsTab()).toBeVisible();
+        await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageHeader()).toBeVisible();
+    })
+})
     
     test(`verify 6 menu options on the main menu have particular text and clickable`, async ({ page }) => {
         const homePage = new HomePage(page)
