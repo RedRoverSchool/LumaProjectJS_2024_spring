@@ -3,6 +3,7 @@ import MenPage from "./menPage";
 import WishListPage from "./wishListPage";
 
 import { LIST_CATEGORY_MEN_BOTTOMS, LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS } from "../helpers/testData";
+import PierceGymShortPage from "./pierceGymShortPage";
 
 
 class MenBottomsPage {
@@ -49,7 +50,7 @@ class MenBottomsPage {
 
     async ckickPierceGymc() {
         await this.locators.getPierceGymclick().click();
-        return this.page;
+        return new PierceGymShortPage(this.page);
     }
 
     async getPositionOfSidebar() {

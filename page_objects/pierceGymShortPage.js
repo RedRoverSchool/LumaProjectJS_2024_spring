@@ -1,3 +1,5 @@
+import WishListPage from "./wishListPage";
+
 class PierceGymShortPage {
     constructor(page) {
       this.page = page;
@@ -12,7 +14,7 @@ class PierceGymShortPage {
 
     async addWishList () {
         await this.locators.getWishList().click();
-        return this.page;
+        return new WishListPage(this.page);
     }
 
 }export default PierceGymShortPage;
