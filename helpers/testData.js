@@ -35,6 +35,12 @@ export const NAVBAR_URLs_END_POINTS = [
 ];
 export const GEAR_BAGS_PAGE_END_POINT = '/gear/bags.html';
 
+export const FOOTER_LINKs_URLs_END_POINTS = [
+  '/search/term/popular/',
+  '/privacy-policy-cookie-restriction-mode',
+  '/catalogsearch/advanced/' 
+];
+
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
 export const WOMEN_PAGE_HEADER = 'Women';
@@ -187,8 +193,7 @@ export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
 
 export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
 export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
-export const ADVANCED_SEARCH_PAGE_END_POINT = '/catalogsearch/advanced/';
-export const NOTES_PAGE_URL = 'https://softwaretestingboard.com/magento-store-notes/?utm_source=magento_store&utm_medium=banner&utm_campaign=notes_promo&utm_id=notes_promotion';
+export const FOOTER_LINK_NAME = ['Search Terms', 'Privacy and Cookie Policy', 'Advanced Search']
 
 //login  credential
 

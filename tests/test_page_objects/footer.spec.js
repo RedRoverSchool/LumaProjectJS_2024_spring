@@ -3,11 +3,7 @@ import HomePage from '../../page_objects/homePage.js';
 import Footer from '../../page_objects/footer.js';
 import SearchTermPopularPage from "../../page_objects/searchTermPopularPage.js";
 import SignInPage from '../../page_objects/signInPage.js';
-import { BASE_URL, SEARCH_TERMS_POPULAR_PAGE_END_POINT, SEARCH_TERMS_POPULAR_PAGE_HEADER, ADVANCED_SEARCH_PAGE_END_POINT, NOTES_PAGE_URL } from "../../helpers/testData.js";
-import { PRIVACY_POLICY_END_POINT } from '../../helpers/testPrivacyPolicyData.js';
-import PrivacyPolicyPage from '../../page_objects/privacyPolicyPage.js';
-import AdvancedSearchPage from '../../page_objects/advancedSearchPage.js';
-import NotesPage from '../../page_objects/notesPage.js';
+import { BASE_URL, SEARCH_TERMS_POPULAR_PAGE_END_POINT, SEARCH_TERMS_POPULAR_PAGE_HEADER, FOOTER_LINK_NAME, FOOTER_LINKs_URLs_END_POINTS } from "../../helpers/testData.js";
 
 test.describe('footer.spec', () => {
     test.beforeEach(async({page}) => {
@@ -68,50 +64,17 @@ test.describe('footer.spec', () => {
         await expect(footerPage.locators.getAdvancedSearchLink()).toBeVisible();
     })
 
-    test('Verify Search Terms link is clickable and redirects logged-in user to the required page', async ({page}) => {
-        const homePage = new HomePage(page);
-        const signInPage = await homePage.clickSignInLink();
-        await signInPage.fillFieldEmail();
-        await signInPage.fillFieldPassword();
-        await signInPage.clickButtonSignIn();
+    FOOTER_LINK_NAME.forEach((linkName, idx) => {
+        test(`Verify ${linkName} is clickable and redirects logged-in user to the required page`, async ({page}) => {
+            const homePage = new HomePage(page);
+            const signInPage = await homePage.clickSignInLink();
+            await signInPage.fillFieldEmail();
+            await signInPage.fillFieldPassword();
+            await signInPage.clickButtonSignIn();
 
-        const searchTermPopularPage = await homePage.getFooter().clickSearchTerms();
-        await expect(page).toHaveURL(BASE_URL + SEARCH_TERMS_POPULAR_PAGE_END_POINT);       
-    })
-
-    test('Verify Privacy Policy link is clickable and redirects logged-in user to the required page', async ({page}) => {
-        const homePage = new HomePage(page);
-        const signInPage = await homePage.clickSignInLink();
-        await signInPage.fillFieldEmail();
-        await signInPage.fillFieldPassword();
-        await signInPage.clickButtonSignIn();
-
-        const privacyPolicyPage = await homePage.getFooter().clickPrivacyAndCookiePolicyLink();
-        await expect(page).toHaveURL(BASE_URL + PRIVACY_POLICY_END_POINT);       
-    })
-
-    test('Verify Advanced Search link is clickable and redirects logged-in user to the required page', async ({page}) => {
-        const homePage = new HomePage(page);
-        const signInPage = await homePage.clickSignInLink();
-        await signInPage.fillFieldEmail();
-        await signInPage.fillFieldPassword();
-        await signInPage.clickButtonSignIn();
-
-        const advancedSearchPage = await homePage.getFooter().clickAdvancedSearchLink();
-        await expect(page).toHaveURL(BASE_URL + ADVANCED_SEARCH_PAGE_END_POINT);       
-    })
-
-    test('Verify Notes link is clickable and redirects logged-in user to the required page', async ({page}) => {
-        const homePage = new HomePage(page);
-        const signInPage = await homePage.clickSignInLink();
-        await signInPage.fillFieldEmail();
-        await signInPage.fillFieldPassword();
-        await signInPage.clickButtonSignIn();
-
-        const pagePromise = page.waitForEvent('popup');
-        await homePage.getFooter().clickNotesLink();
-        const notesPage = await pagePromise;
-        await expect(notesPage).toHaveURL(NOTES_PAGE_URL);       
-    })
+            const footerLinkPage = await homePage.getFooter().clickFooterLinks(linkName);
+            await expect(page).toHaveURL(BASE_URL + FOOTER_LINKs_URLs_END_POINTS[idx]);       
+        })
+    }) 
 });
 

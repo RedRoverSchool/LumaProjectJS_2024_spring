@@ -1,7 +1,7 @@
-class NotesPage {
+class FooterLinkPage {
     constructor (page) {
         this.page = page
     }
 }
 
-export default NotesPage;
+export default FooterLinkPage;
