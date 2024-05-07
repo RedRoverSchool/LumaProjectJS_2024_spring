@@ -17,7 +17,7 @@ test.describe
       await homePage.open()
     })
 
-    test.skip('verify 6 menu options on the main page have particular text and clickable', async ({ page }) => {
+    test('verify 6 menu options on the main page have particular text and clickable', async ({ page }) => {
       const homePage = new HomePage(page)
       const mainMenuPage = new MainMenuPage(page)
       const whatsNewPage = new WhatsNewPage(page)

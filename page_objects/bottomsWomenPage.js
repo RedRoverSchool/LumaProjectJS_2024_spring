@@ -16,12 +16,7 @@ class BottomsWomenPage {
         getOptionPrice: () => this.page.locator('.filter-options-title').nth(3),
         getOptionPriceFilter: () => this.page.locator('.filter-options-content').nth(3),
         getCategoriesStyle: () => this.page.$$('a[href*=\'style\']'),
-        getCountItemsInCategoryStyle: (category) => category.$('span.count'),
-        getShoppingOptionsMaterial: () => this.page.locator(".filter-options-title").nth(7),
-        getShoppingOptionsMaterialOrganicCotton: () => this.page.getByText("Organic Cotton "),
-        getShoppingOptionsPrice: () =>  this.page.locator(".filter-options-title").nth(10),
-        getShoppingOptionsPriceSecondSubCategory: () => this.page.locator("a[href$='price=30-40']"),
-        getClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'})
+        getCountItemsInCategoryStyle: (category) => category.$('span.count')
     }
 
     async getLocatorInnerText(locator) {
@@ -61,36 +56,6 @@ class BottomsWomenPage {
 
     async clickOptionPrice(){
         await this.locators.getOptionPrice().click();
-
-        return this;
-    }
-
-    async clickShoppingOptionsMaterial() {
-        await this.locators.getShoppingOptionsMaterial().click();
-
-        return this;
-    }
-
-    async clickShoppingOptionsMaterialOrganicCotton() {
-        await this.locators.getShoppingOptionsMaterialOrganicCotton().click();
-
-        return this;
-    }
-
-    async clickShoppingOptionsPrice() {
-        await this.locators.getShoppingOptionsPrice().click();
-
-        return this;
-    }
-
-    async clickShoppingOptionsPriceSecondSubCategory() {
-        await this.locators.getShoppingOptionsPriceSecondSubCategory().click();
-
-        return this;
-    }
-
-    async clickClearAllButton() {
-        await this.locators.getClearAllButton().click();
 
         return this;
     }

@@ -1,6 +1,5 @@
 import PrivacyPolicyPage from './privacyPolicyPage';
 import SearchTermPopularPage from "././searchTermPopularPage";
-import SearchAdvancedPage from './searchAdvancedPage.js';
 import { FOOTER_LINKS } from '../helpers/testData';
 
 class Footer {
@@ -25,12 +24,6 @@ class Footer {
     async clickSearchTerms(page) {
         await this.locators.getSearchTerms().click()
         return new SearchTermPopularPage(this.page);
-    }
-
-    async clickAdvancedSearchLink() {
-        await this.locators.getAdvancedSearchLink().click();
-
-        return new SearchAdvancedPage(this.page);
     }
 }
 

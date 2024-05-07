@@ -14,9 +14,7 @@ class SalePage {
         getSideMenuSections: () => this.page.locator('.categories-menu span'),
         getItemsFromMensDealsSection: (option) => this.page.getByRole("link", { name: option }).last(), 
         getTitleForEachPageFromMensDeals: () => this.page.locator('#page-title-heading > span'),
-        getSalePageHeader: () => this.page.getByRole('heading', { name: 'Sale'}),
-        getDealsLocator: () => this.page.locator('.categories-menu span'),
-
+        getSalePageHeader: () => this.page.getByRole('heading', { name: 'Sale'})
 
     }
 
@@ -39,7 +37,7 @@ class SalePage {
                 return new PantsPage(this.page);
             case 'Shorts':
                 return new ShortsPage(this.page);
-        }}   
+        }}
 }
 
 export default SalePage;

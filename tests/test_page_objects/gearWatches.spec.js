@@ -19,7 +19,7 @@ test.describe('gearWatchesPage.spec', () => {
   })
 
   LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE.forEach((option, idx) => {
-    test.skip(`Verify the "Clear All" button after applying ${option} filters on the Gear/Watches page`, async ({ page }) => {
+    test(`Verify the "Clear All" button after applying ${option} filters on the Gear/Watches page`, async ({ page }) => {
       test.slow();
       const gearWatchesPage = new GearWatchesPage(page);
 
@@ -118,7 +118,7 @@ test.describe('gearWatchesPage.spec', () => {
     }
   });
   
-  test.skip("Verify the Shopping options dropdown list items on the Gear/Watches page", async ({
+  test("Verify the Shopping options dropdown list items on the Gear/Watches page", async ({
     page,
   }) => {
     test.slow();

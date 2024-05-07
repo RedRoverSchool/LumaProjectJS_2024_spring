@@ -1,6 +1,3 @@
-import CompareProductsPage from "./compareProductsPage";
-import VideoDownloadPage from "./videoDownloadPage";
-
 class TrainingPage {
 	constructor(page) {
 		 this.page = page;
@@ -28,13 +25,13 @@ class TrainingPage {
 	async clickVideoDownloadLink() {
 		await this.locators.getTrainingVideoDownloadLink().click();
 	
-		return  new VideoDownloadPage(this.page);
+		return this.page;
 	}
 
 	async clickTrainingCompareButton() {
 		await this.locators.getTrainingCompareButton().click();
 	
-		return new CompareProductsPage(this.page);
+		return this.page;
 	}
 
 	async clickGoToWishListLink() {

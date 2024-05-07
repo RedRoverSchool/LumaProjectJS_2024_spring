@@ -14,7 +14,6 @@ class WomenPage {
         getWomenTopsLink: () => this.page.getByRole('link', { name: 'Tops' }),
         getWomenBottomsLink: () => this.page.getByRole('link', { name: 'Bottoms' }),
         getWomenJacketsLink: () => this.page.getByRole('link', { name: 'Jackets' }),
-        getWomenBottomsLinkFromShopByCategory: () => this.page.locator(".item a[href$='/women/bottoms-women.html']")
     }
 
     async clickWomenTeesLink() {
@@ -37,12 +36,7 @@ class WomenPage {
 
         return new JacketsWomenPage(this.page);
     }
-
-    async clickWomenBottomsLinkFromShopByCategory() {
-        await this.locators.getWomenBottomsLinkFromShopByCategory().click();
-
-        return new BottomsWomenPage(this.page);
-    }    
+    
 }
 
 export default WomenPage;
