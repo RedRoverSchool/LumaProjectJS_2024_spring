@@ -88,6 +88,26 @@ test.describe("topWomenPage.spec", () => {
         "FAIL: SignInPage is NOT opened on click on AddToWishList button for unsigned users.")
         .toMatch(expectedEndPoint);
   });
+
+  test("verify the result of choosing Category, Size, and Color shopping options", async ({ page }) => {
+    const homePage = new HomePage(page);
+
+    await homePage.hoverOverWomenMenuItem();
+    const topsWomenPage = await homePage.clickOnWomenTopsLink();
+
+    await topsWomenPage.clickCategoryFilterOption();
+    await topsWomenPage.clickTeesCategoryShoppingOptions();
+    await topsWomenPage.clickSizeShoppingOptions();
+    await topsWomenPage.clickSSizeShoppingOptions();
+    await topsWomenPage.clickColorShoppingOptions();
+    await topsWomenPage.clickPurpleColorShoppingOptions();
+
+    let shoppingByList = await topsWomenPage.locators
+      .getShoppingByFilterList()
+      .allTextContents();
+
+    expect(shoppingByList).toEqual(["Tees", "S", "Purple"]);
+  });
   test('women tops display mode can be changed, visible', async ({
     page
   }) => {
