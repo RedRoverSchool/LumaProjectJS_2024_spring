@@ -30,7 +30,8 @@ class HomePage {
 
   locators = {
     getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
-    getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
+    getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),    
+    getWomenItemLink: () => this.page.getByRole("menuitem", { name: "Women" }),
     getMenLink: () => this.page.getByRole('menuitem', { name: 'Men' }).last(),
     getMenBottomsLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
     getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
@@ -43,9 +44,10 @@ class HomePage {
     getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
     getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
+    getMenLink: () =>this.page.locator('li.nav-3'),
+    getSignInLinck: () => this.page.getByRole('link',{name:'Sign In'}),
     getMenLink: () => this.page.locator('li.nav-3'),
     getMenTopsLink: () => this.page.locator('#ui-id-17'),
-    getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
     getBottomsWomenLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
     getSearchTermPopularLink: () => this.page.getByRole('link', { name: 'Search Terms' }),
     getFirstCardImage: () => this.page.getByAltText('Radiant Tee'),
@@ -57,9 +59,7 @@ class HomePage {
     getWomenCategories: () => this.page.locator('.nav-2 > ul > li > a'),
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
     getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
-    getGearWatchesSubmenuItem: () =>
-      this.page.getByRole("menuitem", { name: "Watches" }),
-    getSignInLink: () => this.page.getByRole('link', { name: 'Sign In' }),
+    getGearWatchesSubmenuItem: () => this.page.getByRole("menuitem", { name: "Watches" }),
     getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
     getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
     getOrdersAndReturnsLink: () => this.page.locator('.page-wrapper footer li:has-text("Orders and Returns")'),
@@ -68,7 +68,7 @@ class HomePage {
     getFirstCardReviews: () => this.page.locator('a.action.view[href*="radiant-tee"]'),
     getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
     getSecondCardImage: () => this.page.getByAltText('Breathe-Easy Tank'),
-    getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),
+    getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),    
     getSecondCardReviews: () => this.page.locator('a[class="action view"][href*="breathe-easy-tank"]'),
     getThirdCardImage: () => this.page.getByAltText('Argus All-Weather Tank'),
     getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
@@ -186,6 +186,12 @@ class HomePage {
     return new RadiantTeePage(this.page);
   }
 
+  async clickSignInLink() {
+    await this.locators.getSignInLinck().click();
+
+    return new SignInPage(this.page);
+  }
+
   async clickSaleLink() {
     await this.locators.getSaleLink().click();
 
@@ -228,12 +234,6 @@ class HomePage {
     return new GearWatchesPage(this.page);
   }
 
-
-  async clickSignInLink() {
-    await this.locators.getSignInLink().click();
-    return new SignInPage(this.page);
-  }
-
   async clickFirstCardName() {
     await this.locators.getFirstCardImage().click();
 
@@ -243,6 +243,7 @@ class HomePage {
   getFooter() {
     return new Footer(this.page);
   }
+
   async clickGearMenuItem() {
     await this.locators.getGearMenuItem().click();
 
@@ -254,6 +255,7 @@ class HomePage {
 
     return new GearBagsPage(this.page);
   }
+
   async clickOrdersAndReturnsLink() {
     await this.locators.getOrdersAndReturnsLink().click();
 
@@ -324,6 +326,18 @@ class HomePage {
     await this.locators.getWomenTopsLink().click();
 
     return new TopsWomenPage(this.page)
+  }
+
+  async clickOnWomenTopsLink() {
+    await this.locators.getWomenTopsLink().click();
+
+    return new TopsWomenPage(this.page);
+  }
+
+  async hoverOverWomenMenuItem() {
+    await this.locators.getWomenItemLink().hover();    
+
+    return this;
   }
 
   async clickFifthCardImage() {

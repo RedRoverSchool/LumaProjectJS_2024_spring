@@ -111,7 +111,7 @@ test.describe("create account", () => {
     await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/create/')
     await expect(page).toHaveTitle(/Create New Customer Account/)
 
-    const randomNumber =Math.random().toString(36).substring(2, 10);
+    const randomNumber = Math.random().toString(36).substring(2, 10);
     const firstName = `Jon_${randomNumber}`;
     const lastName = `Wik_${randomNumber}`;
     const email = `tt_${randomNumber}@example.com`;
