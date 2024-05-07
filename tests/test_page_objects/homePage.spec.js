@@ -26,14 +26,8 @@ import {
     PUSH_IT_MESSENGER_BAG_PAGE_END_POINT,
 } from "../../helpers/testData.js";
 import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
-import RadiantTeePage from "../../page_objects/radiantTeePage.js";
 import SearchNoResultsPage from "../../page_objects/searchNoResultsPage.js";
-import BreatheEasyTankPage from "../../page_objects/breatheEasyTankPage.js";
-import SignInPage from "../../page_objects/signInPage.js";
-import BottomsWomenPage from "../../page_objects/bottomsWomenPage.js";
-import ArgusAllWeatherTankPage from "../../page_objects/argusAllWeatherTankPage.js";
-import HeroHoodiePage from "../../page_objects/heroHoodiePage.js";
-import FusionBackpack from "../../page_objects/fusionbackpackPage.js";
+
 
 test.describe('homePage.spec', () => {
     test.beforeEach(async ({ page }) => {
