@@ -125,8 +125,6 @@ export const LIST_CATEGORY_MEN_TOPS = [
   'Tees 12 item',
   'Tanks 12 item'];
 
-
-
 export const SHIPPING_PROGRESS_BAR_TEXT = 'Shipping';
 export const SEARCH_TERMS_POPULAR_PAGE_END_POINT = '/search/term/popular/';
 export const SEARCH_TERMS_POPULAR_PAGE_HEADER = 'Popular Search Terms';
@@ -199,10 +197,10 @@ export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
 ];
 
 export const LIST_OF_SUB_CATEGORY_ON_MEN_TOPS_PAGE_LOCATORS = [
-'.filter-options-item.allow.active > div > ol > li:nth-child(1) a',
-'.filter-options-item.allow.active > div > ol > li:nth-child(2) a',
-'.filter-options-item.allow.active > div > ol > li:nth-child(3) a',
-'.filter-options-item.allow.active > div > ol > li:nth-child(4) a'];
+  '.filter-options-item.allow.active > div > ol > li:nth-child(1) a',
+  '.filter-options-item.allow.active > div > ol > li:nth-child(2) a',
+  '.filter-options-item.allow.active > div > ol > li:nth-child(3) a',
+  '.filter-options-item.allow.active > div > ol > li:nth-child(4) a'];
 
 export const LIST_LABELS_SUB_CATEGORY = [
   'Jackets',
@@ -213,7 +211,6 @@ export const LIST_LABELS_SUB_CATEGORY = [
 export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
 export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
 export const LOGO_ALIGNMENT = 'left';
- 
 
 //login  credential
 
@@ -223,3 +220,17 @@ export const password = 'Password!';
 export const EMAIL_WISHLIST = 'johnLennon@gmail.com';
 export const PASSWORD_WISHLIST = 'Jonny1940!';
 
+export const USER_DATA = {
+  firstName: "Angelina-Maria",
+  lastName: "O'Neel",
+  email: generateRandomEmail(),
+  password: "RT45bb%%mm"
+}
+
+export const NEW_USER_DATA = {
+  firstName: "Bob",
+  lastName: "Tester",
+  newEmail: generateRandomEmail(),
+  oldPassword: "RT45bb%%mm",
+  newPassword: "Bob_Tester"
+}

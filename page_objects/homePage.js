@@ -21,6 +21,7 @@ import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
 import HeroHoodiePage from "./heroHoodiePage.js"
 import TopsWomenPage from "./topsWomenPage.js";
 import FusionBackpack from "./fusionbackpackPage.js";
+import MyAccountPage from "./myAccountPage.js";
 
 class HomePage {
   constructor(page) {
@@ -76,6 +77,9 @@ class HomePage {
     getFifthCardImage: () => this.page.getByAltText('Fusion Backpack'),
     getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
     getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
+    getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
+    getWelcomeDropdown: () => this.page.locator('[class="panel header"] span[role="button"]'),
+    getMyAccountLink: () => this.page.getByRole('link', {name: 'My Account'}),
   };
 
   async open() {
@@ -339,6 +343,22 @@ class HomePage {
     await this.locators.getFifthCardReviews().click();
 
     return new FusionBackpack(this.page)
+  }
+
+  async getGreetingText(name) {
+    return await this.locators.getGreetingName(name).innerText();
+  }
+
+  async clickWelcomeDropdown() {
+    await this.locators.getWelcomeDropdown().click();
+
+    return this;
+  }
+
+  async clickMyAccountLink() {
+    await this.locators.getMyAccountLink().click()
+
+    return new MyAccountPage(this.page);
   }
 }
 export default HomePage;
