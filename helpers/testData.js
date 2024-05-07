@@ -27,6 +27,7 @@ export const FUSION_BACKPACK_END_POINT = '/fusion-backpack.html';
 export const PIERCE_GYM_SHORT =  "https://magento.softwaretestingboard.com/wishlist/index/configure/id/169/product_id/1028/";
 export const SEARCH_ADVANCED_PAGE_END_POINT = '/catalogsearch/advanced/';
 export const PUSH_IT_MESSENGER_BAG_PAGE_END_POINT = '/push-it-messenger-bag.html'
+export const WOMEN_SHORTS_PAGE_END_POINT = '/women/bottoms-women/shorts-women.html'
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
   '/men/tops-men/hoodies-and-sweatshirts-men.html',
