@@ -1,12 +1,5 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import TrainingPage from "../../page_objects/trainingPage.js";
-import VideoDownloadPage from "../../page_objects/videoDownloadPage.js";
-import GearBagsPage from "../../page_objects/gearBagsPage.js";
-import CompareProductsPage from "../../page_objects/compareProductsPage.js";
-import SignInPage from "../../page_objects/signInPage.js";
-import WishListPage from "../../page_objects/wishListPage.js";
-import PushItMessengerBagPage from "../../page_objects/pushItMessengerBagPage.js";
 import { TRAINING_URL, TRAINING_PAGE_HEADER, BASE_URL, TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT, TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT, TRAINING_PAGE_VIDEODOWNLOAD_URL, VIDEODOWNLOAD_PAGE_HEADER, COMPARE_URL_REGEX, COMPARE_PRODUCT_PAGE_HEADER, COMPARE_PRODUCT_PAGE_ITEM_TEXT, MY_WISHLIST_PAGE_URL, MY_WISHLIST_PAGE_ITEM_TEXT, MY_WISHLIST_PAGE_HEADER} from "../../helpers/testData.js";
 
 test.describe('trainingPage.spec', () => {
@@ -18,9 +11,8 @@ test.describe('trainingPage.spec', () => {
 
 	test('Verify that the "Training" link redirects to the training\'s products page', async ({ page }) => {
 	  const homePage = new HomePage(page);
-	  const trainingPage = new TrainingPage(page);
  
-	  await homePage.clickTrainingLink();
+	  const trainingPage = await homePage.clickTrainingLink();
  
 	  await expect(page).toHaveURL(TRAINING_URL);
 	  await expect(trainingPage.locators.getTrainingHeader()).toBeVisible();
@@ -30,9 +22,8 @@ test.describe('trainingPage.spec', () => {
 
 	test('Verify that the correct breadcrumb navigation is displayed on the "Training" page and leading up to this section (Home > Training)', async({page}) => {
 		const homePage = new HomePage(page);
-		const trainingPage = new TrainingPage(page);
   
-		await homePage.clickTrainingLink();
+		const trainingPage = await homePage.clickTrainingLink();
  
  		await expect(trainingPage.locators.getBreadcrumbMenuAll()).toBeVisible();
 		await expect(trainingPage.locators.getBreadcrumbMenuTraining()).toBeVisible();
@@ -47,9 +38,8 @@ test.describe('trainingPage.spec', () => {
 
 	test('Verify that the promo block is displayed on the “Training” page', async({page}) => {
 		const homePage = new HomePage(page);
-		const trainingPage = new TrainingPage(page);
-		        
-		await homePage.clickTrainingLink();
+
+		const trainingPage = await homePage.clickTrainingLink();
 
 		expect(trainingPage.locators.getTrainingPromoBlock()).toBeTruthy();
 		await expect(trainingPage.locators.getTrainingPromoBlock()).toBeVisible();
@@ -58,22 +48,18 @@ test.describe('trainingPage.spec', () => {
 
   test('Verify that the "Shop By Category" section is displayed on the “Training” page', async({page}) => {
 		const homePage = new HomePage(page);
-		const trainingPage = new TrainingPage(page);
-		  
-		await homePage.clickTrainingLink();	        
 	
-
+		const trainingPage = await homePage.clickTrainingLink();
+	
 		expect(trainingPage.locators.getTrainingShopByCategorySection()).toBeTruthy();
 		await expect(trainingPage.locators.getTrainingShopByCategorySection()).toBeVisible();
   })
 
   test('Verify that clicking on the "Video Download" link redirects to the correct "Video Download" page', async({page}) => {
 		const homePage = new HomePage(page);
-		const trainingPage = new TrainingPage(page);
-		const videoDownloadPage = new VideoDownloadPage(page);
   
-		await homePage.clickTrainingLink();
-		await trainingPage.clickVideoDownloadLink();
+		const trainingPage = await homePage.clickTrainingLink();
+		const videoDownloadPage = await trainingPage.clickVideoDownloadLink();
 
 		await expect(page).toHaveURL(TRAINING_PAGE_VIDEODOWNLOAD_URL);
 		await expect(videoDownloadPage.locators.getVideoDownloadHeader()).toBeVisible();
@@ -82,20 +68,16 @@ test.describe('trainingPage.spec', () => {
 
   test('Verify that the User can use the “Compare Products” feature to compare different training products and identify their features and benefits', async({page}) => {
 		const homePage = new HomePage(page);
-		const trainingPage = new TrainingPage(page);
-		const gearBagsPage = new GearBagsPage(page);
-		const compareProductsPage = new CompareProductsPage(page);
-
 
 		await homePage.hoverGearMenuItem();
-		await homePage.clickGearBagsSubmenuItem();
+		const gearBagsPage = await homePage.clickGearBagsSubmenuItem();
 		await page.waitForTimeout(3000);
 		await gearBagsPage.hoverPushItMessengerItem();
 		await page.waitForTimeout(5000);
 		await gearBagsPage.clickgetPushItMessengerItemAddtoCampare();
 		await page.waitForTimeout(5000);
-		await gearBagsPage.clickTrainingLink();
-		await trainingPage.clickTrainingCompareButton();
+		const trainingPage = await gearBagsPage.clickTrainingLink();
+		const compareProductsPage = await trainingPage.clickTrainingCompareButton();
 		
 		const currentURL = page.url();
 		expect(currentURL).toMatch(COMPARE_URL_REGEX);
@@ -107,25 +89,20 @@ test.describe('trainingPage.spec', () => {
 
 		test('Verify that the User can add training products to the wish list for tracking and accessing additional information about them in the training materials', async({page}) => {
 		const homePage = new HomePage(page);
-		const trainingPage = new TrainingPage(page);
-		const gearBagsPage = new GearBagsPage(page);
-		const signInPage = new SignInPage(page);
-		const wishListPage = new WishListPage(page);
-		const pushItMessengerBagPage = new PushItMessengerBagPage(page);
 
-		await homePage.clickSignInLink();
+		const signInPage = await homePage.clickSignInLink();
 		await signInPage.fillEmailField();
 		await signInPage.fillPasswordField();
 		await signInPage.clickButtonSignIn();
 
 		await homePage.hoverGearMenuItem();
-		await homePage.clickGearBagsSubmenuItem();
+		const gearBagsPage = await homePage.clickGearBagsSubmenuItem();
 		await page.waitForTimeout(3000);
-		await gearBagsPage.clickPushItMessengerItem();
+		const pushItMessengerBagPage = await gearBagsPage.clickPushItMessengerItem();
 		await page.waitForTimeout(3000);
-		await pushItMessengerBagPage.clickPushItMessengerItemAddtoWishList();
+		const wishListPage = await pushItMessengerBagPage.clickPushItMessengerItemAddtoWishList();
 
-		await wishListPage.clickTrainingLink();
+		const trainingPage = await wishListPage.clickTrainingLink();
 
 		await trainingPage.clickGoToWishListLink()
 		

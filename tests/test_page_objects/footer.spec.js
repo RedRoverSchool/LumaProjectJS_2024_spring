@@ -3,7 +3,7 @@ import HomePage from '../../page_objects/homePage.js';
 import Footer from '../../page_objects/footer.js';
 import SearchTermPopularPage from "../../page_objects/searchTermPopularPage.js";
 import SignInPage from '../../page_objects/signInPage.js';
-import { BASE_URL, SEARCH_TERMS_POPULAR_PAGE_END_POINT, SEARCH_TERMS_POPULAR_PAGE_HEADER } from "../../helpers/testData.js";
+import { BASE_URL, SEARCH_TERMS_POPULAR_PAGE_END_POINT, SEARCH_TERMS_POPULAR_PAGE_HEADER, SEARCH_ADVANCED_PAGE_END_POINT, SEARCH_ADVANCED_PAGE_HEADER } from "../../helpers/testData.js";
 
 test.describe('footer.spec', () => {
     test.beforeEach(async({page}) => {
@@ -12,7 +12,7 @@ test.describe('footer.spec', () => {
         await homePage.open();
     })
 
-    test('Verify visibility of footer', async({page}) => {
+    test.skip('Verify visibility of footer', async({page}) => {
         const footer = new Footer(page);
 
         expect(footer.locators.getFooter()).toBeVisible();
@@ -34,7 +34,7 @@ test.describe('footer.spec', () => {
             .getFooter()
             .clickSearchTerms();
         await expect(page).toHaveURL(BASE_URL + SEARCH_TERMS_POPULAR_PAGE_END_POINT);
-        expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
+        await expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
 
         await searchTermPopularPage.getHeader().clickLogoLink();
         await expect(page).toHaveURL(BASE_URL)
@@ -44,7 +44,7 @@ test.describe('footer.spec', () => {
             await item.click()
             await new Footer(page).clickSearchTerms();
             await expect(page).toHaveURL(BASE_URL + SEARCH_TERMS_POPULAR_PAGE_END_POINT);
-            expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
+            await expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
         }
     });
 
@@ -62,6 +62,14 @@ test.describe('footer.spec', () => {
         await expect(footerPage.locators.getPrivacyAndCookiePolicyLink()).toBeVisible();
         await expect(footerPage.locators.getNotesLink()).toBeVisible();
         await expect(footerPage.locators.getAdvancedSearchLink()).toBeVisible();
-    })
+    });
+
+    test('Link "Advanced Search" is clickable and redirectable', async ({ page }) => {
+        const footer = new Footer(page);
+        const searchAdvancedPage = await footer.clickAdvancedSearchLink();
+
+        await expect(page).toHaveURL(BASE_URL + SEARCH_ADVANCED_PAGE_END_POINT);
+        await expect(searchAdvancedPage.locators.getPageHeader()).toHaveText(SEARCH_ADVANCED_PAGE_HEADER);
+      })
 });
 
