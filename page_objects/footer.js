@@ -1,5 +1,6 @@
 import PrivacyPolicyPage from './privacyPolicyPage';
 import SearchTermPopularPage from "././searchTermPopularPage";
+import SearchAdvancedPage from './searchAdvancedPage.js';
 
 class Footer {
     constructor(page){
@@ -28,6 +29,11 @@ class Footer {
 
     async clickFooterLinks(linkName) {
         await this.locators.getFooterLinks(linkName).click();
+
+    async clickAdvancedSearchLink() {
+        await this.locators.getAdvancedSearchLink().click();
+
+        return new SearchAdvancedPage(this.page);
     }
 }
 
