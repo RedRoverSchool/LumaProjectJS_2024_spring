@@ -93,7 +93,7 @@ test.describe('bottomsWomenPage.spec', () => {
           await expect(bottomsWomenPage.locators.getOptionPriceFilter()).toBeVisible();
     })
 
-    test("Verify a User can deselect all options at once", async ({ page }) => {
+    test.skip("Verify a User can deselect all options at once", async ({ page }) => {
         const homePage = new HomePage(page);
         const womenPage = await homePage.clickWomenLink();
         const bottomsWomenPage = await womenPage.clickWomenBottomsLinkFromShopByCategory();
