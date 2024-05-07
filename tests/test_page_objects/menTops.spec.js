@@ -69,6 +69,19 @@ test.describe('menTops', () => {
         expect(await menTopsPage.getMenTopsPriceListProductCountPseudoElementAfter()).toEqual(')');
     })
 
+    MEN_TOPS_PRICE_LIST.forEach((priceRange, index) => {
+        test(`After applying a ${priceRange} filter, apropriate products are displayed on the page`, async ({ page }) => {
+            const homePage = new HomePage(page);
+            await homePage.hoverMenLink();
+            const menTopsPage = await homePage.clickMenTopsLink();
+            await menTopsPage.clickMenTopsPrice();
+            await menTopsPage.clickMenTopsPriceRange(index);
+
+            expect(await menTopsPage.getShoppingOptionFilterValues()).toEqual([MEN_TOPS_PRICE_LIST[index]]);
+            expect(await menTopsPage.getMinProductItemPrice()).toBeGreaterThanOrEqual(menTopsPage.getPriceFilterMinThreshold());
+        })
+    })
+
     test('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
         const homePage = new HomePage(page);
         const menTopsPage = new MenTopsPage(page);
