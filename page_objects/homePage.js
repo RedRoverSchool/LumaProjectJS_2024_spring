@@ -10,15 +10,15 @@ import BottomsWomenPage from "./bottomsWomenPage.js";
 import SearchTermPopularPage from "./searchTermPopularPage.js";
 import SalePage from "./salePage.js";
 import GearWatchesPage from "./gearWatchesPage.js";
-import SignInPage from "./signInPage.js"
+import SignInPage from "./signInPage.js";
 import Footer from "./footer.js";
 import GearPage from "./gearPage.js";
 import GearBagsPage from "./gearBagsPage.js";
 import OrdersAndReturnsPage from "./ordersAndReturnsPage.js";
 import BreatheEasyTankPage from "./breatheEasyTankPage.js";
 import WomenTopsPage from "./womenTopsPage.js";
-import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
-import HeroHoodiePage from "./heroHoodiePage.js"
+import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js";
+import HeroHoodiePage from "./heroHoodiePage.js";
 import TopsWomenPage from "./topsWomenPage.js";
 import FusionBackpack from "./fusionbackpackPage.js";
 
@@ -28,60 +28,94 @@ class HomePage {
   }
 
   locators = {
-    getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
-    getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
-    getMenLink: () => this.page.getByRole('menuitem', { name: 'Men' }).last(),
-    getMenBottomsLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
-    getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
-    getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
-    getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
+    getWhatsNewLink: () =>
+      this.page.getByRole("listitem").filter({ hasText: "What's New" }),
+    getWomenLink: () =>
+      this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
+    getMenLink: () => this.page.getByRole("menuitem", { name: "Men" }).last(),
+    getWomenItemLink: () => this.page.getByRole("menuitem", { name: "Women" }),
+    getMenBottomsLink: () =>
+      this.page.getByRole("menuitem", { name: "Bottoms" }),
+    getSearchInputField: () =>
+      this.page.getByPlaceholder("Search entire store here..."),
+    getWaitForAutocompleteSearchItems: () =>
+      this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
+    getAutocompleteSearchItems: () =>
+      this.page.locator("#search_autocomplete>ul>li>span:first-child"),
     getSearchButton: () => this.page.locator('button[title="Search"]'),
-    getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
-    getWaitForAutocompleteSearchItems: () => this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
-    getAutocompleteSearchItems: () => this.page.locator("#search_autocomplete>ul>li>span:first-child"),
-    getRadiantTee: () => this.page.getByTitle('Radiant Tee'),
-    getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
-    getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
-    getMenLink: () =>this.page.locator('li.nav-3'),
-    getMenTopsLink: () => this.page.locator('#ui-id-17'),
-    getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
-    getBottomsWomenLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
-    getSearchTermPopularLink: () => this.page.getByRole('link', { name: 'Search Terms' }),
-    getFirstCardImage: () => this.page.getByAltText('Radiant Tee'),
-    getDropdownWishList: () => this.page.getByRole('banner').getByText('My Account My Wish List Sign'),
-    getSaleLink: () => this.page.locator('#ui-id-8'),
-    getHotSellersXSSizeButton: () => this.page.getByRole('option', { name: 'XS' }),
-    getHotSellersBlueColor: () => this.page.getByRole('option', { name: 'Blue' }),
-    getHotSellersAddToCartButton: () => this.page.getByTitle('Add to Cart'),
-    getWomenCategories: () => this.page.locator('.nav-2 > ul > li > a'),
+    getSearchInputField: () =>
+      this.page.getByPlaceholder("Search entire store here..."),
+    getWaitForAutocompleteSearchItems: () =>
+      this.page.waitForSelector("#search_autocomplete>ul>li>span:first-child"),
+    getAutocompleteSearchItems: () =>
+      this.page.locator("#search_autocomplete>ul>li>span:first-child"),
+    getRadiantTee: () => this.page.getByTitle("Radiant Tee"),
+    getTrainingLink: () =>
+      this.page.getByRole("menuitem", { name: "Training" }),
+    getCreateAccountLink: () =>
+      this.page.getByRole("link", { name: "Create an Account" }),
+    getMenLink: () => this.page.locator("li.nav-3"),
+    getMenTopsLink: () => this.page.locator("#ui-id-17"),
+    getCreateAccountLink: () =>
+      this.page.getByRole("link", { name: "Create an Account" }),
+    getBottomsWomenLink: () =>
+      this.page.getByRole("menuitem", { name: "Bottoms" }),
+    getSearchTermPopularLink: () =>
+      this.page.getByRole("link", { name: "Search Terms" }),
+    getFirstCardImage: () => this.page.getByAltText("Radiant Tee"),
+    getDropdownWishList: () =>
+      this.page.getByRole("banner").getByText("My Account My Wish List Sign"),
+    getSaleLink: () => this.page.locator("#ui-id-8"),
+    getHotSellersXSSizeButton: () =>
+      this.page.getByRole("option", { name: "XS" }),
+    getHotSellersBlueColor: () =>
+      this.page.getByRole("option", { name: "Blue" }),
+    getHotSellersAddToCartButton: () => this.page.getByTitle("Add to Cart"),
+    getWomenCategories: () => this.page.locator(".nav-2 > ul > li > a"),
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
-    getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
+    getGearBagsSubmenuItem: () =>
+      this.page.getByRole("menuitem", { name: "Bags" }),
     getGearWatchesSubmenuItem: () =>
       this.page.getByRole("menuitem", { name: "Watches" }),
-    getSignInLink: () => this.page.getByRole('link', { name: 'Sign In' }),
+    getSignInLink: () => this.page.getByRole("link", { name: "Sign In" }),
     getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
-    getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
-    getOrdersAndReturnsLink: () => this.page.locator('.page-wrapper footer li:has-text("Orders and Returns")'),
+    getNavigationMenuItemsList: () =>
+      this.page.getByRole("navigation").getByRole("listitem"),
+    getOrdersAndReturnsLink: () =>
+      this.page.locator(
+        '.page-wrapper footer li:has-text("Orders and Returns")'
+      ),
     getGearBagsSubmenuItem: () => this.page.locator("#ui-id-25"),
-    getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" }),
-    getFirstCardReviews: () => this.page.locator('a.action.view[href*="radiant-tee"]'),
+    getGearBagsLink: () =>
+      this.page.getByRole("menuitem").filter({ hasText: "Bags" }),
+    getFirstCardReviews: () =>
+      this.page.locator('a.action.view[href*="radiant-tee"]'),
     getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
-    getSecondCardImage: () => this.page.getByAltText('Breathe-Easy Tank'),
-    getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),
-    getSecondCardReviews: () => this.page.locator('a[class="action view"][href*="breathe-easy-tank"]'),
-    getThirdCardImage: () => this.page.getByAltText('Argus All-Weather Tank'),
-    getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
-    getFourthCardName: () => this.page.getByAltText('Hero Hoodie'),
-    getFourthCardImage: () => this.page.getByAltText('Hero Hoodie'),
-    getFifthCardImage: () => this.page.getByAltText('Fusion Backpack'),
+    getSecondCardImage: () => this.page.getByAltText("Breathe-Easy Tank"),
+    getWomenTopsLink: () => this.page.getByRole("menuitem", { name: "Tops" }),
+    getSecondCardReviews: () =>
+      this.page.locator('a[class="action view"][href*="breathe-easy-tank"]'),
+    getThirdCardImage: () => this.page.getByAltText("Argus All-Weather Tank"),
+    getThirdCardName: () =>
+      this.page.locator('a[title="Argus All-Weather Tank"]'),
+    getFourthCardName: () => this.page.getByAltText("Hero Hoodie"),
+    getFourthCardImage: () => this.page.getByAltText("Hero Hoodie"),
+    getFifthCardImage: () => this.page.getByAltText("Fusion Backpack"),
     getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
-    getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
+    getFifthCardReviews: () =>
+      this.page.locator('.action.view[href*="fusion-backpack"]'),
   };
 
   async open() {
     await this.page.goto("/");
-    if (await this.page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible()) 
-            await this.page.getByRole('button', { name: 'Consent' }).click();
+    if (
+      await this.page
+        .getByRole("dialog", {
+          name: "This site asks for consent to use your data",
+        })
+        .isVisible()
+    )
+      await this.page.getByRole("button", { name: "Consent" }).click();
   }
 
   async clickWhatsNewLink() {
@@ -156,7 +190,7 @@ class HomePage {
   async clickMenTopsLink() {
     await this.locators.getMenTopsLink().click();
 
-    return new MenTopsPage(this.page)
+    return new MenTopsPage(this.page);
   }
 
   async clickBottomsWomenLink() {
@@ -167,6 +201,12 @@ class HomePage {
 
   async hoverWomenMenuitem() {
     await this.locators.getWomenLink().hover();
+
+    return this;
+  }
+
+  async hoverOverWomenMenuItem() {
+    await this.locators.getWomenItemLink().hover();
 
     return this;
   }
@@ -225,7 +265,6 @@ class HomePage {
     return new GearWatchesPage(this.page);
   }
 
-
   async clickSignInLink() {
     await this.locators.getSignInLink().click();
     return new SignInPage(this.page);
@@ -263,82 +302,88 @@ class HomePage {
     return new GearBagsPage(this.page);
   }
 
-  async clickFirstCardReviews () {
+  async clickFirstCardReviews() {
     await this.locators.getFirstCardReviews().click();
 
-    return new RadiantTeePage(this.page)
+    return new RadiantTeePage(this.page);
   }
 
   async clickSecondCardName() {
     await this.locators.getSecondCardName().click();
 
-    return new BreatheEasyTankPage(this.page)
+    return new BreatheEasyTankPage(this.page);
   }
 
   async clickSecondCardImage() {
     await this.locators.getSecondCardImage().click();
 
-    return new BreatheEasyTankPage(this.page)
+    return new BreatheEasyTankPage(this.page);
   }
 
   async clickWomenTopsLink() {
     await this.locators.getWomenTopsLink().click();
 
-    return new WomenTopsPage(this.page)
+    return new WomenTopsPage(this.page);
   }
-  
+
+  async clickOnWomenTopsLink() {
+    await this.locators.getWomenTopsLink().click();
+
+    return new TopsWomenPage(this.page);
+  }
+
   async clickSecondCardReviews() {
     await this.locators.getSecondCardReviews().click();
 
-    return new BreatheEasyTankPage(this.page)
+    return new BreatheEasyTankPage(this.page);
   }
 
   async clickThirdCardImage() {
     await this.locators.getThirdCardImage().click();
-    
-    return new ArgusAllWeatherTankPage(this.page)
+
+    return new ArgusAllWeatherTankPage(this.page);
   }
 
   async clickThirdCardName() {
     await this.locators.getThirdCardName().click();
 
-    return new ArgusAllWeatherTankPage(this.page)
+    return new ArgusAllWeatherTankPage(this.page);
   }
 
   async clickFourthCardName() {
     await this.locators.getFourthCardName().click();
 
-    return new HeroHoodiePage(this.page)
+    return new HeroHoodiePage(this.page);
   }
 
   async clickFourthCardImage() {
     await this.locators.getFourthCardImage().click();
 
-    return new HeroHoodiePage(this.page)
+    return new HeroHoodiePage(this.page);
   }
 
   async clickTopsWomenLink() {
     await this.locators.getWomenTopsLink().click();
 
-    return new TopsWomenPage(this.page)
+    return new TopsWomenPage(this.page);
   }
 
   async clickFifthCardImage() {
     await this.locators.getFifthCardImage().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpack(this.page);
   }
-  
+
   async clickFifthCardName() {
     await this.locators.getFifthCardName().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpack(this.page);
   }
 
   async clickFifthCardReviews() {
     await this.locators.getFifthCardReviews().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpack(this.page);
   }
 }
 export default HomePage;

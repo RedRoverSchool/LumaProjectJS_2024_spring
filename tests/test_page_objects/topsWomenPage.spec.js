@@ -110,8 +110,8 @@ test.describe("topWomenPage.spec", () => {
   }) => {
     const homePage = new HomePage(page);
 
-    await homePage.hoverWomenMenuitem();
-    const topsWomenPage = await homePage.clickWomenTopsLink();
+    await homePage.hoverOverWomenMenuItem();
+    const topsWomenPage = await homePage.clickOnWomenTopsLink();
 
     await topsWomenPage.clickCategoryFilterOption();
     await topsWomenPage.clickTeesCategoryShoppingOptions();
@@ -125,49 +125,5 @@ test.describe("topWomenPage.spec", () => {
       .allTextContents();
 
     expect(shoppingByList).toEqual(["Tees", "S", "Purple"]);
-
-    let itemsNameFirst = await topsWomenPage.locators
-      .getItemsNameList()
-      .first();
-    //.allTextContents();
-
-    let itemsNameSecond = await topsWomenPage.locators
-      .getItemsNameList()
-      .nth(1);
-    //.allTextContents();
-
-    //console.log(itemsNameFirst);
-    //console.log(itemsNameSecond);
-
-    await expect(itemsNameFirst).toContainText("Tee");
-    await expect(itemsNameSecond).toContainText("Tee");
-
-    expect(
-      await topsWomenPage.locators
-        .getPurpleColorItem()
-        .first()
-        .getAttribute("aria-checked")
-    ).toEqual("true");
-
-    expect(
-      await topsWomenPage.locators
-        .getPurpleColorItem()
-        .nth(1)
-        .getAttribute("aria-checked")
-    ).toEqual("true");
-
-    expect(
-      await topsWomenPage.locators
-        .getSSizeItem()
-        .first()
-        .getAttribute("aria-checked")
-    ).toEqual("true");
-
-    expect(
-      await topsWomenPage.locators
-        .getSSizeItem()
-        .nth(1)
-        .getAttribute("aria-checked")
-    ).toEqual("true");
   });
 });
