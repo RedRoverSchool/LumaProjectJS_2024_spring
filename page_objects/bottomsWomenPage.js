@@ -98,6 +98,7 @@ class BottomsWomenPage {
     async clickCategoryStyle(i) {
         const categories = await this.locators.getCategoriesStyle();
         await categories[i].click();
+    }
 }
 
 export default BottomsWomenPage;
