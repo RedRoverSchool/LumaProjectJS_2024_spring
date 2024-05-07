@@ -3,7 +3,7 @@ import HomePage from '../../page_objects/homePage.js';
 import Footer from '../../page_objects/footer.js';
 import SearchTermPopularPage from "../../page_objects/searchTermPopularPage.js";
 import SignInPage from '../../page_objects/signInPage.js';
-import { BASE_URL, SEARCH_TERMS_POPULAR_PAGE_END_POINT, SEARCH_TERMS_POPULAR_PAGE_HEADER, SEARCH_ADVANCED_PAGE_END_POINT, SEARCH_ADVANCED_PAGE_HEADER, FOOTER_LINK_NAME, FOOTER_LINKs_URLs_END_POINTS } from "../../helpers/testData.js";
+import { BASE_URL, SEARCH_TERMS_POPULAR_PAGE_END_POINT, SEARCH_TERMS_POPULAR_PAGE_HEADER, SEARCH_ADVANCED_PAGE_END_POINT, SEARCH_ADVANCED_PAGE_HEADER, FOOTER_LINK_NAME, FOOTER_LINKs_URLs_END_POINTS, NOTES_PAGE_URL } from "../../helpers/testData.js";
 
 test.describe('footer.spec', () => {
     test.beforeEach(async({page}) => {
@@ -84,5 +84,18 @@ test.describe('footer.spec', () => {
         await expect(page).toHaveURL(BASE_URL + SEARCH_ADVANCED_PAGE_END_POINT);
         await expect(searchAdvancedPage.locators.getPageHeader()).toHaveText(SEARCH_ADVANCED_PAGE_HEADER);
       })
+
+    test('Verify Notes link is clickable and redirects logged-in user to the required page', async ({page}) => {
+        const homePage = new HomePage(page);
+        const signInPage = await homePage.clickSignInLink();
+        await signInPage.fillFieldEmail();
+        await signInPage.fillFieldPassword();
+        await signInPage.clickButtonSignIn();
+
+        const pagePromise = page.waitForEvent('popup');
+        await homePage.getFooter().clickNotesLink();
+        const notesPage = await pagePromise;
+        await expect(notesPage).toHaveURL(NOTES_PAGE_URL);       
+    }) 
 });
 

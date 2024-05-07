@@ -61,7 +61,9 @@ export const MEN_TOPS_CATEGORY_PAGES_END_POINT = [
   '/men/tops-men.html?cat=16',
   '/men/tops-men.html?cat=17'
 ];
-export const SIGN_IN_END_POINT = '/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/'
+export const SIGN_IN_END_POINT = '/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/';
+
+export const NOTES_PAGE_URL = 'https://softwaretestingboard.com/magento-store-notes/?utm_source=magento_store&utm_medium=banner&utm_campaign=notes_promo&utm_id=notes_promotion';
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
