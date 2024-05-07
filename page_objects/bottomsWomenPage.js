@@ -18,9 +18,7 @@ class BottomsWomenPage {
         getCategoriesStyle: () => this.page.$$('a[href*=\'style\']'),
         getCountItemsInCategoryStyle: (category) => category.$('span.count'),
         getShoppingOptionsMaterial: () => this.page.locator(".filter-options-title").nth(7),
-        getShoppingOptionsMaterialOrganicCotton: () => this.page.getByText("Organic Cotton "),
-        getShoppingOptionsPrice: () =>  this.page.locator(".filter-options-title").nth(10),
-        getShoppingOptionsPriceSecondSubCategory: () => this.page.locator("a[href$='price=30-40']"),
+        getShoppingOptionsMaterialOrganicCotton: () => this.page.locator("a[href$='/bottoms-women.html?material=153']"),
         getClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'})
     }
 
@@ -73,18 +71,6 @@ class BottomsWomenPage {
 
     async clickShoppingOptionsMaterialOrganicCotton() {
         await this.locators.getShoppingOptionsMaterialOrganicCotton().click();
-
-        return this;
-    }
-
-    async clickShoppingOptionsPrice() {
-        await this.locators.getShoppingOptionsPrice().click();
-
-        return this;
-    }
-
-    async clickShoppingOptionsPriceSecondSubCategory() {
-        await this.locators.getShoppingOptionsPriceSecondSubCategory().click();
 
         return this;
     }
