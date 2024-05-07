@@ -11,7 +11,8 @@ class CreateAccountPage {
         getEmailField: () => this.page.locator('#email_address'),
         getPasswordField: () => this.page.locator('#password'),
         getConfirmPasswordField: () => this.page.locator('#password-confirmation'),
-        getCreateAccountButton: () => this.page.getByRole('button', { name: "Create an Account" })
+        getCreateAccountButton: () => this.page.getByRole('button', { name: "Create an Account" }),
+        getCreateAccountHeader: () => this.page.getByRole('heading', {name: 'Create New Customer Account'}).first()
         
     };
 
