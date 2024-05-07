@@ -17,10 +17,6 @@ class BottomsWomenPage {
         getOptionPriceFilter: () => this.page.locator('.filter-options-content').nth(3),
         getCategoriesStyle: () => this.page.$$('a[href*=\'style\']'),
         getCountItemsInCategoryStyle: (category) => category.$('span.count'),
-        getCountsItemsInCategoryStyle: () => this.page.$$("a[href*='style']>span.count"),
-        getSelectCategory: () => this.page.locator(".filter-value"),
-        getProductCards: () => this.page.locator(".item.product.product-item"),
-        getButtonClearAll: () => this.page.getByRole('link', {name: 'Clear All'})
     }
 
     async getLocatorInnerText(locator) {
@@ -64,48 +60,11 @@ class BottomsWomenPage {
         return this;
     }
 
-    async getObjectCategoriesStyle() {
-        return await this.page.$$eval("a[href*='style']", elements =>
-        elements.map(element => ({
-            name: element.innerText.replace(/\bitem\b|\d+/g, "").trim(),
-            count: parseInt(element.querySelector("span.count").innerText.trim())
-        })))
-    }
-
-    async clickButtonClearAll(){
-        await this.locators.getButtonClearAll().click();
-
+    async clickCategoryStyle(i) {
+        const categories = await this.locators.getCategoriesStyle();
+        await categories[i].click();
+        
         return this;
-    }
-
-    async verifyProductCardsQuantity(categoriesStyle, productCards) {
-        for (let i = 0; i < categoriesStyle.length; i++) {
-            const { name, count } = categoriesStyle[i];
-            await this.clickWomenBottomsOptionStyle();
-    
-            if (!(await this.locators.getAriaSelectedWomenBottoms())) {
-            throw new Error('Aria selected attribute is not present.');
-            }
-    
-            const categoryElement = (await this.locators.getCategoriesStyle())[i];
-            await categoryElement.click();
-    
-            const selectCategory = await (this.locators.getSelectCategory()).innerText();
-    
-            if (name !== selectCategory) {
-            throw new Error('Selected category does not match the expected category.');
-            }
-    
-            await this.page.waitForSelector(productCards);
-    
-            const productsCount = await this.locators.getProductCards().count();
-    
-            if (count !== productsCount) {
-            throw new Error('Number of product cards does not match the expected count.');
-            }
-    
-            await this.clickButtonClearAll();
-        }
     }
 }
 

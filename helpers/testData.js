@@ -16,6 +16,7 @@ export const RADIANT_TEE_PAGE_END_POINT = '/radiant-tee.html';
 export const RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT = '/radiant-tee.html#reviews';
 export const BREATHE_EASY_TANK_PAGE_END_POINT = '/breathe-easy-tank.html';
 export const BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT = '/breathe-easy-tank.html#reviews';
+export const BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT = '/women/bottoms-women.html?style_bottom=104';
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
   '/men/tops-men/hoodies-and-sweatshirts-men.html',
@@ -83,7 +84,6 @@ export const EMAIL = generateRandomEmail();
 export const MY_ACCOUNT_HEADER = 'My Account';
 export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store.';
 export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
-export const PRODUCT_CARDS = '.item.product.product-item';
 
 export const SEARCH_VALID_VALUE = 'jacket';
 export const SEARCH_INVALID_VALUE = `${SEARCH_VALID_VALUE}test`;

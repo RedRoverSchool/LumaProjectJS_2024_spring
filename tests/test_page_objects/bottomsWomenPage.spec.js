@@ -1,8 +1,9 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import BottomsWomenPage from "../../page_objects/bottomsWomenPage.js";
-import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, PRODUCT_CARDS} from "../../helpers/testData.js";
+import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT} from "../../helpers/testData.js";
 import { WOMEN_BOTTOMS_CATEGORIES } from "../../helpers/testWomenData.js";
+import { count } from "console";
 
 test.describe('bottomsWomenPage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -57,22 +58,20 @@ test.describe('bottomsWomenPage.spec', () => {
     });
 
 
-    test('Verify that when you select each category in the "Style" option, product cards are displayed on the page in the quantity available for this category', async ({ page }) => {
+    test('Verify that selecting a category "Base Layer" in the "Style" option navigates to the page with products of that category', async ({ page }) => {
         const homePage = new HomePage(page);
         const bottomsWomenPage = new BottomsWomenPage(page);
-        
+
         await homePage.hoverWomenMenuitem();
         await homePage.clickBottomsWomenLink();
-    
-        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
-    
-        const categoriesStyle = await bottomsWomenPage.getObjectCategoriesStyle();
-        const productCards = PRODUCT_CARDS;
-        
-        await bottomsWomenPage.verifyProductCardsQuantity(categoriesStyle, productCards);
 
         await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
-        });
+
+        await bottomsWomenPage.clickWomenBottomsOptionStyle();
+        await bottomsWomenPage.clickCategoryStyle(0);
+
+        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT);
+    });
 
     test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
         const homePage = new HomePage(page);
