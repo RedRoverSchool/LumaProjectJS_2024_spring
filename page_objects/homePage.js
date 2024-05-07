@@ -30,7 +30,8 @@ class HomePage {
 
   locators = {
     getWhatsNewLink: () => this.page.getByRole("listitem").filter({ hasText: "What's New" }),
-    getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),
+    getWomenLink: () => this.page.locator(".nav-sections .navigation li a[href$='/women.html']"),    
+    getWomenItemLink: () => this.page.getByRole("menuitem", { name: "Women" }),
     getMenLink: () => this.page.getByRole('menuitem', { name: 'Men' }).last(),
     getMenBottomsLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
     getSearchInputField: () => this.page.getByPlaceholder("Search entire store here..."),
@@ -68,7 +69,7 @@ class HomePage {
     getFirstCardReviews: () => this.page.locator('a.action.view[href*="radiant-tee"]'),
     getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
     getSecondCardImage: () => this.page.getByAltText('Breathe-Easy Tank'),
-    getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),
+    getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),    
     getSecondCardReviews: () => this.page.locator('a[class="action view"][href*="breathe-easy-tank"]'),
     getThirdCardImage: () => this.page.getByAltText('Argus All-Weather Tank'),
     getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
@@ -323,6 +324,18 @@ class HomePage {
     await this.locators.getWomenTopsLink().click();
 
     return new TopsWomenPage(this.page)
+  }
+
+  async clickOnWomenTopsLink() {
+    await this.locators.getWomenTopsLink().click();
+
+    return new TopsWomenPage(this.page);
+  }
+
+  async hoverOverWomenMenuItem() {
+    await this.locators.getWomenItemLink().hover();    
+
+    return this;
   }
 
   async clickFifthCardImage() {
