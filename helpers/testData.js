@@ -47,7 +47,8 @@ export const GEAR_BAGS_PAGE_END_POINT = '/gear/bags.html';
 export const FOOTER_LINKs_URLs_END_POINTS = [
   '/search/term/popular/',
   '/privacy-policy-cookie-restriction-mode',
-  '/catalogsearch/advanced/' 
+  '/catalogsearch/advanced/'
+]; 
 
 export const MEN_TOPS_CATEGORY_PAGES_END_POINT = [
   '/men/tops-men.html?cat=14',

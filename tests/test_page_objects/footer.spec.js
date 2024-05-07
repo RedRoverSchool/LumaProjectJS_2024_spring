@@ -27,7 +27,7 @@ test.describe('footer.spec', () => {
 
         await expect(page).toHaveURL(BASE_URL + SEARCH_TERMS_POPULAR_PAGE_END_POINT);
         await expect(searchTermPopularPage.locators.getSearchTermPopularHeader()).toContainText(SEARCH_TERMS_POPULAR_PAGE_HEADER);
-    });
+    })
 
     test('Verify that "Search terms" link redirects to the "Popular Search Terms" page', async ({ page }) => {
         const searchTermPopularPage = await new HomePage(page)
@@ -46,7 +46,7 @@ test.describe('footer.spec', () => {
             await expect(page).toHaveURL(BASE_URL + SEARCH_TERMS_POPULAR_PAGE_END_POINT);
             await expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
         }
-    });
+    })
 
     test('Verify links visibility in the footer for logged-in user', async ({page}) => {
         const homePage = new HomePage(page);
@@ -76,7 +76,6 @@ test.describe('footer.spec', () => {
             await expect(page).toHaveURL(BASE_URL + FOOTER_LINKs_URLs_END_POINTS[idx]);       
         })
     }) 
-    });
 
     test('Link "Advanced Search" is clickable and redirectable', async ({ page }) => {
         const footer = new Footer(page);

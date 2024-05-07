@@ -29,6 +29,7 @@ class Footer {
 
     async clickFooterLinks(linkName) {
         await this.locators.getFooterLinks(linkName).click();
+    }    
 
     async clickAdvancedSearchLink() {
         await this.locators.getAdvancedSearchLink().click();
