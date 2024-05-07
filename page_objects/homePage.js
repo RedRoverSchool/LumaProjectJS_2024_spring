@@ -363,6 +363,7 @@ class HomePage {
 
     return new PushItMessengerBagPage(this.page)
   }
+
   async clickMainMenuLinks(i) {
     await this.locators.getMainMenuLinks().nth(i).click();
   

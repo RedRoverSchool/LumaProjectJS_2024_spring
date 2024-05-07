@@ -49,6 +49,12 @@ export const NAVBAR_URLs_END_POINTS = [
 ];
 export const GEAR_BAGS_PAGE_END_POINT = '/gear/bags.html';
 
+export const FOOTER_LINKs_URLs_END_POINTS = [
+  '/search/term/popular/',
+  '/privacy-policy-cookie-restriction-mode',
+  '/catalogsearch/advanced/'
+]; 
+
 export const MEN_TOPS_CATEGORY_PAGES_END_POINT = [
   '/men/tops-men.html?cat=14',
   '/men/tops-men.html?cat=15',
@@ -228,6 +234,7 @@ export const LIST_LABELS_SUB_CATEGORY = [
 
 export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
 export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
+export const FOOTER_LINK_NAME = ['Search Terms', 'Privacy and Cookie Policy', 'Advanced Search']
 export const LOGO_ALIGNMENT = 'left';
 
 export const LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE = [
