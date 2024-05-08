@@ -146,4 +146,27 @@ test.describe('gearWatchesPage.spec', () => {
     };
   })
 
+  test('Verify only watches on sale displayed on page', async ({ page }) => {
+    const gearWatchesPage = new GearWatchesPage(page);
+    await gearWatchesPage.clickSaleOption()
+    const watchProductPage = await gearWatchesPage.clickYesOption()
+    const saleItemsNumber = watchProductPage.locators.getSaleItemsNumber()
+    const getSaleWatches = watchProductPage.locators.getSaleWatches()
+    //expect (saleItemsNumber).toEqual(getSaleWatches)
+
+    expect (getSaleWatches).toEqual(+saleItemsNumber)
+   
+
+
+  })
+
+  // test('Verify only watches on sale displayed on page', async ({ page }) => {
+  //   await page.getByRole('menuitem', { name: 'Gear' }).hover()
+  //   await page.getByRole('menuitem', { name: 'Watches' }).click()
+  //   await page.getByRole('tab', { name: 'Sale' }).click()
+  //   await page.getByRole('link', { name: " Yes " }).click()
+  //   const saleItemsNumber = await page.locator('#maincontent').getByRole('paragraph').getByText('2').innerText()
+  //   const saleWatches = (await page.locator('.product-items').getByRole('listitem').count()).toString()
+  //   expect(saleItemsNumber).toEqual(saleWatches)
+
 });

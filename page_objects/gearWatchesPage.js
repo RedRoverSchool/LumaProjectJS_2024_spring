@@ -24,6 +24,8 @@ class GearWatchesPage {
             .locator("a.product-item-link[href]"),
         getProductPage: (product) => this.page.getByText(product),
         getFilterValue: () => this.page.locator(".filter-value"),
+        getSaleOption: () => this.page.getByRole('tab', { name: 'Sale' }),
+        getYesOption: () => this.page.getByRole('link', { name: " Yes " })
   };
 
   async clickShoppingOption(option) {
@@ -47,6 +49,16 @@ class GearWatchesPage {
     await this.locators.getProductPage(product).click();
 
     return new WatchProductPage(this.page);
+  }
+
+  async clickSaleOption(){
+    await this.locators.getSaleOption().click()
+    return this
+  }
+
+  async clickYesOption(){
+    await this.locators.getYesOption().click()
+    return new WatchProductPage(this.page)
   }
 }
 export default GearWatchesPage;
