@@ -78,7 +78,8 @@ class HomePage {
     getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
     getSixthCardImage: () => this.page.getByAltText('Push It Messenger Bag'),
     getSixthCardName: () => this.page.locator('a[title="Push It Messenger Bag"]'),
-    getSixthCardReviews: () => this.page.locator('a[class="action view"][href*="push-it-messenger-bag"]')
+    getSixthCardReviews: () => this.page.locator('a[class="action view"][href*="push-it-messenger-bag"]'),
+    getHotSellersCardLink: () => this.page.locator('.product-item-photo')
   };
 
   async open() {
@@ -376,5 +377,10 @@ class HomePage {
     return new PushItMessengerBagPage(this.page)
   }
 
+  async clickHotSellersCardLink(ind) {
+    await this.locators.getHotSellersCardLink().nth(ind).click();
+
+    return new RadiantTeePage(this.page)
+  }
 }
 export default HomePage;
