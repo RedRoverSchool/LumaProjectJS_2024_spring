@@ -19,7 +19,15 @@ class GearBagsPage {
 		getPaginationFirstPageAttr: () => this.page.locator('div.pages li').nth(1),
         getMateialLeather: () => this.page.getByRole('link', {name: 'Leather'}),
         getProductItamList: () => this.page.getByRole('img'),
-        getListMode: () => this.page.getByRole('link', { name: 'List' }),         
+        getListMode: () => this.page.getByRole('link', { name: 'List' }),    
+        getSelectorBagsNumber: () => this.page.locator('//select[@id="limiter"]//option[2]').last(),
+        getListButtonPressed: () => this.page.locator('div.toolbar-products [title="List"]').first(),
+
+    async clickListDisplayMode() {
+        await this.locators.getListDisplayMode().click();
+        
+        return this;
+    }     
     };
 
     async hoverPushItMessengerItem() {
