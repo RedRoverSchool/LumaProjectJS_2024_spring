@@ -29,7 +29,6 @@ export const SEARCH_ADVANCED_PAGE_END_POINT = '/catalogsearch/advanced/';
 export const PUSH_IT_MESSENGER_BAG_PAGE_END_POINT = '/push-it-messenger-bag.html'
 export const WOMEN_SHORTS_PAGE_END_POINT = '/women/bottoms-women/shorts-women.html'
 export const BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT = '/women/bottoms-women.html?style_bottom=104';
-export const WOMEN_SHORTS_PAGE_END_POINT = '/women/bottoms-women/shorts-women.html';
 export const FOOTER_ORDERS_AND_RETURNS_PAGE_END_POINT = '/sales/guest/form/'
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
