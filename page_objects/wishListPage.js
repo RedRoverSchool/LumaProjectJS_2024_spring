@@ -14,7 +14,8 @@ class WishListPage {
 		  getMyWishListItemNameLocator: () => this.page.locator('.products-grid .product-item-link'),
 		  getgotoWishListlink: () => this.page.getByRole('link', { name: 'Go to Wish List' }),
 		  getButtonClose: () => this.page.locator('#wishlist-sidebar').getByRole('link', { name: ' Remove This Item' }),
-		  getTitleNoItems: () => this.page.locator('#wishlist-view-form').getByText('You have no items in your')
+		  getTitleNoItems: () => this.page.locator('#wishlist-view-form').getByText('You have no items in your'),
+		  getAddToCard: () => this.page.locator('#wishlist-sidebar').getByRole('button', { name: 'Add to Cart' })
     }
 
 	 async clickTrainingLink() {
@@ -32,6 +33,8 @@ class WishListPage {
 	async clickButtonDelete() {
 		await this.locators.getButtonClose().click();
 	}
-
+    async clickAddCard() {
+		await this.locators.getAddToCard().click();
+	}
 }
 export default WishListPage;

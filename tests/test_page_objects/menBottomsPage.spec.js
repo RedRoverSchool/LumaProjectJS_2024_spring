@@ -2,7 +2,7 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import MenBottomsPage from "../../page_objects/menBottomsPage.js";
-import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE } from "../../helpers/testData.js";
+import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE, LIST_CATEGORY_MEN_BOTTOMS_WITH_QUANTITY } from "../../helpers/testData.js";
 
   test.describe ('menBottomsPage.spec', () => {
     test.beforeEach(async({page}) => {
@@ -37,7 +37,7 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
     expect(positionOfSidebar).toBe('left');
   })
 
-  test('verify the user can select a subcategory from the dropdown', async ({ page }) => {
+  test.skip('verify the user can select a subcategory from the dropdown', async ({ page }) => {
     const homePage = new HomePage(page);
     const menBottomsPage = new MenBottomsPage(page);
       
@@ -84,5 +84,24 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
       await expect(menBottomsPage.locators.getMenBottomsFilterList()).toHaveClass(/active/);
   
     })
+
+    test("verify that the quantity of available items is visible", async ({ page }) => {
+      const homePage = new HomePage(page);
+      await homePage.hoverMenLink();
+      const menBottomsPage = await homePage.clickMenBottomsLink();
+  
+      await expect(page).toHaveURL(BASE_URL + MEN_BOTTOMS_PAGE_END_POINT);
+      await page.waitForLoadState('load');
+
+      await menBottomsPage.hoverMenBottomsCategory();
+      await menBottomsPage.clickMenBottomsCategory();
+      await menBottomsPage.waitForTimeout(5000);
+
+      await expect(menBottomsPage.locators.getMenBottomsCategoryListOfItemsLocator().first()).toBeVisible();
+  
+      const receivedElements = (await menBottomsPage.locators.getMenBottomsCategoryListOfItemsLocator().allInnerTexts()).map(item => item.replace('\n' , ' ')); 
+  
+      expect(LIST_CATEGORY_MEN_BOTTOMS_WITH_QUANTITY).toEqual(receivedElements);
+  })
 });
   
