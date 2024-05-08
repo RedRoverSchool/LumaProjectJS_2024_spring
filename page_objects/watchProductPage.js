@@ -11,6 +11,8 @@ class WatchProductPage {
       this.page.waitForSelector("#product-attribute-specs-table"),
     getMoreInformationSectionContent: () =>
       this.page.locator("table#product-attribute-specs-table tbody"),
+    getSaleItemsNumber:() => this.page.locator('.toolbar-products .toolbar-amount .toolbar-number').first().innerText(),
+    getSaleWatches:() => this.page.locator('.product-items').getByRole('listitem').count()
   };
 
   async openMoreInformationSection() {

@@ -21,7 +21,9 @@ class BottomsWomenPage {
         getShoppingOptionsMaterialOrganicCotton: () => this.page.getByText("Organic Cotton "),
         getShoppingOptionsPrice: () =>  this.page.locator(".filter-options-title").nth(10),
         getShoppingOptionsPriceSecondSubCategory: () => this.page.locator("a[href$='price=30-40']"),
-        getClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'})
+        getClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'}),
+        getWomenBottomsOptionSize: () => this.page.getByRole('tab', { name: 'Size' }),
+        getWomenBottomsLocatorsSize: () => this.page.locator('a[href*="women/bottoms-women.html?size"]>div'),
     }
 
     async getLocatorInnerText(locator) {
@@ -98,6 +100,11 @@ class BottomsWomenPage {
     async clickCategoryStyle(i) {
         const categories = await this.locators.getCategoriesStyle();
         await categories[i].click();
+    }
+    async clickWomenBottomsOptionSize() {
+        await this.locators.getWomenBottomsOptionSize().click();
+
+        return this.page;
     }
 }
 

@@ -22,6 +22,7 @@ import HeroHoodiePage from "./heroHoodiePage.js"
 import TopsWomenPage from "./topsWomenPage.js";
 import FusionBackpack from "./fusionbackpackPage.js";
 import PushItMessengerBagPage from "./pushItMessengerBagPage.js";
+import MyAccountPage from "./myAccountPage.js";
 
 class HomePage {
   constructor(page) {
@@ -78,7 +79,10 @@ class HomePage {
     getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
     getSixthCardImage: () => this.page.getByAltText('Push It Messenger Bag'),
     getSixthCardName: () => this.page.locator('a[title="Push It Messenger Bag"]'),
-    getSixthCardReviews: () => this.page.locator('a[class="action view"][href*="push-it-messenger-bag"]')
+    getSixthCardReviews: () => this.page.locator('a[class="action view"][href*="push-it-messenger-bag"]'),
+    getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
+    getWelcomeDropdown: () => this.page.locator('[class="panel header"] span[role="button"]'),
+    getMyAccountLink: () => this.page.getByRole('link', {name: 'My Account'}),
   };
 
   async open() {
@@ -376,5 +380,20 @@ class HomePage {
     return new PushItMessengerBagPage(this.page)
   }
 
+  async getGreetingText(name) {
+    return await this.locators.getGreetingName(name).innerText();
+  }
+
+  async clickWelcomeDropdown() {
+    await this.locators.getWelcomeDropdown().click();
+
+    return this;
+  }
+
+  async clickMyAccountLink() {
+    await this.locators.getMyAccountLink().click()
+
+    return new MyAccountPage(this.page);
+  }
 }
 export default HomePage;
