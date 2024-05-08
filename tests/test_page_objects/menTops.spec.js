@@ -1,6 +1,14 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { LIST_STYLE_MEN_TOPS, BASE_URL, MEN_TOPS_PAGE_END_POINT, LIST_CATEGORY_MEN_TOPS, LIST_LABELS_SUB_CATEGORY, MEN_TOPS_CATEGORY_PAGES_END_POINT, LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE} from "../../helpers/testData.js"
+import {
+    LIST_STYLE_MEN_TOPS,
+    BASE_URL,
+    MEN_TOPS_PAGE_END_POINT,
+    LIST_CATEGORY_MEN_TOPS,
+    LIST_LABELS_SUB_CATEGORY,
+    MEN_TOPS_CATEGORY_PAGES_END_POINT,
+    LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE
+} from "../../helpers/testData.js"
 import MenTopsPage from "../../page_objects/menTopsPage.js";
 import { MEN_TOPS_PRICE_LIST, MEN_TOPS_PRICE_LIST_PRODUCT_COUNT } from "../../helpers/testMenData.js";
 
@@ -47,7 +55,7 @@ test.describe('menTops', () => {
         await menTopsPage.clickMenTopsStyle();
 
         await expect(menTopsPage.locators.getMenTopsStyleInsulated()).toBeVisible();
-    })
+    });
 
     test('check Men/Tops price filter drop-down has 8 options', async ({page}) => {
         const homePage = new HomePage(page);
@@ -56,7 +64,7 @@ test.describe('menTops', () => {
         await menTopsPage.clickMenTopsPrice();
         
         expect(await menTopsPage.getMenTopsPriceList()).toEqual(MEN_TOPS_PRICE_LIST);
-    })
+    });
 
     test('check Men/Tops price drop-down has quantity of available items in each price category', async ({ page }) => {
         const homePage = new HomePage(page);       
@@ -67,10 +75,10 @@ test.describe('menTops', () => {
         expect(await menTopsPage.getMenTopsPriceListProductCount()).toEqual(MEN_TOPS_PRICE_LIST_PRODUCT_COUNT);
         expect(await menTopsPage.getMenTopsPriceListProductCountPseudoElementBefore()).toEqual('(');
         expect(await menTopsPage.getMenTopsPriceListProductCountPseudoElementAfter()).toEqual(')');
-    })
+    });
 
     MEN_TOPS_PRICE_LIST.forEach((priceRange, index) => {
-        test(`After applying a ${priceRange} filter, apropriate products are displayed on the page`, async ({ page }) => {
+        test(`After applying a ${priceRange} price filter, apropriate products are displayed on the page`, async ({ page }) => {
             const homePage = new HomePage(page);
             await homePage.hoverMenLink();
             const menTopsPage = await homePage.clickMenTopsLink();
@@ -78,9 +86,10 @@ test.describe('menTops', () => {
             await menTopsPage.clickMenTopsPriceRange(index);
 
             expect(await menTopsPage.getShoppingOptionFilterValues()).toEqual([MEN_TOPS_PRICE_LIST[index]]);
-            expect(await menTopsPage.getMinProductItemPrice()).toBeGreaterThanOrEqual(menTopsPage.getPriceFilterMinThreshold());
+            expect(await menTopsPage.getMinProductItemPrice()).toBeGreaterThanOrEqual(await menTopsPage.getPriceFilterMinThreshold());
+            expect(await menTopsPage.getMaxProductItemPrice()).toBeLessThanOrEqual(await menTopsPage.getPriceFilterMaxThreshold());
         })
-    })
+    });
 
     test('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
         const homePage = new HomePage(page);
@@ -129,8 +138,7 @@ test.describe('menTops', () => {
         expect(totalItemCountPerPage).toEqual(countItemInTopPage);
         await menTopsPage.clickClearAllButton();  
     }
-});
-
+    });
 })
 
 

@@ -7,7 +7,6 @@ import {
    PRODUCTS_PRICE
 } from "../helpers/testData.js";
 import {MEN_TOPS_PRICE_LIST, MEN_TOPS_PRICE_LIST_LOCATORS} from "../helpers/testMenData.js";
-import { selectors } from "@playwright/test";
 
 class MenTopsPage{
    constructor(page){
@@ -35,8 +34,8 @@ class MenTopsPage{
     getShoppingOptionFilterValue: () => this.page.locator(SHOPPING_OPTIONS_FILTER_VALUE),
     getProductsPrice: () => this.page.locator(PRODUCTS_PRICE),
     getSorting: () => this.page.locator('#sorter').first(),
-    getAscSorting: () => this.page.getByTitle('Set Ascending Direction'),
-    getDescSorting: () => this.page.getByTitle('Set Descending Direction')
+    getAscSorting: () => this.page.getByTitle('Set Ascending Direction').first(),
+    getDescSorting: () => this.page.getByTitle('Set Descending Direction').first()
    };
 
    async clickMenTopsStyle(){
@@ -68,7 +67,6 @@ class MenTopsPage{
 
    async sortProductsByPriceAscending() {
       await this.locators.getSorting().selectOption('price');
-      await this.locators.getAscSorting().click();
 
       return this;
    }
@@ -91,15 +89,37 @@ class MenTopsPage{
    }
 
    async getMinProductItemPrice() {
+      await this.sortProductsByPriceAscending();
       const productPrice = await this.locators.getProductsPrice().allInnerTexts();
 
-      return Number(productPrice[0]);
+      console.log('min product price from = ' + productPrice);
+      console.log(Number(productPrice.map(price => price.slice(1))[0]));
+
+      return Number(productPrice.map(price => price.slice(1))[0]);
+   }
+
+   async getMaxProductItemPrice() {
+      await this.sortProductsByPriceDescending();
+      const productPrice = await this.locators.getProductsPrice().allInnerTexts();
+
+      console.log('max product price from = ' + productPrice);
+      console.log(Number(productPrice.map(price => price.slice(1))[0]));
+
+      return Number(productPrice.map(price => price.slice(1))[0]);
    }
 
    async getPriceFilterMinThreshold() {
       const priceRange = await this.locators.getShoppingOptionFilterValue().allTextContents();
 
-      return Number(priceRange[0].slice(1, 3));
+      return Number(priceRange.map(range => range.split(' ').map(el => el.slice(1))).flat()[0]);
+   }
+
+   async getPriceFilterMaxThreshold() {
+      if (await this.getPriceFilterMinThreshold() != 90) {
+         const priceRange = await this.locators.getShoppingOptionFilterValue().allTextContents();
+
+         return Number(priceRange.map(range => range.split(' ').map(el => el.slice(1))).flat().slice(-1));
+      } else return Infinity
    }
 
    async clickProductCard(product) { 
