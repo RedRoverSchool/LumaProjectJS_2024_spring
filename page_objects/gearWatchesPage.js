@@ -1,5 +1,6 @@
 import { LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS } from "../helpers/testData.js";
 import WatchProductPage from "../page_objects/watchProductPage.js";
+import { LIST_OF_CATEGORY_WATCHES } from "../helpers/testData.js";
 
 class GearWatchesPage {
   constructor(page) {
@@ -24,6 +25,8 @@ class GearWatchesPage {
             .locator("a.product-item-link[href]"),
         getProductPage: (product) => this.page.getByText(product),
         getFilterValue: () => this.page.locator(".filter-value"),
+        getCategory: () => this.page.locator("#narrow-by-list"),
+        getCategoryOptions: () => this.page.locator('a[href*="?category_gear"]'),
   };
 
   async clickShoppingOption(option) {
@@ -47,6 +50,18 @@ class GearWatchesPage {
     await this.locators.getProductPage(product).click();
 
     return new WatchProductPage(this.page);
+  }
+
+  async clickCategory() {
+    await this.locators.getCategory().click();
+
+    return this;
+  }
+
+  async getOptionsText(idx) {
+    const text =(await this.locators.getCategoryOptions().nth(idx).innerText()).split(' ')[0];
+
+    return text;
   }
 }
 export default GearWatchesPage;
