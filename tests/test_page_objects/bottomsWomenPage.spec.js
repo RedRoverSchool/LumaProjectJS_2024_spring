@@ -86,7 +86,7 @@ test.describe('bottomsWomenPage.spec', () => {
         await bottomsWomenPage.clickCategoryStyle(0);
     
         await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT);
-        expect(await bottomsWomenPage.locators.getSelectCategory()).toHaveText(await categories[0].name);
+        await expect(await bottomsWomenPage.locators.getSelectCategory()).toHaveText(await categories[0].name);
         });
 
     test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
