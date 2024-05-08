@@ -14,7 +14,9 @@ class Footer {
         getSearchTerms: () => this.page.getByText('Search Terms'),
         getNotesLink: () => this.page.getByRole('link', { name: 'Notes' }),
         getAdvancedSearchLink: () => this.page.getByRole('link', { name: 'Advanced Search'}),
-        getFooterLinks: (linkName) => this.page.getByRole('link', { name: linkName}),
+        getFooterLinks: (linkName) => this.page.getByRole('link', { name: linkName }),
+        getOrdersAndReturnsPageFields: () => this.page.locator('.fieldset .label').filter((label) => label.textContent() === ORDERS_AND_RETURNS_PAGE_FIELDS).all(),
+        getOrdersAndReturnsLink: () => this.page.getByRole('link', { name: 'Orders and Returns'})
     }
 
     async clickPrivacyAndCookiePolicyLink() {
@@ -41,6 +43,10 @@ class Footer {
     async clickNotesLink() {
         await this.locators.getNotesLink().click();
         return new NotesPage(this.page);
+    }
+    async clickOrdersAndReturnsLink() {
+        await this.locators.getOrdersAndReturnsLink().click();
+        return new Footer(this.page);
     }
 }
 
