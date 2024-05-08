@@ -163,7 +163,7 @@ test.describe('gearWatchesPage.spec', () => {
 });
 
 LIST_OF_CATEGORY_WATCHES.forEach((category, idx) => {
-test.only(`Verify Category options ${category} on gearWatchesPage`, async ({ page }) => {
+test(`Verify Category options ${category} on gearWatchesPage`, async ({ page }) => {
     const gearWatchesPage = new GearWatchesPage(page);
 
     await gearWatchesPage.clickCategory();

@@ -1,6 +1,5 @@
 import { LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS } from "../helpers/testData.js";
 import WatchProductPage from "../page_objects/watchProductPage.js";
-import { LIST_OF_CATEGORY_WATCHES } from "../helpers/testData.js";
 
 class GearWatchesPage {
   constructor(page) {
