@@ -13,7 +13,8 @@ class Footer {
         getSearchTerms: () => this.page.getByText('Search Terms'),
         getNotesLink: () => this.page.getByRole('link', { name: 'Notes' }),
         getAdvancedSearchLink: () => this.page.getByRole('link', { name: 'Advanced Search'}),
-        getFooterLinks: (linkName) => this.page.getByRole('link', { name: linkName}),
+        getFooterLinks: (linkName) => this.page.getByRole('link', { name: linkName }),
+        getFooterOrdersReturnsLink
     }
 
     async clickPrivacyAndCookiePolicyLink() {
