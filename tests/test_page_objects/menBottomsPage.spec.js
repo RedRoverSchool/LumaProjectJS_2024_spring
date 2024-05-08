@@ -11,13 +11,12 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
       await homePage.open();
   })
 
-    test ("Verify men's bottom tab", async ({ page }) => {
+    test("Verify men's bottom tab", async ({ page }) => {
 
     const homePage = new HomePage(page);
-    const menBottomsPage = new MenBottomsPage(page);
-
+    
     await homePage.hoverMenLink();
-    await homePage.clickMenBottomsLink();
+    const menBottomsPage = await homePage.clickMenBottomsLink();
 
     await expect(page).toHaveURL(BASE_URL + MEN_BOTTOMS_PAGE_END_POINT);
     await expect(menBottomsPage.locators.getBottomsHeading()).toBeVisible();
@@ -25,10 +24,9 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
 
   test('verify the sidebar is on the left', async ({ page }) => {
     const homePage = new HomePage(page);
-    const menBottomsPage = new MenBottomsPage(page);
 
     await homePage.hoverMenLink();
-    await homePage.clickMenBottomsLink();
+    const menBottomsPage = await homePage.clickMenBottomsLink();
 
     await expect(menBottomsPage.locators.getMenBottomsShopingOptionsSidebarTitle()).toBeVisible();
    
@@ -60,10 +58,9 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
   
     test("Checking that the grid is selected and has 12 positions by defaultBottoms", async ({ page }) => {
       const homePage = new HomePage(page);
-      const menBottomsPage = new MenBottomsPage(page);
 
       await homePage.hoverMenLink();
-      await homePage.clickMenBottomsLink();
+      const menBottomsPage = await homePage.clickMenBottomsLink();
   
       await expect(menBottomsPage.locators.getMenBottomsFilterGrid()).toHaveClass(/active/);
       await expect(menBottomsPage.locators.getMenBottomsDefault12ItemCard()).toHaveCount(12);
@@ -71,10 +68,9 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
     })
     test("Checking that the list is selected and has 10 positions by defaultBottoms", async ({ page }) => {
       const homePage = new HomePage(page);
-      const menBottomsPage = new MenBottomsPage(page);
 
       await homePage.hoverMenLink();
-      await homePage.clickMenBottomsLink();
+      const menBottomsPage = await homePage.clickMenBottomsLink();
       await menBottomsPage.waitForTimeout(2000);
       await menBottomsPage.clickMenBottomsFilterList();
 
