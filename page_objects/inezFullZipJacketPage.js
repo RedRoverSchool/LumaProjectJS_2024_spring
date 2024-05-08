@@ -1,3 +1,5 @@
+import ShoppingCartPage from "./shoppingCartPage";
+
 class InezFullZipJacketPage {
     constructor(page) {
         this.page = page;
@@ -31,7 +33,13 @@ class InezFullZipJacketPage {
     async clickShoppingCartLink() {
         await this.locators.getShoppingCartLink().click();
 
-        return;
+        return new ShoppingCartPage(this.page);
+    }
+
+    async waitForShoppingCartLink() {
+        await this.locators.getShoppingCartLink().waitFor();
+
+        return this;
     }
 
 }

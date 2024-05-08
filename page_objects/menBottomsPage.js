@@ -74,6 +74,12 @@ class MenBottomsPage {
         return this.page;
     }
 
+    async hoverMenBottomsSubCategory(i) {
+        await this.locators.getMenBottomsSubCategory([i]).hover();
+
+        return this.page;
+    }
+
     async clickMenBottomsSubCategory(i) {
         await this.locators.getMenBottomsSubCategory([i]).click();
 
