@@ -21,7 +21,8 @@ class BottomsWomenPage {
         getShoppingOptionsMaterialOrganicCotton: () => this.page.getByText("Organic Cotton "),
         getShoppingOptionsPrice: () =>  this.page.locator(".filter-options-title").nth(10),
         getShoppingOptionsPriceSecondSubCategory: () => this.page.locator("a[href$='price=30-40']"),
-        getClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'})
+        getClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'}),
+        getSelectCategory: () => this.page.locator(".filter-value"),
     }
 
     async getLocatorInnerText(locator) {
@@ -98,6 +99,19 @@ class BottomsWomenPage {
     async clickCategoryStyle(i) {
         const categories = await this.locators.getCategoriesStyle();
         await categories[i].click();
+    }
+
+    async getObjectCategoriesStyle() {
+        const categories = await this.locators.getCategoriesStyle();
+        const categoryElements = [];
+    
+        for (const category of categories) {
+            const name = await category.innerText();
+            const count = await this.locators.getCountItemsInCategoryStyle(category);
+            categoryElements.push({ name: name.replace(/\bitem\b|\d+/g, "").trim(), count: parseInt(await count.innerText()) });
+        }
+    
+        return categoryElements;
     }
 }
 
