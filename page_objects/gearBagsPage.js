@@ -1,4 +1,6 @@
 import TrainingPage from "./trainingPage";
+import PushItMessengerBagPage from "./pushItMessengerBagPage";
+import BagItemPage from "./bagItemPage";
 
 class GearBagsPage {
     constructor(page) {
@@ -11,7 +13,12 @@ class GearBagsPage {
         getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
         getGearBagsPageHeader: () => this.page.getByRole('heading', { name: 'Bags' }),
         getMaterialOption: () => this.page.getByRole("tab", { name: "Material" }),
-        getMateialItemList: () => this.page.locator('.filter-options>:nth-child(4) li')
+        getMateialItemList: () => this.page.locator('.filter-options>:nth-child(5) li'),
+        getInactiveSecondPagePaginationLink: () =>this.page.locator('.items.pages-items').getByRole('link', { name: 'Page 2' }),
+		getPaginationSecondPageAttr: () => this.page.locator('div.pages li').nth(2),
+		getPaginationFirstPageAttr: () => this.page.locator('div.pages li').nth(1),
+        getMateialLeather: () => this.page.getByRole('link', {name: 'Leather'}),
+        getProductItamList: () => this.page.getByRole('img')         
     };
 
     async hoverPushItMessengerItem() {
@@ -19,6 +26,12 @@ class GearBagsPage {
 
         return this;
     } 
+
+	 async clickPushItMessengerItem() {
+		await this.locators.getPushItMessengerItem().click();
+
+		return new PushItMessengerBagPage(this.page);
+  } 
 
     async clickgetPushItMessengerItemAddtoCampare() {
         await this.locators.getPushItMessengerItemAddtoCampare().click();
@@ -42,6 +55,26 @@ class GearBagsPage {
         const text = (await this.locators.getMateialItemList().nth(idx).innerText()).split(' ')[0];
 
         return text;
+    }
+
+    async clickInactiveSecondPagePaginationLink() {
+		await this.locators.getInactiveSecondPagePaginationLink().click()
+	}
+
+    async clickMaterialLeather() {
+        await this.locators.getMateialLeather().click();
+
+        return this;
+    }
+
+    async getNumberOfProductItems() {
+        return await this.locators.getProductItamList().count();        
+    }
+
+    async clickOneProduct(idx) {
+        await this.locators.getProductItamList().nth(idx).click();
+
+        return new BagItemPage(this.page);
     }
 }
 export default GearBagsPage;

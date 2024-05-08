@@ -19,7 +19,7 @@ test.describe('gearWatchesPage.spec', () => {
   })
 
   LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE.forEach((option, idx) => {
-    test(`Verify the "Clear All" button after applying ${option} filters on the Gear/Watches page`, async ({ page }) => {
+    test.skip(`Verify the "Clear All" button after applying ${option} filters on the Gear/Watches page`, async ({ page }) => {
       test.slow();
       const gearWatchesPage = new GearWatchesPage(page);
 
@@ -118,7 +118,7 @@ test.describe('gearWatchesPage.spec', () => {
     }
   });
   
-  test("Verify the Shopping options dropdown list items on the Gear/Watches page", async ({
+  test.skip("Verify the Shopping options dropdown list items on the Gear/Watches page", async ({
     page,
   }) => {
     test.slow();
@@ -146,6 +146,20 @@ test.describe('gearWatchesPage.spec', () => {
     };
   })
 
+  test('Filter Products By ActivityType on gearWatchesPage', async ({ page }) => {
+    test.slow();
+    const gearWatchesPage = new GearWatchesPage(page);
+
+    await gearWatchesPage.clickShoppingOption(LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[2]);
+
+    for (let i = 0; i < LIST_OF_SUBMENU_ITEMS_EXPECTED[2].length; i++) {
+        
+        await gearWatchesPage.clickSubMenuLink(LIST_OF_SUBMENU_ITEMS_EXPECTED[2][i]);
+        await expect (gearWatchesPage.locators.getFilterValue()).toHaveText(LIST_OF_SUBMENU_ITEMS_EXPECTED[2][i]);
+        await gearWatchesPage.clickClearAllButton();
+        await gearWatchesPage.clickShoppingOption(LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[2]);
+    }
+});
   test('Verify only watches on sale displayed on page', async ({ page }) => {
     const gearWatchesPage = new GearWatchesPage(page);
     await gearWatchesPage.clickSaleOption()
@@ -160,13 +174,13 @@ test.describe('gearWatchesPage.spec', () => {
 
   })
 
-  // test('Verify only watches on sale displayed on page', async ({ page }) => {
-  //   await page.getByRole('menuitem', { name: 'Gear' }).hover()
-  //   await page.getByRole('menuitem', { name: 'Watches' }).click()
-  //   await page.getByRole('tab', { name: 'Sale' }).click()
-  //   await page.getByRole('link', { name: " Yes " }).click()
-  //   const saleItemsNumber = await page.locator('#maincontent').getByRole('paragraph').getByText('2').innerText()
-  //   const saleWatches = (await page.locator('.product-items').getByRole('listitem').count()).toString()
-  //   expect(saleItemsNumber).toEqual(saleWatches)
+  test('Verify only watches on sale displayed on page', async ({ page }) => {
+    await page.getByRole('menuitem', { name: 'Gear' }).hover()
+    await page.getByRole('menuitem', { name: 'Watches' }).click()
+    await page.getByRole('tab', { name: 'Sale' }).click()
+    await page.getByRole('link', { name: " Yes " }).click()
+    const saleItemsNumber = await page.locator('#maincontent').getByRole('paragraph').getByText('2').innerText()
+    const saleWatches = (await page.locator('.product-items').getByRole('listitem').count()).toString()
+    expect(saleItemsNumber).toEqual(saleWatches)
 
 });

@@ -1,3 +1,6 @@
+import CompareProductsPage from "./compareProductsPage";
+import VideoDownloadPage from "./videoDownloadPage";
+
 class TrainingPage {
 	constructor(page) {
 		 this.page = page;
@@ -12,7 +15,8 @@ class TrainingPage {
 		getTrainingCompareProductsSection: () => this.page.getByRole('heading', { name: 'Compare Products' }),
 		getTrainingShopByCategorySection: () => this.page.getByText('Shop By Shopping Options'),
 		getTrainingVideoDownloadLink: () => this.page.getByRole('link', { name: 'Video Download' }),
-		getTrainingCompareButton: () => this.page.getByRole('link', { name: 'Compare', exact: true })
+		getTrainingCompareButton: () => this.page.getByRole('link', { name: 'Compare', exact: true }),
+		getGoToWishListLink: () => this.page.getByRole('link', { name: 'Go to Wish List' })
 	};
 	
 	async clickBreadcrumbMenuHome() {
@@ -24,11 +28,17 @@ class TrainingPage {
 	async clickVideoDownloadLink() {
 		await this.locators.getTrainingVideoDownloadLink().click();
 	
-		return this.page;
+		return  new VideoDownloadPage(this.page);
 	}
 
 	async clickTrainingCompareButton() {
 		await this.locators.getTrainingCompareButton().click();
+	
+		return new CompareProductsPage(this.page);
+	}
+
+	async clickGoToWishListLink() {
+		await this.locators.getGoToWishListLink().click();
 	
 		return this.page;
 	}
