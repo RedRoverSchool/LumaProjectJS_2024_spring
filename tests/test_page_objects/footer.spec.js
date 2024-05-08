@@ -116,8 +116,3 @@ test.describe('footer.spec', () => {
             }
         });
  })
-
-
-
-
-
