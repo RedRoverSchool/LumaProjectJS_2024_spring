@@ -83,7 +83,7 @@ test.describe('footer.spec', () => {
     })
 
     test('Link "Advanced Search" is clickable and redirectable', async ({ page }) => {
-        const footerPage = new Footer(page);
+        const footer = new Footer(page);
         const searchAdvancedPage = await footer.clickAdvancedSearchLink();
 
         await expect(page).toHaveURL(BASE_URL + SEARCH_ADVANCED_PAGE_END_POINT);
