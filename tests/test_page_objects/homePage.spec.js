@@ -262,7 +262,6 @@ test.describe('homePage.spec', () => {
         await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageReviewsTab()).toBeVisible();
         await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageHeader()).toBeVisible();
     })
-})
     
     test(`verify 6 menu options on the main menu have particular text and clickable`, async ({ page }) => {
         const homePage = new HomePage(page)
