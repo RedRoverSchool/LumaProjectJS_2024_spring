@@ -24,6 +24,7 @@ class BottomsWomenPage {
         getClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'}),
         getWomenBottomsOptionSize: () => this.page.getByRole('tab', { name: 'Size' }),
         getWomenBottomsLocatorsSize: () => this.page.locator('a[href*="women/bottoms-women.html?size"]>div'),
+        getSelectCategory: () => this.page.locator(".filter-value")
     }
 
     async getLocatorInnerText(locator) {
@@ -101,10 +102,24 @@ class BottomsWomenPage {
         const categories = await this.locators.getCategoriesStyle();
         await categories[i].click();
     }
-    async clickWomenBottomsOptionSize() {
+
+  async clickWomenBottomsOptionSize() {
         await this.locators.getWomenBottomsOptionSize().click();
 
         return this.page;
+  }
+
+    async getObjectCategoriesStyle() {
+        const categories = await this.locators.getCategoriesStyle();
+        const categoryElements = [];
+    
+        for (const category of categories) {
+            const name = await category.innerText();
+            const count = await this.locators.getCountItemsInCategoryStyle(category);
+            categoryElements.push({ name: name.replace(/\bitem\b|\d+/g, "").trim(), count: parseInt(await count.innerText()) });
+        }
+    
+        return categoryElements;
     }
 }
 

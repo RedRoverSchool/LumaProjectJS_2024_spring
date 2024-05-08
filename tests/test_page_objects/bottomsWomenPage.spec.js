@@ -57,7 +57,6 @@ test.describe('bottomsWomenPage.spec', () => {
         }
     });
 
-
     test('Verify that selecting a category "Base Layer" in the "Style" option navigates to the page with products of that category', async ({ page }) => {
         const homePage = new HomePage(page);
         const bottomsWomenPage = new BottomsWomenPage(page);
@@ -72,6 +71,23 @@ test.describe('bottomsWomenPage.spec', () => {
 
         await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT);
     });
+
+    test('Ensure the "Base Layer" category selected in the "Style" option aligns with the displayed category name on the page.', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const bottomsWomenPage = new BottomsWomenPage(page);
+    
+        await homePage.hoverWomenMenuitem();
+        await homePage.clickBottomsWomenLink();
+    
+        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
+    
+        const categories = await bottomsWomenPage.getObjectCategoriesStyle();
+        await bottomsWomenPage.clickWomenBottomsOptionStyle();
+        await bottomsWomenPage.clickCategoryStyle(0);
+    
+        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT);
+        await expect(await bottomsWomenPage.locators.getSelectCategory()).toHaveText(await categories[0].name);
+        });
 
     test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
         const homePage = new HomePage(page);
@@ -125,6 +141,7 @@ test.describe('bottomsWomenPage.spec', () => {
     
         await expect(listOfSelectedItems).not.toBeVisible();
     });
+
     test('On the page Bottoms - Womens page there are 5 options for sizes 28, 29, 30, 31, 32.', async ({page}) => {
         const homePage = new HomePage(page);
         await homePage.hoverWomenMenuitem();
