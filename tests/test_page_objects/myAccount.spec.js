@@ -30,25 +30,20 @@ test.describe('My Account', () => {
         const myAccountPage = await homePage.clickMyAccountLink();
         const editMyAccountPage = await myAccountPage.clickEditLink()
         
-        editMyAccountPage.fillFirstNameInputField(NEW_USER_DATA.firstName);
-        editMyAccountPage.fillLastNameInputField(NEW_USER_DATA.lastName); 
-        editMyAccountPage.clickSaveBtn();
+        await editMyAccountPage.fillFirstNameInputField(NEW_USER_DATA.firstName);
+        await editMyAccountPage.fillLastNameInputField(NEW_USER_DATA.lastName); 
+        await editMyAccountPage.clickSaveBtn();
 
         // await page.waitForLoadState(); 
 
-        myAccountPage.locators.getMyAccountHeader().waitFor();
+        await myAccountPage.locators.getMyAccountHeader().waitFor();
 
-        const newNameInContactInformationActual = await myAccountPage.locators.getNameInContactInformation().innerText();
-        await myAccountPage.locators.getGreetting().waitFor();
-        const newNameInHeaderGreetingActual = await myAccountPage.locators.getGreetting().innerText();
+        // const newNameInContactInformationActual = await myAccountPage.locators.getNameInContactInformation().innerText();
+        // await myAccountPage.locators.getGreetting().waitFor();
+        // const newNameInHeaderGreetingActual = await myAccountPage.locators.getGreetting().innerText();
                
-        expect(newNameInContactInformationActual).toContain(newName);
-        expect(newNameInHeaderGreetingActual).toContain(newName);
-    })
-
-    test.afterEach('Delete account', async ({page}) => {
-
-        //пока не нашла как удалить
-
+        await expect(myAccountPage.locators.getNameInContactInformation()).toContainText(newName);
+        await page.reload();
+        await expect(myAccountPage.locators.getGreetting()).toContainText(newName);
     })
 })

@@ -1,4 +1,5 @@
 import MyAccountPage from "./myAccountPage";
+import {expect} from '@playwright/test'
 
 class EditAccountInformationPage {
     constructor(page) {
@@ -32,6 +33,8 @@ class EditAccountInformationPage {
 
     async clickSaveBtn() {
         await this.locators.getSaveBtn().click();
+
+        await expect(this.page.getByText('You saved the account information.')).toBeVisible()
 
         return new MyAccountPage(this.page);
     }
