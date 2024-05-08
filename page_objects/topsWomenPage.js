@@ -23,6 +23,9 @@ class TopsWomenPage {
         getItemsNameList: () => this.page.locator(".product-item-link"),
         getPurpleColorItem: () => this.page.locator("[aria-label='Color'] [aria-label='Purple']"),
         getSSizeItem: () => this.page.locator("[aria-label='Size'] [aria-label='S']"),
+        listWomenTopsAddToMyWishListButtons: () => this.page.locator('a.action.towishlist'),
+        getDisplayModeGrid: () => this.page.getByTitle('Grid', { exact: true }).first(),
+        getDisplayModeList: () => this.page.getByTitle('List', { exact: true }).first(),  
     }
 
     async clickCategoryFilterOption() {
@@ -86,6 +89,16 @@ class TopsWomenPage {
     async clickPurpleColorShoppingOptions() {
       await this.locators.getPurpleColorShoppingOptions().click();
       return this;
+    }
+    async clickDisplayModeGrid() {
+        await this.locators.getDisplayModeGrid().click()
+
+        return this.page;
+    }
+    async clickDisplayModeList() {
+        await this.locators.getDisplayModeList().click()
+
+        return this.page;
     }
  }
 

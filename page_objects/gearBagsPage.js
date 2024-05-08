@@ -82,6 +82,7 @@ class GearBagsPage {
         await this.locators.getListMode().click();
 
         return this;
+
     }
 }
 export default GearBagsPage;

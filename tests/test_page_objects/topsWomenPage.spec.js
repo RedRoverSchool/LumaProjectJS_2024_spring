@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 import HomePage from "../../page_objects/homePage";
+import WomenPage from "../../page_objects/womenPage";
+import TopsWomenPage from "../../page_objects/topsWomenPage";
 
 import {
   BASE_URL,
@@ -8,7 +10,8 @@ import {
   JACKET_ITEMS,
   SIGN_IN_PAGE_END_POINT,
 } from "../../helpers/testData";
-import {getRandomNumber, urlToRegexPattern} from "../../helpers/testUtils";
+import { getRandomNumber, urlToRegexPattern } from "../../helpers/testUtils";
+import { MODE_GRID_ACTIVE_ATTR_CLASS, MODE_LIST_ACTIVE_ATTR_CLASS } from '../../helpers/testWomenData'
 
 test.describe("topWomenPage.spec", () => {
   test.beforeEach(async ({ page }) => {
@@ -105,4 +108,22 @@ test.describe("topWomenPage.spec", () => {
 
     expect(shoppingByList).toEqual(["Tees", "S", "Purple"]);
   });
+  test('women tops display mode can be changed, visible', async ({
+    page
+  }) => {
+    const homePage = new HomePage(page)
+    const womenPage = await homePage.hoverWomenMenuitem();
+    const topsWomenPage = await womenPage.clickTopsWomenLink();
+
+    await expect(topsWomenPage.locators.getDisplayModeGrid()).toBeVisible()
+
+    await topsWomenPage.clickDisplayModeGrid()
+    await expect(topsWomenPage.locators.getDisplayModeGrid()).toHaveClass(MODE_GRID_ACTIVE_ATTR_CLASS)
+    await expect(topsWomenPage.locators.getDisplayModeList()).not.toHaveClass(MODE_LIST_ACTIVE_ATTR_CLASS)
+
+    await topsWomenPage.clickDisplayModeList()
+    await expect(topsWomenPage.locators.getDisplayModeList()).toBeVisible()
+    await expect(topsWomenPage.locators.getDisplayModeList()).toHaveClass(MODE_LIST_ACTIVE_ATTR_CLASS
+    )
+  })
 });
