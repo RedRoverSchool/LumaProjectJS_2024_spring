@@ -1,8 +1,9 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import BottomsWomenPage from "../../page_objects/bottomsWomenPage.js";
-import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS} from "../../helpers/testData.js";
+import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT} from "../../helpers/testData.js";
 import { WOMEN_BOTTOMS_CATEGORIES } from "../../helpers/testWomenData.js";
+import { count } from "console";
 
 test.describe('bottomsWomenPage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -54,6 +55,22 @@ test.describe('bottomsWomenPage.spec', () => {
             expect(await countItems.isVisible()).toBeTruthy();
             expect(await countItems.textContent()).toMatch(/\d+/);
         }
+    });
+
+
+    test('Verify that selecting a category "Base Layer" in the "Style" option navigates to the page with products of that category', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const bottomsWomenPage = new BottomsWomenPage(page);
+
+        await homePage.hoverWomenMenuitem();
+        await homePage.clickBottomsWomenLink();
+
+        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
+
+        await bottomsWomenPage.clickWomenBottomsOptionStyle();
+        await bottomsWomenPage.clickCategoryStyle(0);
+
+        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT);
     });
 
     test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {

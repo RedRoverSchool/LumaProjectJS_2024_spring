@@ -13,10 +13,9 @@ test.describe('menTops', () => {
 
     test("Check the name of 14 shopping styles in the Men's/Tops section.", async ({ page }) => {
         const homePage = new HomePage(page)
-        const menTopsPage = new MenTopsPage(page)
 
         await homePage.hoverMenLink()
-        await homePage.clickMenTopsLink()
+        const menTopsPage = await homePage.clickMenTopsLink()
         await menTopsPage.clickMenTopsStyle()
         for (let index = 0; index < LIST_STYLE_MEN_TOPS.length; index++) {
             await expect(menTopsPage.locators.getMenTopsListStyle().nth(index)).toContainText(LIST_STYLE_MEN_TOPS[index])
@@ -26,10 +25,9 @@ test.describe('menTops', () => {
 
     test('check quantity of items is displayed', async ({ page }) => {
         const homePage = new HomePage(page);
-        const menTopsPage = new MenTopsPage(page);
 
         await homePage.hoverMenLink();
-        await homePage.clickMenTopsLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
         await page.waitForTimeout(6000);
         await menTopsPage.clickMenTopsCategory();
         LIST_CATEGORY_MEN_TOPS.forEach(item => {
@@ -40,10 +38,9 @@ test.describe('menTops', () => {
 
     test('displays the number of available products in the Insulated(5) category', async ({page}) => {
         const homePage = new HomePage(page)
-        const menTopsPage = new MenTopsPage(page)
-
+    
         await homePage.hoverMenLink();
-        await homePage.clickMenTopsLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
         await menTopsPage.clickMenTopsStyle();
 
         await expect(menTopsPage.locators.getMenTopsStyleInsulated()).toBeVisible();
@@ -71,10 +68,9 @@ test.describe('menTops', () => {
 
     test('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
         const homePage = new HomePage(page);
-        const menTopsPage = new MenTopsPage(page);
 
         await homePage.hoverMenLink();
-        await homePage.clickMenTopsLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
     
         for(let i = 0; i < LIST_LABELS_SUB_CATEGORY.length; i++){
         await menTopsPage.clickMenTopsCategory();
@@ -82,7 +78,6 @@ test.describe('menTops', () => {
 
         const labelLocator = await menTopsPage.locators.getLabelForEachCategory();
        
-
         await expect(labelLocator).toContain(LIST_LABELS_SUB_CATEGORY[i]);
         expect(page).toHaveURL(MEN_TOPS_CATEGORY_PAGES_END_POINT[i]);
         await menTopsPage.clickClearAllButton();

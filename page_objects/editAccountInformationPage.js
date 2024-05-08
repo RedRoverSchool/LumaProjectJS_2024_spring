@@ -1,5 +1,5 @@
 import MyAccountPage from "./myAccountPage";
-import {expect} from '@playwright/test'
+import { expect } from '@playwright/test'
 
 class EditAccountInformationPage {
     constructor(page) {
@@ -7,26 +7,21 @@ class EditAccountInformationPage {
     }
 
     locators = {
-       getFirstNameInputField: () => this.page.getByRole('textbox', {name: 'First Name'}),
-       // getFirstNameInputField: () => this.page.locator('#firstname'),
-       getLastNameInputField: () => this.page.getByRole('textbox', {name: 'Last Name'}),
-      //  getLastNameInputField: () => this.page.locator('#lastname'),
-       getSaveBtn: () => this.page.getByRole('button', {name: 'Save'}),
-        //getSaveBtn: () => this.page.locator('[title="Save"]'),
+        getFirstNameInputField: () => this.page.getByRole('textbox', { name: 'First Name' }),
+        getLastNameInputField: () => this.page.getByRole('textbox', { name: 'Last Name' }),
+        getSaveBtn: () => this.page.getByRole('button', { name: 'Save' }),
     }
 
     async fillFirstNameInputField(firstName) {
-        // await this.locators.getFirstNameInputField().clear();
-      //  await this.locators.getFirstNameInputField().waitFor();
+        await this.locators.getFirstNameInputField().clear();
         await this.locators.getFirstNameInputField().fill(firstName);
-      
+
         return this;
     }
 
     async fillLastNameInputField(lastName) {
-        // await this.locators.getLastNameInputField().clear();
-      //  await this.locators.getLastNameInputField().waitFor();
-        await this.locators.getLastNameInputField().fill(lastName);        
+        await this.locators.getLastNameInputField().clear();
+        await this.locators.getLastNameInputField().fill(lastName);
 
         return this;
     }
@@ -34,7 +29,7 @@ class EditAccountInformationPage {
     async clickSaveBtn() {
         await this.locators.getSaveBtn().click();
 
-        await expect(this.page.getByText('You saved the account information.')).toBeVisible()
+        await expect(this.page.getByText('You saved the account information.')).toBeVisible();
 
         return new MyAccountPage(this.page);
     }

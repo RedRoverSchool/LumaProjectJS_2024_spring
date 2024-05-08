@@ -12,12 +12,12 @@ class MyAccountPage {
     locators = {
         getMyAccountHeader: () => this.page.getByRole('heading', { name: 'My Account' }),
         getThanksMessage: () => this.page.getByRole('alert').getByText(THANKS_MESSAGE),
-        getMyOrdersLink: () => this.page.getByRole('link', { name: 'My Orders' }),
+        getMyOrdersLink: () => this.page.getByRole('link', {  name: 'My Orders'  }),
         getWomenLink: () => this.page.getByText('Women'),
         getLogoLink: () => this.page.getByRole("link", { name: "store logo" }),
         getEditLink: () => this.page.getByRole('link', {name: 'Edit', exact: true }),
         getNameInContactInformation: () => this.page.locator('[class="column main"] div:nth-child(5) [class="box-content"] p'),
-        //getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
+        getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
         getGreetting: () => this.page.locator('[class="panel header"] [class="greet welcome"]'),
     }
 
@@ -31,6 +31,12 @@ class MyAccountPage {
         await this.locators.getWomenLink().click();
 
         return new WomenPage(this.page);
+    }
+
+    async waitForMyAccountHeader() {
+        await this.locators.getMyAccountHeader().waitFor();
+
+        return this;
     }
 
     async clickLogoLink() {

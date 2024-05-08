@@ -33,17 +33,9 @@ test.describe('My Account', () => {
         await editMyAccountPage.fillFirstNameInputField(NEW_USER_DATA.firstName);
         await editMyAccountPage.fillLastNameInputField(NEW_USER_DATA.lastName); 
         await editMyAccountPage.clickSaveBtn();
-
-        // await page.waitForLoadState(); 
-
-        await myAccountPage.locators.getMyAccountHeader().waitFor();
-
-        // const newNameInContactInformationActual = await myAccountPage.locators.getNameInContactInformation().innerText();
-        // await myAccountPage.locators.getGreetting().waitFor();
-        // const newNameInHeaderGreetingActual = await myAccountPage.locators.getGreetting().innerText();
+        await myAccountPage.locators.getGreetingName(newName).waitFor();        
                
-        await expect(myAccountPage.locators.getNameInContactInformation()).toContainText(newName);
-        await page.reload();
+        await expect(myAccountPage.locators.getNameInContactInformation()).toContainText(newName);       
         await expect(myAccountPage.locators.getGreetting()).toContainText(newName);
     })
 })
