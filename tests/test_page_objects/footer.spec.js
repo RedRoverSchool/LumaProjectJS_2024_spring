@@ -103,9 +103,6 @@ test.describe('footer.spec', () => {
         const notesPage = await pagePromise;
         await expect(notesPage).toHaveURL(NOTES_PAGE_URL);       
     }) 
-});
-    })
-
     test('"Order and Returns” link redirects to the page Orders and displays particular fields', async ({ page }) => {
         const footerPage = new Footer(page);
         const ordersAndReturnsPage = await footerPage.clickFooterOrdersReturnsLink()
