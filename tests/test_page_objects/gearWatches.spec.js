@@ -168,13 +168,4 @@ test.describe('gearWatchesPage.spec', () => {
     expect (watchProductPage.locators.getSaleItemsNumber()).toEqual(watchProductPage.locators.getSaleItemsNumber())
   })
 
-  // test('Verify only watches on sale displayed on page', async ({ page }) => {
-  //   await page.getByRole('menuitem', { name: 'Gear' }).hover()
-  //   await page.getByRole('menuitem', { name: 'Watches' }).click()
-  //   await page.getByRole('tab', { name: 'Sale' }).click()
-  //   await page.getByRole('link', { name: " Yes " }).click()
-  //   const saleItemsNumber = await page.locator('#maincontent').getByRole('paragraph').getByText('2').innerText()
-  //   const saleWatches = (await page.locator('.product-items').getByRole('listitem').count()).toString()
-  //   expect(saleItemsNumber).toEqual(saleWatches)
-  // })
 });
