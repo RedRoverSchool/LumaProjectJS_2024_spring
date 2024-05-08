@@ -66,4 +66,18 @@ test.describe('gearBags.spec', () => {
             await page.goBack();
         }      
       })
+
+      test('Verify users can filter search results by price ASC', async ({page}) => {
+        const homePage = new HomePage(page);
+        const gearBagsPage = new GearBagsPage(page)
+
+        await page.reload();
+        await gearBagsPage.selectOptionShowPerPageList('24'); 
+        const sortedPricesExpected = (await gearBagsPage.locators.getItemPrice().allInnerTexts()).sort((a,b) => a.localeCompare(b));
+        await page.reload();
+        await gearBagsPage.selectOptionSortByPrice('Price');
+        const sortedPricesActual = await gearBagsPage.locators.getItemPrice().allInnerTexts();
+
+        expect(sortedPricesExpected).toEqual(sortedPricesActual);
+      })
 })
