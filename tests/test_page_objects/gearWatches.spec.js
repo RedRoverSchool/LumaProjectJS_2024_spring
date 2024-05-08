@@ -6,7 +6,8 @@ import {
   LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE,
   LIST_OF_MATERIALS_SUBITEMS_EXPECTED,
   LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS,
-  LIST_OF_SUBMENU_ITEMS_EXPECTED
+  LIST_OF_SUBMENU_ITEMS_EXPECTED,
+  LIST_OF_CATEGORY_WATCHES
 } from "../../helpers/testData.js";
 import { TIMEOUT } from "dns/promises";
 
@@ -166,6 +167,19 @@ test.describe('gearWatchesPage.spec', () => {
     await gearWatchesPage.clickSaleOption()
     const watchProductPage = await gearWatchesPage.clickYesOption()
     expect (watchProductPage.locators.getSaleItemsNumber()).toEqual(watchProductPage.locators.getSaleItemsNumber())
-  })
-
+  });
+  LIST_OF_CATEGORY_WATCHES.forEach((category, idx) => {
+    test(`Verify Category options ${category} on gearWatchesPage`, async ({ page }) => {
+        test.slow();
+        const gearWatchesPage = new GearWatchesPage(page);
+    
+        await gearWatchesPage.clickCategory();
+        
+        const List = await gearWatchesPage.locators.getCategoryOptions().nth(idx);
+        const ListText = await gearWatchesPage.getOptionsText(idx);
+    
+        expect(List).toBeVisible();
+        expect(ListText).toEqual(LIST_OF_CATEGORY_WATCHES[idx]);
+      })
+    });
 });

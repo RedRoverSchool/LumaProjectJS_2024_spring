@@ -25,7 +25,9 @@ class GearWatchesPage {
         getProductPage: (product) => this.page.getByText(product),
         getFilterValue: () => this.page.locator(".filter-value"),
         getSaleOption: () => this.page.getByRole('tab', { name: 'Sale' }),
-        getYesOption: () => this.page.getByRole('link', { name: " Yes " })
+        getYesOption: () => this.page.getByRole('link', { name: " Yes " }),
+        getCategory: () => this.page.locator("#narrow-by-list"),
+        getCategoryOptions: () => this.page.locator("a[href*='?category_gear']")
   };
 
   async clickShoppingOption(option) {
@@ -59,6 +61,18 @@ class GearWatchesPage {
   async clickYesOption(){
     await this.locators.getYesOption().click()
     return new WatchProductPage(this.page)
+  }
+
+  async clickCategory() {
+    await this.locators.getCategory().click();
+
+    return this;
+  }
+
+  async getOptionsText(idx) {
+    const text =(await this.locators.getCategoryOptions().nth(idx).innerText()).split(' ')[0];
+
+    return text;
   }
 }
 export default GearWatchesPage;
