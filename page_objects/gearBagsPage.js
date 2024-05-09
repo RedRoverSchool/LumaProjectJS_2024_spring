@@ -48,6 +48,7 @@ class GearBagsPage {
 
     async clickMaterialOption() {
         await this.locators.getMaterialOption().click();
+        await this.locators.getMateialLeather().waitFor();
 
         return this;
     }
