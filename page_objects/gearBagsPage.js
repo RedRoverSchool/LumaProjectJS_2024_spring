@@ -19,6 +19,9 @@ class GearBagsPage {
 		getPaginationFirstPageAttr: () => this.page.locator('div.pages li').nth(1),
         getMateialLeather: () => this.page.getByRole('link', {name: 'Leather'}),
         getProductItamList: () => this.page.getByRole('img'),
+        getShowPerPageList: () => this.page.locator('.limiter-options').nth(1),
+        getItemPrice: () => this.page.locator('div>ol>li .price-container .price'),   
+        getSortByPrice: () => this.page.locator('#sorter').nth(0),     
         getListMode: () => this.page.getByRole('link', { name: 'List' }),         
     };
 
@@ -78,11 +81,22 @@ class GearBagsPage {
         return new BagItemPage(this.page);
     }
 
+    async selectOptionShowPerPageList(number) {
+        await this.locators.getShowPerPageList().selectOption(number);
+
+        return this;
+    }
+
+    async selectOptionSortByPrice(sorter) {
+        await this.locators.getSortByPrice().selectOption(sorter);
+
+        return this;
+    }    
+
     async clickListMode() {
         await this.locators.getListMode().click();
 
         return this.page;
-
     }
 }
 export default GearBagsPage;
