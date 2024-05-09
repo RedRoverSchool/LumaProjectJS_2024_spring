@@ -118,15 +118,19 @@ test.describe('menTops', () => {
     }
 });
 
-test('open page', async ({ page }) => {
-    await page.goto("https://magento.softwaretestingboard.com/men/tops-men.html");
+test('The default quantity of products is specified: 12 in grid mode and 10 in list mode', async ({ page }) => {
+
+    await page.goto("https://magento.softwaretestingboard.com");
+        await page.locator('#ui-id-5').hover();
+        await page.locator('#ui-id-17').click();
     expect(await page.locator('.limiter-options option[selected]').nth(1).textContent()).toContain('12');
-    await page.locator('[data-value="list"]').nth(0).click()
-    expect(await page.locator('.limiter-options option[selected]').nth(1).textContent()).toContain('10') 
-});
+    const displayModeList = page.locator('[data-value="list"]').first();
 
+    await expect(displayModeList).toBeVisible();
+        await expect(displayModeList).toBeEnabled();
+        await displayModeList.click()
+    await expect(page.locator('.limiter-options option[selected]').nth(1)).toHaveText(/10/) 
 })
-
-
+});
 
 
