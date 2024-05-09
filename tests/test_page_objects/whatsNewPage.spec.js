@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import HomePage from '../../page_objects/homePage.js';
 import WhatsNewPage from '../../page_objects/whatsNewPage.js';
 import { BASE_URL,WHATS_NEW_PAGE_END_POINT, WHATS_NEW_PAGE_HEADER } from '../../helpers/testData.js';
-import HoodiesAndSweatshirtsPage from '../../page_objects/hoodiesAndSweatshirtsPage.js';
 import { MEN_HOODIES_SWEATERS_PAGE } from '../../helpers/testMenData.js';
 
 test.describe('whatIsNewPage.spec', () => {
