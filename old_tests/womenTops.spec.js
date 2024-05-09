@@ -107,10 +107,14 @@ test.describe("womenTops", () => {
    }) 
    const { test, expect } = require('@playwright/test');
 
-    test('open page', async ({ page }) => {
-        await page.goto("https://magento.softwaretestingboard.com/women/tops-women.html");
-        expect(await page.locator('.limiter-options').nth(1).textContent()).toContain('12', '24', '36');
-        await page.locator('[data-value="list"]').nth(0).click()
-        expect(await page.locator('.limiter-options').nth(1).textContent()).toContain('5', '10', '15', '20', '25') 
+  test('Verify quantities are specified as12/24/36 items, while in list mode, they are 5/10/15/20/25 items.', async ({ page }) => {
+    await page.goto("https://magento.softwaretestingboard.com");
+    await page.getByText('Women').hover();
+    await page.getByRole('menuitem', { name: 'Tops' }).click();
+    expect(await page.locator('.limiter-options').nth(1).textContent()).toContain('12', '24', '36');
+    const displayModeList = page.getByTitle('List', { exact: true }).first()
+    await expect(displayModeList).toBeVisible()
+    await displayModeList.click()
+    expect(await page.locator('.limiter-options').nth(1).textContent()).toContain('5', '10', '15', '20', '25') 
     });
-});
+  });
