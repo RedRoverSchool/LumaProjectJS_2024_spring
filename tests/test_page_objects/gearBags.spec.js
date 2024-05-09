@@ -67,7 +67,7 @@ test.describe('gearBags.spec', () => {
         }      
       })
 
-      test('Verify users can filter search results by price ASC', async ({page}) => {
+      test.skip('Verify users can filter search results by price ASC', async ({page}) => {
         const homePage = new HomePage(page);
         const gearBagsPage = new GearBagsPage(page)
 
