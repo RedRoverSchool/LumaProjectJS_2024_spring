@@ -91,6 +91,7 @@ class GearBagsPage {
         await this.locators.getSortByPrice().selectOption(sorter);
 
         return this;
+    }    
 
     async clickListMode() {
         await this.locators.getListMode().click();
