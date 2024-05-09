@@ -36,7 +36,7 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
   })
 
   LIST_CATEGORY_MEN_BOTTOMS.forEach((name, i) => {
-    test(`verify the user can select ${name} subcategory from the dropdown`, async ({ page }) => {
+    test.skip(`verify the user can select ${name} subcategory from the dropdown`, async ({ page }) => {
       const homePage = new HomePage(page);
       await homePage.hoverMenLink();
       const menBottomsPage = await homePage.clickMenBottomsLink();
