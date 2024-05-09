@@ -1,3 +1,5 @@
+import { TIMEOUT } from "dns";
+
 class BottomsWomenPage {
     constructor(page) {
         this.page = page;
@@ -24,7 +26,9 @@ class BottomsWomenPage {
         getClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'}),
         getWomenBottomsOptionSize: () => this.page.getByRole('tab', { name: 'Size' }),
         getWomenBottomsLocatorsSize: () => this.page.locator('a[href*="women/bottoms-women.html?size"]>div'),
-        getSelectCategory: () => this.page.locator(".filter-value")
+        getSelectCategory: () => this.page.locator(".filter-value"),
+        getListViewLink: () => this.page.getByTitle('List').first(),
+        getProductsListWrapper: () => this.page.locator('div.products.wrapper'),
     }
 
     async getLocatorInnerText(locator) {
@@ -120,6 +124,12 @@ class BottomsWomenPage {
         }
     
         return categoryElements;
+    }
+
+    async clickListViewLink() {
+        await this.locators.getListViewLink().click();
+
+        return this;
     }
 }
 
