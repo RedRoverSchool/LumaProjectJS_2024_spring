@@ -1,14 +1,14 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import BottomsWomenPage from "../../page_objects/bottomsWomenPage.js";
-import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT} from "../../helpers/testData.js";
+import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT, PRODUCT_LIST} from "../../helpers/testData.js";
 import { WOMEN_BOTTOMS_CATEGORIES,WOMEN_BOTTOMS_SIZE } from "../../helpers/testWomenData.js";
 import { count } from "console";
 
 test.describe('bottomsWomenPage.spec', () => {
     test.beforeEach(async ({ page }) => {
         const homePage = new HomePage(page);
-
+ 
         await homePage.open();
     })
 
@@ -152,4 +152,15 @@ test.describe('bottomsWomenPage.spec', () => {
         }
         expect(await bottomsWomenPage.locators.getWomenBottomsLocatorsSize().count()).toBe(5);
       });
+
+      test('Product display mode change in the catalog to the List mode', async ({ page }) => {
+        const homePage = new HomePage(page);
+        await homePage.hoverWomenMenuitem();
+        const bottomsWomenPage = await homePage.clickBottomsWomenLink();
+        await page.waitForTimeout(2000);
+        await bottomsWomenPage.clickListViewLink();
+
+        await expect(bottomsWomenPage.locators.getProductsListWrapper()).toHaveClass(new RegExp(PRODUCT_LIST));
+    });
+    
 });

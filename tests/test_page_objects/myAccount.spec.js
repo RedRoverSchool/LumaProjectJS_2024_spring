@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage";
-import { USER_DATA, NEW_USER_DATA } from "../../helpers/testData";
+import { USER_DATA, NEW_USER_DATA, BASE_URL, CUSTOMER_LOGIN_PAGE_END_POINT_SHORT } from "../../helpers/testData";
 
 test.describe('My Account', () => {
 
@@ -37,5 +37,28 @@ test.describe('My Account', () => {
                
         await expect(myAccountPage.locators.getNameInContactInformation()).toContainText(newName);       
         await expect(myAccountPage.locators.getGreetting()).toContainText(newName);
+    })
+
+    test('Change email and password and verify the User can sign in', async ({ page }) => {
+        const homePage = new HomePage(page);
+
+        await homePage.clickWelcomeDropdown();
+        const myAccountPage = await homePage.clickMyAccountLink();
+        const editMyAccountPage = await myAccountPage.clickAccountInformationSidebarLink();
+        await editMyAccountPage.checkChangeEmailCheckbox();
+        await editMyAccountPage.checkChangePasswordCheckbox();
+        await editMyAccountPage.fillEmailInputField(NEW_USER_DATA.newEmail);
+        await editMyAccountPage.fillCurrentPasswordInputField(USER_DATA.password);
+        await editMyAccountPage.fillNewPasswordInputField(NEW_USER_DATA.newPassword);
+        await editMyAccountPage.fillConfirmNewPasswordInputField(NEW_USER_DATA.newPassword);
+        const customerLoginPage = await editMyAccountPage.clickSaveBntAndGoLoginPage();
+
+        await expect(page).toHaveURL(BASE_URL + CUSTOMER_LOGIN_PAGE_END_POINT_SHORT);
+        
+        await customerLoginPage.fillEmailInputField(NEW_USER_DATA.newEmail);
+        await customerLoginPage.fillPasswordInputField(NEW_USER_DATA.newPassword);       
+        await customerLoginPage.clickSignInBtn();
+        
+        expect(await myAccountPage.getEmailFromContactInformation()).toEqual(NEW_USER_DATA.newEmail)
     })
 })

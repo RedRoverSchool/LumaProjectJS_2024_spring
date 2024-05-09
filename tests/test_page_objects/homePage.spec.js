@@ -24,6 +24,8 @@ import {
     HERO_HOODIE_PAGE_END_POINT,
     FUSION_BACKPACK_END_POINT,
     PUSH_IT_MESSENGER_BAG_PAGE_END_POINT,
+    NAVBAR_MENU,
+    NAVBAR_URLs_END_POINTS
 } from "../../helpers/testData.js";
 import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
 import SearchNoResultsPage from "../../page_objects/searchNoResultsPage.js";
@@ -271,5 +273,20 @@ test.describe('homePage.spec', () => {
         await radiantTeePage.clickRadiantTeeColorPurple();
         
         await expect(radiantTeePage.locators.getRadiantTeeSizeMChoose().getByText('M', { exact: true })).toBeVisible();
+    })
+
+    
+    test(`verify 6 menu options on the main menu have particular text and clickable`, async ({ page }) => {
+        const homePage = new HomePage(page)
+        const mainMenuLinks = await homePage.locators.getMainMenuLinks()
+  
+        for (let i = 0; i < NAVBAR_MENU.length; i++) {
+          const link = mainMenuLinks.nth(i)
+          await expect(link).toHaveText(NAVBAR_MENU[i]);
+          
+          await homePage.clickMainMenuLinks(i)
+          await expect(page).toHaveURL(NAVBAR_URLs_END_POINTS[i])
+          await expect(page.getByRole('heading').first()).toHaveText(NAVBAR_MENU[i])
+        }
     })
 })

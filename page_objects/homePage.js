@@ -48,6 +48,7 @@ class HomePage {
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
     getMenLink: () =>this.page.locator('li.nav-3'),
     getSignInLinck: () => this.page.getByRole('link',{name:'Sign In'}),
+    getMenLink: () => this.page.locator('li.nav-3'),
     getMenTopsLink: () => this.page.locator('#ui-id-17'),
     getBottomsWomenLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
     getSearchTermPopularLink: () => this.page.getByRole('link', { name: 'Search Terms' }),
@@ -86,12 +87,13 @@ class HomePage {
     getWelcomeDropdown: () => this.page.locator('[class="panel header"] span[role="button"]'),
     getMyAccountLink: () => this.page.getByRole('link', {name: 'My Account'}),
     getGearFitnessEquipmentSubmenuItem: () => this.page.getByRole("menuitem", { name: "Fitness Equipment" }),
+    getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all')
   };
 
   async open() {
     await this.page.goto("/");
-    if (await this.page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible()) 
-            await this.page.getByRole('button', { name: 'Consent' }).click();
+    if (await this.page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible())
+      await this.page.getByRole('button', { name: 'Consent' }).click();
   }
 
   async clickWhatsNewLink() {
@@ -275,7 +277,7 @@ class HomePage {
     return new GearBagsPage(this.page);
   }
 
-  async clickFirstCardReviews () {
+  async clickFirstCardReviews() {
     await this.locators.getFirstCardReviews().click();
 
     return new RadiantTeePage(this.page)
@@ -409,5 +411,12 @@ class HomePage {
 
     return new GearFitnessPage(this.page);
   }
+  
+  async clickMainMenuLinks(i) {
+    await this.locators.getMainMenuLinks().nth(i).click();
+  
+  }
 }
+  
+
 export default HomePage;

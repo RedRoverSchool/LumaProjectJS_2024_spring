@@ -19,6 +19,7 @@ class MyAccountPage {
         getNameInContactInformation: () => this.page.locator('[class="column main"] div:nth-child(5) [class="box-content"] p'),
         getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
         getGreetting: () => this.page.locator('[class="panel header"] [class="greet welcome"]'),
+        getAccountInformationSidebarLink: () => this.page.locator('[class="nav items"] li:nth-child(7)'),
     }
 
     async clickMyOrdersLink() {
@@ -57,6 +58,16 @@ class MyAccountPage {
 
     async getGreetingName() {
         return await this.locators.getGreetting().innerText();
+    }
+
+    async clickAccountInformationSidebarLink() {
+        await this.locators.getAccountInformationSidebarLink().click();
+
+        return new EditAccountInformation(this.page);
+    }
+
+    async getEmailFromContactInformation() {
+        return (await this.locators.getNameInContactInformation().innerText()).split('\n')[1];
     }
 }
 
