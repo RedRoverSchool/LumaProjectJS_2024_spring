@@ -73,8 +73,7 @@ test.describe('gearBags.spec', () => {
 
         await page.reload();
         await gearBagsPage.selectOptionShowPerPageList('24'); 
-        const prices = await gearBagsPage.locators.getItemPrice().allInnerTexts();
-        const sortedPricesExpected = prices.sort((a,b) => a.localeCompare(b));
+        const sortedPricesExpected = (await gearBagsPage.locators.getItemPrice().allInnerTexts()).sort((a,b) => a.localeCompare(b));
         await page.reload();
         await gearBagsPage.selectOptionSortByPrice('Price');
         const sortedPricesActual = await gearBagsPage.locators.getItemPrice().allInnerTexts();

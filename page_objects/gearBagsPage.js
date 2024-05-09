@@ -20,7 +20,7 @@ class GearBagsPage {
         getMateialLeather: () => this.page.getByRole('link', {name: 'Leather'}),
         getProductItamList: () => this.page.getByRole('img'),
         getShowPerPageList: () => this.page.locator('.limiter-options').nth(1),
-        getItemPrice: () => this.page.locator('.product-items .price'),   
+        getItemPrice: () => this.page.locator('div>ol>li .price-container .price'),   
         getSortByPrice: () => this.page.locator('#sorter').nth(0),     
         getListMode: () => this.page.getByRole('link', { name: 'List' }),         
     };
