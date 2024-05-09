@@ -7,3 +7,9 @@ export const urlToRegexPattern = (url) => {
 
     return `${regexPattern}`;
 };
+
+export function generateRandomEmail() {
+    const mailbox = Math.random().toString(36).substring(2, 10);
+    const domain = "gmail.com";
+    return `${mailbox}@${domain}`;
+  };

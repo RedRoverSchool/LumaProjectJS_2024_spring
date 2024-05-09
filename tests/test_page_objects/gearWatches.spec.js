@@ -8,6 +8,7 @@ import {
   LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS,
   LIST_OF_SUBMENU_ITEMS_EXPECTED
 } from "../../helpers/testData.js";
+import { TIMEOUT } from "dns/promises";
 
 test.describe('gearWatchesPage.spec', () => {
   test.beforeEach(async ({ page }) => {
@@ -160,4 +161,11 @@ test.describe('gearWatchesPage.spec', () => {
         await gearWatchesPage.clickShoppingOption(LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[2]);
     }
 });
+  test('Verify only watches on sale displayed on page', async ({ page }) => {
+    const gearWatchesPage = new GearWatchesPage(page);
+    await gearWatchesPage.clickSaleOption()
+    const watchProductPage = await gearWatchesPage.clickYesOption()
+    expect (watchProductPage.locators.getSaleItemsNumber()).toEqual(watchProductPage.locators.getSaleItemsNumber())
+  })
+
 });

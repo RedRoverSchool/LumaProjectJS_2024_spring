@@ -8,3 +8,4 @@ export const WOMEN_TOPS_STYLE_CATEGORIES = ['Insulated', 'Jacket', 'Lightweight'
     '¼ zip', 'Full Zip', 'Reversible', 'Bra', 'Sweatshirt', 'Tank', 'Tee', 'Pullover', 'Hoodie', 'Camisole'];
 export const MODE_GRID_ACTIVE_ATTR_CLASS = 'modes-mode active mode-grid';
 export const MODE_LIST_ACTIVE_ATTR_CLASS = 'modes-mode active mode-list';
+export const WOMEN_BOTTOMS_SIZE = ['28', '29', '30', '31', '32'];

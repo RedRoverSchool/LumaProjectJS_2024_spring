@@ -260,4 +260,16 @@ test.describe('homePage.spec', () => {
         await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageReviewsTab()).toBeVisible();
         await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageHeader()).toBeVisible();
     })
+    
+    test("Verification clickables elements in product's card", async ({page}) => {
+        
+        const homePage = new HomePage(page);
+        const radiantTeePage = await homePage.clickHotSellersCardLink(0);
+        await expect(radiantTeePage.locators.getRadiantTeeHeader()).toBeVisible();
+
+        await radiantTeePage.clickRadiantTeeSizeM();
+        await radiantTeePage.clickRadiantTeeColorPurple();
+        
+        await expect(radiantTeePage.locators.getRadiantTeeSizeMChoose().getByText('M', { exact: true })).toBeVisible();
+    })
 })

@@ -10,7 +10,9 @@ class RadiantTeePage {
         getRadiantTeeColorBlue: () => this.page.getByRole('option', { name: "Blue" }),
         getAddToCartBtn: () => this.page.getByRole('button', { name: "Add to Cart" }),
         getRadiantTeeHeader: () => this.page.getByRole('heading', {name: 'Radiant Tee'}),
-        getRadiantTeeReviewsTab: () => this.page.locator('#product-review-container')      
+        getRadiantTeeReviewsTab: () => this.page.locator('#product-review-container'),
+        getRadiantTeeColorPurple: () => this.page.getByRole('option', { name: "Purple" }),
+        getRadiantTeeSizeMChoose: () => this.page.locator('.swatch-attribute-selected-option')
     }
 
     async clickRadiantTeeSizeS() {
@@ -33,6 +35,11 @@ class RadiantTeePage {
 
     async clickAddToCartBtn() {
         await this.locators.getAddToCartBtn().click();
+
+        return this.page;
+    }
+    async clickRadiantTeeColorPurple() {
+        await this.locators.getRadiantTeeColorPurple().click();
 
         return this.page;
     }

@@ -36,4 +36,37 @@ test.describe('productCardPage.spec', () => {
             await productCardPage.goBackToMenTopsPage();
         }
     });
+
+    test("Verify Product Card in the Related Products section opens correct page", async ({
+        page
+    }) => {
+        test.slow();
+        const homePage = new HomePage(page);
+
+        await homePage.hoverMenLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
+
+        const LIST_OF_PRODUCT_CARD_TITLES = await menTopsPage.locators
+            .getListOfProductCardTitles()
+            .allInnerTexts();
+
+        for (let i = 0; i < LIST_OF_PRODUCT_CARD_TITLES.length; i += 4)
+        {
+            const productCardPage = await menTopsPage.clickProductCard(LIST_OF_PRODUCT_CARD_TITLES[i]);
+
+            const LIST_OF_RELATED_PRODUCTS = await productCardPage.locators
+                .getListOfRelatedProductsTitles()
+                .allInnerTexts();
+            for (let j = 0; j < LIST_OF_RELATED_PRODUCTS.length; j += 3)
+            {
+                await productCardPage.openRelatedProductCard(j);
+                await expect(
+                    productCardPage.locators.getProductCardTitile()
+                ).toHaveText(LIST_OF_RELATED_PRODUCTS[j]);
+                await productCardPage.goBackToMenTopsPage();
+            }
+
+            await productCardPage.goBackToProductCardPage();
+        }
+    });
 })

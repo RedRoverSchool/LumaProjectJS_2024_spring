@@ -3,22 +3,27 @@ import HomePage from '../../page_objects/homePage.js';
 import Footer from '../../page_objects/footer.js';
 import SearchTermPopularPage from "../../page_objects/searchTermPopularPage.js";
 import SignInPage from '../../page_objects/signInPage.js';
-import { BASE_URL, SEARCH_TERMS_POPULAR_PAGE_END_POINT, SEARCH_TERMS_POPULAR_PAGE_HEADER, SEARCH_ADVANCED_PAGE_END_POINT, SEARCH_ADVANCED_PAGE_HEADER, FOOTER_LINK_NAME, FOOTER_LINKs_URLs_END_POINTS, NOTES_PAGE_URL } from "../../helpers/testData.js";
+import {
+    BASE_URL, SEARCH_TERMS_POPULAR_PAGE_END_POINT, SEARCH_TERMS_POPULAR_PAGE_HEADER,
+    SEARCH_ADVANCED_PAGE_END_POINT, SEARCH_ADVANCED_PAGE_HEADER, FOOTER_LINK_NAME,
+    FOOTER_LINKs_URLs_END_POINTS, FOOTER_ORDERS_AND_RETURNS_PAGE_END_POINT,
+    ORDERS_AND_RETURNS_PAGE_FIELDS, NOTES_PAGE_URL
+} from "../../helpers/testData.js";
 
 test.describe('footer.spec', () => {
-    test.beforeEach(async({page}) => {
+    test.beforeEach(async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.open();
     })
 
-    test.skip('Verify visibility of footer', async({page}) => {
+    test.skip('Verify visibility of footer', async ({ page }) => {
         const footer = new Footer(page);
 
         expect(footer.locators.getFooter()).toBeVisible();
     })
 
-        test('link "Search Terms" is clickabel', async ({ page }) => {
+    test('link "Search Terms" is clickabel', async ({ page }) => {
         const homePage = new HomePage(page);
         const searchTermPopularPage = new SearchTermPopularPage(page)
 
@@ -48,7 +53,7 @@ test.describe('footer.spec', () => {
         }
     })
 
-    test('Verify links visibility in the footer for logged-in user', async ({page}) => {
+    test('Verify links visibility in the footer for logged-in user', async ({ page }) => {
         const homePage = new HomePage(page);
         await homePage.open();
 
@@ -65,7 +70,7 @@ test.describe('footer.spec', () => {
     })
 
     FOOTER_LINK_NAME.forEach((linkName, idx) => {
-        test(`Verify ${linkName} is clickable and redirects logged-in user to the required page`, async ({page}) => {
+        test(`Verify ${linkName} is clickable and redirects logged-in user to the required page`, async ({ page }) => {
             const homePage = new HomePage(page);
             const signInPage = await homePage.clickSignInLink();
             await signInPage.fillFieldEmail();
@@ -73,9 +78,9 @@ test.describe('footer.spec', () => {
             await signInPage.clickButtonSignIn();
 
             const footerLinkPage = await homePage.getFooter().clickFooterLinks(linkName);
-            await expect(page).toHaveURL(BASE_URL + FOOTER_LINKs_URLs_END_POINTS[idx]);       
+            await expect(page).toHaveURL(BASE_URL + FOOTER_LINKs_URLs_END_POINTS[idx]);
         })
-    }) 
+    })
 
     test('Link "Advanced Search" is clickable and redirectable', async ({ page }) => {
         const footer = new Footer(page);
@@ -97,5 +102,17 @@ test.describe('footer.spec', () => {
         const notesPage = await pagePromise;
         await expect(notesPage).toHaveURL(NOTES_PAGE_URL);       
     }) 
-});
-
+   
+    test('"Order and Returns” link redirects to the page, and displays particular fields', async ({ page }) => {
+            const footerPage = new Footer(page);
+            const ordersAndReturnsPage = await footerPage.clickOrdersAndReturnsLink();
+            await expect(page).toHaveURL(BASE_URL + FOOTER_ORDERS_AND_RETURNS_PAGE_END_POINT);
+        
+            const fields = await footerPage.locators.getOrdersAndReturnsPageFields();
+        
+            for (let i = 0; i < ORDERS_AND_RETURNS_PAGE_FIELDS.length; i++) {
+                const field = fields[i];
+                await expect(field).toHaveText(ORDERS_AND_RETURNS_PAGE_FIELDS[i]);
+            }
+        });
+ })

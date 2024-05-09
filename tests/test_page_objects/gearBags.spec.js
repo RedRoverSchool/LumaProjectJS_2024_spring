@@ -81,4 +81,12 @@ test.describe('gearBags.spec', () => {
 
         expect(sortedPricesExpected).toEqual(sortedPricesActual);
       })
+
+      test("Verify that a User can change mode of products", async ({ page }) => {
+        const gearBagsPage = new GearBagsPage(page);
+
+        await gearBagsPage.clickListMode();
+        
+        expect(gearBagsPage.locators.getListMode()).toBeTruthy();
+      })      
 })

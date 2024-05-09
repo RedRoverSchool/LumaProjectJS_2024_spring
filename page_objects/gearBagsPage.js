@@ -22,6 +22,7 @@ class GearBagsPage {
         getShowPerPageList: () => this.page.locator('.limiter-options').nth(1),
         getItemPrice: () => this.page.locator('.product-items .price'),   
         getSortByPrice: () => this.page.locator('#sorter').nth(0),     
+        getListMode: () => this.page.getByRole('link', { name: 'List' }),         
     };
 
     async hoverPushItMessengerItem() {
@@ -90,6 +91,11 @@ class GearBagsPage {
         await this.locators.getSortByPrice().selectOption(sorter);
 
         return this;
+
+    async clickListMode() {
+        await this.locators.getListMode().click();
+
+        return this.page;
     }
 }
 export default GearBagsPage;
