@@ -4,6 +4,7 @@ class GearFitnessPage  {
     }
 
     locators = {
+        getGearFitnessEquipmentBreadcrumbsLocator: () => this.page.locator('ul.items'),
     }
 }
 
