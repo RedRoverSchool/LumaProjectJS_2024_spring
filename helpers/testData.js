@@ -278,3 +278,6 @@ export const NEW_USER_DATA = {
   newPassword: "Bob_Tester"
 }
 export const ORDERS_AND_RETURNS_PAGE_FIELDS = ['Order ID', 'Billing Last Name', 'Find Order By', 'Email'];
+
+export const MessageComparisonList = "You added Olivia 1/4 Zip Light Jacket to your comparison list.";
+

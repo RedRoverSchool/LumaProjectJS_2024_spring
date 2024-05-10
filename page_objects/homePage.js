@@ -24,6 +24,7 @@ import FusionBackpack from "./fusionbackpackPage.js";
 import PushItMessengerBagPage from "./pushItMessengerBagPage.js";
 import MyAccountPage from "./myAccountPage.js";
 import GearFitnessPage from "./gearFitnessPage.js";
+import JacketsWomenPage from "./jacketsWomenPage.js";
 
 class HomePage {
   constructor(page) {
@@ -87,7 +88,8 @@ class HomePage {
     getWelcomeDropdown: () => this.page.locator('[class="panel header"] span[role="button"]'),
     getMyAccountLink: () => this.page.getByRole('link', {name: 'My Account'}),
     getGearFitnessEquipmentSubmenuItem: () => this.page.getByRole("menuitem", { name: "Fitness Equipment" }),
-    getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all')
+    getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
+    getWonemJacketslink: () => this.page.getByRole('menuitem', { name: 'Jackets' })
   };
 
   async open() {
@@ -415,6 +417,12 @@ class HomePage {
   async clickMainMenuLinks(i) {
     await this.locators.getMainMenuLinks().nth(i).click();
   
+  }
+
+  async clickWomenJacketsLink() {
+    await this.locators.getWomenJacketsLink().click();
+
+    return new JacketsWomenPage(this.page);
   }
 }
   
