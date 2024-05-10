@@ -132,6 +132,7 @@ test('The default quantity of products is specified: 12 in grid mode and 10 in l
         await page.waitForTimeout(1000);
     await expect(page.locator('.limiter-options option[selected]').nth(1)).toHaveText(/10/, { timeout: 10000 });
 })
+
 });
 
 
