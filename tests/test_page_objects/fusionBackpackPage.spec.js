@@ -14,4 +14,11 @@ test.describe('fusionBackpackPage.spec', () => {
         await fusionBackpackPage.clickProductMainImage();
         await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toBeVisible();
     })
+
+    test('slide photo in home mode', async ({page}) => {
+        const fusionBackpackPage = new FusionBackpackPage(page);
+        await expect(fusionBackpackPage.locators.getFusionBackpackGrayImage()).toHaveAttribute("src", /gray/);
+        await fusionBackpackPage.clickSlideButton();
+        await expect(fusionBackpackPage.locators.getFusionBackpackBlueImage()).toHaveAttribute("src", /blue/);
+    })
 })
