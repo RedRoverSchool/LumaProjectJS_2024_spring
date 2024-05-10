@@ -68,6 +68,9 @@ export const SIGN_IN_END_POINT = '/customer/account/login/referer/aHR0cHM6Ly9tYW
 
 export const NOTES_PAGE_URL = 'https://softwaretestingboard.com/magento-store-notes/?utm_source=magento_store&utm_medium=banner&utm_campaign=notes_promo&utm_id=notes_promotion';
 
+export const GEAR_FITNESS_PAGE_END_POINT = '/gear/fitness-equipment.html';
+export const SORTED_LIST_FITNESS_PAGE_ENDPOINT = '/gear/fitness-equipment.html?product_list_mode=list';
+
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
 export const WOMEN_PAGE_HEADER = 'Women';
@@ -254,6 +257,8 @@ export const PRODUCT_LIST = 'products-list';
 
 export const LIST_OF_CATEGORY_WATCHES = ['Electronic', 'Exercise', 'Fashion', 'Timepiece'];
 
+export const GEAR_FITNESS_NUMBER_ITEMS_IN_GRID_MODE = '11 Items';
+export const GEAR_FITNESS_NUMBER_ITEMS_IN_LIST_MODE = 'Items 1-10 of 11';
 
 //login  credential
 
