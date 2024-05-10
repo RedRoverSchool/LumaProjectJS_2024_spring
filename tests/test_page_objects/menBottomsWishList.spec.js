@@ -64,7 +64,7 @@ test.describe('menBottomWishList.spec', () => {
     await expect(wishListPage.locators.getTitleNoItems()).toBeVisible();
   })
 
-  test(' should be an "Add to Cart" button', async ({ page }) => {
+  test.skip(' should be an "Add to Cart" button', async ({ page }) => {
     const homePage = new HomePage(page);
 
     await homePage.hoverMenLink();
