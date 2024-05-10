@@ -131,6 +131,22 @@ test.describe("gearBags", () => {
     await expect(page).toHaveURL('/gear/bags.html?product_list_mode=list');
     await expect(page.locator('//select[@id="limiter"]//option[2]').last()).toHaveAttribute('selected');
     await expect(page.locator('div.toolbar-products [title="List"]').first()).toHaveAttribute('class', 'modes-mode active mode-list');
-})
+  })
+
+  test('Verify the number of items presented in display mode', async ({page}) => {
+    await page.getByRole('menuitem', { name: 'Gear' }).hover();
+    await page.getByRole('menuitem', { name: 'Bags' }).click();
+
+    await expect(page).toHaveURL('/gear/bags.html');
+
+    await page.locator('strong[title="Grid"]').first().click();
+
+    await expect(page.locator('strong[title="Grid"]').first()).toHaveAttribute('class', 'modes-mode active mode-grid');
+
+    const expectedCountItems = await page.locator('//select[@id="limiter"]//option[1]').first().innerText();
+    const actualCountItems = await page.locator('ol.list li').count();
+
+    expect(actualCountItems).toEqual(+expectedCountItems);
+});
 
 });
