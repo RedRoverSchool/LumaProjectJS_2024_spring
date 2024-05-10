@@ -241,7 +241,7 @@ export const LIST_CATEGORY_MEN_BOTTOMS_WITH_QUANTITY = ['Pants 12 item', 'Shorts
 
 export const SHOPPING_OPTIONS_FILTER_VALUE = '.filter-value';
 export const PRODUCTS_PRICE = '.price';
-export const PRODUCTS_SORTING = '#sorter'
+export const PRODUCTS_SORTING = '#sorter';
 
 //login  credential
 

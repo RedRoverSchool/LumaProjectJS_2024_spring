@@ -4,7 +4,8 @@ import {
    LIST_CATEGORY_MEN_TOPS,
    LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE,
    SHOPPING_OPTIONS_FILTER_VALUE,
-   PRODUCTS_PRICE
+   PRODUCTS_PRICE,
+   PRODUCTS_SORTING
 } from "../helpers/testData.js";
 import {MEN_TOPS_PRICE_LIST, MEN_TOPS_PRICE_LIST_LOCATORS} from "../helpers/testMenData.js";
 
@@ -33,9 +34,8 @@ class MenTopsPage{
     getClearAllButton: () => this.page.locator(".action.clear.filter-clear"),
     getShoppingOptionFilterValue: () => this.page.locator(SHOPPING_OPTIONS_FILTER_VALUE),
     getProductsPrice: () => this.page.locator(PRODUCTS_PRICE),
-    getSorting: () => this.page.locator('#sorter').first(),
-    getAscSorting: () => this.page.getByTitle('Set Ascending Direction').first(),
-    getDescSorting: () => this.page.getByTitle('Set Descending Direction').first()
+    getSortByDropDown: () => this.page.locator(PRODUCTS_SORTING).first(),
+    getSortByArrow: () => this.page.locator('#authenticationPopup + .toolbar .sorter-action')
    };
 
    async clickMenTopsStyle(){
@@ -65,15 +65,8 @@ class MenTopsPage{
       });
    }
 
-   async sortProductsByPriceAscending() {
-      await this.locators.getSorting().selectOption('price');
-
-      return this;
-   }
-
-   async sortProductsByPriceDescending() {
-      await this.locators.getSorting().selectOption('price');
-      await this.locators.getDescSorting().click();
+   async selectSortByPrice() {
+      await this.locators.getSortByDropDown().selectOption('price');
 
       return this;
    }
@@ -89,21 +82,25 @@ class MenTopsPage{
    }
 
    async getMinProductItemPrice() {
-      await this.sortProductsByPriceAscending();
+      await this.selectSortByPrice();
+      await this.locators.getSortByArrow().click();
+      await this.locators.getSortByArrow().click();
+      
       const productPrice = await this.locators.getProductsPrice().allInnerTexts();
-
-      console.log('min product price from = ' + productPrice);
-      console.log(Number(productPrice.map(price => price.slice(1))[0]));
+      
+      console.log('min product price from = ' + await productPrice);
+      console.log(Number(await productPrice.map(price => price.slice(1))[0]));
 
       return Number(productPrice.map(price => price.slice(1))[0]);
    }
 
    async getMaxProductItemPrice() {
-      await this.sortProductsByPriceDescending();
+      await this.selectSortByPrice();
+      await this.locators.getSortByArrow().click();
       const productPrice = await this.locators.getProductsPrice().allInnerTexts();
 
-      console.log('max product price from = ' + productPrice);
-      console.log(Number(productPrice.map(price => price.slice(1))[0]));
+      console.log('max product price from = ' + await productPrice);
+      console.log(Number(await productPrice.map(price => price.slice(1))[0]));
 
       return Number(productPrice.map(price => price.slice(1))[0]);
    }
