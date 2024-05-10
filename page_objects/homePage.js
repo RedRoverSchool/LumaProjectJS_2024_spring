@@ -20,7 +20,7 @@ import WomenTopsPage from "./womenTopsPage.js";
 import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
 import HeroHoodiePage from "./heroHoodiePage.js"
 import TopsWomenPage from "./topsWomenPage.js";
-import FusionBackpack from "./fusionbackpackPage.js";
+import FusionBackpackPage from "./fusionbackpackPage.js";
 import PushItMessengerBagPage from "./pushItMessengerBagPage.js";
 import MyAccountPage from "./myAccountPage.js";
 import GearFitnessPage from "./gearFitnessPage.js";
@@ -352,19 +352,19 @@ class HomePage {
   async clickFifthCardImage() {
     await this.locators.getFifthCardImage().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpackPage(this.page)
   }
   
   async clickFifthCardName() {
     await this.locators.getFifthCardName().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpackPage(this.page)
   }
 
   async clickFifthCardReviews() {
     await this.locators.getFifthCardReviews().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpackPage(this.page)
   }
   
   async clickSixthCardImage() {
