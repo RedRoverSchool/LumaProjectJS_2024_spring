@@ -14,6 +14,7 @@ class ProductCardPage {
     getRelatedProductsTitle: (i) =>
       this.page.locator("strong.product.name.product-item-name a").nth(i),
     getProductCardTitile: () => this.page.locator("h1.page-title"),
+    getQuantity: ()=> this.page.locator('#qty'),
   };
 
   async goBackToMenTopsPage() {
@@ -32,6 +33,17 @@ class ProductCardPage {
     await this.page.goBack();
 
     return new ProductCardPage(this.page);
+  }
+
+  async getQuantityValue() {
+
+    return await this.locators.getQuantity().inputValue();
+  }
+
+  async enterQuantityNumber(number) {
+
+    await this.page.getByLabel('Qty').fill(number);
+    await this.page.getByLabel('Qty').press('Enter');
   }
 }
 

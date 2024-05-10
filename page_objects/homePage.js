@@ -24,6 +24,8 @@ import FusionBackpackPage from "./fusionbackpackPage.js";
 import PushItMessengerBagPage from "./pushItMessengerBagPage.js";
 import MyAccountPage from "./myAccountPage.js";
 import GearFitnessPage from "./gearFitnessPage.js";
+import { getRandomNumber } from "./../helpers/testUtils.js"
+import ProductCardPage from "./productCardPage.js";
 
 class HomePage {
   constructor(page) {
@@ -87,7 +89,8 @@ class HomePage {
     getWelcomeDropdown: () => this.page.locator('[class="panel header"] span[role="button"]'),
     getMyAccountLink: () => this.page.getByRole('link', {name: 'My Account'}),
     getGearFitnessEquipmentSubmenuItem: () => this.page.getByRole("menuitem", { name: "Fitness Equipment" }),
-    getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all')
+    getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
+    getHotSellersSection: () => this.page.getByRole('heading', { name: 'Hot Sellers' })
   };
 
   async open() {
@@ -413,8 +416,25 @@ class HomePage {
   }
   
   async clickMainMenuLinks(i) {
-    await this.locators.getMainMenuLinks().nth(i).click();
+    await this.locators.getMainMenuLinks().nth(i).click();    
   
+  }
+
+  async scrollToHotSellerSection(i) {
+    await this.locators.getHotSellersSection().scrollIntoViewIfNeeded();
+    
+  }
+
+  async scrollToHotSellerSection() {
+    await this.locators.getHotSellersSection().scrollIntoViewIfNeeded();
+    
+  }
+
+  async clickRandomCard() {
+    const hotCards = await this.page.locator('.product-item-info').all();
+    await hotCards[getRandomNumber(hotCards.length)].click();
+
+    return new ProductCardPage(this.page);
   }
 }
   
