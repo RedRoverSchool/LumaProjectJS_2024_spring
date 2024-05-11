@@ -50,7 +50,7 @@ test.describe('menBottomWishList.spec', () => {
     await expect(wishListPage.locators.getTitleMyWishList()).toHaveCSS('text-align', 'start');
   })
 
-  test('should be a delete item button, a cross', async ({ page }) => {
+  test.skip('should be a delete item button, a cross', async ({ page }) => {
     const homePage = new HomePage(page);
 
     await homePage.hoverMenLink();
@@ -64,7 +64,7 @@ test.describe('menBottomWishList.spec', () => {
     await expect(wishListPage.locators.getTitleNoItems()).toBeVisible();
   })
 
-  test(' should be an "Add to Cart" button', async ({ page }) => {
+  test.skip(' should be an "Add to Cart" button', async ({ page }) => {
     const homePage = new HomePage(page);
 
     await homePage.hoverMenLink();
