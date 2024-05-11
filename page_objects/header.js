@@ -15,7 +15,10 @@ class Header {
         getShoppingCart: () => this.page.getByRole('link', { name: ' My Cart' }),
         getMiniCart: () => this.page.locator('#ui-id-1'),
         getEmptyCardMessage: () => this.page.locator('.block-minicart .subtitle.empty'),
-        getCrossIconModalWindowShoppingCart: () => this.page.locator('.action.close'),    
+        getCrossIconModalWindowShoppingCart: () => this.page.locator('.action.close'),
+        getGearSubMenu: () => this.page.locator('.nav-4.level0 ul'),
+        getGearSubMenuItems: () => this.page.locator('.nav-4.level0 ul li'),
+        getGearMenu: () => this.page.getByRole('menuitem', { name: 'Gear' }),
     }
 
     async clickLogoLink() {
@@ -50,6 +53,16 @@ class Header {
 
     async clickCrossIconModalWindowShoppingCart() {
         await this.locators.getCrossIconModalWindowShoppingCart().click();
+
+        return this;
+    }
+
+    async getGearSubMenuActualItems() {
+        return await this.locators.getGearSubMenuItems().allTextContents();
+    }
+
+    async hoverGearMenu() {
+        await this.locators.getGearMenu().hover();
 
         return this;
     }

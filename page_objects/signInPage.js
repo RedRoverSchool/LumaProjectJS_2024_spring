@@ -1,7 +1,7 @@
 import { email, password, EMAIL_WISHLIST, PASSWORD_WISHLIST } from "../helpers/testData";
 import CreateAccountPage from "./createAccountPage";
 import HomePage from "./homePage";
-
+import WishListPage from "./wishListPage";
 
 class SignInPage {
     constructor(page) {
@@ -65,6 +65,11 @@ class SignInPage {
         await this.locators.getSignOutlinck().click();
         return this;
     }
+    async clickButtonSignInAndGoToWishlist() {
+        await this.locators.getButtonSignIn().focus();
+        await this.locators.getButtonSignIn().click();
 
+        return new WishListPage(this.page)
+    }
 }
 export default SignInPage;

@@ -289,4 +289,20 @@ test.describe('homePage.spec', () => {
           await expect(page.getByRole('heading').first()).toHaveText(NAVBAR_MENU[i])
         }
     })
+
+    test(`Verify changing quantity of product in card section 'Hot seller'`, async ({ page }) => {
+
+        const qty = "100";
+        const homePage = new HomePage(page);
+        await homePage.scrollToHotSellerSection();
+        const productCardPage = await homePage.clickRandomCard();
+
+        const quantityValue = await productCardPage.getQuantityValue();
+        expect(quantityValue).toBe('1');
+
+        await productCardPage.enterQuantityNumber(qty);
+
+        const enteredQuantityValue = await productCardPage.getQuantityValue();
+        expect(enteredQuantityValue).toBe(qty);        
+    })
 })

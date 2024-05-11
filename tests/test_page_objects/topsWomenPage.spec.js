@@ -1,7 +1,6 @@
-import { expect, test } from "@playwright/test";
+import { expect } from "@playwright/test";
+import { test, createNewAccount } from "./base.js"
 import HomePage from "../../page_objects/homePage";
-import WomenPage from "../../page_objects/womenPage";
-import TopsWomenPage from "../../page_objects/topsWomenPage";
 
 import {
   BASE_URL,
@@ -9,6 +8,7 @@ import {
   TOPS_WOMEN_PAGE_END_POINT,
   JACKET_ITEMS,
   SIGN_IN_PAGE_END_POINT,
+  CUSTOMER_WISH_LIST_END_POINT,
 } from "../../helpers/testData";
 import { getRandomNumber, urlToRegexPattern } from "../../helpers/testUtils";
 import { MODE_GRID_ACTIVE_ATTR_CLASS, MODE_LIST_ACTIVE_ATTR_CLASS } from '../../helpers/testWomenData'
@@ -75,6 +75,8 @@ test.describe("topWomenPage.spec", () => {
     const expectedEndPoint = new RegExp(urlToRegexPattern(BASE_URL + SIGN_IN_PAGE_END_POINT));
     const homePage = new HomePage(page);
 
+    // createNewAccount();
+
     const womenPage = await homePage.clickWomenLink();
     const topsWomenPage = await womenPage.clickWomenTopsLink();
 
@@ -125,5 +127,36 @@ test.describe("topWomenPage.spec", () => {
     await expect(topsWomenPage.locators.getDisplayModeList()).toBeVisible()
     await expect(topsWomenPage.locators.getDisplayModeList()).toHaveClass(MODE_LIST_ACTIVE_ATTR_CLASS
     )
+  })
+  test('item is added to wishlist in left-side section after user logs in', async ({ page }) => {
+    const expectedWishListUrl = new RegExp(urlToRegexPattern(BASE_URL + CUSTOMER_WISH_LIST_END_POINT));
+
+    const homePage = new HomePage(page);
+
+    const womenPage = await homePage.clickWomenLink();
+    const topsWomenPage = await womenPage.clickWomenTopsLink();
+
+    const randomProductCardIndex = getRandomNumber(await topsWomenPage.getAllProductCardsLength());
+    const randomProductCardName = await topsWomenPage.getRandomWomenTopsItemName(randomProductCardIndex + 1);
+    const randomProductCardPrice = await topsWomenPage.getRandomWomenTopsItemPrice(randomProductCardIndex + 1);
+
+    await topsWomenPage.hoverRandomWomenTopsProductItem(randomProductCardIndex);
+    const signInPage = await topsWomenPage.clickRandomAddToWishListButtonAndSignIn(randomProductCardIndex);
+    await page.waitForLoadState();
+
+    await signInPage.fillFieldEmail();
+    await signInPage.fillFieldPassword();
+    const wishListPage = await signInPage.clickButtonSignInAndGoToWishlist();
+    await page.waitForLoadState();
+
+    await expect(page.url()).toMatch(expectedWishListUrl)
+
+    const actualRandomProductCardName = await wishListPage.getFirstSidebarMyWishListItemNameText();
+    const actualRandomProductCardPrice = await wishListPage.getFirstSidebarMyWishListItemPriceText();
+
+    expect(actualRandomProductCardName).toEqual(randomProductCardName)
+    expect(actualRandomProductCardPrice).toEqual(randomProductCardPrice)
+
+    await wishListPage.cleanMyWishListFromSideBar();
   })
 });

@@ -27,6 +27,7 @@ class CustomerLoginPage {
     }
 
     async clickSignInBtn() {
+        await this.locators.getSignInBtn().focus();
         await this.locators.getSignInBtn().click();
 
         expect(await this.page.locator('[class="column main"] div:nth-child(5) [class="box-content"] p')).toBeVisible;

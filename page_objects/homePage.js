@@ -20,9 +20,12 @@ import WomenTopsPage from "./womenTopsPage.js";
 import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
 import HeroHoodiePage from "./heroHoodiePage.js"
 import TopsWomenPage from "./topsWomenPage.js";
-import FusionBackpack from "./fusionbackpackPage.js";
+import FusionBackpackPage from "./fusionbackpackPage.js";
 import PushItMessengerBagPage from "./pushItMessengerBagPage.js";
 import MyAccountPage from "./myAccountPage.js";
+import GearFitnessPage from "./gearFitnessPage.js";
+import { getRandomNumber } from "./../helpers/testUtils.js"
+import ProductCardPage from "./productCardPage.js";
 
 class HomePage {
   constructor(page) {
@@ -85,7 +88,9 @@ class HomePage {
     getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
     getWelcomeDropdown: () => this.page.locator('[class="panel header"] span[role="button"]'),
     getMyAccountLink: () => this.page.getByRole('link', {name: 'My Account'}),
-    getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all')
+    getGearFitnessEquipmentSubmenuItem: () => this.page.getByRole("menuitem", { name: "Fitness Equipment" }),
+    getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
+    getHotSellersSection: () => this.page.getByRole('heading', { name: 'Hot Sellers' })
   };
 
   async open() {
@@ -350,19 +355,19 @@ class HomePage {
   async clickFifthCardImage() {
     await this.locators.getFifthCardImage().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpackPage(this.page)
   }
   
   async clickFifthCardName() {
     await this.locators.getFifthCardName().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpackPage(this.page)
   }
 
   async clickFifthCardReviews() {
     await this.locators.getFifthCardReviews().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpackPage(this.page)
   }
   
   async clickSixthCardImage() {
@@ -403,9 +408,28 @@ class HomePage {
 
     return new RadiantTeePage(this.page)
   }
-  async clickMainMenuLinks(i) {
-    await this.locators.getMainMenuLinks().nth(i).click();
+
+  async clickGearFitnessEquipmentSubmenuItem() {
+    await this.locators.getGearFitnessEquipmentSubmenuItem().click();
+
+    return new GearFitnessPage(this.page);
+  }
   
+  async clickMainMenuLinks(i) {
+    await this.locators.getMainMenuLinks().nth(i).click();    
+  
+  }
+
+  async scrollToHotSellerSection() {
+    await this.locators.getHotSellersSection().scrollIntoViewIfNeeded();
+    
+  }
+
+  async clickRandomCard() {
+    const hotCards = await this.page.locator('.product-item-info').all();
+    await hotCards[getRandomNumber(hotCards.length)].click();
+
+    return new ProductCardPage(this.page);
   }
 }
   

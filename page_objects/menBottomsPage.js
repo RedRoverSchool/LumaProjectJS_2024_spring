@@ -41,6 +41,8 @@ class MenBottomsPage {
 
         getMenBottomsClearCategoryFilterLocator: () => this.page.locator('.action.clear.filter-clear'),
         getMenBottomsCategoryListOfItemsLocator: () => this.page.locator('#narrow-by-list > .active > .filter-options-content > ol > li'),
+        getMenBottomsCategoryPants: () => this.page.locator(".filter-options li a[href$='bottoms-men.html?cat=18']"),
+        getMenBottomsClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'}),
     }
 
     async clickBreadcrumbsMenuMen() {
@@ -100,6 +102,18 @@ class MenBottomsPage {
 
     async clickMenBottomsClearCategoryFilter() {
         await this.locators.getMenBottomsClearCategoryFilterLocator().click();
+
+        return this.page;
+    }
+
+    async clickMenBottomsCategoryPants() {
+        await this.locators.getMenBottomsCategoryPants().click();
+
+        return this.page;
+    }
+
+    async clickMenBottomsClearAllButton() {
+        await this.locators.getMenBottomsClearAllButton().click();
 
         return this.page;
     }

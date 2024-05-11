@@ -14,4 +14,20 @@ test.describe('fusionBackpackPage.spec', () => {
         await fusionBackpackPage.clickProductMainImage();
         await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toBeVisible();
     })
+
+    test('slide photo in home mode', async ({page}) => {
+        const fusionBackpackPage = new FusionBackpackPage(page);
+        await expect(fusionBackpackPage.locators.getFusionBackpackActiveImage()).toHaveAttribute("src", /gray/);
+        await fusionBackpackPage.clickSlideNextButton();
+        await expect(fusionBackpackPage.locators.getFusionBackpackActiveImage()).toHaveAttribute("src", /blue/);
+    })
+
+    test('slide photo in full screen mode', async ({page}) => {
+       const fusionBackpackPage = new FusionBackpackPage(page);
+       await fusionBackpackPage.clickActiveImage();
+       await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toBeVisible();
+       await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toHaveAttribute("src", /gray/);
+       await fusionBackpackPage.clickSlideNextButton();
+       await expect(fusionBackpackPage.locators.getFusionBackpackActiveImage()).toHaveAttribute("src", /blue/)
+    })
 })

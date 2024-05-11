@@ -31,6 +31,7 @@ export const WOMEN_SHORTS_PAGE_END_POINT = '/women/bottoms-women/shorts-women.ht
 export const BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT = '/women/bottoms-women.html?style_bottom=104';
 export const FOOTER_ORDERS_AND_RETURNS_PAGE_END_POINT = '/sales/guest/form/';
 export const CUSTOMER_LOGIN_PAGE_END_POINT_SHORT = '/customer/account/login/';
+export const CUSTOMER_WISH_LIST_END_POINT = `/wishlist/index/index/wishlist_id/*`;
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
   '/men/tops-men/hoodies-and-sweatshirts-men.html',
@@ -67,6 +68,9 @@ export const MEN_TOPS_CATEGORY_PAGES_END_POINT = [
 export const SIGN_IN_END_POINT = '/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/';
 
 export const NOTES_PAGE_URL = 'https://softwaretestingboard.com/magento-store-notes/?utm_source=magento_store&utm_medium=banner&utm_campaign=notes_promo&utm_id=notes_promotion';
+
+export const GEAR_FITNESS_PAGE_END_POINT = '/gear/fitness-equipment.html';
+export const SORTED_LIST_FITNESS_PAGE_ENDPOINT = '/gear/fitness-equipment.html?product_list_mode=list';
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
@@ -254,6 +258,8 @@ export const PRODUCT_LIST = 'products-list';
 
 export const LIST_OF_CATEGORY_WATCHES = ['Electronic', 'Exercise', 'Fashion', 'Timepiece'];
 
+export const GEAR_FITNESS_NUMBER_ITEMS_IN_GRID_MODE = '11 Items';
+export const GEAR_FITNESS_NUMBER_ITEMS_IN_LIST_MODE = 'Items 1-10 of 11';
 
 //login  credential
 
@@ -278,12 +284,13 @@ export const NEW_USER_DATA = {
   newPassword: "Bob_Tester"
 }
 export const ORDERS_AND_RETURNS_PAGE_FIELDS = ['Order ID', 'Billing Last Name', 'Find Order By', 'Email'];
+export const MENU_GEAR_EXPECTED_ITEMS = ['Bags', 'Fitness Equipment', 'Watches'];
+
 export const ADRESS_DATA = {
   street: "Street",
   city: "City",
    postal_code: "35023",
    phone_number: "+975543621798"
 }
-
 export const PAYMENT_METHOD_PAGE_END_POINT = '/checkout/#payment';
 export const CHECKOUT_ONEPAGE_SUCCESS_PAGE_END_POINT = '/checkout/onepage/success/'
