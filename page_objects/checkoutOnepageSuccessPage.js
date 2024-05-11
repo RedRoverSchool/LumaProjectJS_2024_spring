@@ -8,7 +8,7 @@ class CheckoutOnepageSuccessPage {
     locators = {
         getActionSwitchButton: () => this.page.locator('(//button[@class = "action switch"])[1]'),
         getMyAccountLink: () => this.page.locator('(//a[text() = "My Account"])[1]'),
-        getTankYouText: () => this.page.locator('(//span[@class = "logged-in"])[1]')
+        getContinueShoppingButton: () => this.page.getByText('Your order number is: ')
     }
 
     async clickActionSwitchButton() {
@@ -17,13 +17,17 @@ class CheckoutOnepageSuccessPage {
         return this;
     }
 
-    async waitTankYouText() {
-        await this.locators.getTankYouText().waitFor();
+    async waitContinueShoppingButton() {
+        await this.locators.getContinueShoppingButton().waitFor();
+        return this;
+    }
+    async waitMyAccountLink(){
+        await this.locators.getMyAccountLink().waitFor();
         return this;
     }
 
     async clickMyAccountLink() {
-        await this.locators.getMyAccountLink().waitFor();
+        
         await this.locators.getMyAccountLink().click();
 
         return new MyAccountPage(this.page);

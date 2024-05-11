@@ -10,6 +10,10 @@ class MyOrdersPage {
         getReorderLink: () => this.page.getByText('Reorder')
     }
     
+    async waitgetTitle(){
+        await this.locators.getTitle().waitFor();
+        return this;
+    }
 }
 
 export default MyOrdersPage;
