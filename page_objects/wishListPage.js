@@ -19,6 +19,8 @@ class WishListPage {
         getAddToCard: () => this.page.locator('#wishlist-sidebar').getByRole('button', {name: 'Add to Cart'}),
         getSidebarMyWishListItemName: () => this.page.locator('#wishlist-sidebar strong > a > span'),
         getSidebarMyWishListItemPrice: () => this.page.locator('#wishlist-sidebar p span.price'),
+        getUpdateMyWishList: () => this.page.getByRole('button', {name: 'Update Wish List'}),
+        getSidebarMyWishListItemsCount: () => this.page.getByText('Item(s)'),
     }
 
     async clickTrainingLink() {
@@ -45,6 +47,27 @@ class WishListPage {
     }
     async getFirstSidebarMyWishListItemPriceText() {
         return await this.locators.getSidebarMyWishListItemPrice().first().innerHTML();
+    }
+    async cleanMyWishListFromSideBar() {
+        await this.locators.getUpdateMyWishList().click();
+        await this.page.waitForTimeout(3000);
+
+        let itemsCount = await this.locators.getSidebarMyWishListItemsCount();
+        let arr = []
+        for( let i=0; i< await itemsCount.count(); i++) {
+            arr.push(await itemsCount.nth(i).innerText());
+        }
+        if (arr.length === 1) {
+            const removeItem = await this.locators.getButtonClose().first();
+            await removeItem.click();
+        } else {
+            let count = parseInt(arr[1].split(' ')[0])
+            for (let i = 0; i < count; i++) {
+                const removeItem = await this.locators.getButtonClose().first();
+                await removeItem.click();
+                await this.page.waitForTimeout(1000);
+            }
+        }
     }
 }
 

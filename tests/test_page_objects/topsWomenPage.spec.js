@@ -1,4 +1,5 @@
-import { expect, test } from "@playwright/test";
+import { expect } from "@playwright/test";
+import { test, createNewAccount } from "./base.js"
 import HomePage from "../../page_objects/homePage";
 
 import {
@@ -73,6 +74,8 @@ test.describe("topWomenPage.spec", () => {
   test('clicking AddToWishList button redirects guest users to Login page', async ({ page }) => {
     const expectedEndPoint = new RegExp(urlToRegexPattern(BASE_URL + SIGN_IN_PAGE_END_POINT));
     const homePage = new HomePage(page);
+
+    // createNewAccount();
 
     const womenPage = await homePage.clickWomenLink();
     const topsWomenPage = await womenPage.clickWomenTopsLink();
@@ -151,7 +154,9 @@ test.describe("topWomenPage.spec", () => {
     const actualRandomProductCardName = await wishListPage.getFirstSidebarMyWishListItemNameText();
     const actualRandomProductCardPrice = await wishListPage.getFirstSidebarMyWishListItemPriceText();
 
-    expect(randomProductCardName).toEqual(actualRandomProductCardName)
-    expect(randomProductCardPrice).toEqual(actualRandomProductCardPrice)
+    expect(actualRandomProductCardName).toEqual(randomProductCardName)
+    expect(actualRandomProductCardPrice).toEqual(randomProductCardPrice)
+
+    await wishListPage.cleanMyWishListFromSideBar();
   })
 });
