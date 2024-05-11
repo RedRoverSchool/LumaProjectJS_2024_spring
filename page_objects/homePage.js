@@ -420,11 +420,6 @@ class HomePage {
   
   }
 
-  async scrollToHotSellerSection(i) {
-    await this.locators.getHotSellersSection().scrollIntoViewIfNeeded();
-    
-  }
-
   async scrollToHotSellerSection() {
     await this.locators.getHotSellersSection().scrollIntoViewIfNeeded();
     
