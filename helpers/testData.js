@@ -278,3 +278,12 @@ export const NEW_USER_DATA = {
   newPassword: "Bob_Tester"
 }
 export const ORDERS_AND_RETURNS_PAGE_FIELDS = ['Order ID', 'Billing Last Name', 'Find Order By', 'Email'];
+export const ADRESS_DATA = {
+  street: "Street",
+  city: "City",
+   postal_code: "35023",
+   phone_number: "+975543621798"
+}
+
+export const PAYMENT_METHOD_PAGE_END_POINT = '/checkout/#payment';
+export const CHECKOUT_ONEPAGE_SUCCESS_PAGE_END_POINT = '/checkout/onepage/success/'
