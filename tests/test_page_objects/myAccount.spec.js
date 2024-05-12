@@ -1,7 +1,7 @@
 import { expect } from "@playwright/test";
 import { test, createNewAccount } from "./base.js"
 import HomePage from "../../page_objects/homePage";
-import { USER_DATA, NEW_USER_DATA, BASE_URL, CUSTOMER_LOGIN_PAGE_END_POINT_SHORT } from "../../helpers/testData";
+import { USER_DATA, NEW_USER_DATA, BASE_URL, CUSTOMER_LOGIN_PAGE_END_POINT_SHORT, MY_ACCOUNT_HEADER, MY_ACCOUNT_PAGE_END_POINT } from "../../helpers/testData";
 import MyAccountPage from "../../page_objects/myAccountPage.js";
 
 test.describe('My Account', () => {
@@ -56,5 +56,16 @@ test.describe('My Account', () => {
        // await expect(myAccountPage.locators.getNameInContactInformation()).toContainText(NEW_USER_DATA.newEmail);
 
         expect(await myAccountPage.getEmailFromContactInformation()).toEqual(NEW_USER_DATA.newEmail)
+    })
+
+    test("Verify that clicking on the 'My Account' section name in the menu redirects to the 'My Account' page", async ({page}) => {
+        const homePage = new HomePage(page);
+
+        await homePage.clickWelcomeDropdown();
+        const myAccountPage = await homePage.clickMyAccountLink();
+
+        await expect(page).toHaveURL(BASE_URL + MY_ACCOUNT_PAGE_END_POINT);
+        await expect(myAccountPage.locators.getMyAccountHeader()).toBeVisible();
+        await expect(myAccountPage.locators.getMyAccountHeader()).toHaveText(MY_ACCOUNT_HEADER)
     })
 })
