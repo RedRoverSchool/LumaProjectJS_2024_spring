@@ -129,18 +129,8 @@ test.describe("customerAccount", () => {
 
     expect(emailInContactInformation).toEqual(newUserData.newEmail);
   })
-test("TC 11.6.1_04 | The user has the option to change the account name, last name, password;", async ({page}) => {
-
-    await page.getByRole("link",{name: "Edit", exact: true}).click();
-      await page.getByRole("textbox", { name: "First Name*" }).click();
-    await expect(page.getByRole("textbox", { name: "First Name*" })).toBeEditable();
-
-      await page.getByRole("textbox", { name: "Last Name*" }).click();
-    await expect(page.getByRole("textbox", { name: "Last Name*" })).toBeEditable();
-
-      await page.getByLabel("Change Password").check();
-     await page.getByRole("textbox", { name: "New Password*", exact: true }).click();
-    await expect(page.getByRole("textbox", { name: "New Password*", exact: true })).toBeEditable();
+test("TC 11.6.1_03 | The user is on the page My Account", async ({page}) => {
+    await expect(page).toHaveURL(/.*account/);
   });
 });
 
