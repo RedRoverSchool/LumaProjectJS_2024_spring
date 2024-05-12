@@ -10,9 +10,8 @@ class FusionBackpackPage {
         getFusionBackpackReviewsTab: () => this.page.locator('#product-review-container'),
         getFusionBackpackImage: () => this.page.locator('.fotorama__stage img[aria-hidden="false"]').first(),
         getFusionBackpackFullScreen: () => this.page.locator('.fotorama__img--full[aria-hidden="false"]').first(),
-        getFusionBackpackGrayImage: () => this.page.locator('.fotorama__stage .fotorama__active .fotorama__img'),
-        getFusionBackpackBlueImage: () => this.page.locator('.fotorama__stage .fotorama__active .fotorama__img'),
-        getSlideButton: () => this.page.locator('.fotorama__arr--next')
+        getFusionBackpackActiveImage: () => this.page.locator('.fotorama__stage .fotorama__active .fotorama__img'),
+        getSlideNextButton: () => this.page.locator('.fotorama__arr--next')
     }
 
     async clickProductMainImage (){
@@ -20,8 +19,13 @@ class FusionBackpackPage {
         return this;
     }
 
-    async clickSlideButton (){
-        await this.locators.getSlideButton().click();
+    async clickSlideNextButton (){
+        await this.locators.getSlideNextButton().click();
+        return this;
+    }
+
+    async clickActiveImage () {
+        await this.locators.getFusionBackpackActiveImage().click();
         return this;
     }
 }

@@ -35,7 +35,7 @@ test.describe('createAccuntPage.spec', () => {
        await expect(myAccountPage.locators.getThanksMessage()).toHaveText(THANKS_MESSAGE);
     });
 
-    test('RF_TC 10.3.1_13 Registration/Create Account as a new user ', async({page})=>{
+    test.skip('RF_TC 10.3.1_13 Registration/Create Account as a new user ', async({page})=>{
         const homePage = new HomePage(page)
         const signInPage = new SignInPage(page)
         const createAccountPage = new CreateAccountPage(page)

@@ -1,56 +1,50 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import BottomsWomenPage from "../../page_objects/bottomsWomenPage.js";
-import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, WOMEN_BOTTOMS_HEADER, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT, PRODUCT_LIST} from "../../helpers/testData.js";
+import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT, PRODUCT_LIST} from "../../helpers/testData.js";
 import { WOMEN_BOTTOMS_CATEGORIES,WOMEN_BOTTOMS_SIZE } from "../../helpers/testWomenData.js";
-import { count } from "console";
 
 test.describe('bottomsWomenPage.spec', () => {
     test.beforeEach(async ({ page }) => {
         const homePage = new HomePage(page);
  
         await homePage.open();
-    })
+    });
 
     test('Verify the availability of a list of 9 category in the "Style" option drop-down list', async ({ page }) => {
         const homePage = new HomePage(page);
-        const bottomsWomenPage = new BottomsWomenPage(page);
 
         await homePage.hoverWomenMenuitem();
-        await homePage.clickBottomsWomenLink();
-        
+        const bottomsWomenPage = await homePage.clickBottomsWomenLink();
+
         await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
 
         await bottomsWomenPage.clickWomenBottomsOptionStyle();
-    
+
         expect(await bottomsWomenPage.locators.getAriaSelectedWomenBottoms()).toBeTruthy();
     
         const expectedItems = EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS;
         const receivedResult = await bottomsWomenPage.locators.getCategoryInStyle().allInnerTexts();
-    
         const result = await bottomsWomenPage.extractAndCompareItems(receivedResult, expectedItems);
-    
+
         expect(result.extractedItems).toEqual(expectedItems);
     });
 
     test('Verify that each category displays the number of products', async ({ page }) => {
         const homePage = new HomePage(page);
-        const bottomsWomenPage = new BottomsWomenPage(page);
 
         await homePage.hoverWomenMenuitem();
-        await homePage.clickBottomsWomenLink();
-    
+        const bottomsWomenPage = await homePage.clickBottomsWomenLink();
+
         await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
-    
+
         await bottomsWomenPage.clickWomenBottomsOptionStyle();
-    
+
         expect(await bottomsWomenPage.locators.getAriaSelectedWomenBottoms()).toBeTruthy();
         
         const categoriesStyle = await bottomsWomenPage.locators.getCategoriesStyle();
-    
         for (const category of categoriesStyle) {
             const countItems = await bottomsWomenPage.locators.getCountItemsInCategoryStyle(category);
-    
+
             expect(countItems).toBeTruthy();
             expect(await countItems.isVisible()).toBeTruthy();
             expect(await countItems.textContent()).toMatch(/\d+/);
@@ -59,10 +53,9 @@ test.describe('bottomsWomenPage.spec', () => {
 
     test('Verify that selecting a category "Base Layer" in the "Style" option navigates to the page with products of that category', async ({ page }) => {
         const homePage = new HomePage(page);
-        const bottomsWomenPage = new BottomsWomenPage(page);
 
         await homePage.hoverWomenMenuitem();
-        await homePage.clickBottomsWomenLink();
+        const bottomsWomenPage = await homePage.clickBottomsWomenLink();
 
         await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
 
@@ -74,27 +67,25 @@ test.describe('bottomsWomenPage.spec', () => {
 
     test('Ensure the "Base Layer" category selected in the "Style" option aligns with the displayed category name on the page.', async ({ page }) => {
         const homePage = new HomePage(page);
-        const bottomsWomenPage = new BottomsWomenPage(page);
-    
+
         await homePage.hoverWomenMenuitem();
-        await homePage.clickBottomsWomenLink();
-    
+        const bottomsWomenPage = await homePage.clickBottomsWomenLink();
+
         await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
     
         const categories = await bottomsWomenPage.getObjectCategoriesStyle();
         await bottomsWomenPage.clickWomenBottomsOptionStyle();
         await bottomsWomenPage.clickCategoryStyle(0);
-    
+
         await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT);
         await expect(await bottomsWomenPage.locators.getSelectCategory()).toHaveText(await categories[0].name);
-        });
+    });
 
     test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
-        const homePage = new HomePage(page);
-        const bottomsWomenPage = new BottomsWomenPage(page);
+       const homePage = new HomePage(page);
 
         await homePage.hoverWomenMenuitem();
-        await homePage.clickBottomsWomenLink();
+        const bottomsWomenPage = await homePage.clickBottomsWomenLink();
         await bottomsWomenPage.clickWomenBottomsCategory();
         await bottomsWomenPage.clickBottomsCategoryPants();
         const actualPantsText = await bottomsWomenPage.getLocatorInnerText(bottomsWomenPage.locators.getPantsCategoryLocator());
@@ -104,27 +95,25 @@ test.describe('bottomsWomenPage.spec', () => {
 
     test("User can able to select a category from the suggested list of 2 (two) options: Shorts", async ({ page }) => {
         const homePage = new HomePage(page);
-        const bottomsWomenPage = new BottomsWomenPage(page);
 
         await homePage.hoverWomenMenuitem();
-        await homePage.clickBottomsWomenLink();
+        const bottomsWomenPage = await homePage.clickBottomsWomenLink();
         await bottomsWomenPage.clickWomenBottomsCategory();
         await bottomsWomenPage.clickBottomsCategoryShorts();
         const actualShortsText =await bottomsWomenPage.getLocatorInnerText(bottomsWomenPage.locators.getShortsCategoryLocator());
 
         expect(actualShortsText).toEqual(WOMEN_BOTTOMS_CATEGORIES[1]);
-    })
+    });
 
     test('Women/Bottoms/Shopping options/Price filter is displayed', async ({ page }) => {
         const homePage = new HomePage(page);
-        const bottomsWomenPage = new BottomsWomenPage(page);
 
-          await homePage.hoverWomenMenuitem();
-          await homePage.clickBottomsWomenLink();
-          await bottomsWomenPage.clickOptionPrice();
+        await homePage.hoverWomenMenuitem();
+        const bottomsWomenPage = await homePage.clickBottomsWomenLink();
+        await bottomsWomenPage.clickOptionPrice();
     
-          await expect(bottomsWomenPage.locators.getOptionPriceFilter()).toBeVisible();
-    })
+        await expect(bottomsWomenPage.locators.getOptionPriceFilter()).toBeVisible();
+    });
 
     test.skip("Verify a User can deselect all options at once", async ({ page }) => {
         const homePage = new HomePage(page);
