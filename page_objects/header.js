@@ -19,6 +19,7 @@ class Header {
         getGearSubMenu: () => this.page.locator('.nav-4.level0 ul'),
         getGearSubMenuItems: () => this.page.locator('.nav-4.level0 ul li'),
         getGearMenu: () => this.page.getByRole('menuitem', { name: 'Gear' }),
+        getCartLogo: () => this.page.locator("a[class='action showcart']"),
     }
 
     async clickLogoLink() {
@@ -63,6 +64,12 @@ class Header {
 
     async hoverGearMenu() {
         await this.locators.getGearMenu().hover();
+
+        return this;
+    }
+
+    async clickCartLogo() {
+        await this.locators.getCartLogo().click();
 
         return this;
     }

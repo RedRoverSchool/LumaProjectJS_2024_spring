@@ -140,4 +140,12 @@ test.describe('header.spec', () => {
         expect(MENU_GEAR_EXPECTED_ITEMS).toEqual(await header.getGearSubMenuActualItems());
     });
 
+    test('Verify If nothing has been added to the cart yet, the window displays the message "You have no items in your shopping cart', async ({ page }) => {
+
+        const header = new Header(page);
+        await header.clickCartLogo();
+
+        const text = await page.locator('div[data-role="dropdownDialog"]').textContent();
+        expect(text).toContain('You have no items in your shopping cart.');
+    });
 })
