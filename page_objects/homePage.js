@@ -89,7 +89,7 @@ class HomePage {
     getMyAccountLink: () => this.page.getByRole('link', {name: 'My Account'}),
     getGearFitnessEquipmentSubmenuItem: () => this.page.getByRole("menuitem", { name: "Fitness Equipment" }),
     getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
-    getWonemJacketslink: () => this.page.getByRole('menuitem', { name: 'Jackets' })
+    getWomenJacketslink: () => this.page.getByRole('menuitem', { name: 'Jackets' })
   };
 
   async open() {
@@ -420,9 +420,15 @@ class HomePage {
   }
 
   async clickWomenJacketsLink() {
-    await this.locators.getWomenJacketsLink().click();
+    await this.locators.getWomenJacketslink().click();
 
     return new JacketsWomenPage(this.page);
+  }
+
+  async hoverWomenTopsLink() {
+    await this.locators.getWomenTopsLink().hover();
+
+    return this;
   }
 }
   

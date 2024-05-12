@@ -8,16 +8,20 @@ test.describe('jacketsWomen.spec', () => {
         const homePage = new HomePage(page);
     
         await homePage.open();
-        await homePage.hoverWomenLink()
-        await homePage.clickWomenJacketsLink()
+        await homePage.hoverWomenLink();
+        await homePage.hoverWomenTopsLink();
+        await homePage.clickWomenJacketsLink();
       });
     test.only('Verify message add to comparison list', async ({ page }) => {
         const jacketsWomenPage = new JacketsWomenPage(page);
 
         await jacketsWomenPage.hoverOlivia14ZipLightJacket();
-        await jacketsWomenPage.clickAddToCompareButton();
 
         await expect(jacketsWomenPage.locators.getAddToCompareButton()).toBeVisible();
-        await expect(jacketsWomenPage.locators.getMessageAddedProductComparisonList().toHaveText(MessageComparisonList))
+        await jacketsWomenPage.clickAddToCompareButton();
+        
+        const actualResult = await jacketsWomenPage.locators.getMessageAddedProductComparisonList().textContent();
+
+        expect (actualResult).toContain(MessageComparisonList);
     });
 })
