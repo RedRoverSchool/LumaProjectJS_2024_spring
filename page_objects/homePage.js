@@ -91,7 +91,7 @@ class HomePage {
     getMyAccountLink: () => this.page.getByRole('link', {name: 'My Account'}),
     getGearFitnessEquipmentSubmenuItem: () => this.page.getByRole("menuitem", { name: "Fitness Equipment" }),
     getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
-    getHotSellersSection: () => this.page.getByRole('heading', { name: 'Hot Sellers' })
+    getHotSellersSection: () => this.page.getByRole('heading', { name: 'Hot Sellers' }),
     getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
     getWomenJacketslink: () => this.page.getByRole('menuitem', { name: 'Jackets' })
   };
