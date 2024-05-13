@@ -28,7 +28,7 @@ class BottomsWomenPage {
         getWomenBottomsLocatorsSize: () => this.page.locator('a[href*="women/bottoms-women.html?size"]>div'),
         getSelectCategory: () => this.page.locator(".filter-value"),
         getListViewLink: () => this.page.getByTitle('List').first(),
-        getProductsListWrapper: () => this.page.locator('div.products.wrapper'),
+        getProductsWrapper: () => this.page.locator('div.products.wrapper'),
     }
 
     async getLocatorInnerText(locator) {

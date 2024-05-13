@@ -142,14 +142,14 @@ test.describe('bottomsWomenPage.spec', () => {
         expect(await bottomsWomenPage.locators.getWomenBottomsLocatorsSize().count()).toBe(5);
       });
 
-      test('Product display mode change in the catalog to the List mode', async ({ page }) => {
+      test.only('Product display mode change in the catalog to the List mode', async ({ page }) => {
         const homePage = new HomePage(page);
         await homePage.hoverWomenMenuitem();
         const bottomsWomenPage = await homePage.clickBottomsWomenLink();
         await page.waitForTimeout(2000);
         await bottomsWomenPage.clickListViewLink();
 
-        await expect(bottomsWomenPage.locators.getProductsListWrapper()).toHaveClass(new RegExp(PRODUCT_LIST));
+        await expect(bottomsWomenPage.locators.getProductsWrapper()).toHaveClass(new RegExp(PRODUCT_LIST));
     });
     
 });
