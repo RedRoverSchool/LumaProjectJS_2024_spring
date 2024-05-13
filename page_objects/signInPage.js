@@ -1,8 +1,8 @@
 import { email, password, EMAIL_WISHLIST, PASSWORD_WISHLIST } from "../helpers/testData";
 import CreateAccountPage from "./createAccountPage";
 import HomePage from "./homePage";
+import WishListPage from "./wishListPage";
 import MyAccountPage from "./myAccountPage";
-
 
 class SignInPage {
     constructor(page) {
@@ -48,16 +48,16 @@ class SignInPage {
 
     async clickButtonSignIn() {
         await this.locators.getButtonSignIn().click();
-        // return
+        
         return new HomePage(this.page)
     }
 
-    async welcomeUser() {
-        // return this.locators.getGreetingElement()
+    async welcomeUser() {        
         await this.locators.getGreetingElement();
-        return getGreetingElement.isVisible();
 
+        return getGreetingElement.isVisible();
     }
+
     async clickDpopdown() {
         await this.locators.getTabDropdown().click();
         return new HomePage(this.page);
@@ -66,7 +66,12 @@ class SignInPage {
         await this.locators.getSignOutlinck().click();
         return this;
     }
+    async clickButtonSignInAndGoToWishlist() {
+        await this.locators.getButtonSignIn().focus();
+        await this.locators.getButtonSignIn().click();
 
+        return new WishListPage(this.page)
+    }
     async fillEmailInputField(email) {
         await this.locators.getfieldEmail().fill(email);
 
