@@ -21,5 +21,4 @@ export const test = base.extend({
         },
         { scope: "test" },
     ],
-
 });
