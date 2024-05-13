@@ -21,6 +21,8 @@ class WishListPage {
         getSidebarMyWishListItemPrice: () => this.page.locator('#wishlist-sidebar p span.price'),
         getUpdateMyWishList: () => this.page.getByRole('button', {name: 'Update Wish List'}),
         getSidebarMyWishListItemsCount: () => this.page.getByText('Item(s)'),
+        getSidebarMyWishListOneItemCount: () => this.page.getByText('1 Item', {exact : true}),
+        getMyWishListItemsName: () => this.page.locator('#wishlist-view-form').locator('strong > a'),
     }
 
     async clickTrainingLink() {
@@ -53,21 +55,35 @@ class WishListPage {
         await this.page.waitForTimeout(3000);
 
         let itemsCount = await this.locators.getSidebarMyWishListItemsCount();
+        let item = await this.locators.getSidebarMyWishListOneItemCount();
+
         let arr = []
         for( let i=0; i< await itemsCount.count(); i++) {
             arr.push(await itemsCount.nth(i).innerText());
         }
-        if (arr.length === 1) {
-            const removeItem = await this.locators.getButtonClose().first();
-            await removeItem.click();
-        } else {
+        if (itemsCount && (await itemsCount.count() > 1)) {
             let count = parseInt(arr[1].split(' ')[0])
             for (let i = 0; i < count; i++) {
                 const removeItem = await this.locators.getButtonClose().first();
                 await removeItem.click();
                 await this.page.waitForTimeout(1000);
             }
+        } else if (item) {
+            const removeItem = await this.locators.getButtonClose();
+            await removeItem.click();
+            await this.page.waitForTimeout(1000);
         }
+    }
+    async getLastMyWishListItemNameText() {
+        let itemName = await this.locators.getMyWishListItemsName().last()
+        itemName = itemName.innerText()
+        console.log('m itemName', itemName)
+        return itemName;
+    }
+    async clickUpdateMyWishList() {
+        await this.locators.getUpdateMyWishList().click();
+
+        return this;
     }
 }
 
