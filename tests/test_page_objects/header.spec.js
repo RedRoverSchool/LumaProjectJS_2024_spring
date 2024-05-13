@@ -7,7 +7,7 @@ import {
     SHIPPING_PAGE_END_POINT, SHIPPING_PROGRESS_BAR_TEXT,
     EMPTY_CARD_MESSAGE, SHOPING_CART_COUNTER_NUMBER,
     MENU_GEAR_EXPECTED_ITEMS,
-    messageEmptyCart
+    MESSAGE_EMPTY_CART
 } from '../../helpers/testData.js'
 import ShippingPage from '../../page_objects/shippingPage.js';
 
@@ -141,7 +141,7 @@ test.describe('header.spec', () => {
         expect(MENU_GEAR_EXPECTED_ITEMS).toEqual(await header.getGearSubMenuActualItems());
     });
 
-    test('Verify If nothing has been added to the cart yet, the window displays the message "You have no items in your shopping cart', async ({ page }) => {
+    test.only('Verify If nothing has been added to the cart yet, the window displays the message "You have no items in your shopping cart', async ({ page }) => {
 
         const header = new Header(page);
         await header.clickCartLogo();
