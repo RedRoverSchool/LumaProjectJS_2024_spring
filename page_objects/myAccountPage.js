@@ -3,6 +3,7 @@ import EditAccountInformation from "./editAccountInformationPage";
 import HomePage from "./homePage";
 import MyOrdersPage from "./myOrdersPage";
 import WomenPage from "./womenPage";
+import AddNewAddressPage from "./addNewAddressPage";
 
 class MyAccountPage {
     constructor(page) {
@@ -20,6 +21,7 @@ class MyAccountPage {
         getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
         getGreetting: () => this.page.locator('[class="panel header"] [class="greet welcome"]'),
         getAccountInformationSidebarLink: () => this.page.locator('[class="nav items"] li:nth-child(7)'),
+        getEditAddressNeverCompletedLink: () => this.page.getByRole('link', {name: 'Edit Address', exact: true }).first(),
     }
 
     async clickMyOrdersLink() {
@@ -68,6 +70,13 @@ class MyAccountPage {
 
     async getEmailFromContactInformation() {
         return (await this.locators.getNameInContactInformation().innerText()).split('\n')[1];
+    }
+
+    async clickEditAddressNeverCompletedLink() {
+       // await this.locators.getEditAddressLink().focus();
+        await this.locators.getEditAddressNeverCompletedLink().click();
+
+        return new AddNewAddressPage(this.page);
     }
 }
 

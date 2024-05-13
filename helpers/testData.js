@@ -278,8 +278,17 @@ export const USER_DATA = {
 export const NEW_USER_DATA = {
   firstName: "Bob",
   lastName: "Tester",
+  lastName1: "Tester1",
   newEmail: generateRandomEmail(),
   oldPassword: "RT45bb%%mm",
-  newPassword: "Bob_Tester"
+  emailForLogin: "bob.tester@test.com",
+  emeilForNotCompletedChanging: "bob.tester1@test.com",
+  newPassword: "Bob_Tester",
+  passwordForNotCompletedChanging: "Bob_Tester1",
+  phoneNumber: "1234567890",
+  streetAddress: "Central park", 
+  city: "NYC", 
+  stateProvince: "New York",
+  zipCode: "12345",
 }
 export const ORDERS_AND_RETURNS_PAGE_FIELDS = ['Order ID', 'Billing Last Name', 'Find Order By', 'Email'];

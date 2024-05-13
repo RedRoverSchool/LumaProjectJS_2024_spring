@@ -1,6 +1,6 @@
 import { test as base } from '@playwright/test';
 import HomePage from '../../page_objects/homePage';
-import { USER_DATA } from '../../helpers/testData';
+import { USER_DATA, NEW_USER_DATA } from '../../helpers/testData';
 
 export const test = base.extend({
     createNewAccount: [
@@ -19,4 +19,18 @@ export const test = base.extend({
         },
         { scope: "test" },
     ],
+
+    loginForNotCompletedChanging: [
+        async ({ page }, use) => {            
+            const homePage = new HomePage(page);
+            await homePage.open();
+            const signInPage = await homePage.clickSignInLink();
+            await signInPage.fillEmailInputField(NEW_USER_DATA.emeilForNotCompletedChanging);
+            await signInPage.fillPasswordInputField(NEW_USER_DATA.passwordForNotCompletedChanging);
+            await signInPage.clickSignInBtnAndGoMyAccount();
+
+            await use(" ");
+        },
+        { scope: "test"},
+    ]
 });

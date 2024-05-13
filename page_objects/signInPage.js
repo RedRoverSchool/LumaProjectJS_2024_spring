@@ -1,6 +1,7 @@
 import { email, password, EMAIL_WISHLIST, PASSWORD_WISHLIST } from "../helpers/testData";
 import CreateAccountPage from "./createAccountPage";
 import HomePage from "./homePage";
+import MyAccountPage from "./myAccountPage";
 
 
 class SignInPage {
@@ -66,5 +67,22 @@ class SignInPage {
         return this;
     }
 
+    async fillEmailInputField(email) {
+        await this.locators.getfieldEmail().fill(email);
+
+        return this;
+    }
+
+    async fillPasswordInputField(password) {
+        await this.locators.getFieldPassword().fill(password);
+
+        return this;
+    }
+
+    async clickSignInBtnAndGoMyAccount() {
+        await this.locators.getButtonSignIn().click();
+
+        return new MyAccountPage();
+    }
 }
 export default SignInPage;

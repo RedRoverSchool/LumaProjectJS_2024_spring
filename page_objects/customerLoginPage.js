@@ -1,6 +1,5 @@
 import MyAccountPage from "./myAccountPage";
 import { expect } from '@playwright/test';
-import { NEW_USER_DATA } from "../helpers/testData";
 
 class CustomerLoginPage {
     constructor(page) {
