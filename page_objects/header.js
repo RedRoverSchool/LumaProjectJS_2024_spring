@@ -19,6 +19,8 @@ class Header {
         getGearSubMenu: () => this.page.locator('.nav-4.level0 ul'),
         getGearSubMenuItems: () => this.page.locator('.nav-4.level0 ul li'),
         getGearMenu: () => this.page.getByRole('menuitem', { name: 'Gear' }),
+        getCartLogo: () => this.page.locator("a[class='action showcart']"),
+        getCartModal: () => this.page.locator('div[data-role="dropdownDialog"]'),        
     }
 
     async clickLogoLink() {
@@ -66,6 +68,16 @@ class Header {
 
         return this;
     }
+    
+    async clickCartLogo() {
+        await this.locators.getCartLogo().click();
+
+        return this;
+    }
+
+    async getCartDialogContent() {
+        return await this.locators.getCartModal().textContent();
+    }    
 
 }
 export default Header;
