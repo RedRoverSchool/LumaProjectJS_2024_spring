@@ -6,7 +6,9 @@ import {
     BASE_URL,
     SHIPPING_PAGE_END_POINT, SHIPPING_PROGRESS_BAR_TEXT,
     EMPTY_CARD_MESSAGE, SHOPING_CART_COUNTER_NUMBER,
-    MENU_GEAR_EXPECTED_ITEMS
+    MENU_GEAR_EXPECTED_ITEMS,
+    GEAR_PAGE_HEADER,
+    GEAR_PAGE_END_POINT
 } from '../../helpers/testData.js'
 import ShippingPage from '../../page_objects/shippingPage.js';
 
@@ -138,6 +140,14 @@ test.describe('header.spec', () => {
 
         await expect(header.locators.getGearSubMenu()).toBeVisible();
         expect(MENU_GEAR_EXPECTED_ITEMS).toEqual(await header.getGearSubMenuActualItems());
+    });
+
+    test('User could navigate from the Gear menu to the Gear page', async ({ page }) => {
+        const header = new Header(page);
+        await header.clickGearMenu();
+
+        await expect(page).toHaveURL(BASE_URL + GEAR_PAGE_END_POINT);
+        await expect(page).toHaveTitle(GEAR_PAGE_HEADER);
     });
 
 })
