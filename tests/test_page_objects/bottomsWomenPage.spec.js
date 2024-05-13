@@ -142,7 +142,7 @@ test.describe('bottomsWomenPage.spec', () => {
         expect(await bottomsWomenPage.locators.getWomenBottomsLocatorsSize().count()).toBe(5);
       });
 
-      test.only('Product display mode change in the catalog to the List mode', async ({ page }) => {
+      test('Product display mode change in the catalog to the List mode', async ({ page }) => {
         const homePage = new HomePage(page);
         await homePage.hoverWomenMenuitem();
         const bottomsWomenPage = await homePage.clickBottomsWomenLink();
