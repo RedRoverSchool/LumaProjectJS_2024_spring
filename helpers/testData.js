@@ -294,4 +294,4 @@ export const ADRESS_DATA = {
 }
 export const PAYMENT_METHOD_PAGE_END_POINT = '/checkout/#payment';
 export const CHECKOUT_ONEPAGE_SUCCESS_PAGE_END_POINT = '/checkout/onepage/success/';
-export const messageEmptyCart = 'You have no items in your shopping cart.';
+export const MESSAGE_EMPTY_CART = 'You have no items in your shopping cart.';

@@ -147,6 +147,6 @@ test.describe('header.spec', () => {
         await header.clickCartLogo();
 
         const text = await header.getCartDialogContent();
-        expect(text).toContain(messageEmptyCart);
+        expect(text).toContain(MESSAGE_EMPTY_CART);
     });
 })
