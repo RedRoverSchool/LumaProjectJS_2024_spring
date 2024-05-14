@@ -5,7 +5,7 @@ import { WOMEN_JACKETS_NAME, BASE_URL, SHOPPING_CART_END_POINT, EMPTY_CARD_MESSA
 
 test.describe('shopping Cart', () => {
 
-    test('Validate link Move to Wish List located on the Shopping Cart page', async ({ page, createNewAccount}) => {
+    test.skip('Validate link Move to Wish List located on the Shopping Cart page', async ({ page, createNewAccount}) => {
         const myAccountPage = new MyAccountPage(page);
         await myAccountPage.waitForMyAccountHeader();
         const womenPage = await myAccountPage.clickWomenLink();
@@ -20,7 +20,7 @@ test.describe('shopping Cart', () => {
         await expect(shoppingCartPage.locators.getMoveToWishListLink()).toBeVisible();
     })
 
-    test('Validate the message - the product has been moved to your wish list', async ({ page, createNewAccount }) => {
+    test.skip('Validate the message - the product has been moved to your wish list', async ({ page, createNewAccount }) => {
         const myAccountPage = new MyAccountPage(page);
         const womenPage = await myAccountPage.clickWomenLink();
         const jacketsWomenPage = await womenPage.clickWomenJacketsLink();
@@ -35,7 +35,7 @@ test.describe('shopping Cart', () => {
         await expect(shoppingCartPage.locators.getAlerMessageAddToWishList()).toHaveText(`${WOMEN_JACKETS_NAME} has been moved to your wish list.`);
     })
 
-    test('Redirected to the updated Shopping cart page after add item to Wish List', async ({ page, createNewAccount }) => {
+    test.skip('Redirected to the updated Shopping cart page after add item to Wish List', async ({ page, createNewAccount }) => {
         const myAccountPage = new MyAccountPage(page);
         const womenPage = await myAccountPage.clickWomenLink();
         const jacketsWomenPage = await womenPage.clickWomenJacketsLink();

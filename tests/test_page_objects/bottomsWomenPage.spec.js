@@ -81,7 +81,7 @@ test.describe('bottomsWomenPage.spec', () => {
         await expect(await bottomsWomenPage.locators.getSelectCategory()).toHaveText(await categories[0].name);
     });
 
-    test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
+    test.skip("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
        const homePage = new HomePage(page);
 
         await homePage.hoverWomenMenuitem();

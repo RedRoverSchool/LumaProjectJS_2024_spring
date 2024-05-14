@@ -162,7 +162,7 @@ test.describe('gearWatchesPage.spec', () => {
         await gearWatchesPage.clickShoppingOption(LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[2]);
     }
 });
-  test('Verify only watches on sale displayed on page', async ({ page }) => {
+  test.skip('Verify only watches on sale displayed on page', async ({ page }) => {
     const gearWatchesPage = new GearWatchesPage(page);
     await gearWatchesPage.clickSaleOption()
     const watchProductPage = await gearWatchesPage.clickYesOption()

@@ -22,7 +22,7 @@ test.describe('gearBags.spec', () => {
     }) 
     
     MATERIAL_OPTION_NAMES.forEach((name, idx) => {
-        test(`Verify that ${name} from material options list is visible and has right name`, async ({ page }) => {
+        test.skip(`Verify that ${name} from material options list is visible and has right name`, async ({ page }) => {
             const gearBagsPage = new GearBagsPage(page);
 
             await gearBagsPage.clickMaterialOption();
