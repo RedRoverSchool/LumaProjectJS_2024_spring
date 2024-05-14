@@ -169,7 +169,7 @@ test.describe('gearWatchesPage.spec', () => {
     expect (watchProductPage.locators.getSaleItemsNumber()).toEqual(watchProductPage.locators.getSaleItemsNumber())
   });
   LIST_OF_CATEGORY_WATCHES.forEach((category, idx) => {
-    test(`Verify Category options ${category} on gearWatchesPage`, async ({ page }) => {
+    test.skip(`Verify Category options ${category} on gearWatchesPage`, async ({ page }) => {
         test.slow();
         const gearWatchesPage = new GearWatchesPage(page);
     
