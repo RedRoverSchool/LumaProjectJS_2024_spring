@@ -1,7 +1,8 @@
 import { email, password, EMAIL_WISHLIST, PASSWORD_WISHLIST } from "../helpers/testData";
+import CreateAccountPage from "./createAccountPage";
 import ForgotPasswordPage from "./forgotPassword";
 import HomePage from "./homePage";
-
+import WishListPage from "./wishListPage";
 
 class SignInPage {
     constructor(page) {
@@ -16,7 +17,14 @@ class SignInPage {
         getDropdownWishList: () => this.page.getByRole('banner').getByText('My Account My Wish List Sign'),
         getSignOutlinck: () => this.page.getByRole('link', { name: 'Sign Out' }),
         getMessageSignedOut: () => this.page.getByText('You are signed out'),
-        getForgotPasswordLink: () => this.page.getByRole('link', {name: 'Forgot Your Password?'})
+        getForgotPasswordLink: () => this.page.getByRole('link', {name: 'Forgot Your Password?'}),
+        getPageHeader: () => this.page.getByRole('heading').first(),
+        getCreateAnAccountButton:() => this.page.locator('div.primary>a[href="https://magento.softwaretestingboard.com/customer/account/create/"]'),
+    }
+
+    async clickCreateAnAccountButton() {
+        await this.locators.getCreateAnAccountButton().click();
+        return new CreateAccountPage(this.page)
     }
 
     async fillFieldEmail() {
@@ -59,7 +67,12 @@ class SignInPage {
         await this.locators.getSignOutlinck().click();
         return this;
     }
+    async clickButtonSignInAndGoToWishlist() {
+        await this.locators.getButtonSignIn().focus();
+        await this.locators.getButtonSignIn().click();
 
+        return new WishListPage(this.page)
+    }
     async clickForgotPasswordLink() {
         await this.locators.getForgotPasswordLink().click();
 
