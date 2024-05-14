@@ -4,6 +4,8 @@ import JacketsPage from "./jacketsPage.js";
 import TeesPage from "./teesPage.js";
 import PantsPage from "./pantsPage.js";
 import ShortsPage from "./shortsPage.js";
+import WomenShortsPage from "./womenShortsPage.js";
+
 
 class SalePage {
     constructor(page) {
@@ -14,7 +16,10 @@ class SalePage {
         getSideMenuSections: () => this.page.locator('.categories-menu span'),
         getItemsFromMensDealsSection: (option) => this.page.getByRole("link", { name: option }).last(), 
         getTitleForEachPageFromMensDeals: () => this.page.locator('#page-title-heading > span'),
-        getSalePageHeader: () => this.page.getByRole('heading', { name: 'Sale'})
+        getSalePageHeader: () => this.page.getByRole('heading', { name: 'Sale'}),
+        getDealsLocator: () => this.page.locator('.categories-menu span'),
+        getWomenShortsLink: () => this.page.getByRole('link', {name:'Shorts'}).first(),
+
 
     }
 
@@ -37,7 +42,12 @@ class SalePage {
                 return new PantsPage(this.page);
             case 'Shorts':
                 return new ShortsPage(this.page);
-        }}
+        }}   
+
+    async clickWomensShortsLink() {
+        await this.locators.getWomenShortsLink().click();
+        return new WomenShortsPage(this.page);
+    }
 }
 
 export default SalePage;
