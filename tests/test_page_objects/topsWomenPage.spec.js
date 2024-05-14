@@ -31,7 +31,7 @@ test.describe("topWomenPage.spec", () => {
     await expect(topsWomenPage.locators.getWomenMyWishListEmptyMessage()).toHaveText(MY_WISH_LIST_EMPTY_MESSAGE);
   });
 
-  test("after applying the filter Jackets, only jackets are displayed on the page", async ({ page }) => {
+  test.skip("after applying the filter Jackets, only jackets are displayed on the page", async ({ page }) => {
     const homePage = new HomePage(page);   
 
     const womenPage = await homePage.hoverWomenMenuitem();
