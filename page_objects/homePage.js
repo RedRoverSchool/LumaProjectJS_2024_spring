@@ -124,6 +124,7 @@ class HomePage {
   }
 
   async hoverMenLink() {
+    await this.page.waitForTimeout(5000);
     await this.locators.getMenLink().hover();
 
     return this;
