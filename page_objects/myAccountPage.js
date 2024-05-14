@@ -73,7 +73,6 @@ class MyAccountPage {
     }
 
     async clickEditAddressNeverCompletedLink() {
-       // await this.locators.getEditAddressLink().focus();
         await this.locators.getEditAddressNeverCompletedLink().click();
 
         return new AddNewAddressPage(this.page);

@@ -53,8 +53,6 @@ test.describe('My Account', () => {
         await customerLoginPage.fillPasswordInputField(NEW_USER_DATA.newPassword);
         await customerLoginPage.clickSignInBtn();
 
-       // await expect(myAccountPage.locators.getNameInContactInformation()).toContainText(NEW_USER_DATA.newEmail);
-
         expect(await myAccountPage.getEmailFromContactInformation()).toEqual(NEW_USER_DATA.newEmail)
     })
 
