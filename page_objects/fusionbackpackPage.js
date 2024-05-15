@@ -11,7 +11,9 @@ class FusionBackpackPage {
         getFusionBackpackImage: () => this.page.locator('.fotorama__stage img[aria-hidden="false"]').first(),
         getFusionBackpackFullScreen: () => this.page.locator('.fotorama__img--full[aria-hidden="false"]').first(),
         getFusionBackpackActiveImage: () => this.page.locator('.fotorama__stage .fotorama__active .fotorama__img'),
-        getSlideNextButton: () => this.page.locator('.fotorama__arr--next')
+        getSlideNextButton: () => this.page.locator('.fotorama__arr--next'),
+        getZoomInButton: () => this.page.locator('.fotorama__zoom-in'),
+        getZoomOutButton: () => this.page.locator('.fotorama__zoom-out')
     }
 
     async clickProductMainImage (){
@@ -28,6 +30,17 @@ class FusionBackpackPage {
         await this.locators.getFusionBackpackActiveImage().click();
         return this;
     }
+
+    async clickZoomInButton () {
+        await this.locators.getZoomInButton().click();
+        return this;
+    }
+    
+    async clickZoomOutButton () {
+        await this.locators.getZoomOutButton().click();
+        return this;
+    }
+
 }
 
 export default FusionBackpackPage
