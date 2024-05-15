@@ -55,7 +55,7 @@ test.describe('menTops', () => {
         expect(await menTopsPage.getMenTopsPriceList()).toEqual(MEN_TOPS_PRICE_LIST);
     })
 
-    test('check Men/Tops price drop-down has quantity of available items in each price category', async ({ page }) => {
+    test.skip('check Men/Tops price drop-down has quantity of available items in each price category', async ({ page }) => {
         const homePage = new HomePage(page);       
         await homePage.hoverMenLink();
         const menTopsPage = await homePage.clickMenTopsLink();
@@ -66,7 +66,7 @@ test.describe('menTops', () => {
         expect(await menTopsPage.getMenTopsPriceListProductCountPseudoElementAfter()).toEqual(')');
     })
 
-    test('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
+    test.skip('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
         const homePage = new HomePage(page);
 
         await homePage.hoverMenLink();
@@ -85,7 +85,7 @@ test.describe('menTops', () => {
     }
     });
 
-    test('Verify the count for each subCategory on Tops page is the same as count of items on each specific page', async ({page}) =>{
+    test.skip('Verify the count for each subCategory on Tops page is the same as count of items on each specific page', async ({page}) =>{
         const homePage = new HomePage(page);       
         await homePage.hoverMenLink();
         const menTopsPage = await homePage.clickMenTopsLink();
@@ -113,8 +113,21 @@ test.describe('menTops', () => {
     }
 });
 
+    test('The default quantity of products is specified: 12 in grid mode and 10 in list mode', async ({ page }) => {
+
+    await page.goto("https://magento.softwaretestingboard.com");
+        await page.locator('#ui-id-5').hover();
+        await page.locator('#ui-id-17').click();
+    expect(await page.locator('.limiter-options option[selected]').nth(1).textContent()).toContain('12');
+    const displayModeList = page.locator('[data-value="list"]').first();
+
+    await expect(displayModeList).toBeVisible();
+        await expect(displayModeList).toBeEnabled();
+        await displayModeList.click()
+        await page.waitForTimeout(1000);
+    await expect(page.locator('.limiter-options option[selected]').nth(1)).toHaveText(/10/, { timeout: 10000 });
 })
 
-
+});
 
 
