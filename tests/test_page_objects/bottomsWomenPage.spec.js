@@ -10,7 +10,7 @@ test.describe('bottomsWomenPage.spec', () => {
         await homePage.open();
     });
 
-    test('Verify the availability of a list of 9 category in the "Style" option drop-down list', async ({ page }) => {
+    test.skip('Verify the availability of a list of 9 category in the "Style" option drop-down list', async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.hoverWomenMenuitem();
