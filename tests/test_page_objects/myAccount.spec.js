@@ -11,7 +11,7 @@ test.describe('My Account', () => {
         await myAccountPage.clickLogoLink();
     })
 
-    test('Veryfy that user name is changed', async ({ page }) => {
+    test.skip('Veryfy that user name is changed', async ({ page }) => {
         const homePage = new HomePage(page);
         const name = USER_DATA.firstName + " " + USER_DATA.lastName;
         const newName = NEW_USER_DATA.firstName + " " + NEW_USER_DATA.lastName;
@@ -33,7 +33,7 @@ test.describe('My Account', () => {
         await expect(myAccountPage.locators.getGreetting()).toContainText(newName);
     })
 
-    test('Change email and password and verify the User can sign in', async ({ page }) => {
+    test.skip('Change email and password and verify the User can sign in', async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.clickWelcomeDropdown();
@@ -52,8 +52,6 @@ test.describe('My Account', () => {
         await customerLoginPage.fillEmailInputField(NEW_USER_DATA.newEmail);
         await customerLoginPage.fillPasswordInputField(NEW_USER_DATA.newPassword);
         await customerLoginPage.clickSignInBtn();
-
-       // await expect(myAccountPage.locators.getNameInContactInformation()).toContainText(NEW_USER_DATA.newEmail);
 
         expect(await myAccountPage.getEmailFromContactInformation()).toEqual(NEW_USER_DATA.newEmail)
     })

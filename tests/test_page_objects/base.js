@@ -1,7 +1,7 @@
 import { test as base } from '@playwright/test';
 import HomePage from '../../page_objects/homePage';
 import MyAccountPage from '../../page_objects/myAccountPage';
-import { USER_DATA, ADRESS_DATA } from '../../helpers/testData';
+import { USER_DATA, ADRESS_DATA, NEW_USER_DATA } from '../../helpers/testData';
 import ShoppingCartPage from '../../page_objects/shoppingCartPage';
 
 export const test = base.extend({
@@ -65,5 +65,19 @@ export const test = base.extend({
             await use("");
         },
         { scope: "test" },
+    ],
+
+    loginForNotCompletedChanging: [
+        async ({ page }, use) => {            
+            const homePage = new HomePage(page);
+            await homePage.open();
+            const signInPage = await homePage.clickSignInLink();
+            await signInPage.fillEmailInputField(NEW_USER_DATA.emeilForNotCompletedChanging);
+            await signInPage.fillPasswordInputField(NEW_USER_DATA.passwordForNotCompletedChanging);
+            await signInPage.clickSignInBtnAndGoMyAccount();
+
+            await use(" ");
+        },
+        { scope: "test"},
     ]
 });

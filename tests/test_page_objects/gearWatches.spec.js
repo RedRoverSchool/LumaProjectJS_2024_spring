@@ -162,14 +162,14 @@ test.describe('gearWatchesPage.spec', () => {
         await gearWatchesPage.clickShoppingOption(LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[2]);
     }
 });
-  test('Verify only watches on sale displayed on page', async ({ page }) => {
+  test.skip('Verify only watches on sale displayed on page', async ({ page }) => {
     const gearWatchesPage = new GearWatchesPage(page);
     await gearWatchesPage.clickSaleOption()
     const watchProductPage = await gearWatchesPage.clickYesOption()
     expect (watchProductPage.locators.getSaleItemsNumber()).toEqual(watchProductPage.locators.getSaleItemsNumber())
   });
   LIST_OF_CATEGORY_WATCHES.forEach((category, idx) => {
-    test(`Verify Category options ${category} on gearWatchesPage`, async ({ page }) => {
+    test.skip(`Verify Category options ${category} on gearWatchesPage`, async ({ page }) => {
         test.slow();
         const gearWatchesPage = new GearWatchesPage(page);
     

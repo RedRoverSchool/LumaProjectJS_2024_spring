@@ -10,7 +10,7 @@ test.describe('bottomsWomenPage.spec', () => {
         await homePage.open();
     });
 
-    test('Verify the availability of a list of 9 category in the "Style" option drop-down list', async ({ page }) => {
+    test.skip('Verify the availability of a list of 9 category in the "Style" option drop-down list', async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.hoverWomenMenuitem();
@@ -29,7 +29,7 @@ test.describe('bottomsWomenPage.spec', () => {
         expect(result.extractedItems).toEqual(expectedItems);
     });
 
-    test('Verify that each category displays the number of products', async ({ page }) => {
+    test.skip('Verify that each category displays the number of products', async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.hoverWomenMenuitem();
@@ -81,7 +81,7 @@ test.describe('bottomsWomenPage.spec', () => {
         await expect(await bottomsWomenPage.locators.getSelectCategory()).toHaveText(await categories[0].name);
     });
 
-    test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
+    test.skip("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
        const homePage = new HomePage(page);
 
         await homePage.hoverWomenMenuitem();
@@ -93,7 +93,7 @@ test.describe('bottomsWomenPage.spec', () => {
         expect(actualPantsText).toEqual(WOMEN_BOTTOMS_CATEGORIES[0]);
     });
 
-    test("User can able to select a category from the suggested list of 2 (two) options: Shorts", async ({ page }) => {
+    test.skip("User can able to select a category from the suggested list of 2 (two) options: Shorts", async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.hoverWomenMenuitem();

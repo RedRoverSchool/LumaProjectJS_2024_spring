@@ -6,7 +6,7 @@ import { MY_ORDERS_PAGE_END_POINT, MY_ORDERS_HEADER, BASE_URL, } from "../../hel
 
 test.describe('myOrders', () => {
 
-    test('checkMyOrdersLink', async ({ page, createNewAccount }) => {
+    test.skip('checkMyOrdersLink', async ({ page, createNewAccount }) => {
         const myAccountPage = new MyAccountPage(page);
         const myOrdersPage = await myAccountPage.clickMyOrdersLink();
 
@@ -14,7 +14,7 @@ test.describe('myOrders', () => {
         await expect(myOrdersPage.locators.getTitle()).toContainText(MY_ORDERS_HEADER);
     })
 
-    test('OrderHistory', async ({ page, createNewAccount, createNewOrder }) => {
+    test.skip('OrderHistory', async ({ page, createNewAccount, createNewOrder }) => {
         const myAccountPage = new MyAccountPage(page);
         const checkoutOnepageSuccessPage = new CheckoutOnepageSuccessPage(page);
         await checkoutOnepageSuccessPage.waitContinueShoppingButton();

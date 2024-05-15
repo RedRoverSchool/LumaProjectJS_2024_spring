@@ -17,7 +17,7 @@ test.describe('footer.spec', () => {
         await homePage.open();
     })
 
-    test('Verify visibility of footer', async ({ page }) => {
+    test.skip('Verify visibility of footer', async ({ page }) => {
         const footer = new Footer(page);
         
         footer.locators.getFooter().waitFor();

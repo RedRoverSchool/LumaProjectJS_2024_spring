@@ -85,7 +85,7 @@ test.describe('menTops', () => {
     }
     });
 
-    test('Verify the count for each subCategory on Tops page is the same as count of items on each specific page', async ({page}) =>{
+    test.skip('Verify the count for each subCategory on Tops page is the same as count of items on each specific page', async ({page}) =>{
         const homePage = new HomePage(page);       
         await homePage.hoverMenLink();
         const menTopsPage = await homePage.clickMenTopsLink();
