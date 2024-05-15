@@ -1,4 +1,5 @@
 import SignInPage from "./signInPage";
+import WishListPage from "./wishListPage";
 
 class TopsWomenPage {
     constructor (page) {
@@ -67,7 +68,7 @@ class TopsWomenPage {
         const addToWishListButton =  await this.getAllWomenTopsAddToMyWishListButtons();
         await addToWishListButton[index].click();
 
-        return this.page;
+        return new WishListPage(this.page);
     }
     async clickRandomAddToWishListButtonAndSignIn(index) {
         const addToWishListButton =  await this.getAllWomenTopsAddToMyWishListButtons();

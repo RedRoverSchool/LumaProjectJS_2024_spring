@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { test, createNewAccount } from "./base.js"
+import { test, createNewAccount, signIn } from "./base.js"
 import HomePage from "../../page_objects/homePage";
 
 import {
@@ -9,6 +9,7 @@ import {
   JACKET_ITEMS,
   SIGN_IN_PAGE_END_POINT,
   CUSTOMER_WISH_LIST_END_POINT,
+  CUSTOMER_USER_DATA,
 } from "../../helpers/testData";
 import { getRandomNumber, urlToRegexPattern } from "../../helpers/testUtils";
 import { MODE_GRID_ACTIVE_ATTR_CLASS, MODE_LIST_ACTIVE_ATTR_CLASS } from '../../helpers/testWomenData'
@@ -75,8 +76,6 @@ test.describe("topWomenPage.spec", () => {
     const expectedEndPoint = new RegExp(urlToRegexPattern(BASE_URL + SIGN_IN_PAGE_END_POINT));
     const homePage = new HomePage(page);
 
-    // createNewAccount();
-
     const womenPage = await homePage.clickWomenLink();
     const topsWomenPage = await womenPage.clickWomenTopsLink();
 
@@ -128,7 +127,8 @@ test.describe("topWomenPage.spec", () => {
     await expect(topsWomenPage.locators.getDisplayModeList()).toHaveClass(MODE_LIST_ACTIVE_ATTR_CLASS
     )
   })
-  test('item is added to wishlist in left-side section after user logs in', async ({ page }) => {
+
+  test('item is added to wishlist in left-side section after user logs in', async ({ page, }) => {
     const expectedWishListUrl = new RegExp(urlToRegexPattern(BASE_URL + CUSTOMER_WISH_LIST_END_POINT));
 
     const homePage = new HomePage(page);
@@ -144,14 +144,17 @@ test.describe("topWomenPage.spec", () => {
     const signInPage = await topsWomenPage.clickRandomAddToWishListButtonAndSignIn(randomProductCardIndex);
     await page.waitForLoadState();
 
-    await signInPage.fillFieldEmail();
-    await signInPage.fillFieldPassword();
+    await signInPage.fillEmailInputField(CUSTOMER_USER_DATA.email);
+    await signInPage.fillPasswordInputField(CUSTOMER_USER_DATA.password);
     const wishListPage = await signInPage.clickButtonSignInAndGoToWishlist();
     await page.waitForLoadState();
 
     await expect(page.url()).toMatch(expectedWishListUrl)
 
-    const actualRandomProductCardName = await wishListPage.getFirstSidebarMyWishListItemNameText();
+    await wishListPage.clickUpdateMyWishList();
+    await page.waitForLoadState();
+
+    const actualRandomProductCardName = await wishListPage.getLastMyWishListItemNameText();
     const actualRandomProductCardPrice = await wishListPage.getFirstSidebarMyWishListItemPriceText();
 
     expect(actualRandomProductCardName).toEqual(randomProductCardName)
