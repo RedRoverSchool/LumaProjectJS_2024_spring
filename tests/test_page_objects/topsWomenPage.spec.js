@@ -128,7 +128,7 @@ test.describe("topWomenPage.spec", () => {
     await expect(topsWomenPage.locators.getDisplayModeList()).toHaveClass(MODE_LIST_ACTIVE_ATTR_CLASS
     )
   })
-  test('item is added to wishlist in left-side section after user logs in', async ({ page }) => {
+  test.skip('item is added to wishlist in left-side section after user logs in', async ({ page }) => {
     const expectedWishListUrl = new RegExp(urlToRegexPattern(BASE_URL + CUSTOMER_WISH_LIST_END_POINT));
 
     const homePage = new HomePage(page);

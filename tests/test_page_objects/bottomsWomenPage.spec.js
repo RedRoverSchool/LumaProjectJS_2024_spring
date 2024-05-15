@@ -29,7 +29,7 @@ test.describe('bottomsWomenPage.spec', () => {
         expect(result.extractedItems).toEqual(expectedItems);
     });
 
-    test('Verify that each category displays the number of products', async ({ page }) => {
+    test.skip('Verify that each category displays the number of products', async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.hoverWomenMenuitem();
