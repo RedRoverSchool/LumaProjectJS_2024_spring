@@ -295,5 +295,12 @@ export const ADRESS_DATA = {
 export const PAYMENT_METHOD_PAGE_END_POINT = '/checkout/#payment';
 export const CHECKOUT_ONEPAGE_SUCCESS_PAGE_END_POINT = '/checkout/onepage/success/'
 
+export const CUSTOMER_USER_DATA = {
+  firstName: "John",
+  lastName: "Doe",
+  email: "johndoe@gmail.com",
+  password: "Tester#123"
+}
+
 export const MessageComparisonList = "comparison list";
 

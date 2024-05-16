@@ -1,8 +1,19 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { LIST_STYLE_MEN_TOPS, BASE_URL, MEN_TOPS_PAGE_END_POINT, LIST_CATEGORY_MEN_TOPS, LIST_LABELS_SUB_CATEGORY, MEN_TOPS_CATEGORY_PAGES_END_POINT, LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE} from "../../helpers/testData.js"
-import MenTopsPage from "../../page_objects/menTopsPage.js";
-import { MEN_TOPS_PRICE_LIST, MEN_TOPS_PRICE_LIST_PRODUCT_COUNT } from "../../helpers/testMenData.js";
+import {
+    LIST_STYLE_MEN_TOPS,
+    BASE_URL,
+    MEN_TOPS_PAGE_END_POINT,
+    LIST_CATEGORY_MEN_TOPS,
+    LIST_LABELS_SUB_CATEGORY,
+    MEN_TOPS_CATEGORY_PAGES_END_POINT,
+    LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE
+} from "../../helpers/testData.js"
+import {
+    MEN_TOPS_PRICE_LIST,
+    MEN_TOPS_PRICE_LIST_PRODUCT_COUNT,
+    MEN_TOPS_TOTAL_TOOLBAR_AMOUNT
+} from "../../helpers/testMenData.js";
 
 test.describe('menTops', () => {
     test.beforeEach(async ({ page }) => {
@@ -50,7 +61,7 @@ test.describe('menTops', () => {
         const homePage = new HomePage(page);
         await homePage.hoverMenLink();
         const menTopsPage = await homePage.clickMenTopsLink();
-        await menTopsPage.clickMenTopsPrice();
+        await menTopsPage.expandMenTopsPriceFilterDropDown();
         
         expect(await menTopsPage.getMenTopsPriceList()).toEqual(MEN_TOPS_PRICE_LIST);
     })
@@ -59,11 +70,25 @@ test.describe('menTops', () => {
         const homePage = new HomePage(page);       
         await homePage.hoverMenLink();
         const menTopsPage = await homePage.clickMenTopsLink();
-        await menTopsPage.clickMenTopsPrice();
+        await menTopsPage.expandMenTopsPriceFilterDropDown();
 
         expect(await menTopsPage.getMenTopsPriceListProductCount()).toEqual(MEN_TOPS_PRICE_LIST_PRODUCT_COUNT);
         expect(await menTopsPage.getMenTopsPriceListProductCountPseudoElementBefore()).toEqual('(');
         expect(await menTopsPage.getMenTopsPriceListProductCountPseudoElementAfter()).toEqual(')');
+    })
+
+    test('Verify that Men/Tops price filter is eliminated after clicking on the Clear All button', async ({ page }) => {
+        const homePage = new HomePage(page);
+        await homePage.hoverMenLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
+        await menTopsPage.expandMenTopsPriceFilterDropDown();
+        await menTopsPage.applyFirstMenTopsPriceFilter();
+
+        expect(await menTopsPage.getToolBarAmount()).not.toBe(MEN_TOPS_TOTAL_TOOLBAR_AMOUNT);
+
+        await menTopsPage.clickClearAllButton();
+
+        expect(await menTopsPage.getToolBarAmount()).toBe(MEN_TOPS_TOTAL_TOOLBAR_AMOUNT);
     })
 
     test('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
@@ -112,7 +137,6 @@ test.describe('menTops', () => {
         await menTopsPage.clickClearAllButton();  
     }
 });
-
 })
 
 
