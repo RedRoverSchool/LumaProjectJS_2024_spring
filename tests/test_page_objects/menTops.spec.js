@@ -137,6 +137,24 @@ test.describe('menTops', () => {
         await menTopsPage.clickClearAllButton();  
     }
 });
+    test('verify the ability to sort products in ascending order by price', async ({ page }) => {
+        const homePage = new HomePage(page);
+        await homePage.hoverMenLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
+        await page.waitForTimeout(3000);
+        await menTopsPage.locators.getSortByLocator().selectOption('price');
+        await page.waitForTimeout(3000);
+
+        await expect(menTopsPage.locators.getAscOrderLocator().first()).toBeVisible();
+        await expect(menTopsPage.locators.getItemOfProductsAfterSortingByPriceLocator().first()).toBeVisible();
+
+        const prices = await page.$$eval('.product-items .price', elements => {
+            return elements.map(element => parseInt(element.textContent.trim().replace(/[^\d.]/g, ''), 10));
+        });
+        const sortedPrices = prices.slice().sort((a, b) => a - b);
+
+        await expect(prices).toEqual(sortedPrices);
+    })
 })
 
 
