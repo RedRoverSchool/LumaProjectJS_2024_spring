@@ -124,7 +124,7 @@ class HomePage {
   }
 
   async hoverMenLink() {
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForTimeout(3000);
     await this.locators.getMenLink().hover();
 
     return this;
@@ -182,7 +182,7 @@ class HomePage {
   }
 
   async hoverWomenMenuitem() {
-    await this.page.waitForTimeout(5000);
+    await this.page.waitForTimeout(3000);
     await this.locators.getWomenLink().hover();
 
     return this;

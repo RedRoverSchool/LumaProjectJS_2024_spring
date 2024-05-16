@@ -33,3 +33,4 @@ export const MEN_TOPS_PRICE_LIST = [
   "$90.00 and above"
 ];
 export const MEN_TOPS_PRICE_LIST_PRODUCT_COUNT = ["3", "17", "4", "6", "5", "9", "3", "1"];
+export const MEN_TOPS_TOTAL_TOOLBAR_AMOUNT = 'Items 1-12 of 48';
