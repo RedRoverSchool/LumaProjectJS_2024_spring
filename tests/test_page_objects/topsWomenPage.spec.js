@@ -1,4 +1,5 @@
-import { expect, test } from "@playwright/test";
+import { expect } from "@playwright/test";
+import { test, createNewAccount, signIn } from "./base.js"
 import HomePage from "../../page_objects/homePage";
 
 import {
@@ -7,8 +8,11 @@ import {
   TOPS_WOMEN_PAGE_END_POINT,
   JACKET_ITEMS,
   SIGN_IN_PAGE_END_POINT,
+  CUSTOMER_WISH_LIST_END_POINT,
+  CUSTOMER_USER_DATA,
 } from "../../helpers/testData";
-import {getRandomNumber, urlToRegexPattern} from "../../helpers/testUtils";
+import { getRandomNumber, urlToRegexPattern } from "../../helpers/testUtils";
+import { MODE_GRID_ACTIVE_ATTR_CLASS, MODE_LIST_ACTIVE_ATTR_CLASS } from '../../helpers/testWomenData'
 
 test.describe("topWomenPage.spec", () => {
   test.beforeEach(async ({ page }) => {
@@ -105,4 +109,57 @@ test.describe("topWomenPage.spec", () => {
 
     expect(shoppingByList).toEqual(["Tees", "S", "Purple"]);
   });
+  test('women tops display mode can be changed, visible', async ({
+    page
+  }) => {
+    const homePage = new HomePage(page)
+    const womenPage = await homePage.hoverWomenMenuitem();
+    const topsWomenPage = await womenPage.clickTopsWomenLink();
+
+    await expect(topsWomenPage.locators.getDisplayModeGrid()).toBeVisible()
+
+    await topsWomenPage.clickDisplayModeGrid()
+    await expect(topsWomenPage.locators.getDisplayModeGrid()).toHaveClass(MODE_GRID_ACTIVE_ATTR_CLASS)
+    await expect(topsWomenPage.locators.getDisplayModeList()).not.toHaveClass(MODE_LIST_ACTIVE_ATTR_CLASS)
+
+    await topsWomenPage.clickDisplayModeList()
+    await expect(topsWomenPage.locators.getDisplayModeList()).toBeVisible()
+    await expect(topsWomenPage.locators.getDisplayModeList()).toHaveClass(MODE_LIST_ACTIVE_ATTR_CLASS
+    )
+  })
+
+  test('item is added to wishlist in left-side section after user logs in', async ({ page, }) => {
+    const expectedWishListUrl = new RegExp(urlToRegexPattern(BASE_URL + CUSTOMER_WISH_LIST_END_POINT));
+
+    const homePage = new HomePage(page);
+
+    const womenPage = await homePage.clickWomenLink();
+    const topsWomenPage = await womenPage.clickWomenTopsLink();
+
+    const randomProductCardIndex = getRandomNumber(await topsWomenPage.getAllProductCardsLength());
+    const randomProductCardName = await topsWomenPage.getRandomWomenTopsItemName(randomProductCardIndex + 1);
+    const randomProductCardPrice = await topsWomenPage.getRandomWomenTopsItemPrice(randomProductCardIndex + 1);
+
+    await topsWomenPage.hoverRandomWomenTopsProductItem(randomProductCardIndex);
+    const signInPage = await topsWomenPage.clickRandomAddToWishListButtonAndSignIn(randomProductCardIndex);
+    await page.waitForLoadState();
+
+    await signInPage.fillEmailInputField(CUSTOMER_USER_DATA.email);
+    await signInPage.fillPasswordInputField(CUSTOMER_USER_DATA.password);
+    const wishListPage = await signInPage.clickButtonSignInAndGoToWishlist();
+    await page.waitForLoadState();
+
+    await expect(page.url()).toMatch(expectedWishListUrl)
+
+    await wishListPage.clickUpdateMyWishList();
+    await page.waitForLoadState();
+
+    const actualRandomProductCardName = await wishListPage.getLastMyWishListItemNameText();
+    const actualRandomProductCardPrice = await wishListPage.getFirstSidebarMyWishListItemPriceText();
+
+    expect(actualRandomProductCardName).toEqual(randomProductCardName)
+    expect(actualRandomProductCardPrice).toEqual(randomProductCardPrice)
+
+    await wishListPage.cleanMyWishListFromSideBar();
+  })
 });

@@ -28,6 +28,10 @@ export const PIERCE_GYM_SHORT =  "https://magento.softwaretestingboard.com/wishl
 export const SEARCH_ADVANCED_PAGE_END_POINT = '/catalogsearch/advanced/';
 export const PUSH_IT_MESSENGER_BAG_PAGE_END_POINT = '/push-it-messenger-bag.html'
 export const WOMEN_SHORTS_PAGE_END_POINT = '/women/bottoms-women/shorts-women.html'
+export const BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT = '/women/bottoms-women.html?style_bottom=104';
+export const FOOTER_ORDERS_AND_RETURNS_PAGE_END_POINT = '/sales/guest/form/';
+export const CUSTOMER_LOGIN_PAGE_END_POINT_SHORT = '/customer/account/login/';
+export const CUSTOMER_WISH_LIST_END_POINT = `/wishlist/index/index/wishlist_id/*`;
 
 export const LIST_OF_URLS_MENS_DEALS_END_POINT = [
   '/men/tops-men/hoodies-and-sweatshirts-men.html',
@@ -49,13 +53,35 @@ export const NAVBAR_URLs_END_POINTS = [
 ];
 export const GEAR_BAGS_PAGE_END_POINT = '/gear/bags.html';
 
+export const FOOTER_LINKs_URLs_END_POINTS = [
+  '/search/term/popular/',
+  '/privacy-policy-cookie-restriction-mode',
+  '/catalogsearch/advanced/'
+]; 
+
 export const MEN_TOPS_CATEGORY_PAGES_END_POINT = [
   '/men/tops-men.html?cat=14',
   '/men/tops-men.html?cat=15',
   '/men/tops-men.html?cat=16',
   '/men/tops-men.html?cat=17'
 ];
-export const SIGN_IN_END_POINT = '/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/'
+export const SIGN_IN_END_POINT = '/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/';
+
+export const NOTES_PAGE_URL = 'https://softwaretestingboard.com/magento-store-notes/?utm_source=magento_store&utm_medium=banner&utm_campaign=notes_promo&utm_id=notes_promotion';
+
+export const GEAR_FITNESS_PAGE_END_POINT = '/gear/fitness-equipment.html';
+export const SORTED_LIST_FITNESS_PAGE_ENDPOINT = '/gear/fitness-equipment.html?product_list_mode=list';
+
+export const WOMEN_BOTTOMS_CATEGORIES_STYLEs_END_POINT = [
+  '/women/bottoms-women.html?style_bottom=104',
+  '/women/bottoms-women.html?style_bottom=105',
+  '/women/bottoms-women.html?style_bottom=106',
+  '/women/bottoms-women.html?style_bottom=107',
+  '/women/bottoms-women.html?style_bottom=108',
+  '/women/bottoms-women.html?style_bottom=109',
+  '/women/bottoms-women.html?style_bottom=111',
+  '/women/bottoms-women.html?style_bottom=112',
+  '/women/bottoms-women.html?style_bottom=114'];
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
@@ -215,10 +241,10 @@ export const LIST_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE_LOCATORS = [
 ];
 
 export const LIST_OF_SUB_CATEGORY_ON_MEN_TOPS_PAGE_LOCATORS = [
-'.filter-options-item.allow.active > div > ol > li:nth-child(1) a',
-'.filter-options-item.allow.active > div > ol > li:nth-child(2) a',
-'.filter-options-item.allow.active > div > ol > li:nth-child(3) a',
-'.filter-options-item.allow.active > div > ol > li:nth-child(4) a'];
+  '.filter-options-item.allow.active > div > ol > li:nth-child(1) a',
+  '.filter-options-item.allow.active > div > ol > li:nth-child(2) a',
+  '.filter-options-item.allow.active > div > ol > li:nth-child(3) a',
+  '.filter-options-item.allow.active > div > ol > li:nth-child(4) a'];
 
 export const LIST_LABELS_SUB_CATEGORY = [
   'Jackets',
@@ -228,6 +254,7 @@ export const LIST_LABELS_SUB_CATEGORY = [
 
 export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
 export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
+export const FOOTER_LINK_NAME = ['Search Terms', 'Privacy and Cookie Policy', 'Advanced Search']
 export const LOGO_ALIGNMENT = 'left';
 
 export const LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE = [
@@ -238,6 +265,12 @@ export const LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE = [
 
 export const SEARCH_ADVANCED_PAGE_HEADER = 'Advanced Search';
 export const LIST_CATEGORY_MEN_BOTTOMS_WITH_QUANTITY = ['Pants 12 item', 'Shorts 12 item']; 
+export const PRODUCT_LIST = 'products-list';
+
+export const LIST_OF_CATEGORY_WATCHES = ['Electronic', 'Exercise', 'Fashion', 'Timepiece'];
+
+export const GEAR_FITNESS_NUMBER_ITEMS_IN_GRID_MODE = '11 Items';
+export const GEAR_FITNESS_NUMBER_ITEMS_IN_LIST_MODE = 'Items 1-10 of 11';
 
 export const SHOPPING_OPTIONS_FILTER_VALUE = '.filter-value';
 export const PRODUCTS_PRICE = '.price';
@@ -251,3 +284,35 @@ export const password = 'Password!';
 export const EMAIL_WISHLIST = 'johnLennon@gmail.com';
 export const PASSWORD_WISHLIST = 'Jonny1940!';
 
+export const USER_DATA = {
+  firstName: "Angelina-Maria",
+  lastName: "O'Neel",
+  email: generateRandomEmail(),
+  password: "RT45bb%%mm"
+}
+
+export const NEW_USER_DATA = {
+  firstName: "Bob",
+  lastName: "Tester",
+  newEmail: generateRandomEmail(),
+  oldPassword: "RT45bb%%mm",
+  newPassword: "Bob_Tester"
+}
+export const ORDERS_AND_RETURNS_PAGE_FIELDS = ['Order ID', 'Billing Last Name', 'Find Order By', 'Email'];
+export const MENU_GEAR_EXPECTED_ITEMS = ['Bags', 'Fitness Equipment', 'Watches'];
+
+export const ADRESS_DATA = {
+  street: "Street",
+  city: "City",
+   postal_code: "35023",
+   phone_number: "+975543621798"
+}
+export const PAYMENT_METHOD_PAGE_END_POINT = '/checkout/#payment';
+export const CHECKOUT_ONEPAGE_SUCCESS_PAGE_END_POINT = '/checkout/onepage/success/'
+
+export const CUSTOMER_USER_DATA = {
+  firstName: "John",
+  lastName: "Doe",
+  email: "johndoe@gmail.com",
+  password: "Tester#123"
+}

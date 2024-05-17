@@ -1,3 +1,6 @@
+import SignInPage from "./signInPage";
+import WishListPage from "./wishListPage";
+
 class TopsWomenPage {
     constructor (page) {
         this.page = page;
@@ -23,6 +26,10 @@ class TopsWomenPage {
         getItemsNameList: () => this.page.locator(".product-item-link"),
         getPurpleColorItem: () => this.page.locator("[aria-label='Color'] [aria-label='Purple']"),
         getSSizeItem: () => this.page.locator("[aria-label='Size'] [aria-label='S']"),
+        getDisplayModeGrid: () => this.page.getByTitle('Grid', { exact: true }).first(),
+        getDisplayModeList: () => this.page.getByTitle('List', { exact: true }).first(),
+        getWomenTopsItemsNames: (index) => this.page.locator( `.products-grid li:nth-child(${index}) strong > a`),
+        getWomenTopsItemPrices: (index) => this.page.locator( `li:nth-child(${index}) span ~span > span.price`),
     }
 
     async clickCategoryFilterOption() {
@@ -61,9 +68,14 @@ class TopsWomenPage {
         const addToWishListButton =  await this.getAllWomenTopsAddToMyWishListButtons();
         await addToWishListButton[index].click();
 
-        return this.page;
+        return new WishListPage(this.page);
     }
+    async clickRandomAddToWishListButtonAndSignIn(index) {
+        const addToWishListButton =  await this.getAllWomenTopsAddToMyWishListButtons();
+        await addToWishListButton[index].click();
 
+        return new SignInPage(this.page);
+    }
     async clickTeesCategoryShoppingOptions() {
       await this.locators.getTeesCategoryShoppingOptions().click();
       return this;
@@ -87,6 +99,29 @@ class TopsWomenPage {
       await this.locators.getPurpleColorShoppingOptions().click();
       return this;
     }
+    async clickDisplayModeGrid() {
+        await this.locators.getDisplayModeGrid().click()
+
+        return this.page;
+    }
+    async clickDisplayModeList() {
+        await this.locators.getDisplayModeList().click()
+
+        return this.page;
+    }
+    async getRandomWomenTopsItemName(index) {
+        const womenTopsItemName = await this.locators.getWomenTopsItemsNames(index).innerHTML();
+        const itemName = womenTopsItemName.replace('\n','').trim();
+
+        return itemName;
+    }
+    async getRandomWomenTopsItemPrice(index) {
+        const womenTopsItemPrice = await this.locators.getWomenTopsItemPrices(index).innerHTML();
+        const itemPrice = womenTopsItemPrice.replace('\n','').trim();
+
+        return itemPrice;
+    }
+
  }
 
 export default TopsWomenPage;

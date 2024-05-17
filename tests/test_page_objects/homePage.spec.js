@@ -24,16 +24,12 @@ import {
     HERO_HOODIE_PAGE_END_POINT,
     FUSION_BACKPACK_END_POINT,
     PUSH_IT_MESSENGER_BAG_PAGE_END_POINT,
+    NAVBAR_MENU,
+    NAVBAR_URLs_END_POINTS
 } from "../../helpers/testData.js";
 import SearchResultsJacketPage from "../../page_objects/searchResultsJacketPage.js";
-import RadiantTeePage from "../../page_objects/radiantTeePage.js";
 import SearchNoResultsPage from "../../page_objects/searchNoResultsPage.js";
-import BreatheEasyTankPage from "../../page_objects/breatheEasyTankPage.js";
-import SignInPage from "../../page_objects/signInPage.js";
-import BottomsWomenPage from "../../page_objects/bottomsWomenPage.js";
-import ArgusAllWeatherTankPage from "../../page_objects/argusAllWeatherTankPage.js";
-import HeroHoodiePage from "../../page_objects/heroHoodiePage.js";
-import FusionBackpack from "../../page_objects/fusionbackpackPage.js";
+
 
 test.describe('homePage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -53,54 +49,36 @@ test.describe('homePage.spec', () => {
         await expect(page).toHaveURL(BASE_URL);
     })
 
-    test('Verify  the automatic search results match the query in the search bar', async ({
-        page,
-    }) => {
+    test('Verify  the automatic search results match the query in the search bar', async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.fillSearchInputField(SEARCH_QUERY);
-
-        expect(await homePage.executeSearchAutocompleteList()).toContain(
-            SEARCH_QUERY
-        );
+        expect(await homePage.executeSearchAutocompleteList()).toContain(SEARCH_QUERY);
     });
 
-    test("Verify the search button (magnifier) becomes active after entering one or more letters", async ({
-        page,
-    }) => {
+    test("Verify the search button (magnifier) becomes active after entering one or more letters", async ({ page }) => {
         const homePage = new HomePage(page);
 
-        await expect(await homePage.locators.getSearchButton()).toHaveAttribute(
-            "disabled"
-        );
+        await expect(await homePage.locators.getSearchButton()).toHaveAttribute("disabled");
         await homePage.fillSearchInputField(SEARCH_QUERY);
         await expect(homePage.locators.getSearchButton()).not.toHaveAttribute("disabled");
     });
 
     test('Verify the search field is not case-sensitive', async ({ page }) => {
-
         const homePage = new HomePage(page);
 
         await homePage.fillSearchInputField(SEARCH_QUERY);
 
         const autocompleteListLowerCaseActual = await homePage.executeSearchAutocompleteList();
-
         await homePage.clearSearchInputField();
         await homePage.fillSearchInputField(SEARCH_QUERY_UPPERCASE);
 
-        const autocompleteListUpperCaseActual =
-            await homePage.executeSearchAutocompleteList();
-
-        expect(autocompleteListLowerCaseActual.sort()).toEqual(
-            autocompleteListUpperCaseActual.sort()
-        );
-        expect(autocompleteListLowerCaseActual.length).toEqual(
-            autocompleteListUpperCaseActual.length
-        );
+        const autocompleteListUpperCaseActual = await homePage.executeSearchAutocompleteList();
+        expect(autocompleteListLowerCaseActual.sort()).toEqual(autocompleteListUpperCaseActual.sort());
+        expect(autocompleteListLowerCaseActual.length).toEqual(autocompleteListUpperCaseActual.length);
     });
 
     test('Verify user can make search entered the valid text in the search field', async ({ page }) => {
-
         const homePage = new HomePage(page);
         const searchResultsJacketPage = new SearchResultsJacketPage(page);
 
@@ -113,16 +91,13 @@ test.describe('homePage.spec', () => {
 
     test('1st card: clicking card image redirects to respective product card', async ({ page }) => {
         const homePage = new HomePage(page);
-        const radiantTeePage = new RadiantTeePage(page);
-
-        await homePage.clickFirstCardImage();
+        const radiantTeePage = await homePage.clickFirstCardImage();
 
         await expect(page).toHaveURL(BASE_URL + RADIANT_TEE_PAGE_END_POINT);
         await expect(radiantTeePage.locators.getRadiantTeeHeader()).toBeVisible();
     });
 
     test('Verify user doesn`t receive the results when make search with invalid text ', async ({ page }) => {
-
         const homePage = new HomePage(page);
         const searchNoResultsPage = new SearchNoResultsPage(page);
 
@@ -132,76 +107,59 @@ test.describe('homePage.spec', () => {
         await expect(searchNoResultsPage.locators.getNoResultsInfo()).toBeHidden();
     });
 
-    test("Verify the search button (magnifier) is inactive after the search field is cleared", async ({
-        page,
-    }) => {
+    test("Verify the search button (magnifier) is inactive after the search field is cleared", async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.fillSearchInputField(SEARCH_QUERY);
-        await expect(homePage.locators.getSearchButton()).not.toHaveAttribute(
-            "disabled"
-        );
+        await expect(homePage.locators.getSearchButton()).not.toHaveAttribute("disabled");
 
         await homePage.clearSearchInputField();
-        await expect(homePage.locators.getSearchButton()).toHaveAttribute(
-            "disabled"
-        );
+        await expect(homePage.locators.getSearchButton()).toHaveAttribute("disabled");
     });
 
     test("Verify user can hover over the title “Women” and see dropdown list with 2 subcategories", async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.hoverWomenLink();
-
         await expect(homePage.locators.getWomenCategories()).toHaveText(WOMEN_CATEGORIES);
     });
 
     test('1st card: clicking card name redirects to respective product cards', async ({ page }) => {
         const homePage = new HomePage(page);
-        const radiantTeePage = new RadiantTeePage(page);
 
-        await homePage.clickFirstCardName();
-
+        const radiantTeePage = await homePage.clickFirstCardName();
         await expect(page).toHaveURL(BASE_URL + RADIANT_TEE_PAGE_END_POINT);
         await expect(radiantTeePage.locators.getRadiantTeeHeader()).toBeVisible();
     })
 
     test('1st card: clicking card reviews redirects to "reviews" tab on respective product card', async ({ page }) => {
         const homePage = new HomePage(page);
-        const radiantTeePage = new RadiantTeePage(page);
 
-        await homePage.clickFirstCardReviews();
-
+        const radiantTeePage = await homePage.clickFirstCardReviews();
         await expect(page).toHaveURL(BASE_URL + RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT);
         await expect(radiantTeePage.locators.getRadiantTeeReviewsTab()).toBeVisible();
     })
 
     test('2nd card: clicking the card name redirects to the respective product card', async ({ page }) => {
         const homePage = new HomePage(page);
-        const breatheEasyTankPage = new BreatheEasyTankPage(page);
 
-        await homePage.clickSecondCardName();
-
+        const breatheEasyTankPage = await homePage.clickSecondCardName();
         await expect(page).toHaveURL(BASE_URL + BREATHE_EASY_TANK_PAGE_END_POINT);
         await expect(breatheEasyTankPage.locators.getBreatheEasyTankHeader()).toBeVisible();
     })
 
     test('2nd card: clicking the card image redirects to the respective product card', async ({ page }) => {
         const homePage = new HomePage(page);
-        const breatheEasyTankPage = new BreatheEasyTankPage(page);
 
-        await homePage.clickSecondCardImage();
-
+        const breatheEasyTankPage = await homePage.clickSecondCardImage();
         await expect(page).toHaveURL(BASE_URL + BREATHE_EASY_TANK_PAGE_END_POINT);
         await expect(breatheEasyTankPage.locators.getBreatheEasyTankHeader()).toBeVisible();
     })
 
     test('2nd card: clicking card reviews redirects to "reviews" tab on respective product card', async ({ page }) => {
         const homePage = new HomePage(page);
-        const breatheEasyTankPage = new BreatheEasyTankPage(page);
-
-        await homePage.clickSecondCardReviews();
-
+        
+        const breatheEasyTankPage = await homePage.clickSecondCardReviews();
         await expect(page).toHaveURL(BASE_URL + BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT);
         await expect(breatheEasyTankPage.locators.getBreatheEasyTankReviewsTab()).toBeVisible();
     })
@@ -218,81 +176,65 @@ test.describe('homePage.spec', () => {
 
     test('Verify that the user can navigate from the home page to the "Women - Bottoms" page', async ({ page }) => {
         const homePage = new HomePage(page);
-        const bottomsWomenPage = new BottomsWomenPage(page);
-
         await homePage.hoverWomenMenuitem();
-        await homePage.clickBottomsWomenLink();
 
+        const bottomsWomenPage = await homePage.clickBottomsWomenLink();
         await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
         await expect(bottomsWomenPage.locators.getWomenBottomsPageHeader()).toHaveText(WOMEN_BOTTOMS_HEADER);
     });
 
     test('3rd card: clicking the card image redirects to the respective product card', async ({ page }) => {
         const homePage = new HomePage(page);
-        const argusAllWeatherTankPage = new ArgusAllWeatherTankPage(page);
-
-        await homePage.clickThirdCardImage();
-
+        
+        const argusAllWeatherTankPage = await homePage.clickThirdCardImage();
         await expect(page).toHaveURL(BASE_URL + ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT);
         await expect(argusAllWeatherTankPage.locators.getArgusAllWeatherTankPageHeader()).toBeVisible();
     })
 
     test('3rd card: clicking the card name redirects to the respective product card', async ({ page }) => {
         const homePage = new HomePage(page);
-        const argusAllWeatherTankPage = new ArgusAllWeatherTankPage(page);
         
-        await homePage.clickThirdCardName();
-
+        const argusAllWeatherTankPage = await homePage.clickThirdCardName();
         await expect(page).toHaveURL(BASE_URL + ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT);
         await expect(argusAllWeatherTankPage.locators.getArgusAllWeatherTankPageHeader()).toBeVisible();
     })
 
     test('4th card: clicking the card name redirects to the respective product card', async ({ page }) => {
         const homePage = new HomePage(page);
-        const heroHoodiePage = new HeroHoodiePage(page);
 
-        await homePage.clickFourthCardName();
-
+        const heroHoodiePage = await homePage.clickFourthCardName();
         await expect(page).toHaveURL(BASE_URL + HERO_HOODIE_PAGE_END_POINT);
         await expect(heroHoodiePage.locators.getHeroHoodieHeader()).toBeVisible();
     })
 
     test('4th card: clicking the card image redirects to the respective product card', async ({ page }) => {
         const homePage = new HomePage(page);
-        const heroHoodiePage = new HeroHoodiePage(page);
 
-        await homePage.clickFourthCardImage();
-
+        const heroHoodiePage = await homePage.clickFourthCardImage();
         await expect(page).toHaveURL(BASE_URL + HERO_HOODIE_PAGE_END_POINT);
         await expect(heroHoodiePage.locators.getHeroHoodieHeader()).toBeVisible();
     })
 
     test('5th card: clicking the card image redirects to the respective product card', async ({page}) => {
         const homePage = new HomePage(page);
-        const fusionbackpack = new FusionBackpack(page);
 
-        await homePage.clickFifthCardImage();
-
+        const fusionbackpack = await homePage.clickFifthCardImage();
         await expect(page).toHaveURL(BASE_URL + FUSION_BACKPACK_END_POINT);
         await expect(fusionbackpack.locators.getFusionBackpackHeader()).toBeVisible();
     })
 
     test('5th card: clicking the card name redirects to the respective product card', async ({page}) => {
         const homePage = new HomePage(page);
-        const fusionbackpack = new FusionBackpack(page);
 
-        await homePage.clickFifthCardName();
-
+        const fusionbackpack =  await homePage.clickFifthCardName();
         await expect(page).toHaveURL(BASE_URL + FUSION_BACKPACK_END_POINT);
         await expect(fusionbackpack.locators.getFusionBackpackHeader()).toBeVisible();
     })
 
     test('5th card: clicking card reviews redirects to "reviews" tab on respective product card', async ({page}) => { 
         const homePage = new HomePage(page);
-        const fusionbackpack = new FusionBackpack(page);
 
-        await homePage.clickFifthCardReviews();
-
+        const fusionbackpack = await homePage.clickFifthCardReviews();
         await expect(fusionbackpack.locators.getFusionBackpackHeader()).toBeVisible();
         await expect(fusionbackpack.locators.getFusionBackpackReviewsTab()).toBeVisible();
     })
@@ -303,5 +245,64 @@ test.describe('homePage.spec', () => {
         const pushItMessengerBagPage = await homePage.clickSixthCardImage();
         await expect(page).toHaveURL(BASE_URL + PUSH_IT_MESSENGER_BAG_PAGE_END_POINT);
         await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageHeader()).toBeVisible();
+    })
+
+    test('6th card: clicking the card name redirects to the respective product card', async ({page}) => {
+        const homePage = new HomePage(page);
+
+        const pushItMessengerBagPage = await homePage.clickSixthCardName();
+        await expect(page).toHaveURL(BASE_URL + PUSH_IT_MESSENGER_BAG_PAGE_END_POINT);
+        await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageHeader()).toBeVisible();
+    })
+
+    test('6th card: clicking card reviews redirects to "reviews" tab on respective product card', async ({page}) => { 
+        const homePage = new HomePage(page);
+        
+        const pushItMessengerBagPage = await homePage.clickSixthCardReviews();
+        await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageReviewsTab()).toBeVisible();
+        await expect(pushItMessengerBagPage.locators.getPushItMessengerBagPageHeader()).toBeVisible();
+    })
+    
+    test("Verification clickables elements in product's card", async ({page}) => {
+        
+        const homePage = new HomePage(page);
+        const radiantTeePage = await homePage.clickHotSellersCardLink(0);
+        await expect(radiantTeePage.locators.getRadiantTeeHeader()).toBeVisible();
+
+        await radiantTeePage.clickRadiantTeeSizeM();
+        await radiantTeePage.clickRadiantTeeColorPurple();
+        
+        await expect(radiantTeePage.locators.getRadiantTeeSizeMChoose().getByText('M', { exact: true })).toBeVisible();
+    })
+
+    
+    test(`verify 6 menu options on the main menu have particular text and clickable`, async ({ page }) => {
+        const homePage = new HomePage(page)
+        const mainMenuLinks = await homePage.locators.getMainMenuLinks()
+  
+        for (let i = 0; i < NAVBAR_MENU.length; i++) {
+          const link = mainMenuLinks.nth(i)
+          await expect(link).toHaveText(NAVBAR_MENU[i]);
+          
+          await homePage.clickMainMenuLinks(i)
+          await expect(page).toHaveURL(NAVBAR_URLs_END_POINTS[i])
+          await expect(page.getByRole('heading').first()).toHaveText(NAVBAR_MENU[i])
+        }
+    })
+
+    test(`Verify changing quantity of product in card section 'Hot seller'`, async ({ page }) => {
+
+        const qty = "100";
+        const homePage = new HomePage(page);
+        await homePage.scrollToHotSellerSection();
+        const productCardPage = await homePage.clickRandomCard();
+
+        const quantityValue = await productCardPage.getQuantityValue();
+        expect(quantityValue).toBe('1');
+
+        await productCardPage.enterQuantityNumber(qty);
+
+        const enteredQuantityValue = await productCardPage.getQuantityValue();
+        expect(enteredQuantityValue).toBe(qty);        
     })
 })

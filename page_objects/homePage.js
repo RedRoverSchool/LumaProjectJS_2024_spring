@@ -20,8 +20,12 @@ import WomenTopsPage from "./womenTopsPage.js";
 import ArgusAllWeatherTankPage from "./argusAllWeatherTankPage.js"
 import HeroHoodiePage from "./heroHoodiePage.js"
 import TopsWomenPage from "./topsWomenPage.js";
-import FusionBackpack from "./fusionbackpackPage.js";
+import FusionBackpackPage from "./fusionbackpackPage.js";
 import PushItMessengerBagPage from "./pushItMessengerBagPage.js";
+import MyAccountPage from "./myAccountPage.js";
+import GearFitnessPage from "./gearFitnessPage.js";
+import { getRandomNumber } from "./../helpers/testUtils.js"
+import ProductCardPage from "./productCardPage.js";
 
 class HomePage {
   constructor(page) {
@@ -46,6 +50,7 @@ class HomePage {
     getCreateAccountLink: () => this.page.getByRole('link', { name: 'Create an Account' }),
     getMenLink: () =>this.page.locator('li.nav-3'),
     getSignInLinck: () => this.page.getByRole('link',{name:'Sign In'}),
+    getMenLink: () => this.page.locator('li.nav-3'),
     getMenTopsLink: () => this.page.locator('#ui-id-17'),
     getBottomsWomenLink: () => this.page.getByRole('menuitem', { name: 'Bottoms' }),
     getSearchTermPopularLink: () => this.page.getByRole('link', { name: 'Search Terms' }),
@@ -77,12 +82,21 @@ class HomePage {
     getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
     getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
     getSixthCardImage: () => this.page.getByAltText('Push It Messenger Bag'),
+    getSixthCardName: () => this.page.locator('a[title="Push It Messenger Bag"]'),
+    getSixthCardReviews: () => this.page.locator('a[class="action view"][href*="push-it-messenger-bag"]'),
+    getHotSellersCardLink: () => this.page.locator('.product-item-photo'),
+    getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
+    getWelcomeDropdown: () => this.page.locator('[class="panel header"] span[role="button"]'),
+    getMyAccountLink: () => this.page.getByRole('link', {name: 'My Account'}),
+    getGearFitnessEquipmentSubmenuItem: () => this.page.getByRole("menuitem", { name: "Fitness Equipment" }),
+    getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
+    getHotSellersSection: () => this.page.getByRole('heading', { name: 'Hot Sellers' })
   };
 
   async open() {
     await this.page.goto("/");
-    if (await this.page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible()) 
-            await this.page.getByRole('button', { name: 'Consent' }).click();
+    if (await this.page.getByRole('dialog', { name: 'This site asks for consent to use your data' }).isVisible())
+      await this.page.getByRole('button', { name: 'Consent' }).click();
   }
 
   async clickWhatsNewLink() {
@@ -110,6 +124,7 @@ class HomePage {
   }
 
   async hoverMenLink() {
+    await this.page.waitForTimeout(3000);
     await this.locators.getMenLink().hover();
 
     return this;
@@ -167,6 +182,7 @@ class HomePage {
   }
 
   async hoverWomenMenuitem() {
+    await this.page.waitForTimeout(3000);
     await this.locators.getWomenLink().hover();
 
     return this;
@@ -266,7 +282,7 @@ class HomePage {
     return new GearBagsPage(this.page);
   }
 
-  async clickFirstCardReviews () {
+  async clickFirstCardReviews() {
     await this.locators.getFirstCardReviews().click();
 
     return new RadiantTeePage(this.page)
@@ -341,19 +357,19 @@ class HomePage {
   async clickFifthCardImage() {
     await this.locators.getFifthCardImage().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpackPage(this.page)
   }
   
   async clickFifthCardName() {
     await this.locators.getFifthCardName().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpackPage(this.page)
   }
 
   async clickFifthCardReviews() {
     await this.locators.getFifthCardReviews().click();
 
-    return new FusionBackpack(this.page)
+    return new FusionBackpackPage(this.page)
   }
   
   async clickSixthCardImage() {
@@ -361,5 +377,63 @@ class HomePage {
 
     return new PushItMessengerBagPage(this.page)
   }
+
+  async clickSixthCardName() {
+    await this.locators.getSixthCardName().click();
+
+    return new PushItMessengerBagPage(this.page)
+  }
+
+  async clickSixthCardReviews() {
+    await this.locators.getSixthCardReviews().click();
+
+    return new PushItMessengerBagPage(this.page)
+  }
+
+  async getGreetingText(name) {
+    return await this.locators.getGreetingName(name).innerText();
+  }
+
+  async clickWelcomeDropdown() {
+    await this.locators.getWelcomeDropdown().click();
+
+    return this;
+  }
+
+  async clickMyAccountLink() {
+    await this.locators.getMyAccountLink().click()
+
+    return new MyAccountPage(this.page);
+  }
+  async clickHotSellersCardLink(ind) {
+    await this.locators.getHotSellersCardLink().nth(ind).click();
+
+    return new RadiantTeePage(this.page)
+  }
+
+  async clickGearFitnessEquipmentSubmenuItem() {
+    await this.locators.getGearFitnessEquipmentSubmenuItem().click();
+
+    return new GearFitnessPage(this.page);
+  }
+  
+  async clickMainMenuLinks(i) {
+    await this.locators.getMainMenuLinks().nth(i).click();    
+  
+  }
+
+  async scrollToHotSellerSection() {
+    await this.locators.getHotSellersSection().scrollIntoViewIfNeeded();
+    
+  }
+
+  async clickRandomCard() {
+    const hotCards = await this.page.locator('.product-item-info').all();
+    await hotCards[getRandomNumber(hotCards.length)].click();
+
+    return new ProductCardPage(this.page);
+  }
 }
+  
+
 export default HomePage;

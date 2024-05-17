@@ -32,6 +32,7 @@ class MenTopsPage{
     getCountOfItemsOnEachSubCategory: () => this.page.locator('li[class="item product product-item"]'),
     getNextLink: () => this.page.getByRole('link', { name: 'Next' }),
     getClearAllButton: () => this.page.locator(".action.clear.filter-clear"),
+    getToolBarAmountLocator: () => this.page.locator('#toolbar-amount'),
     getShoppingOptionFilterValue: () => this.page.locator(SHOPPING_OPTIONS_FILTER_VALUE),
     getProductsPrice: () => this.page.locator(PRODUCTS_PRICE),
     getSortByDropDown: () => this.page.locator(PRODUCTS_SORTING).first(),
@@ -49,11 +50,23 @@ class MenTopsPage{
       return new MenTopsPage(this.page);
    };
 
-   async clickMenTopsPrice(){
+   async expandMenTopsPriceFilterDropDown(){
       await this.locators.getMenTopsPrice().click();
 
       return this;
    };
+
+   async applyFirstMenTopsPriceFilter() {
+      await this.locators.getMenTopsListPrice().first().click({ timeout: 1000});
+
+      return this;
+   }
+
+   async getToolBarAmount() {
+      const toolbarAmount = await this.locators.getToolBarAmountLocator().allTextContents();
+      
+      return toolbarAmount.map(el => el.slice(1, -1)).shift();
+   }
 
    async getMenTopsPriceList(){
       const priceList = await this.locators.getMenTopsListPrice().allInnerTexts();

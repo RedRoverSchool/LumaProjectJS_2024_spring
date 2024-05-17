@@ -1,3 +1,5 @@
+import { TIMEOUT } from "dns";
+
 class BottomsWomenPage {
     constructor(page) {
         this.page = page;
@@ -21,7 +23,12 @@ class BottomsWomenPage {
         getShoppingOptionsMaterialOrganicCotton: () => this.page.getByText("Organic Cotton "),
         getShoppingOptionsPrice: () =>  this.page.locator(".filter-options-title").nth(10),
         getShoppingOptionsPriceSecondSubCategory: () => this.page.locator("a[href$='price=30-40']"),
-        getClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'})
+        getClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'}),
+        getWomenBottomsOptionSize: () => this.page.getByRole('tab', { name: 'Size' }),
+        getWomenBottomsLocatorsSize: () => this.page.locator('a[href*="women/bottoms-women.html?size"]>div'),
+        getSelectCategory: () => this.page.locator(".filter-value"),
+        getListViewLink: () => this.page.getByTitle('List').first(),
+        getProductsListWrapper: () => this.page.locator('div.products.wrapper'),
     }
 
     async getLocatorInnerText(locator) {
@@ -91,6 +98,36 @@ class BottomsWomenPage {
 
     async clickClearAllButton() {
         await this.locators.getClearAllButton().click();
+
+        return this;
+    }
+
+    async clickCategoryStyle(i) {
+        const categories = await this.locators.getCategoriesStyle();
+        await categories[i].click();
+    }
+
+  async clickWomenBottomsOptionSize() {
+        await this.locators.getWomenBottomsOptionSize().click();
+
+        return this.page;
+  }
+
+    async getObjectCategoriesStyle() {
+        const categories = await this.locators.getCategoriesStyle();
+        const categoryElements = [];
+    
+        for (const category of categories) {
+            const name = await category.innerText();
+            const count = await this.locators.getCountItemsInCategoryStyle(category);
+            categoryElements.push({ name: name.replace(/\bitem\b|\d+/g, "").trim(), count: parseInt(await count.innerText()) });
+        }
+    
+        return categoryElements;
+    }
+
+    async clickListViewLink() {
+        await this.locators.getListViewLink().click();
 
         return this;
     }
