@@ -19,6 +19,7 @@ test.describe('jacketsWomen.spec', () => {
 
         await expect(jacketsWomenPage.locators.getAddToCompareButton()).toBeVisible();
         await jacketsWomenPage.clickAddToCompareButton();
+        await page.waitForTimeout(3000);
         
         const actualResult = await jacketsWomenPage.locators.getMessageAddedProductComparisonList().textContent();
 
@@ -29,6 +30,7 @@ test.describe('jacketsWomen.spec', () => {
 
         await jacketWomenPage.hoverOlivia14ZipLightJacket();
         await jacketWomenPage.clickAddToCompareButton();
+        await page.waitForTimeout(3000);
 
         await expect(jacketWomenPage.locators.getCompareProductDisplayedOnLeftSide()).toBeVisible();
         await expect(jacketWomenPage.locators.getCompareProductDisplayedOnLeftSide()).toContainText(CompareProductsOlivia);
