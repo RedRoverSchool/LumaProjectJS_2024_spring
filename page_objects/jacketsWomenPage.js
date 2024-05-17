@@ -10,7 +10,8 @@ class JacketsWomenPage {
         getOlivia14ZipLightJacket: () => this.page.getByRole('link', { name: 'Olivia 1/4 Zip Light Jacket' }).first(),
         getAddToCompareButton : () => this.page.locator('li').filter({ hasText: 'Olivia 1/4 Zip Light Jacket' }).getByLabel('Add to Compare'),
         //getMessageAddedProductComparisonList: () => this.page.locator('div').filter({ hasText: 'Product comparison list' }).first(),
-        getMessageAddedProductComparisonList: () => this.page.locator('div.messages a').first()
+        getMessageAddedProductComparisonList: () => this.page.locator('div.messages a').first(),
+        getCompareProductDisplayedOnLeftSide: () => this.page.locator('.block-content ol#compare-items li a').first()
         
 
     }

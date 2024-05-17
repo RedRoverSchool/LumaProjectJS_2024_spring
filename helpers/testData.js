@@ -313,4 +313,5 @@ export const CUSTOMER_USER_DATA = {
 }
 
 export const MessageComparisonList = "comparison list";
+export const CompareProductsOlivia = "Olivia 1/4 Zip Light Jacket";
 
