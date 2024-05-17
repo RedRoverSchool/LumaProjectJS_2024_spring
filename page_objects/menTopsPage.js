@@ -33,10 +33,9 @@ class MenTopsPage{
     getNextLink: () => this.page.getByRole('link', { name: 'Next' }),
     getClearAllButton: () => this.page.locator(".action.clear.filter-clear"),
     getToolBarAmountLocator: () => this.page.locator('#toolbar-amount'),
-    getShoppingOptionFilterValue: () => this.page.locator(SHOPPING_OPTIONS_FILTER_VALUE),
-    getProductsPrice: () => this.page.locator(PRODUCTS_PRICE),
-    getSortByDropDown: () => this.page.locator(PRODUCTS_SORTING).first(),
-    getSortByArrow: () => this.page.locator('#authenticationPopup + .toolbar .sorter-action')
+    getSortByLocator: () => this.page.locator('select#sorter.sorter-options').first(),
+    getAscOrderLocator: () => this.page.locator('a.action.sorter-action.sort-asc'),
+    getItemOfProductsAfterSortingByPriceLocator: () => this.page.locator('.product-items .price'),
    };
 
    async clickMenTopsStyle(){
