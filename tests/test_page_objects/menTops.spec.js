@@ -155,6 +155,28 @@ test.describe('menTops', () => {
 
         await expect(prices).toEqual(sortedPrices);
     })
+
+    test('verify the ability to sort products in descending order by price', async ({ page }) => {
+        const homePage = new HomePage(page);
+        await homePage.hoverMenLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
+        await page.waitForTimeout(2000);
+        await menTopsPage.locators.getSortByLocator().selectOption('price');
+        await page.waitForTimeout(2000);
+        await menTopsPage.hoverGetDescOrderLink();
+        await menTopsPage.clickGetDescOrderLink();
+        await page.waitForTimeout(3000);
+
+        await expect(menTopsPage.locators.getDescOrderLocator().first()).toBeVisible();
+        await expect(menTopsPage.locators.getItemOfProductsAfterSortingByPriceLocator().first()).toBeVisible();
+    
+        const prices = await page.$$eval('.product-items .price', elements => {
+            return elements.map(element => parseInt(element.textContent.trim().replace(/[^\d.]/g, ''), 10));
+          });
+        const sortedPrices = prices.slice().sort((a, b) => b - a);
+   
+        await expect(prices).toEqual(sortedPrices);
+      })
 })
 
 
