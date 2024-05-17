@@ -73,6 +73,17 @@ export const GEAR_FITNESS_PAGE_END_POINT = '/gear/fitness-equipment.html';
 export const SORTED_LIST_FITNESS_PAGE_ENDPOINT = '/gear/fitness-equipment.html?product_list_mode=list';
 export const GEAR_PAGE_END_POINT = '/gear.html';
 
+export const WOMEN_BOTTOMS_CATEGORIES_STYLEs_END_POINT = [
+  '/women/bottoms-women.html?style_bottom=104',
+  '/women/bottoms-women.html?style_bottom=105',
+  '/women/bottoms-women.html?style_bottom=106',
+  '/women/bottoms-women.html?style_bottom=107',
+  '/women/bottoms-women.html?style_bottom=108',
+  '/women/bottoms-women.html?style_bottom=109',
+  '/women/bottoms-women.html?style_bottom=111',
+  '/women/bottoms-women.html?style_bottom=112',
+  '/women/bottoms-women.html?style_bottom=114'];
+
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
 export const WOMEN_PAGE_HEADER = 'Women';
@@ -295,3 +306,10 @@ export const ADRESS_DATA = {
 }
 export const PAYMENT_METHOD_PAGE_END_POINT = '/checkout/#payment';
 export const CHECKOUT_ONEPAGE_SUCCESS_PAGE_END_POINT = '/checkout/onepage/success/'
+
+export const CUSTOMER_USER_DATA = {
+  firstName: "John",
+  lastName: "Doe",
+  email: "johndoe@gmail.com",
+  password: "Tester#123"
+}
