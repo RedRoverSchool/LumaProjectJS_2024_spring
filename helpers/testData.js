@@ -273,8 +273,6 @@ export const GEAR_FITNESS_NUMBER_ITEMS_IN_GRID_MODE = '11 Items';
 export const GEAR_FITNESS_NUMBER_ITEMS_IN_LIST_MODE = 'Items 1-10 of 11';
 
 export const SHOPPING_OPTIONS_FILTER_VALUE = '.filter-value';
-export const PRODUCTS_PRICE = '.price';
-export const PRODUCTS_SORTING = '#sorter';
 
 //login  credential
 

@@ -82,7 +82,7 @@ test.describe('menTops', () => {
             const homePage = new HomePage(page);
             await homePage.hoverMenLink();
             const menTopsPage = await homePage.clickMenTopsLink();
-            await menTopsPage.clickMenTopsPrice();
+            await menTopsPage.expandMenTopsPriceFilterDropDown();
             await menTopsPage.clickMenTopsPriceRange(index);
 
             expect(await menTopsPage.getShoppingOptionFilterValues()).toEqual([MEN_TOPS_PRICE_LIST[index]]);
@@ -160,7 +160,7 @@ test.describe('menTops', () => {
         await page.waitForTimeout(3000);
 
         await expect(menTopsPage.locators.getAscOrderLocator().first()).toBeVisible();
-        await expect(menTopsPage.locators.getItemOfProductsAfterSortingByPriceLocator().first()).toBeVisible();
+        await expect(menTopsPage.locators.getProductsPriceLocator().first()).toBeVisible();
 
         const prices = await page.$$eval('.product-items .price', elements => {
             return elements.map(element => parseInt(element.textContent.trim().replace(/[^\d.]/g, ''), 10));
