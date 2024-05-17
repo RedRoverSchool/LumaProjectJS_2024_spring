@@ -28,7 +28,6 @@ export const PIERCE_GYM_SHORT =  "https://magento.softwaretestingboard.com/wishl
 export const SEARCH_ADVANCED_PAGE_END_POINT = '/catalogsearch/advanced/';
 export const PUSH_IT_MESSENGER_BAG_PAGE_END_POINT = '/push-it-messenger-bag.html'
 export const WOMEN_SHORTS_PAGE_END_POINT = '/women/bottoms-women/shorts-women.html'
-export const BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT = '/women/bottoms-women.html?style_bottom=104';
 export const FOOTER_ORDERS_AND_RETURNS_PAGE_END_POINT = '/sales/guest/form/';
 export const CUSTOMER_LOGIN_PAGE_END_POINT_SHORT = '/customer/account/login/';
 export const CUSTOMER_WISH_LIST_END_POINT = `/wishlist/index/index/wishlist_id/*`;

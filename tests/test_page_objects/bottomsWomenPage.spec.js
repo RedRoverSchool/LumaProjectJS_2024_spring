@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
-import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT, WOMEN_BOTTOMS_CATEGORIES_STYLEs_END_POINT, PRODUCT_LIST} from "../../helpers/testData.js";
+import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, WOMEN_BOTTOMS_CATEGORIES_STYLEs_END_POINT, PRODUCT_LIST} from "../../helpers/testData.js";
 import { WOMEN_BOTTOMS_CATEGORIES,WOMEN_BOTTOMS_SIZE } from "../../helpers/testWomenData.js";
 
 test.describe('bottomsWomenPage.spec', () => {
@@ -65,22 +65,22 @@ test.describe('bottomsWomenPage.spec', () => {
         });
     });
 
-    test('Ensure the "Base Layer" category selected in the "Style" option aligns with the displayed category name on the page.', async ({ page }) => {
-        const homePage = new HomePage(page);
+    EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS.forEach(async (nameCategory, index) => {
+        test(`Ensure "${nameCategory}" category selected in the "Style" option aligns with the displayed category name on the page.`, async ({ page }) => {
+            const homePage = new HomePage(page);
+            await homePage.hoverWomenMenuitem();
+            const bottomsWomenPage = await homePage.clickBottomsWomenLink();
+            const categories = await bottomsWomenPage.getObjectCategoriesStyle();
 
-        await homePage.hoverWomenMenuitem();
-        const bottomsWomenPage = await homePage.clickBottomsWomenLink();
+            await bottomsWomenPage.clickWomenBottomsOptionStyle();
+            await bottomsWomenPage.clickCategoryStyle(index);
 
-        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_PAGE_END_POINT);
-    
-        const categories = await bottomsWomenPage.getObjectCategoriesStyle();
-        await bottomsWomenPage.clickWomenBottomsOptionStyle();
-        await bottomsWomenPage.clickCategoryStyle(0);
-
-        await expect(page).toHaveURL(BASE_URL + BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT);
-        await expect(await bottomsWomenPage.locators.getSelectCategory()).toHaveText(await categories[0].name);
+            await expect(page).toHaveURL(BASE_URL + WOMEN_BOTTOMS_CATEGORIES_STYLEs_END_POINT[index]);
+            expect(nameCategory).toEqual(await categories[index].name);
+            await expect(await bottomsWomenPage.locators.getSelectCategory()).toHaveText(await categories[index].name);
+        });
     });
-
+    
     test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
        const homePage = new HomePage(page);
 
