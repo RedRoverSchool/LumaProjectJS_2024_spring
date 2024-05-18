@@ -79,6 +79,7 @@ class MenTopsPage{
 
    async selectSortByPrice() {
       await this.locators.getSortByLocator().selectOption('price');
+      await this.page.waitForTimeout(2000);
 
       return this;
    }
@@ -96,11 +97,6 @@ class MenTopsPage{
 
    async getMinProductItemPrice() {
       await this.selectSortByPrice();
-      await this.page.waitForTimeout(2000);
-      await this.locators.getSortByArrow().click();
-      await this.page.waitForTimeout(2000);
-      await this.locators.getSortByArrow().click();
-      await this.page.waitForTimeout(2000);
       const productPrice = await this.locators.getProductsPriceLocator().allInnerTexts();
 
       return Number(productPrice.map(price => price.slice(1))[0]);
@@ -108,9 +104,7 @@ class MenTopsPage{
 
    async getMaxProductItemPrice() {
       await this.selectSortByPrice();
-      await this.page.waitForTimeout(2000);
-      await this.locators.getSortByArrow().click();
-      await this.page.waitForTimeout(2000);
+      await this.clickGetDescOrderLink();
       const productPrice = await this.locators.getProductsPriceLocator().allInnerTexts();
 
       return Number(productPrice.map(price => price.slice(1))[0]);
@@ -185,6 +179,7 @@ class MenTopsPage{
 
     async clickGetDescOrderLink() {
       await this.locators.getDescOrderLink().click();
+      await this.page.waitForTimeout(2000);
 
       return this.page;
     }

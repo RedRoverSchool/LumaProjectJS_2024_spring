@@ -182,7 +182,7 @@ test.describe('menTops', () => {
         await page.waitForTimeout(3000);
 
         await expect(menTopsPage.locators.getDescOrderLocator().first()).toBeVisible();
-        await expect(menTopsPage.locators.getItemOfProductsAfterSortingByPriceLocator().first()).toBeVisible();
+        await expect(menTopsPage.locators.getProductsPriceLocator().first()).toBeVisible();
     
         const prices = await page.$$eval('.product-items .price', elements => {
             return elements.map(element => parseInt(element.textContent.trim().replace(/[^\d.]/g, ''), 10));
