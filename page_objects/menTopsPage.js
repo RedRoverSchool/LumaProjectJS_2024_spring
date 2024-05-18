@@ -33,8 +33,9 @@ class MenTopsPage{
     getSortByLocator: () => this.page.locator('select#sorter.sorter-options').first(),
     getAscOrderLocator: () => this.page.locator('a.action.sorter-action.sort-asc'),
     getProductsPriceLocator: () => this.page.locator('.product-items .price'),
+    getDescOrderLocator: () => this.page.locator('a.action.sorter-action.sort-desc'),
+    getDescOrderLink: () => this.page.getByRole('link', {name: 'Set Descending Direction'}),
     getShoppingOptionFilterValue: () => this.page.locator(SHOPPING_OPTIONS_FILTER_VALUE),
-    getSortByArrow: () => this.page.locator('#authenticationPopup + .toolbar .sorter-action')
    };
 
    async clickMenTopsStyle(){
@@ -174,6 +175,18 @@ class MenTopsPage{
       await this.locators.getNextLink().click();
       
       return this;
+    }
+
+    async hoverGetDescOrderLink() {
+      await this.locators.getDescOrderLink().hover();
+
+      return this.page;
+    }
+
+    async clickGetDescOrderLink() {
+      await this.locators.getDescOrderLink().click();
+
+      return this.page;
     }
  }
 export default MenTopsPage
