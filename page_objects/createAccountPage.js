@@ -12,8 +12,9 @@ class CreateAccountPage {
         getPasswordField: () => this.page.locator('#password'),
         getConfirmPasswordField: () => this.page.locator('#password-confirmation'),
         getCreateAccountButton: () => this.page.getByRole('button', { name: "Create an Account" }),
-        getCreateAccountHeader: () => this.page.getByRole('heading', {name: 'Create New Customer Account'}).first()
-        
+        getCreateAccountHeader: () => this.page.getByRole('heading', {name: 'Create New Customer Account'}).first(),
+        getFormLabels: () => this.page.locator("#form-validate label"),
+        getFormInputs: () => this.page.locator("#form-validate input.input-text"),
     };
 
     async clickFirstNameField(){
@@ -82,5 +83,13 @@ class CreateAccountPage {
         return new MyAccountPage(this.page);
     }
 
+    async getArrayOfFormLabels() {
+        return await this.locators.getFormLabels().allInnerTexts();
+    }
+
+    async getArrayOfFormInputs() {
+        return await this.locators.getFormInputs().allInnerTexts();
+    }
 }
+
 export default CreateAccountPage;

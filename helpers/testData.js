@@ -315,4 +315,5 @@ export const CUSTOMER_USER_DATA = {
 }
 
 export const MessageComparisonList = "comparison list";
-
+export const CREATE_ACCOUNT_FORM_LABELS = ["First Name", "Last Name", "Email", "Password", "Confirm Password"];
+export const ACCOUNT_FORM_EMPTY_INPUTS = ["", "", "", "", ""];
