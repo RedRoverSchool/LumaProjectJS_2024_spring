@@ -55,7 +55,7 @@ test.describe('menTops', () => {
         await menTopsPage.clickMenTopsStyle();
 
         await expect(menTopsPage.locators.getMenTopsStyleInsulated()).toBeVisible();
-    })
+    });
 
     test('check Men/Tops price filter drop-down has 8 options', async ({page}) => {
         const homePage = new HomePage(page);
@@ -64,7 +64,7 @@ test.describe('menTops', () => {
         await menTopsPage.expandMenTopsPriceFilterDropDown();
         
         expect(await menTopsPage.getMenTopsPriceList()).toEqual(MEN_TOPS_PRICE_LIST);
-    })
+    });
 
     test('check Men/Tops price drop-down has quantity of available items in each price category', async ({ page }) => {
         const homePage = new HomePage(page);       
@@ -75,7 +75,21 @@ test.describe('menTops', () => {
         expect(await menTopsPage.getMenTopsPriceListProductCount()).toEqual(MEN_TOPS_PRICE_LIST_PRODUCT_COUNT);
         expect(await menTopsPage.getMenTopsPriceListProductCountPseudoElementBefore()).toEqual('(');
         expect(await menTopsPage.getMenTopsPriceListProductCountPseudoElementAfter()).toEqual(')');
-    })
+    });
+
+    MEN_TOPS_PRICE_LIST.forEach((priceRange, index) => {
+        test(`After applying a ${priceRange} price filter, apropriate products are displayed on the page`, async ({ page }) => {
+            const homePage = new HomePage(page);
+            await homePage.hoverMenLink();
+            const menTopsPage = await homePage.clickMenTopsLink();
+            await menTopsPage.expandMenTopsPriceFilterDropDown();
+            await menTopsPage.clickMenTopsPriceRange(index);
+
+            expect(await menTopsPage.getShoppingOptionFilterValues()).toEqual([MEN_TOPS_PRICE_LIST[index]]);
+            expect(await menTopsPage.getMinProductItemPrice()).toBeGreaterThanOrEqual(await menTopsPage.getPriceFilterMinThreshold());
+            expect(await menTopsPage.getMaxProductItemPrice()).toBeLessThanOrEqual(await menTopsPage.getPriceFilterMaxThreshold());
+        })
+    });
 
     test('Verify that Men/Tops price filter is eliminated after clicking on the Clear All button', async ({ page }) => {
         const homePage = new HomePage(page);
@@ -137,6 +151,46 @@ test.describe('menTops', () => {
         await menTopsPage.clickClearAllButton();  
     }
 });
+    test('verify the ability to sort products in ascending order by price', async ({ page }) => {
+        const homePage = new HomePage(page);
+        await homePage.hoverMenLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
+        await page.waitForTimeout(3000);
+        await menTopsPage.locators.getSortByLocator().selectOption('price');
+        await page.waitForTimeout(3000);
+
+        await expect(menTopsPage.locators.getAscOrderLocator().first()).toBeVisible();
+        await expect(menTopsPage.locators.getProductsPriceLocator().first()).toBeVisible();
+
+        const prices = await page.$$eval('.product-items .price', elements => {
+            return elements.map(element => parseInt(element.textContent.trim().replace(/[^\d.]/g, ''), 10));
+        });
+        const sortedPrices = prices.slice().sort((a, b) => a - b);
+
+        await expect(prices).toEqual(sortedPrices);
+    })
+
+    test('verify the ability to sort products in descending order by price', async ({ page }) => {
+        const homePage = new HomePage(page);
+        await homePage.hoverMenLink();
+        const menTopsPage = await homePage.clickMenTopsLink();
+        await page.waitForTimeout(2000);
+        await menTopsPage.locators.getSortByLocator().selectOption('price');
+        await page.waitForTimeout(2000);
+        await menTopsPage.hoverGetDescOrderLink();
+        await menTopsPage.clickGetDescOrderLink();
+        await page.waitForTimeout(3000);
+
+        await expect(menTopsPage.locators.getDescOrderLocator().first()).toBeVisible();
+        await expect(menTopsPage.locators.getProductsPriceLocator().first()).toBeVisible();
+    
+        const prices = await page.$$eval('.product-items .price', elements => {
+            return elements.map(element => parseInt(element.textContent.trim().replace(/[^\d.]/g, ''), 10));
+          });
+        const sortedPrices = prices.slice().sort((a, b) => b - a);
+   
+        await expect(prices).toEqual(sortedPrices);
+      })
 })
 
 

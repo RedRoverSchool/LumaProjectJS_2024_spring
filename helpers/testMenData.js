@@ -34,3 +34,15 @@ export const MEN_TOPS_PRICE_LIST = [
 ];
 export const MEN_TOPS_PRICE_LIST_PRODUCT_COUNT = ["3", "17", "4", "6", "5", "9", "3", "1"];
 export const MEN_TOPS_TOTAL_TOOLBAR_AMOUNT = 'Items 1-12 of 48';
+
+//locators
+export const MEN_TOPS_PRICE_LIST_LOCATORS = [
+  '#narrow-by-list .item a[href$="price=10-20"]',
+  '#narrow-by-list .item a[href$="price=20-30"]',
+  '#narrow-by-list .item a[href$="price=30-40"]',
+  '#narrow-by-list .item a[href$="price=40-50"]',
+  '#narrow-by-list .item a[href$="price=50-60"]',
+  '#narrow-by-list .item a[href$="price=60-70"]',
+  '#narrow-by-list .item a[href$="price=70-80"]',
+  '#narrow-by-list .item a[href$="price=90-"]'
+]

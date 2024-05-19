@@ -26,6 +26,7 @@ import MyAccountPage from "./myAccountPage.js";
 import GearFitnessPage from "./gearFitnessPage.js";
 import { getRandomNumber } from "./../helpers/testUtils.js"
 import ProductCardPage from "./productCardPage.js";
+import JacketsWomenPage from "./jacketsWomenPage.js";
 
 class HomePage {
   constructor(page) {
@@ -90,7 +91,9 @@ class HomePage {
     getMyAccountLink: () => this.page.getByRole('link', {name: 'My Account'}),
     getGearFitnessEquipmentSubmenuItem: () => this.page.getByRole("menuitem", { name: "Fitness Equipment" }),
     getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
-    getHotSellersSection: () => this.page.getByRole('heading', { name: 'Hot Sellers' })
+    getHotSellersSection: () => this.page.getByRole('heading', { name: 'Hot Sellers' }),
+    getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
+    getWomenJacketslink: () => this.page.getByRole('menuitem', { name: 'Jackets' })
   };
 
   async open() {
@@ -432,6 +435,18 @@ class HomePage {
     await hotCards[getRandomNumber(hotCards.length)].click();
 
     return new ProductCardPage(this.page);
+  }
+
+  async clickWomenJacketsLink() {
+    await this.locators.getWomenJacketslink().click();
+
+    return new JacketsWomenPage(this.page);
+  }
+
+  async hoverWomenTopsLink() {
+    await this.locators.getWomenTopsLink().hover();
+
+    return this;
   }
 }
   
