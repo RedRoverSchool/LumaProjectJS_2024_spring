@@ -70,14 +70,13 @@ test.describe('bottomsWomenPage.spec', () => {
             const homePage = new HomePage(page);
             await homePage.hoverWomenMenuitem();
             const bottomsWomenPage = await homePage.clickBottomsWomenLink();
-            const categories = await bottomsWomenPage.getObjectCategoriesStyle();
-
             await bottomsWomenPage.clickWomenBottomsOptionStyle();
+            const category = await bottomsWomenPage.getObjectCategoryStyleByIndex(index);
             await bottomsWomenPage.clickCategoryStyle(index);
-
+    
             await expect(page).toHaveURL(BASE_URL + WOMEN_BOTTOMS_CATEGORIES_STYLEs_END_POINT[index]);
-            expect(nameCategory).toEqual(await categories[index].name);
-            await expect(await bottomsWomenPage.locators.getSelectCategory()).toHaveText(await categories[index].name);
+            expect(nameCategory).toEqual(await category.name);
+            await expect(await bottomsWomenPage.locators.getSelectCategory()).toHaveText(await category.name);
         });
     });
     

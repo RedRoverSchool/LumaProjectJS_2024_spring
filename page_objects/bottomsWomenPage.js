@@ -113,17 +113,18 @@ class BottomsWomenPage {
         return this.page;
   }
 
-    async getObjectCategoriesStyle() {
+    async getObjectCategoryStyleByIndex(index) {
         const categories = await this.locators.getCategoriesStyle();
-        const categoryElements = [];
     
-        for (const category of categories) {
-            const name = await category.innerText();
-            const count = await this.locators.getCountItemsInCategoryStyle(category);
-            categoryElements.push({ name: name.replace(/\bitem\b|\d+/g, "").trim(), count: parseInt(await count.innerText()) });
-        }
+        const category = categories[index];
+        const name = await category.innerText();
+        const count = await this.locators.getCountItemsInCategoryStyle(category);
+        const countText = await count.innerText();
     
-        return categoryElements;
+        return {
+            name: name.replace(/\bitem\b|\d+/g, "").trim(),
+            count: parseInt(await countText)
+        };
     }
 
     async clickListViewLink() {
