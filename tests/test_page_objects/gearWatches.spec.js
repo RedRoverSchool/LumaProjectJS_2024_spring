@@ -174,6 +174,7 @@ test.describe('gearWatchesPage.spec', () => {
         const gearWatchesPage = new GearWatchesPage(page);
     
         await gearWatchesPage.clickCategory();
+        await page.waitForTimeout(3000);
         
         const List = await gearWatchesPage.locators.getCategoryOptions().nth(idx);
         const ListText = await gearWatchesPage.getOptionsText(idx);
