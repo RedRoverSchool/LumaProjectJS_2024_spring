@@ -28,7 +28,6 @@ export const PIERCE_GYM_SHORT =  "https://magento.softwaretestingboard.com/wishl
 export const SEARCH_ADVANCED_PAGE_END_POINT = '/catalogsearch/advanced/';
 export const PUSH_IT_MESSENGER_BAG_PAGE_END_POINT = '/push-it-messenger-bag.html'
 export const WOMEN_SHORTS_PAGE_END_POINT = '/women/bottoms-women/shorts-women.html'
-export const BOTTOMS_WOMEN_STYLE_BASE_LAYER_PAGE_END_POINT = '/women/bottoms-women.html?style_bottom=104';
 export const FOOTER_ORDERS_AND_RETURNS_PAGE_END_POINT = '/sales/guest/form/';
 export const CUSTOMER_LOGIN_PAGE_END_POINT_SHORT = '/customer/account/login/';
 export const CUSTOMER_WISH_LIST_END_POINT = `/wishlist/index/index/wishlist_id/*`;
@@ -71,6 +70,17 @@ export const NOTES_PAGE_URL = 'https://softwaretestingboard.com/magento-store-no
 
 export const GEAR_FITNESS_PAGE_END_POINT = '/gear/fitness-equipment.html';
 export const SORTED_LIST_FITNESS_PAGE_ENDPOINT = '/gear/fitness-equipment.html?product_list_mode=list';
+
+export const WOMEN_BOTTOMS_CATEGORIES_STYLEs_END_POINT = [
+  '/women/bottoms-women.html?style_bottom=104',
+  '/women/bottoms-women.html?style_bottom=105',
+  '/women/bottoms-women.html?style_bottom=106',
+  '/women/bottoms-women.html?style_bottom=107',
+  '/women/bottoms-women.html?style_bottom=108',
+  '/women/bottoms-women.html?style_bottom=109',
+  '/women/bottoms-women.html?style_bottom=111',
+  '/women/bottoms-women.html?style_bottom=112',
+  '/women/bottoms-women.html?style_bottom=114'];
 
 //test data
 export const WHATS_NEW_PAGE_HEADER = "What's New";
@@ -261,6 +271,8 @@ export const LIST_OF_CATEGORY_WATCHES = ['Electronic', 'Exercise', 'Fashion', 'T
 export const GEAR_FITNESS_NUMBER_ITEMS_IN_GRID_MODE = '11 Items';
 export const GEAR_FITNESS_NUMBER_ITEMS_IN_LIST_MODE = 'Items 1-10 of 11';
 
+export const SHOPPING_OPTIONS_FILTER_VALUE = '.filter-value';
+
 //login  credential
 
 export const email = 'kati24@gmail.com';
@@ -304,3 +316,6 @@ export const CUSTOMER_USER_DATA = {
   email: "johndoe@gmail.com",
   password: "Tester#123"
 }
+
+export const MessageComparisonList = "comparison list";
+
