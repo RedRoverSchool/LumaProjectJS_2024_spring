@@ -2,6 +2,7 @@ import {email, password, EMAIL_WISHLIST, PASSWORD_WISHLIST} from "../helpers/tes
 import CreateAccountPage from "./createAccountPage";
 import HomePage from "./homePage";
 import WishListPage from "./wishListPage";
+import MyAccountPage from "./myAccountPage";
 
 class SignInPage {
     constructor(page) {
@@ -88,6 +89,12 @@ class SignInPage {
         await this.locators.getButtonSignIn().click();
 
         return new WishListPage(this.page)
+    }
+
+    async clickSignInBtnAndGoMyAccount() {
+        await this.locators.getButtonSignIn().click();
+
+        return new MyAccountPage();
     }
 }
 

@@ -279,9 +279,12 @@ export const USER_DATA = {
 export const NEW_USER_DATA = {
   firstName: "Bob",
   lastName: "Tester",
+  lastNameForLogin: "Tester1",
   newEmail: generateRandomEmail(),
+  emailForLogin: "bob.tester1@test.com",
   oldPassword: "RT45bb%%mm",
-  newPassword: "Bob_Tester"
+  newPassword: "Bob_Tester",
+  passwordForLogin: "Bob_Tester1",
 }
 export const ORDERS_AND_RETURNS_PAGE_FIELDS = ['Order ID', 'Billing Last Name', 'Find Order By', 'Email'];
 export const MENU_GEAR_EXPECTED_ITEMS = ['Bags', 'Fitness Equipment', 'Watches'];

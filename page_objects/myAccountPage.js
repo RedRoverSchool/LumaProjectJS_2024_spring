@@ -20,6 +20,18 @@ class MyAccountPage {
         getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
         getGreetting: () => this.page.locator('[class="panel header"] [class="greet welcome"]'),
         getAccountInformationSidebarLink: () => this.page.locator('[class="nav items"] li:nth-child(7)'),
+        getShoppingCart: () => this.page.locator('.minicart-wrapper'),
+        getShoppingCartCounterNumber: () => this.page.locator('.counter-number'),    
+        getShoppingCartEmptyMessage: () => this.page.locator('[class = "subtitle empty"]'),
+        getCloseShoppingCartEmptyMessage: () => this.page.locator('#btn-minicart-close'),
+        getShoppingCartRemoveProduct: (idx) => this.page.locator('.minicart-items-wrapper .secondary').nth(idx),
+        getOkBtn: () => this.page.locator('.modal-footer').getByRole('button', {name: "OK"}),
+        getMyWishListCounter: () => this.page.getByRole('heading', {name: 'My Wish List'}).locator('.counter'),
+        // getMyWishListCounter: () => this.page.getByRole('heading', {name: 'My Wish List'}),
+        getMyWishListRemoveProduct: () => this.page.locator('#wishlist-sidebar .delete'),
+        getWishListEmptyMessage: () => this.page.getByText('You have no items in your wish list.'),
+        getGoToWishList: () => this.page.getByRole('link', {name: 'Go to Wish List'}),
+        
     }
 
     async clickMyOrdersLink() {
@@ -68,6 +80,43 @@ class MyAccountPage {
 
     async getEmailFromContactInformation() {
         return (await this.locators.getNameInContactInformation().innerText()).split('\n')[1];
+    }
+
+    async clickShoppingCart() {
+        await this.locators.getShoppingCart().focus();
+        await this.locators.getShoppingCart().click();
+
+        return this;
+    }
+
+    async clickShoppingCardCounterNumber() {
+        await this.locators.getShoppingCartCounterNumber().click();
+
+        return this.page;
+    }
+
+    async clickShoppingCartRemoveProduct(idx) {
+        await this.locators.getShoppingCartRemoveProduct(idx).click();
+
+        return this;
+    }
+
+    async clickOkBtn() {
+        await this.locators.getOkBtn().click();
+
+        return this;
+    }
+
+    async clickCloseShoppingCartEmptyMessage() {
+        await this.locators.getCloseShoppingCartEmptyMessage().click();
+
+        return this;
+    }
+
+    async clickMyWishListRemoveProduct() {
+        await this.locators.getMyWishListRemoveProduct().click();
+
+        return this;
     }
 }
 

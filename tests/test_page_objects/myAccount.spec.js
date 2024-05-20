@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { test, createNewAccount } from "./base.js"
+import { test, createNewAccount, loginAndCleanData } from "./base.js"
 import HomePage from "../../page_objects/homePage";
 import { USER_DATA, NEW_USER_DATA, BASE_URL, CUSTOMER_LOGIN_PAGE_END_POINT_SHORT, MY_ACCOUNT_HEADER, MY_ACCOUNT_PAGE_END_POINT } from "../../helpers/testData";
 import MyAccountPage from "../../page_objects/myAccountPage.js";
@@ -68,4 +68,6 @@ test.describe('My Account', () => {
         await expect(myAccountPage.locators.getMyAccountHeader()).toBeVisible();
         await expect(myAccountPage.locators.getMyAccountHeader()).toHaveText(MY_ACCOUNT_HEADER)
     })
+
+   
 })

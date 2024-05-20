@@ -1,3 +1,5 @@
+import WishListPage from "./wishListPage";
+
 class RadiantTeePage {
     constructor(page) {
         this.page = page;
@@ -5,14 +7,15 @@ class RadiantTeePage {
 
     locators = {
 
-        getRadiantTeeSizeS: () => this.page.getByText('S', { exact: true }),
+        getRadiantTeeSizeS: () => this.page.locator('#option-label-size-143-item-167'),
         getRadiantTeeSizeM: () => this.page.getByText('M', { exact: true }),
         getRadiantTeeColorBlue: () => this.page.getByRole('option', { name: "Blue" }),
         getAddToCartBtn: () => this.page.getByRole('button', { name: "Add to Cart" }),
         getRadiantTeeHeader: () => this.page.getByRole('heading', {name: 'Radiant Tee'}),
         getRadiantTeeReviewsTab: () => this.page.locator('#product-review-container'),
         getRadiantTeeColorPurple: () => this.page.getByRole('option', { name: "Purple" }),
-        getRadiantTeeSizeMChoose: () => this.page.locator('.swatch-attribute-selected-option')
+        getRadiantTeeSizeMChoose: () => this.page.locator('.swatch-attribute-selected-option'),
+        getAddToWishList:() => this.page.getByText('Add to Wish List'),
     }
 
     async clickRadiantTeeSizeS() {
@@ -42,6 +45,12 @@ class RadiantTeePage {
         await this.locators.getRadiantTeeColorPurple().click();
 
         return this.page;
+    }
+
+    async clickAddToWishList() {
+        await this.locators.getAddToWishList().click();
+
+        return new WishListPage(this.page)
     }
 }
 export default RadiantTeePage

@@ -1,3 +1,4 @@
+import HomePage from "./homePage";
 import TrainingPage from "./trainingPage";
 
 class WishListPage {
@@ -23,6 +24,7 @@ class WishListPage {
         getSidebarMyWishListItemsCount: () => this.page.getByText('Item(s)'),
         getSidebarMyWishListOneItemCount: () => this.page.getByText('1 Item', {exact : true}),
         getMyWishListItemsName: () => this.page.locator('#wishlist-view-form').locator('strong > a'),
+        getLogoLink: () => this.page.getByLabel('store logo'),
     }
 
     async clickTrainingLink() {
@@ -84,6 +86,12 @@ class WishListPage {
         await this.locators.getUpdateMyWishList().click();
 
         return this;
+    }
+
+    async clickLogoLink() {
+        await this.locators.getLogoLink().click();
+
+        return new HomePage();
     }
 }
 
