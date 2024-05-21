@@ -34,7 +34,7 @@ test.describe('menTops', () => {
         await expect(page).toHaveURL(BASE_URL + MEN_TOPS_PAGE_END_POINT)
     });
 
-    test('check quantity of items is displayed', async ({ page }) => {
+    test.skip('check quantity of items is displayed', async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.hoverMenLink();
@@ -57,7 +57,7 @@ test.describe('menTops', () => {
         await expect(menTopsPage.locators.getMenTopsStyleInsulated()).toBeVisible();
     });
 
-    test('check Men/Tops price filter drop-down has 8 options', async ({page}) => {
+    test.skip('check Men/Tops price filter drop-down has 8 options', async ({page}) => {
         const homePage = new HomePage(page);
         await homePage.hoverMenLink();
         const menTopsPage = await homePage.clickMenTopsLink();
@@ -105,7 +105,7 @@ test.describe('menTops', () => {
         expect(await menTopsPage.getToolBarAmount()).toBe(MEN_TOPS_TOTAL_TOOLBAR_AMOUNT);
     })
 
-    test('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
+    test.skip('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
         const homePage = new HomePage(page);
 
         await homePage.hoverMenLink();

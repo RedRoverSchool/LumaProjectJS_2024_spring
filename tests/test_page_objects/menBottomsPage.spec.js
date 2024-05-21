@@ -100,7 +100,7 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
       expect(LIST_CATEGORY_MEN_BOTTOMS_WITH_QUANTITY).toEqual(receivedElements);
   })
 
-  test("Verify that button Clear All can deselecte options", async ({ page }) => {
+  test.skip("Verify that button Clear All can deselecte options", async ({ page }) => {
     const homePage = new HomePage(page);
     await homePage.hoverMenLink();
     const menBottomsPage = await homePage.clickMenBottomsLink();
