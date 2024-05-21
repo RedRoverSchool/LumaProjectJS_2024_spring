@@ -4,6 +4,10 @@ import GearBagsPage from '../../page_objects/gearBagsPage.js';
 import { BASE_URL, GEAR_BAGS_HEADER, GEAR_BAGS_PAGE_END_POINT } from '../../helpers/testData.js';
 import { MATERIAL_OPTION_NAMES, ACTIVE_PAGE_CLASS_PAGINATION, ACTIVE_PAGE_TEXT } from "../../helpers/testGearBagsData";
 import { GEAR_BAGES_SECOND_PAGE_END_POINT } from '../../helpers/testGearBagsData.js';
+import {BAGS_PAGE_TITLE} from "../../helpers/testGearBagsData.js"
+import {SORTED_LIST_BAGS_PAGE_ENDPOINT } from "../../helpers/testGearBagsData.js"
+import {SELECTOR_BAGS_NUMBER_ATTRIBUT_SELECTED } from "../../helpers/testGearBagsData.js"
+import {CLASS_LIST_BUTTON_ACTIVE_MODE } from "../../helpers/testGearBagsData.js"
 
 test.describe('gearBags.spec', () => {
     test.beforeEach(async({page}) => {
@@ -75,5 +79,18 @@ test.describe('gearBags.spec', () => {
         expect(gearBagsPage.locators.getListMode()).toBeTruthy();
       })
 
-      
+      test ('Verify bags display mode', async({ page }) => {
+        const homePage = new HomePage(page);
+        const gearBagsPage = new GearBagsPage(page);
+
+        await expect(page).toHaveURL(BASE_URL + GEAR_BAGS_PAGE_END_POINT);
+        await expect(page).toHaveTitle(BAGS_PAGE_TITLE);
+
+        await gearBagsPage.locators.getListMode().waitFor({state: 'attached'});
+        await gearBagsPage.clickListMode();
+        
+        await expect(page).toHaveURL(SORTED_LIST_BAGS_PAGE_ENDPOINT);
+        await expect (gearBagsPage.locators.getSelectorBagsNumber()).toHaveAttribute(SELECTOR_BAGS_NUMBER_ATTRIBUT_SELECTED);
+        await expect(gearBagsPage.locators.getListButtonPressed()).toHaveAttribute('class', CLASS_LIST_BUTTON_ACTIVE_MODE);
+ })
 })
