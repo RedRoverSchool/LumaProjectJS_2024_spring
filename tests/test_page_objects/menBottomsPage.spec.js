@@ -36,12 +36,14 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
   })
 
   LIST_CATEGORY_MEN_BOTTOMS.forEach((name, i) => {
-    test.skip(`verify the user can select ${name} subcategory from the dropdown`, async ({ page }) => {
+    test(`verify the user can select ${name} subcategory from the dropdown`, async ({ page }) => {
       const homePage = new HomePage(page);
       await homePage.hoverMenLink();
       const menBottomsPage = await homePage.clickMenBottomsLink();
+
       await expect(page).toHaveURL(BASE_URL + MEN_BOTTOMS_PAGE_END_POINT);
-  
+
+      await menBottomsPage.waitForTimeout(3000);
       await menBottomsPage.hoverMenBottomsCategory();
       await menBottomsPage.clickMenBottomsCategory();
       await page.waitForLoadState('load');
@@ -52,7 +54,6 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
       await expect(page).toHaveURL(BASE_URL + MEN_BOTTOMS_PAGE_END_POINT + ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE[i]);
             
       await menBottomsPage.clickMenBottomsClearCategoryFilter();
-      await menBottomsPage.waitForTimeout(3000);
     })
   })
   

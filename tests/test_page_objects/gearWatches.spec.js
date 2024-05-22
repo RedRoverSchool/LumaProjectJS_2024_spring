@@ -178,7 +178,7 @@ test.describe('gearWatchesPage.spec', () => {
         const List = await gearWatchesPage.locators.getCategoryOptions().nth(idx);
         const ListText = await gearWatchesPage.getOptionsText(idx);
     
-        expect(List).toBeVisible();
+        await expect(List).toBeVisible();
         expect(ListText).toEqual(LIST_OF_CATEGORY_WATCHES[idx]);
       })
     });

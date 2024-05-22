@@ -1,7 +1,22 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import CreateAccountPage from "../../page_objects/createAccountPage.js";
-import {FIRST_NAME, LAST_NAME, PASSWORD, PASSWORD_CONFIRM, EMAIL, MY_ACCOUNT_HEADER, THANKS_MESSAGE, BASE_URL, SIGN_IN_END_POINT, BUTTON_REGISTRATION_TITLE, CUSTOMER_ACCOUNT_CREATE_END_POINT, CREATE_ACCOUNT_PAGE_HEADER, GEN_RANDOM_NUMBER, MY_ACCOUNT_PAGE_END_POINT} from "../../helpers/testData.js";
+import {FIRST_NAME, 
+    LAST_NAME, 
+    PASSWORD, 
+    PASSWORD_CONFIRM, 
+    EMAIL, 
+    MY_ACCOUNT_HEADER, 
+    THANKS_MESSAGE, 
+    BASE_URL, 
+    SIGN_IN_END_POINT, 
+    BUTTON_REGISTRATION_TITLE, 
+    CUSTOMER_ACCOUNT_CREATE_END_POINT, 
+    CREATE_ACCOUNT_PAGE_HEADER, 
+    GEN_RANDOM_NUMBER, 
+    MY_ACCOUNT_PAGE_END_POINT, 
+    CREATE_ACCOUNT_FORM_LABELS,
+    ACCOUNT_FORM_EMPTY_INPUTS} from "../../helpers/testData.js";
 import MyAccountPage from "../../page_objects/myAccountPage.js";
 import SignInPage from "../../page_objects/signInPage.js";
 
@@ -63,4 +78,13 @@ test.describe('createAccuntPage.spec', () => {
         await expect(myAccountPage.locators.getMyAccountHeader()).toHaveText(MY_ACCOUNT_HEADER)
         await expect(myAccountPage.locators.getThanksMessage()).toHaveText(THANKS_MESSAGE)
     })
+
+    test('Check that all required fields are presented and empty in "Create New Customer Account" form', 
+    async ({ page }) => {
+        const homePage = new HomePage(page);
+        const createAccountPage = await homePage.clickCreateAccountLink();
+
+        expect(await createAccountPage.getArrayOfFormLabels()).toEqual(CREATE_ACCOUNT_FORM_LABELS);
+        expect(await createAccountPage.getArrayOfFormInputs()).toEqual(ACCOUNT_FORM_EMPTY_INPUTS);
+  })
 })

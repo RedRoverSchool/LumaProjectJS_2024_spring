@@ -1,17 +1,18 @@
 import HomePage from "./homePage";
 import ShippingPage from "./shippingPage";
+import GearPage from "./gearPage";
 
 class Header {
-    constructor(page) {
+    constructor (page) {
         this.page = page;
     }
 
     locators = {
         getLogoLink: () => this.page.getByLabel('store logo'),
-        getCounterNumber: ()=> this.page.locator('.counter-number'),        
-        getTotalQuantity: ()=> this.page.locator('.count:first-child'),
+        getCounterNumber: () => this.page.locator('.counter-number'),
+        getTotalQuantity: () => this.page.locator('.count:first-child'),
         getTotalCost: () => this.page.locator('.subtotal .price'),
-        getProceedToCheckoutBtn: () => this.page.getByRole('button', {name: 'Proceed to Checkout'}),
+        getProceedToCheckoutBtn: () => this.page.getByRole('button', { name: 'Proceed to Checkout' }),
         getShoppingCart: () => this.page.getByRole('link', { name: ' My Cart' }),
         getMiniCart: () => this.page.locator('#ui-id-1'),
         getEmptyCardMessage: () => this.page.locator('.block-minicart .subtitle.empty'),
@@ -65,6 +66,12 @@ class Header {
         await this.locators.getGearMenu().hover();
 
         return this;
+    }
+
+    async clickGearMenu() {
+        await this.locators.getGearMenu().click();
+
+        return new GearPage(this.page);
     }
 
 }
