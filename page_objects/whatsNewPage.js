@@ -1,4 +1,5 @@
 import HomePage from "./homePage.js";
+import HoodiesAndSweatshirtsPage from "./hoodiesAndSweatshirtsPage.js";
 
 class WhatsNewPage {
     constructor(page) {
@@ -23,5 +24,11 @@ class WhatsNewPage {
 
         return new HomePage(this.page);
     }
+
+   async clickHoodiesAndSweatshirtsLink() {
+    await this.locators.getNewInMensHoodies().click();
+
+    return new HoodiesAndSweatshirtsPage(this.page);
+   }
 }
 export default WhatsNewPage;

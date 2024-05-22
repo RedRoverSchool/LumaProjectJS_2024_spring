@@ -2,6 +2,7 @@
 export const BASE_URL = 'https://magento.softwaretestingboard.com';
 export const MEN_PAGE_END_POINT = '/men.html';
 export const MEN_BOTTOMS_PAGE_END_POINT = 'https://magento.softwaretestingboard.com/men/bottoms-men.html';
+export const MEN_HOODIES_SWEATERS_PAGE = 'https://magento.softwaretestingboard.com/men/tops-men/hoodies-and-sweatshirts-men.html';
 
 //test data
 export const MEN_PAGE_HEADER = "Men";
