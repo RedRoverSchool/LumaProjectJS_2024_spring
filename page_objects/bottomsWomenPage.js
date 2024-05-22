@@ -117,12 +117,12 @@ class BottomsWomenPage {
         const categories = await this.locators.getCategoriesStyle();
     
         const category = categories[index];
-        const name = await category.innerText();
+        const name = await category.textContent();
         const count = await this.locators.getCountItemsInCategoryStyle(category);
     
         return {
             name: name.replace(/\bitem\b|\d+/g, "").trim(),
-            count: parseInt(await count.innerText())
+            count: parseInt(await count.textContent())
         };
     }
 
