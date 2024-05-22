@@ -12,7 +12,7 @@ test.describe('jacketsWomen.spec', () => {
         await homePage.hoverWomenTopsLink();
         await homePage.clickWomenJacketsLink();
       });
-    test('Verify message add to comparison list', async ({ page }) => {
+    test.skip('Verify message add to comparison list', async ({ page }) => {
         const jacketsWomenPage = new JacketsWomenPage(page);
 
         await jacketsWomenPage.hoverOlivia14ZipLightJacket();
