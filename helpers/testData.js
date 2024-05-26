@@ -139,6 +139,7 @@ export const EMAIL = generateRandomEmail();
 export const MY_ACCOUNT_HEADER = 'My Account';
 export const THANKS_MESSAGE = 'Thank you for registering with Main Website Store.';
 export const EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS = ['Base Layer', 'Basic', 'Capri', 'Compression', 'Leggings', 'Parachute', 'Snug', 'Sweatpants', 'Track Pants'];
+export const EXPECTED_NUMBER_PRODUCTS_STYLEs_BOTTOMS_WOMEN = [4, 10, 8, 3, 4, 2, 5, 3, 3];
 
 export const SEARCH_VALID_VALUE = 'jacket';
 export const SEARCH_INVALID_VALUE = `${SEARCH_VALID_VALUE}test`;

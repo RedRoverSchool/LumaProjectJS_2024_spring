@@ -29,6 +29,7 @@ class BottomsWomenPage {
         getSelectCategory: () => this.page.locator(".filter-value"),
         getListViewLink: () => this.page.getByTitle('List').first(),
         getProductsListWrapper: () => this.page.locator('div.products.wrapper'),
+        getProductCards: () => this.page.locator(".item.product.product-item")
     }
 
     async getLocatorInnerText(locator) {
@@ -107,23 +108,22 @@ class BottomsWomenPage {
         await categories[i].click();
     }
 
-  async clickWomenBottomsOptionSize() {
+    async clickWomenBottomsOptionSize() {
         await this.locators.getWomenBottomsOptionSize().click();
 
         return this.page;
-  }
+    }
 
-    async getObjectCategoriesStyle() {
+    async getObjectCategoryStyleByIndex(index) {
         const categories = await this.locators.getCategoriesStyle();
-        const categoryElements = [];
+        const category = categories[index];
+        const name = await category.textContent();
+        const count = await this.locators.getCountItemsInCategoryStyle(category);
     
-        for (const category of categories) {
-            const name = await category.innerText();
-            const count = await this.locators.getCountItemsInCategoryStyle(category);
-            categoryElements.push({ name: name.replace(/\bitem\b|\d+/g, "").trim(), count: parseInt(await count.innerText()) });
-        }
-    
-        return categoryElements;
+        return {
+            name: name.replace(/\bitem\b|\d+/g, "").trim(),
+            count: parseInt(await count.textContent())
+        };
     }
 
     async clickListViewLink() {
