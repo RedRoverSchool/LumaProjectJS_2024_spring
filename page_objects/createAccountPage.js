@@ -15,6 +15,7 @@ class CreateAccountPage {
         getCreateAccountHeader: () => this.page.getByRole('heading', {name: 'Create New Customer Account'}).first(),
         getFormLabels: () => this.page.locator("#form-validate label"),
         getFormInputs: () => this.page.locator("#form-validate input.input-text"),
+        getPasswordErrorMessage: () => this.page.locator("#password-error"),
     };
 
     async clickFirstNameField(){

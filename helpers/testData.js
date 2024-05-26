@@ -295,7 +295,8 @@ export const NEW_USER_DATA = {
   lastName: "Tester",
   newEmail: generateRandomEmail(),
   oldPassword: "RT45bb%%mm",
-  newPassword: "Bob_Tester"
+  newPassword: "Bob_Tester",
+  shortPassword: "asQW34@",
 }
 export const ORDERS_AND_RETURNS_PAGE_FIELDS = ['Order ID', 'Billing Last Name', 'Find Order By', 'Email'];
 export const MENU_GEAR_EXPECTED_ITEMS = ['Bags', 'Fitness Equipment', 'Watches'];
@@ -319,3 +320,4 @@ export const CUSTOMER_USER_DATA = {
 export const MessageComparisonList = "comparison list";
 export const CREATE_ACCOUNT_FORM_LABELS = ["First Name", "Last Name", "Email", "Password", "Confirm Password"];
 export const ACCOUNT_FORM_EMPTY_INPUTS = ["", "", "", "", ""];
+export const CREATE_ACCOUNT_PAGE_PASSWORD_ERROR_MESSAGE = "Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.";

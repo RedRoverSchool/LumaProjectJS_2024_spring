@@ -16,7 +16,9 @@ import {FIRST_NAME,
     GEN_RANDOM_NUMBER, 
     MY_ACCOUNT_PAGE_END_POINT, 
     CREATE_ACCOUNT_FORM_LABELS,
-    ACCOUNT_FORM_EMPTY_INPUTS} from "../../helpers/testData.js";
+    ACCOUNT_FORM_EMPTY_INPUTS,
+    NEW_USER_DATA,
+    CREATE_ACCOUNT_PAGE_PASSWORD_ERROR_MESSAGE} from "../../helpers/testData.js";
 import MyAccountPage from "../../page_objects/myAccountPage.js";
 import SignInPage from "../../page_objects/signInPage.js";
 
@@ -86,5 +88,20 @@ test.describe('createAccuntPage.spec', () => {
 
         expect(await createAccountPage.getArrayOfFormLabels()).toEqual(CREATE_ACCOUNT_FORM_LABELS);
         expect(await createAccountPage.getArrayOfFormInputs()).toEqual(ACCOUNT_FORM_EMPTY_INPUTS);
-  })
+    })
+
+    test("Check that user can't register with password less than 8 characters", async ({ page }) => {
+        const homePage = new HomePage(page);
+        const createAccountPage = await homePage.clickCreateAccountLink();
+
+        await createAccountPage.fillFirstNameField(NEW_USER_DATA.firstName);
+        await createAccountPage.fillLastNameField(NEW_USER_DATA.lastName);
+        await createAccountPage.fillEmailField(NEW_USER_DATA.newEmail);
+        await createAccountPage.fillPasswordField(NEW_USER_DATA.shortPassword);
+        await createAccountPage.fillConfirmPasswordField(NEW_USER_DATA.shortPassword);
+        await createAccountPage.clickCreateAccountButton();
+
+        await expect(page).toHaveURL(BASE_URL + CUSTOMER_ACCOUNT_CREATE_END_POINT);
+        await expect(createAccountPage.locators.getPasswordErrorMessage()).toHaveText(CREATE_ACCOUNT_PAGE_PASSWORD_ERROR_MESSAGE);
+    })
 })
