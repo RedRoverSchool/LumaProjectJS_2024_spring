@@ -13,7 +13,8 @@ class FusionBackpackPage {
         getFusionBackpackActiveImage: () => this.page.locator('.fotorama__stage .fotorama__active .fotorama__img'),
         getSlideNextButton: () => this.page.locator('.fotorama__arr--next'),
         getZoomInButton: () => this.page.locator('.fotorama__zoom-in'),
-        getZoomOutButton: () => this.page.locator('.fotorama__zoom-out')
+        getZoomOutButton: () => this.page.locator('.fotorama__zoom-out'),
+        getCloseButton: () => this.page.getByRole('button', {name: 'Exit fullscreen'})
     }
 
     async clickProductMainImage (){
@@ -38,6 +39,11 @@ class FusionBackpackPage {
     
     async clickZoomOutButton () {
         await this.locators.getZoomOutButton().click();
+        return this;
+    }
+
+    async clickCloseButton () {
+        await this.locators.getCloseButton().click();
         return this;
     }
 

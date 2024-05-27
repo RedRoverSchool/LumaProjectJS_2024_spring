@@ -52,6 +52,13 @@ test.describe('fusionBackpackPage.spec', () => {
             const zoomOutHeigth = (await activeImg.boundingBox()).height;
             expect(zoomOutHeigth).toBeLessThanOrEqual(originalHeight);
         }
-    
+    })
+
+    test('exiting full screen mode clicking on the close button', async ({page}) =>{
+        const fusionBackpackPage = new FusionBackpackPage(page);
+        await fusionBackpackPage.clickActiveImage();
+        await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toBeVisible();
+        await fusionBackpackPage.clickCloseButton();
+        await expect(fusionBackpackPage.locators.getFusionBackpackActiveImage()).toBeVisible();
     })
 })
