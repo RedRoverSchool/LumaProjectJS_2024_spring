@@ -162,4 +162,34 @@ test.describe("topWomenPage.spec", () => {
 
     await wishListPage.cleanMyWishListFromSideBar();
   })
+  test('remove item from wishlist by click X button in left-side section', async ( {page, signIn }) => {
+    const expectedWishListUrl = new RegExp(urlToRegexPattern(BASE_URL + CUSTOMER_WISH_LIST_END_POINT));
+
+    const homePage = new HomePage(page);
+    await signIn(CUSTOMER_USER_DATA.email, CUSTOMER_USER_DATA.password);
+
+    await page.waitForLoadState();
+
+    const womenPage = await homePage.clickWomenLink();
+    const topsWomenPage = await womenPage.clickWomenTopsLink();
+
+    const randomProductCardIndex = getRandomNumber(await topsWomenPage.getAllProductCardsLength());
+    await topsWomenPage.hoverRandomWomenTopsProductItem(randomProductCardIndex);
+
+    const randomProductCardName = await topsWomenPage.getRandomWomenTopsItemName(randomProductCardIndex + 1);
+
+    const wishListPage = await topsWomenPage.clickRandomWomenTopsAddToWishListButton(randomProductCardIndex);
+    await page.waitForLoadState();
+
+    await expect(page.url()).toMatch(expectedWishListUrl)
+
+    const actualRandomProductCardName = await wishListPage.getFirstSidebarMyWishListItemNameText();
+    expect(actualRandomProductCardName).toEqual(randomProductCardName)
+
+    await wishListPage.cleanMyWishListFromSideBar();
+    await page.waitForLoadState();
+
+    await expect(wishListPage.locators.getMyWishListEmptyMessage()).toBeVisible();
+    await expect(wishListPage.locators.getMyWishListEmptyMessage()).toHaveText(MY_WISH_LIST_EMPTY_MESSAGE);
+  })
 });

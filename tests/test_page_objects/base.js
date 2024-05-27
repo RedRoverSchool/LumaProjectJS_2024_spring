@@ -1,8 +1,7 @@
 import { test as base } from '@playwright/test';
 import HomePage from '../../page_objects/homePage';
 import MyAccountPage from '../../page_objects/myAccountPage';
-import { USER_DATA, ADRESS_DATA } from '../../helpers/testData';
-import ShoppingCartPage from '../../page_objects/shoppingCartPage';
+import {USER_DATA, ADRESS_DATA, CUSTOMER_USER_DATA} from '../../helpers/testData';
 
 export const test = base.extend({
     createNewAccount: [
@@ -63,6 +62,20 @@ export const test = base.extend({
             const checkoutOnepageSuccessPage = await paymentMethodPage.clickPlaceOrderButton();
 
             await use("");
+        },
+        { scope: "test" },
+    ],
+    signIn: [
+        async ({ page }, use) => {
+            const signInFunction = async (myEmail, myPassword) => {
+                const homePage = new HomePage(page);
+                await homePage.open();
+                const signInPage = await homePage.clickSignInLink();
+                await signInPage.fillEmailInputField(myEmail);
+                await signInPage.fillPasswordInputField(myPassword);
+                await signInPage.clickButtonSignIn();
+            };
+            await use(signInFunction);
         },
         { scope: "test" },
     ]

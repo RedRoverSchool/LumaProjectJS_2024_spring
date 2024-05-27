@@ -23,6 +23,7 @@ class WishListPage {
         getSidebarMyWishListItemsCount: () => this.page.getByText('Item(s)'),
         getSidebarMyWishListOneItemCount: () => this.page.getByText('1 Item', {exact : true}),
         getMyWishListItemsName: () => this.page.locator('#wishlist-view-form').locator('strong > a'),
+        getMyWishListEmptyMessage: () => this.page.locator('.block-wishlist .block-content div.empty'),
     }
 
     async clickTrainingLink() {
@@ -45,7 +46,11 @@ class WishListPage {
         await this.locators.getAddToCard().click();
     }
     async getFirstSidebarMyWishListItemNameText() {
-        return await this.locators.getSidebarMyWishListItemName().first().innerHTML();
+        const nameElements = this.locators.getSidebarMyWishListItemName();
+        const count = await nameElements.count();
+        const name = await (count > 1 ? nameElements.first() : nameElements).textContent();
+
+        return name;
     }
     async getFirstSidebarMyWishListItemPriceText() {
         return await this.locators.getSidebarMyWishListItemPrice().first().innerHTML();
@@ -77,7 +82,7 @@ class WishListPage {
     async getLastMyWishListItemNameText() {
         let itemName = await this.locators.getMyWishListItemsName().last()
         itemName = itemName.innerText()
-        console.log('m itemName', itemName)
+
         return itemName;
     }
     async clickUpdateMyWishList() {
