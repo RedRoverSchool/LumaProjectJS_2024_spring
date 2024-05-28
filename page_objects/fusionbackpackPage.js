@@ -46,7 +46,6 @@ class FusionBackpackPage {
         await this.locators.getCloseButton().click();
         return this;
     }
-
 }
 
 export default FusionBackpackPage

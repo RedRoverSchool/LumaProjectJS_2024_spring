@@ -61,4 +61,12 @@ test.describe('fusionBackpackPage.spec', () => {
         await fusionBackpackPage.clickCloseButton();
         await expect(fusionBackpackPage.locators.getFusionBackpackActiveImage()).toBeVisible();
     })
+
+    test('exiting full screen mode pressing Escape', async ({page}) => {
+        const fusionBackpackPage = new FusionBackpackPage(page);
+        await fusionBackpackPage.clickActiveImage();
+        await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toBeVisible();
+        await page.keyboard.press('Escape');
+        await expect(fusionBackpackPage.locators.getFusionBackpackActiveImage()).toBeVisible();
+    })
 })
