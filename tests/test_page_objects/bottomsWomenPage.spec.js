@@ -129,15 +129,16 @@ test.describe('bottomsWomenPage.spec', () => {
         await expect(bottomsWomenPage.locators.getOptionPriceFilter()).toBeVisible();
     });
 
-    test.skip("Verify a User can deselect all options at once", async ({ page }) => {
+    test("Verify a User can deselect all options at once", async ({ page }) => {
         const homePage = new HomePage(page);
         const womenPage = await homePage.clickWomenLink();
         const bottomsWomenPage = await womenPage.clickWomenBottomsLinkFromShopByCategory();
 
         await bottomsWomenPage.clickShoppingOptionsMaterial();
         await bottomsWomenPage.clickShoppingOptionsMaterialOrganicCotton();
-        await bottomsWomenPage.clickShoppingOptionsPrice();
-        await bottomsWomenPage.clickShoppingOptionsPriceSecondSubCategory();        
+        await bottomsWomenPage.clickShoppingOptionsPrice()
+        await bottomsWomenPage.clickShoppingOptionsPriceSecondSubCategory();
+        await page.waitForLoadState('load');
 
         const listOfSelectedItems = page.locator(".filter-current");
         await bottomsWomenPage.clickClearAllButton();
