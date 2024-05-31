@@ -16,6 +16,7 @@ class CreateAccountPage {
         getFormLabels: () => this.page.locator("#form-validate label"),
         getFormInputs: () => this.page.locator("#form-validate input.input-text"),
         getPasswordErrorMessage: () => this.page.locator("#password-error"),
+        getPageAlertBlock: () => this.page.locator("div[data-ui-id='message-error']>div"),
     };
 
     async clickFirstNameField(){

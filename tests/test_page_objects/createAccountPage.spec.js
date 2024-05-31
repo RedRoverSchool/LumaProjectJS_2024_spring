@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import CreateAccountPage from "../../page_objects/createAccountPage.js";
-import {FIRST_NAME, 
+import { FIRST_NAME, 
     LAST_NAME, 
     PASSWORD, 
     PASSWORD_CONFIRM, 
@@ -18,7 +18,8 @@ import {FIRST_NAME,
     CREATE_ACCOUNT_FORM_LABELS,
     ACCOUNT_FORM_EMPTY_INPUTS,
     NEW_USER_DATA,
-    CREATE_ACCOUNT_PAGE_PASSWORD_ERROR_MESSAGE} from "../../helpers/testData.js";
+    CREATE_ACCOUNT_PAGE_PASSWORD_ERROR_MESSAGE,
+    CREATE_ACCOUNT_PAGE_PASSWORD_WITH_SPACES_MESSAGE } from "../../helpers/testData.js";
 import MyAccountPage from "../../page_objects/myAccountPage.js";
 import SignInPage from "../../page_objects/signInPage.js";
 
@@ -103,5 +104,22 @@ test.describe('createAccuntPage.spec', () => {
 
         await expect(page).toHaveURL(BASE_URL + CUSTOMER_ACCOUNT_CREATE_END_POINT);
         await expect(createAccountPage.locators.getPasswordErrorMessage()).toHaveText(CREATE_ACCOUNT_PAGE_PASSWORD_ERROR_MESSAGE);
+    })
+
+    NEW_USER_DATA.passwordWithSpaces.spacesLocation.forEach((condition, indx) => {
+        test(`Verify that user can't register with password that ${condition} with spaces`, async ({ page }) => {
+            const homePage = new HomePage(page);
+            const createAccountPage = await homePage.clickCreateAccountLink();
+
+            await createAccountPage.fillFirstNameField(NEW_USER_DATA.firstName);
+            await createAccountPage.fillLastNameField(NEW_USER_DATA.lastName);
+            await createAccountPage.fillEmailField(NEW_USER_DATA.newEmail);
+            await createAccountPage.fillPasswordField(NEW_USER_DATA.passwordWithSpaces.password[indx]);
+            await createAccountPage.fillConfirmPasswordField(NEW_USER_DATA.passwordWithSpaces.password[indx]);
+            await createAccountPage.clickCreateAccountButton();
+
+            expect(page).toHaveURL(BASE_URL + CUSTOMER_ACCOUNT_CREATE_END_POINT);
+            expect(createAccountPage.locators.getPageAlertBlock()).toHaveText(CREATE_ACCOUNT_PAGE_PASSWORD_WITH_SPACES_MESSAGE);
+        });
     })
 })
