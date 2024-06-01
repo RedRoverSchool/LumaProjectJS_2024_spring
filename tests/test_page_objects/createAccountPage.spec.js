@@ -118,8 +118,8 @@ test.describe('createAccuntPage.spec', () => {
             await createAccountPage.fillConfirmPasswordField(NEW_USER_DATA.passwordWithSpaces.password[indx]);
             await createAccountPage.clickCreateAccountButton();
 
-            expect(page).toHaveURL(BASE_URL + CUSTOMER_ACCOUNT_CREATE_END_POINT);
-            expect(createAccountPage.locators.getPageAlertBlock()).toHaveText(CREATE_ACCOUNT_PAGE_PASSWORD_WITH_SPACES_MESSAGE);
+            await expect(page).toHaveURL(BASE_URL + CUSTOMER_ACCOUNT_CREATE_END_POINT);
+            await expect(createAccountPage.locators.getPageAlertBlock()).toHaveText(CREATE_ACCOUNT_PAGE_PASSWORD_WITH_SPACES_MESSAGE);
         });
     })
 })
