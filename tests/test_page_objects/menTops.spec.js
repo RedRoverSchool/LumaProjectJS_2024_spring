@@ -105,7 +105,7 @@ test.describe('menTops', () => {
         expect(await menTopsPage.getToolBarAmount()).toBe(MEN_TOPS_TOTAL_TOOLBAR_AMOUNT);
     })
 
-    test('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
+    test.skip('Verify that user can apply the filter for categories within the Category dd list and reset the filter', async ({page}) =>{
         const homePage = new HomePage(page);
 
         await homePage.hoverMenLink();

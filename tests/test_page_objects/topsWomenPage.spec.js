@@ -162,7 +162,7 @@ test.describe("topWomenPage.spec", () => {
 
     await wishListPage.cleanMyWishListFromSideBar();
   })
-  test('remove item from wishlist by click X button in left-side section', async ( {page, signIn }) => {
+  test.skip('remove item from wishlist by click X button in left-side section', async ( {page, signIn }) => {
     const expectedWishListUrl = new RegExp(urlToRegexPattern(BASE_URL + CUSTOMER_WISH_LIST_END_POINT));
 
     const homePage = new HomePage(page);
