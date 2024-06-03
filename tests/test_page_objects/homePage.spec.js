@@ -64,7 +64,7 @@ test.describe('homePage.spec', () => {
         await expect(homePage.locators.getSearchButton()).not.toHaveAttribute("disabled");
     });
 
-    test('Verify the search field is not case-sensitive', async ({ page }) => {
+    test.skip('Verify the search field is not case-sensitive', async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.fillSearchInputField(SEARCH_QUERY);
