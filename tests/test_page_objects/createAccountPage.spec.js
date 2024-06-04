@@ -19,7 +19,8 @@ import { FIRST_NAME,
     ACCOUNT_FORM_EMPTY_INPUTS,
     NEW_USER_DATA,
     CREATE_ACCOUNT_PAGE_PASSWORD_ERROR_MESSAGE,
-    CREATE_ACCOUNT_PAGE_PASSWORD_WITH_SPACES_MESSAGE } from "../../helpers/testData.js";
+    CREATE_ACCOUNT_PAGE_PASSWORD_WITH_SPACES_MESSAGE, 
+    CREATE_ACCOUNT_PAGE_COMFIRM_PASSWORD_ERROR } from "../../helpers/testData.js";
 import MyAccountPage from "../../page_objects/myAccountPage.js";
 import SignInPage from "../../page_objects/signInPage.js";
 
@@ -120,6 +121,21 @@ test.describe('createAccuntPage.spec', () => {
 
             await expect(page).toHaveURL(BASE_URL + CUSTOMER_ACCOUNT_CREATE_END_POINT);
             await expect(createAccountPage.locators.getPageAlertBlock()).toHaveText(CREATE_ACCOUNT_PAGE_PASSWORD_WITH_SPACES_MESSAGE);
-        });
+        })
+    })
+
+    test("Verify that user can't register with different values in 'Password' and 'Confirm Password' fields", async ({ page }) => {
+        const homePage = new HomePage(page);
+        const createAccountPage = await homePage.clickCreateAccountLink();
+
+        await createAccountPage.fillFirstNameField(NEW_USER_DATA.firstName);
+        await createAccountPage.fillLastNameField(NEW_USER_DATA.lastName);
+        await createAccountPage.fillEmailField(NEW_USER_DATA.newEmail);
+        await createAccountPage.fillPasswordField(NEW_USER_DATA.newPassword);
+        await createAccountPage.fillConfirmPasswordField(NEW_USER_DATA.oldPassword);
+        await createAccountPage.clickCreateAccountButton();
+
+        await expect(page).toHaveURL(BASE_URL + CUSTOMER_ACCOUNT_CREATE_END_POINT);
+        await expect(createAccountPage.locators.getConfirmPasswordErrorMessage()).toHaveText(CREATE_ACCOUNT_PAGE_COMFIRM_PASSWORD_ERROR);
     })
 })
