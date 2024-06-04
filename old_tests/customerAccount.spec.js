@@ -129,5 +129,10 @@ test.describe("customerAccount", () => {
 
     expect(emailInContactInformation).toEqual(newUserData.newEmail);
   })
-
+test("TC 11.6.1_03 | The user is on the page My Account", async ({page}) => {
+      await page.getByRole("button", {name: 'Change '}).click();
+      await page.getByRole("link", {name: "My Account"}).click();
+      await expect(page).toHaveURL(/.*account/);
+  });
 });
+
