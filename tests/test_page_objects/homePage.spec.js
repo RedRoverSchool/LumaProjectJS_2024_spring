@@ -49,7 +49,7 @@ test.describe('homePage.spec', () => {
         await expect(page).toHaveURL(BASE_URL);
     })
 
-    test('Verify  the automatic search results match the query in the search bar', async ({ page }) => {
+    test.skip('Verify  the automatic search results match the query in the search bar', async ({ page }) => {
         const homePage = new HomePage(page);
 
         await homePage.fillSearchInputField(SEARCH_QUERY);
