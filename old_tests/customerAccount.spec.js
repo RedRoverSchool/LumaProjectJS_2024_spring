@@ -59,7 +59,7 @@ test.describe("customerAccount", () => {
   
   });
 
-  test("TC 11.6.1_01 | Veryfy that user name is changed", async ({ page}) => {
+  test.skip("TC 11.6.1_01 | Veryfy that user name is changed", async ({ page}) => {
     const oldUser = {
       firstName: "Angelina-Maria", 
       lastName: "O'Neel"

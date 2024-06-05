@@ -1,18 +1,9 @@
-import { test, expect } from "@playwright/test";
-import HomePage from "../../page_objects/homePage.js";
-import GearPage from "../../page_objects/gearPage.js";
+import { expect } from "@playwright/test";
+import { test } from "./setupPage";
 
 test.describe('gearPage.spec', () => {
-    test.beforeEach(async ({ page }) => {
-        const homePage = new HomePage(page);
-        await homePage.open();
-    });
-    
-    test("Verify that each sub-category link in filter “Shop By Category” to be blue.", async ({ page }) => {
-        const homePage = new HomePage(page);
-        const gearPage = new GearPage(page);
-
-        await homePage.clickGearMenuItem();
+   
+    test("Verify that each sub-category link in filter “Shop By Category” to be blue.", async ({ gearPage }) => {
         const SubCategoryBagsColour = await gearPage.locators.getSubCategoryBags();
         const SubCategoryFitnessColour = await gearPage.locators.getSubCategoryFitness();
         const SubCategoryWatchesColour = await gearPage.locators.getSubCategoryWatches();
@@ -22,11 +13,7 @@ test.describe('gearPage.spec', () => {
         await expect(SubCategoryWatchesColour).toHaveCSS('border-color', "rgb(0, 107, 180)");
     });
 
-    test("Verify that “Bags”, “Fitness equipment” and “Watches” to be placed under filter “Shop By Category” are clickable.", async ({ page }) => {
-        const homePage = new HomePage(page);
-        const gearPage = new GearPage(page);
-
-        await homePage.clickGearMenuItem();
+    test("Verify that “Bags”, “Fitness equipment” and “Watches” to be placed under filter “Shop By Category” are clickable.", async ({ gearPage, homePage, page }) => {
 
         await gearPage.clickSubCategoryBags();
         const gearBagsText = page.locator(".base[data-ui-id='page-title-wrapper']");
