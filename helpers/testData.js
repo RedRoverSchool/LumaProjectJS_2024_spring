@@ -18,6 +18,7 @@ export const RADIANT_TEE_PAGE_END_POINT = '/radiant-tee.html';
 export const RADIANT_TEE_PAGE_REVIEWS_TAB_END_POINT = '/radiant-tee.html#reviews';
 export const BREATHE_EASY_TANK_PAGE_END_POINT = '/breathe-easy-tank.html';
 export const BREATHE_EASY_TANK_PAGE_REVIEWS_TAB_END_POINT = '/breathe-easy-tank.html#reviews';
+export const FORGOT_YOUR_PASSWORD_PAGE_END_POINT = '/customer/account/forgotpassword/';
 export const SALE_PAGE_END_POINT = '/sale.html';
 export const CUSTOMER_LOGIN_PAGE_END_POINT = '/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/';
 export const ARGUS_ALL_WEATHER_TANK_PAGE_END_POINT = '/argus-all-weather-tank.html';
@@ -257,6 +258,7 @@ export const LIST_CATEGORY_MEN_BOTTOMS = ['Pants', 'Shorts'];
 export const ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE = ['?cat=18', '?cat=19'];
 export const FOOTER_LINK_NAME = ['Search Terms', 'Privacy and Cookie Policy', 'Advanced Search']
 export const LOGO_ALIGNMENT = 'left';
+export const FORGOT_YOUR_PASSWORD_PAGE_HEADER = 'Forgot Your Password?';
 
 export const LIST_OF_COUNT_SUB_CATEGORY_ON_MEN_TOPS_PAGE = [
   '.filter-options-item.allow.active > div > ol > li:nth-child(1) > a > span',
