@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import GearPage from "../../page_objects/gearPage.js";
+import { HOT_SELLERS_LIST } from "../../helpers/testGearData.js";
 
 test.describe('gearPage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -46,5 +47,17 @@ test.describe('gearPage.spec', () => {
         const gearWatchesText = page.locator(".base[data-ui-id='page-title-wrapper']");
         
         await expect(gearWatchesText).toBeVisible();
+    });
+    test ("Verify Hot Sellers List on the Gear page is visible", async ({ page }) => {
+        const homePage = new HomePage(page);
+        const gearPage = new GearPage(page);
+
+        await homePage.clickGearMenuItem();
+        await expect (gearPage.locators.getGearPageHeader()).toBeVisible();
+
+        const hotSellersList = await gearPage.locators.getHotSellersList().allInnerTexts();
+        const hotSellersListTrimmed = hotSellersList.filter(el => el.trim() !== "");
+
+        expect (hotSellersListTrimmed).toEqual(HOT_SELLERS_LIST);
     });
 });
