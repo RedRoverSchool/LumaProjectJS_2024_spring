@@ -14,8 +14,14 @@ class ProductCardPage {
     getRelatedProductsTitle: (i) =>
       this.page.locator("strong.product.name.product-item-name a").nth(i),
     getProductCardTitile: () => this.page.locator("h1.page-title"),
-    getQuantity: ()=> this.page.locator('#qty'),
-  };
+    getQuantity: () => this.page.locator('#qty'),
+    getHotSellersProductCardsItemsText: () => this.page.locator('div .product-item-name'), 
+    getHotSellersProductCardsItemsPrice: () => this.page.locator('.price'),
+    getHotSellersProductCardsItemsLinks: () => this.page.locator('div .product-item-name [href]').all(), 
+    getHotSellersProducrPageHeader: () => this.page.locator('.page-title'),
+    getHotSellersProductPagePrice: () => this.page.locator('.price-wrapper').first(),
+    getProductPageAvailabilityStatus: () => this.page.locator('.stock.available')
+    };
 
   async goBackToMenTopsPage() {
     await this.page.goBack();
@@ -45,6 +51,11 @@ class ProductCardPage {
     await this.page.getByLabel('Qty').fill(number);
     await this.page.getByLabel('Qty').press('Enter');
   }
+  async clickHotSellersProductCardsItemsLinks(i) {
+    const links = await this.locators.getHotSellersProductCardsItemsLinks();
+    await links[i].click();
+}
+
 }
 
 export default ProductCardPage;

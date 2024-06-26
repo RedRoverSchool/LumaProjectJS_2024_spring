@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import ProductCardPage from "../../page_objects/productCardPage.js";
 import MenTopsPage from "../../page_objects/menTopsPage.js";
+import { PRODUCT_IS_IN_STOCK_TEXT_STATUS } from '../../helpers/testData.js'
 
 test.describe('productCardPage.spec', () => {
     test.beforeEach(async ({ page }) => {
@@ -69,4 +70,23 @@ test.describe('productCardPage.spec', () => {
             await productCardPage.goBackToProductCardPage();
         }
     });
+       
+    test('verify details on product card of Hot Sellers Section: Title, Price, and Stock status are relevant to the Product page', async ({ page }) => {
+        const homePage = new HomePage(page);
+        const productCardPage = new ProductCardPage(page)
+        
+        const productCardsTitles = await productCardPage.locators.getHotSellersProductCardsItemsText().allInnerTexts()
+        const productCardsLinks = await productCardPage.locators.getHotSellersProductCardsItemsLinks()
+        const productCardsPrice = await productCardPage.locators.getHotSellersProductCardsItemsPrice().allInnerTexts()
+        
+        for (let i = 0; i < productCardsLinks.length; i++) {
+            await productCardPage.clickHotSellersProductCardsItemsLinks(i);
+            
+            await expect(productCardPage.locators.getHotSellersProducrPageHeader()).toHaveText(productCardsTitles[i]);
+            await expect(productCardPage.locators.getHotSellersProductPagePrice()).toHaveText(productCardsPrice[i])
+            await expect(productCardPage.locators.getProductPageAvailabilityStatus()).toContainText(PRODUCT_IS_IN_STOCK_TEXT_STATUS[i])
+
+            await page.goBack();
+        }
+    })
 })

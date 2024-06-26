@@ -326,3 +326,6 @@ export const CREATE_ACCOUNT_FORM_LABELS = ["First Name", "Last Name", "Email", "
 export const ACCOUNT_FORM_EMPTY_INPUTS = ["", "", "", "", ""];
 export const CREATE_ACCOUNT_PAGE_PASSWORD_ERROR_MESSAGE = "Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.";
 export const CREATE_ACCOUNT_PAGE_PASSWORD_WITH_SPACES_MESSAGE = "The password can't begin or end with a space. Verify the password and try again.";
+
+
+export const PRODUCT_IS_IN_STOCK_TEXT_STATUS = 'In stock'
